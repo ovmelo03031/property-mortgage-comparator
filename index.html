@@ -27,7 +27,6 @@ button,input,select{font:inherit;color:inherit}
 
 /* Hero */
 .hero{padding:40px 0 22px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
-.loc{color:var(--blue2);font-size:14px;margin:0 0 8px}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 12px;letter-spacing:-.015em}
 .sub{color:var(--mut);max-width:62ch;font-size:16.5px;margin:0}
 .hero-note{background:linear-gradient(160deg,rgba(59,130,246,.12),rgba(59,130,246,.02));border:1px solid rgba(124,176,255,.25);border-radius:14px;padding:14px 16px;font-size:13.5px;color:var(--mut)}
@@ -90,17 +89,28 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .grp{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
 .grp:first-of-type{margin-top:6px;padding-top:0;border-top:0}
 .grp h3{color:var(--blue2);font-size:13.5px;font-weight:600}
+.feerow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px 16px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.8px}
+.feerow:last-child{border-bottom:0}
+.feerow.head{font-size:11.5px;color:var(--dim);padding-top:0}
+.feerow.total{font-weight:700}
+.feerow>b{font-weight:600;text-align:right;min-width:86px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.feerow .fl{color:var(--mut);display:flex;align-items:center;gap:6px;min-width:0}
+.feerow .fl small{display:block;color:var(--dim);font-size:11.5px;line-height:1.3}
+.help{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1px solid var(--line2);background:var(--inset);color:var(--blue2);font-size:11px;font-weight:700;line-height:1;padding:0;cursor:help;display:inline-flex;align-items:center;justify-content:center}
+.help:hover,.help:focus-visible,.help[aria-expanded="true"]{border-color:var(--blue2);background:rgba(59,130,246,.18)}
+.htip{display:none;position:absolute;left:0;right:0;top:calc(100% - 2px);z-index:6;background:rgba(8,14,30,.97);border:1px solid var(--line2);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--tx);line-height:1.45;box-shadow:0 12px 30px -12px rgba(0,0,0,.7)}
+.feerow:has(.help:hover) .htip,.feerow:has(.help:focus-visible) .htip,.feerow.open .htip{display:block}
 .negprice{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
 
 /* KPIs */
 .kpi{border-radius:18px;padding:16px 18px;background:var(--card);border:1px solid var(--line)}
 .kpi .l{color:var(--mut);font-size:13px}
 .kpi .s{font-size:12.8px;color:var(--mut)}
-.kgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.kgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
 .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 6px}
-.side{padding:8px 10px;border-radius:12px;background:var(--inset);border:1px solid var(--line);cursor:pointer;min-width:0}
+.side{container-type:inline-size;padding:8px 10px;border-radius:12px;background:var(--inset);border:1px solid var(--line);cursor:pointer;min-width:0}
 .side small{display:block;color:var(--mut);font-size:11.5px}
-.side b{display:block;font-size:clamp(17px,1.9vw,21px);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.side b{display:block;font-size:clamp(13px,13.5cqi,20px);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .side.on{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset;background:rgba(59,130,246,.12)}
 .side.on small{color:#cfe0ff}
 .mgroup h3{color:var(--blue2);font-size:13.5px;font-weight:600}
@@ -152,9 +162,9 @@ tbody tr:last-child td{border-bottom:0}
 
 /* Indicators */
 .eq{font-size:15px;padding:10px 12px;border-radius:12px;background:var(--inset);border:1px solid var(--line);margin-bottom:8px}
-.stat{padding:14px;border-radius:14px;background:var(--inset);border:1px solid var(--line);min-width:0}
+.stat{container-type:inline-size;padding:14px;border-radius:14px;background:var(--inset);border:1px solid var(--line);min-width:0}
 .stat .l{font-size:12.5px;color:var(--mut)}
-.stat .v{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-top:2px;overflow-wrap:anywhere}
+.stat .v{font-size:clamp(14px,12cqi,22px);font-weight:700;letter-spacing:-.01em;margin-top:2px;white-space:nowrap}
 .stat.hero-s{background:linear-gradient(160deg,rgba(47,208,122,.14),var(--inset));border-color:rgba(47,208,122,.3)}
 .insight{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .insight li{padding:12px 14px;border-radius:12px;background:var(--inset);border-left:3px solid var(--blue);font-size:14px}
@@ -175,7 +185,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   section{padding-top:26px}
   .hero{padding-top:28px}
 }
-@media (max-width:420px){.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
+@media (max-width:420px){.feerow{gap:6px 10px}.feerow>b{min-width:0}.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -183,7 +193,6 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <div class="wrap">
   <header class="hero">
     <div>
-      <p class="loc" id="heroName"></p>
       <h1>Gate Towers · Comparador de Negociación</h1>
       <p class="sub">Análisis de inversión: entrada, mortgage, fees, cash-flow, break-even y patrimonio.</p>
     </div>
@@ -220,12 +229,11 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
       <div class="grp">
         <h3>Propiedad principal</h3>
         <div class="formgrid">
-          <div class="field"><label for="name">Property name</label><input type="text" id="name" class="inp" maxlength="80"></div>
-          <div class="field"><label for="rentNote">Rent note <span class="dim">opcional</span></label><input type="text" id="rentNote" class="inp" maxlength="120"></div>
           <div class="field"><label for="price">Purchase price (asking) <em id="price_v"></em></label><div class="frow"><input type="range" id="price_r" aria-label="Purchase price"><input type="number" id="price" class="inp num" step="any"></div></div>
           <div class="field"><label for="sqft">Size (sqft) <em id="sqft_v"></em></label><div class="frow"><input type="range" id="sqft_r" aria-label="Size"><input type="number" id="sqft" class="inp num" step="any"></div></div>
           <div class="field"><label for="pRent">Annual rent <em id="pRent_v"></em></label><div class="frow"><input type="range" id="pRent_r" aria-label="Annual rent"><input type="number" id="pRent" class="inp num" step="any"></div></div>
         </div>
+        <div id="psfCalc" style="margin-top:14px"></div>
       </div>
       <div class="grp">
         <h3>Financiación</h3>
@@ -247,13 +255,8 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
       </div>
       <div class="grp">
         <h3>Fees de compra</h3>
-        <div class="formgrid f3">
-          <div class="field"><label for="adgmPct">ADGM / registration fee (%)</label><input type="number" id="adgmPct" class="inp num" step="any"></div>
-          <div class="field"><label for="agencyPct">Agency fee (%) <span class="dim">+ VAT 5%</span></label><input type="number" id="agencyPct" class="inp num" step="any"></div>
-          <div class="field"><label for="efee">ADGM electronic fee (AED)</label><input type="number" id="efee" class="inp num" step="any"></div>
-          <div class="field"><label for="noc">NOC (AED)</label><input type="number" id="noc" class="inp num" step="any"></div>
-          <div class="field"><label for="conv">Conveyancing (AED)</label><input type="number" id="conv" class="inp num" step="any"></div>
-        </div>
+        <div id="feeList"></div>
+        <p class="tiny dim" style="margin:10px 0 0">Calculados automáticamente a partir del precio de cada escenario. Son estimaciones del modelo: confirma los importes con el broker y ADGM.</p>
       </div>
       <div class="grp">
         <h3>Objetivo y ahorros</h3>
@@ -350,21 +353,20 @@ const $=id=>document.getElementById(id);
 
 /* DEFAULTS:START */
 const DEFAULTS={
- name:'Gate Tower 3 · 1BR',price:1300000,sqft:900,rent:79963,rentNote:'Contrato vigente hasta 25 Ene 2027',
+ price:1300000,sqft:900,rent:79963,
  down:20,rate:3.99,term:25,sc:11.8,vacM:1,maint:4000,mgmt:0,admin:2000,
- adgmPct:2,agencyPct:2,efee:1050,noc:3750,conv:2100,
  tgt:1500,tol:5,sav:500000,savRate:6.25,savCap:500000,
  neg:1250000,mxStart:null,mxStep:50000,view:'main'
 };
 /* DEFAULTS:END */
 
 /* CALC:START */
-const AGENCY_VAT=0.05;
+const FEE_RULES={adgmPct:2,agencyPct:2,agencyVat:0.05,efee:1050,noc:3750,conv:2100};
 function payment(m,rate,term){const r=rate/1200,n=term*12;return r?m*r/(1-Math.pow(1+r,-n)):m/n}
-function fees(price,a){const adgm=price*a.adgmPct/100,agNet=price*a.agencyPct/100,vat=agNet*AGENCY_VAT;
- return{adgm,agNet,vat,agency:agNet+vat,efee:a.efee,noc:a.noc,conv:a.conv,total:adgm+agNet+vat+a.efee+a.noc+a.conv}}
+function fees(price){const R=FEE_RULES,adgm=price*R.adgmPct/100,agNet=price*R.agencyPct/100,vat=agNet*R.agencyVat;
+ return{adgm,agNet,vat,agency:agNet+vat,efee:R.efee,noc:R.noc,conv:R.conv,total:adgm+agNet+vat+R.efee+R.noc+R.conv}}
 function savingsInterest(a,balance){return Math.min(Math.max(balance,0),a.savCap)*a.savRate/100}
-function scenario(a,price){const down=price*a.down/100,f=fees(price,a);
+function scenario(a,price){const down=price*a.down/100,f=fees(price);
  return{price,sqft:a.sqft,downPct:a.down,down,mortgage:price-down,fees:f,ctc:down+f.total,finalCost:price+f.total}}
 function calc(a,price,rent=a.rent,rate=a.rate){
  const s=scenario(a,price),r=rate/1200,m=s.mortgage,pm=payment(m,rate,a.term);
@@ -406,7 +408,6 @@ const aed2=v=>'AED '+nf2.format(v);
 const pct=(v,d=2)=>isFinite(v)?v.toFixed(d)+'%':'—';
 const cls=v=>v>0.5?'pos':v<-0.5?'neg':'';
 const short=v=>Math.abs(v)>=1e6?'AED '+(v/1e6).toFixed(3).replace(/\.?0+$/,'')+'M':'AED '+nf0.format(v/1000)+'k';
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const LABEL={main:'Propiedad principal',neg:'Precio negociado'};
 const SHORT={main:'Principal',neg:'Negociado'};
 const SEL_COLOR='#3b82f6',LINE_COLOR={main:'#94a3b8',neg:'#2dd4bf'};
@@ -433,15 +434,12 @@ const FIELDS=[
  F('vacM',{smin:0,smax:6,step:.5,fmt:v=>v+(v===1?' mes':' meses')}),
  F('mgmt',{smin:0,smax:25,step:.5,fmt:v=>v+'%'}),
  F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),
- F('adgmPct',{nmin:0,nmax:20}),F('agencyPct',{nmin:0,nmax:20}),
- F('efee',{nmin:0,nmax:1e6}),F('noc',{nmin:0,nmax:1e6}),F('conv',{nmin:0,nmax:1e6}),
  F('tgt',{nmin:1,nmax:100000}),F('tol',{nmin:0,nmax:100}),
  F('sav',{nmin:0,nmax:1e10}),F('savRate',{nmin:0,nmax:100}),F('savCap',{nmin:0,nmax:1e10}),
  F('neg',{smin:500000,smax:5000000,step:10000,fmt:aed}),
  F('mxStart',{nmin:10000,nmax:5e7,get:mxStart}),
  F('mxStep',{nmin:1000,nmax:5e6})
 ];
-const TEXTS=['name','rentNote'];
 
 function bindField(f){
  const n=$(f.k),r=$(f.k+'_r'),lo=f.nmin!=null?f.nmin:f.smin,hi=f.nmax!=null?f.nmax:f.smax;
@@ -460,7 +458,6 @@ function syncFields(){
    const p=(Math.min(Math.max(v,f.smin),f.smax)-f.smin)/(f.smax-f.smin)*100;r.style.setProperty('--p',p+'%')}
   if(lbl&&f.fmt)lbl.textContent=f.fmt(v);
  });
- TEXTS.forEach(k=>{const el=$(k);if(document.activeElement!==el)el.value=S[k]});
  $('term').value=String(S.term);
  const up=S.neg>S.price;$('neg').classList.toggle('amber',up);
  document.querySelectorAll('.seg [data-view]').forEach(b=>{const on=b.dataset.view===S.view;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
@@ -468,7 +465,6 @@ function syncFields(){
 
 /* ---------- Render: cabecera y panel negociado ---------- */
 function renderHeader(R){
- $('heroName').textContent=S.name||'Propiedad sin nombre';
  $('heroRate').textContent=S.rate.toFixed(2)+'%';$('heroTerm').textContent=S.term;
  const d=S.price-S.neg,up=d<0;
  $('negBig').textContent=aed(S.neg);$('negBig').className='negprice num'+(up?' warn':'');
@@ -480,6 +476,34 @@ function renderHeader(R){
  $('negWarn').innerHTML=up?'<div class="alert">⚠ El precio negociado es mayor que el asking price. Los deltas de negociación aparecen como pérdidas.</div>':'';
 }
 
+/* ---------- Fees de compra (calculados) ---------- */
+const FEE_HELP={
+ adgm:`Tasa de registro del traspaso en ADGM: ${FEE_RULES.adgmPct}% del precio de compra. Cambia con el precio de cada escenario.`,
+ agency:`Comisión del broker: ${FEE_RULES.agencyPct}% del precio de compra más ${FEE_RULES.agencyVat*100}% de VAT sobre esa comisión (${nf2.format(FEE_RULES.agencyPct*(1+FEE_RULES.agencyVat))}% del precio en total).`,
+ efee:`Tasa del trámite electrónico de ADGM. Importe fijo estimado de AED ${nf0.format(FEE_RULES.efee)}: no depende del precio.`,
+ noc:`No Objection Certificate: autorización del developer para vender la unidad. Importe fijo estimado de AED ${nf0.format(FEE_RULES.noc)}.`,
+ conv:`Honorarios del conveyancer que gestiona la transferencia. Importe fijo estimado de AED ${nf0.format(FEE_RULES.conv)}.`,
+ total:'Suma de todos los fees. Cash-to-close = down payment + total fees.'
+};
+let openFee=null;
+const calcHead='<div class="feerow head"><span>Concepto</span><b style="font-weight:600">Principal</b><b style="font-weight:600">Negociado</b></div>';
+function calcRow(k,label,sub,m,n,{extra='',help=FEE_HELP[k],fmt=aed}={}){
+ return `<div class="feerow${extra}${openFee===k?' open':''}"><span class="fl"><span>${label}${sub?`<small>${sub}</small>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="Qué es ${label}" aria-expanded="${openFee===k}">?</button></span><b>${fmt(m)}</b><b>${fmt(n)}</b><span class="htip" role="tooltip">${help}</span></div>`}
+function renderFees(R){
+ const{M,N}=R,row=(k,label,sub,m,n,extra='')=>calcRow(k,label,sub,m,n,{extra});
+ const badge=v=>{const b=psfState(v);return `<span class="badge ${b.c}">${b.t}</span>`};
+ $('psfCalc').innerHTML=calcHead+
+  calcRow('psf','Precio por sqft','calculado',M.psf,N.psf,{help:`Lo que pagas por cada sqft: precio de compra ÷ tamaño (${nf0.format(S.sqft)} sqft). Principal: ${aed(S.price)} ÷ ${nf0.format(S.sqft)}. Negociado: ${aed(S.neg)} ÷ ${nf0.format(S.sqft)}. Se recalcula al cambiar el precio o el tamaño.`})+
+  calcRow('psfTgt','vs tu objetivo',aed(S.tgt)+' ±'+S.tol+'%',M.psf,N.psf,{fmt:badge,help:`Compara el precio por sqft con tu objetivo de ${aed(S.tgt)}/sqft. Below target: por debajo de ${aed(S.tgt*(1-S.tol/100))}. Near target: dentro de ±${S.tol}%. Expensive: por encima de ${aed(S.tgt*(1+S.tol/100))}. Es tu cifra, no un juicio de mercado.`});
+ $('feeList').innerHTML=calcHead+
+  row('adgm','ADGM / registration fee',FEE_RULES.adgmPct+'%',M.fees.adgm,N.fees.adgm)+
+  row('agency','Agency fee',FEE_RULES.agencyPct+'% + VAT',M.fees.agency,N.fees.agency)+
+  row('efee','ADGM electronic fee','',M.fees.efee,N.fees.efee)+
+  row('noc','NOC','',M.fees.noc,N.fees.noc)+
+  row('conv','Conveyancing','',M.fees.conv,N.fees.conv)+
+  row('total','Total fees','',M.fees.total,N.fees.total,' total');
+}
+
 /* ---------- KPI lado a lado ---------- */
 function pairCard(label,m,n,{fmt=aed,colorize=false,better='higher',extraM='',extraN='',sub=''}={}){
  const d=n-m,good=better==='higher'?d>0.5:d<-0.5,bad=better==='higher'?d<-0.5:d>0.5;
@@ -489,7 +513,7 @@ function pairCard(label,m,n,{fmt=aed,colorize=false,better='higher',extraM='',ex
 }
 function renderKpis(R){
  const{M,N}=R,bM=psfState(M.psf),bN=psfState(N.psf);
- $('kpiSub').textContent=`Renta anual ${aed(S.rent)}${S.rentNote?' ('+S.rentNote+')':''} · ${nf0.format(S.sqft)} sqft · ${S.down}% down payment · ${S.rate.toFixed(2)}% a ${S.term} años. El escenario en azul es el que muestra la sección de detalle.`;
+ $('kpiSub').textContent=`Renta anual ${aed(S.rent)} · ${nf0.format(S.sqft)} sqft · ${S.down}% down payment · ${S.rate.toFixed(2)}% a ${S.term} años. El escenario en azul es el que muestra la sección de detalle.`;
  const badge=b=>`<span class="badge ${b.c}" style="margin-top:4px">${b.t}</span>`;
  $('kpiGrid').innerHTML=[
   pairCard('Cash-flow mensual',M.cfM,N.cfM,{fmt:saed,colorize:true}),
@@ -529,7 +553,7 @@ function mrow(l,v,c='',sub=''){return `<div class="mrow"><span>${l}</span><b cla
 function renderDetail(R){
  const s=R.sel,f=s.fees,before=savingsInterest(S,S.sav),lost=before-s.interest;
  $('detTitle').textContent=`Métricas detalladas · ${LABEL[S.view]}`;
- $('detSub').textContent=`${S.name} · ${aed(s.price)} · ${nf0.format(S.sqft)} sqft · renta ${aed(S.rent)}/año. Cambia de escenario con el selector de la barra superior.`;
+ $('detSub').textContent=`${aed(s.price)} · ${nf0.format(S.sqft)} sqft · renta ${aed(S.rent)}/año. Cambia de escenario con el selector de la barra superior.`;
  $('detBadges').innerHTML=s.cfM>=0?'<span class="badge b-green">Cash-flow positivo</span>':'<span class="badge b-red">Cash-flow negativo</span>';
  $('metrics').innerHTML=`
  <div class="card flat mgroup"><h3>Financiación y entrada</h3>
@@ -537,14 +561,14 @@ function renderDetail(R){
   ${mrow('Down payment',aed(s.down),'',pct(s.downPct,0)+' del precio')}
   ${mrow('Mortgage',aed(s.mortgage))}
   ${mrow('Cuota mensual',aed(s.pm),'',`${S.rate.toFixed(2)}% · ${S.term} años`)}${mrow('Cuota anual',aed(s.debt))}
-  ${mrow('ADGM / registro',aed(f.adgm),'',S.adgmPct+'% del precio')}
-  ${mrow('Agency fee (neto)',aed(f.agNet),'',S.agencyPct+'% del precio')}${mrow('VAT sobre agency (5%)',aed(f.vat))}
+  ${mrow('ADGM / registro',aed(f.adgm),'',FEE_RULES.adgmPct+'% del precio')}
+  ${mrow('Agency fee (neto)',aed(f.agNet),'',FEE_RULES.agencyPct+'% del precio')}${mrow('VAT sobre agency ('+FEE_RULES.agencyVat*100+'%)',aed(f.vat))}
   ${mrow('ADGM electronic fee',aed(f.efee))}${mrow('NOC',aed(f.noc))}${mrow('Conveyancing',aed(f.conv))}
   ${mrow('Total fees',aed(f.total))}
   ${mrow('Cash-to-close',aed(s.ctc),'','Down payment + fees')}${mrow('Final cost',aed(s.finalCost),'','Precio + fees')}
  </div>
  <div class="card flat mgroup"><h3>Operación anual</h3>
-  ${mrow('Renta bruta',aed(S.rent),'',S.rentNote?esc(S.rentNote):'')}${mrow('Vacancy reserve',saed(-s.vac),'neg',S.vacM+' mes(es)')}
+  ${mrow('Renta bruta',aed(S.rent))}${mrow('Vacancy reserve',saed(-s.vac),'neg',S.vacM+' mes(es)')}
   ${mrow('Renta efectiva',aed(s.eff))}
   ${mrow('Service charge',saed(-s.scA),'neg',`${nf0.format(S.sqft)} × AED ${S.sc} · ${aed2(s.scM)}/mes`)}
   ${mrow('Maintenance',saed(-S.maint),'neg')}${mrow('Leasing / management',saed(-s.mg),'neg',S.mgmt+'% de la renta')}
@@ -679,7 +703,7 @@ function renderSavings(R){
 function renderInsights(R){
  const{M,N}=R,save=S.price-S.neg,before=savingsInterest(S,S.sav),L=[];
  const cfTxt=v=>v>=0?`positivo (${saed(v)}/mes)`:`negativo (${saed(v)}/mes)`;
- L.push({t:`Con una renta de ${aed(S.rent)}/año${S.rentNote?' ('+esc(S.rentNote)+')':''}, el cash-flow es ${cfTxt(M.cfM)} en la propiedad principal y ${cfTxt(N.cfM)} con el precio negociado.`});
+ L.push({t:`Con una renta de ${aed(S.rent)}/año, el cash-flow es ${cfTxt(M.cfM)} en la propiedad principal y ${cfTxt(N.cfM)} con el precio negociado.`});
  L.push({t:`Break-even de renta anual: ${aed(M.be)} (principal) y ${aed(N.be)} (negociado). La renta actual ${S.rent>=N.be?'cubre el break-even negociado con '+aed(S.rent-N.be)+' de margen':'queda '+aed(N.be-S.rent)+'/año por debajo del break-even negociado'}.`});
  const be50=breakEven(S,S.price)-breakEven(S,S.price-50000),cf50=calc(S,S.price-50000).cfM-M.cfM;
  L.push({t:`Con estos supuestos, cada AED 50,000 menos de precio reduce el break-even en ${aed(be50)}/año y cambia el cash-flow en ${saed(cf50)}/mes.`});
@@ -701,16 +725,18 @@ let lastR=null;
 function render(){
  syncFields();
  const R=lastR=both();
- renderHeader(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);renderInsights(R);
+ renderHeader(R);renderFees(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);renderInsights(R);
  saveState();
 }
 
 /* ---------- Eventos ---------- */
 loadState();
 FIELDS.forEach(bindField);
-TEXTS.forEach(k=>$(k).addEventListener('input',e=>{S[k]=e.target.value;render()}));
 $('term').addEventListener('change',e=>{S.term=parseInt(e.target.value,10);render()});
 document.addEventListener('click',e=>{
+ const hb=e.target.closest('[data-help]');const next=hb?(openFee===hb.dataset.help?null:hb.dataset.help):null;
+ if(next!==openFee){openFee=next;renderFees(lastR||both());if(hb)document.querySelector(`[data-help="${next||hb.dataset.help}"]`).focus()}
+ if(hb)return;
  const c=e.target.closest('[data-cut]');if(c){S.neg=Math.max(500000,S.price-(+c.dataset.cut));render();return}
  const v=e.target.closest('[data-view]');if(v){S.view=v.dataset.view;render()}
 });

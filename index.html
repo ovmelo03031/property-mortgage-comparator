@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gate Towers · Comparador de Negociación</title>
+<style>
+:root{
+  --bg:#060c1b;--bg2:#0a1328;--card:#0e1831;--card2:#122042;--inset:#0a1226;
+  --line:rgba(148,163,184,.13);--line2:rgba(148,163,184,.26);
+  --tx:#e9eef8;--mut:#93a0b8;--dim:#61708c;
+  --blue:#3b82f6;--blue2:#7cb0ff;--green:#2fd07a;--red:#ff5a6e;--amber:#f5b041;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:150px;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:radial-gradient(1100px 520px at 0% -8%,#15295a 0%,transparent 62%),radial-gradient(900px 480px at 100% 0%,#0d2b3f 0%,transparent 58%),var(--bg);background-attachment:fixed;
+  padding-bottom:env(safe-area-inset-bottom)}
+.num,td,.kv b,.big{font-variant-numeric:tabular-nums}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+a{color:var(--blue2)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue2);outline-offset:2px}
+
+/* Hero */
+.hero{padding:40px 0 22px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
+.loc{color:var(--blue2);font-size:14px;margin:0 0 8px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 12px;letter-spacing:-.015em}
+.sub{color:var(--mut);max-width:62ch;font-size:16.5px;margin:0}
+.hero-note{background:linear-gradient(160deg,rgba(59,130,246,.12),rgba(59,130,246,.02));border:1px solid rgba(124,176,255,.25);border-radius:14px;padding:14px 16px;font-size:13.5px;color:var(--mut)}
+.hero-note b{color:var(--tx)}
+
+/* Sticky bar */
+.bar{position:sticky;top:0;z-index:40;background:rgba(6,12,27,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar-in{display:flex;gap:14px;align-items:center;padding:10px 20px;flex-wrap:wrap;max-width:1280px;margin:0 auto}
+.rentctl{display:flex;align-items:center;gap:10px;flex:1 1 420px;min-width:0}
+.rentctl label{font-size:12.5px;color:var(--mut);white-space:nowrap}
+.rentctl input[type=range]{flex:1;min-width:60px}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:12px;padding:3px;background:var(--card);flex:0 0 auto}
+.seg button{border:0;background:transparent;padding:6px 14px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--mut)}
+.seg button.on{background:var(--blue);color:#fff}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 20px 8px;max-width:1280px;margin:0 auto}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:0 0 auto;color:var(--mut);text-decoration:none;font-size:12.5px;padding:4px 10px;border-radius:999px}
+.toc a:hover{color:var(--tx);background:var(--card)}
+
+/* Inputs */
+.inp{background:var(--inset);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;width:100%;min-width:0}
+.inp.sm{width:112px;padding:6px 8px}
+.inp.amber{border-color:var(--amber);color:var(--amber)}
+select.inp{appearance:auto}
+input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--blue) var(--p,50%),rgba(148,163,184,.22) var(--p,50%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--blue);cursor:pointer}
+.btn{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:600;font-size:13.5px}
+.btn.ghost{background:transparent;color:var(--blue2);border-color:rgba(124,176,255,.4)}
+.pill{border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:12.5px}
+.pill.on{border-color:var(--blue);color:#fff;background:rgba(59,130,246,.25)}
+
+/* Sections */
+section{padding:34px 0 8px}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,29px);margin:0;letter-spacing:-.01em}
+.sec-h p{margin:4px 0 0;color:var(--mut);font-size:14px;max-width:70ch}
+h3{font-size:15px;margin:0 0 10px;font-weight:650}
+.card{background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.card.flat{background:var(--card);border-radius:14px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.muted{color:var(--mut)}.dim{color:var(--dim)}
+.pos{color:var(--green)}.neg{color:var(--red)}.warn{color:var(--amber)}.sel{color:var(--blue2)}
+.small{font-size:13px}.tiny{font-size:12px}
+.swatch{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);white-space:nowrap}
+.badge.b-green{color:var(--green);border-color:rgba(47,208,122,.4);background:rgba(47,208,122,.08)}
+.badge.b-red{color:var(--red);border-color:rgba(255,90,110,.4);background:rgba(255,90,110,.08)}
+.badge.b-amber{color:var(--amber);border-color:rgba(245,176,65,.45);background:rgba(245,176,65,.1)}
+.badge.b-blue{color:var(--blue2);border-color:rgba(124,176,255,.45);background:rgba(59,130,246,.12)}
+.alert{margin-top:12px;border:1px solid rgba(245,176,65,.45);background:rgba(245,176,65,.09);color:#ffd99a;border-radius:12px;padding:10px 12px;font-size:13px}
+.alert.info{border-color:rgba(124,176,255,.3);background:rgba(59,130,246,.07);color:#c8dbff}
+
+/* Input panel */
+.inpgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;align-items:start}
+.negcard{position:sticky;top:120px}
+.grp{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
+.grp:first-of-type{margin-top:6px;padding-top:0;border-top:0}
+.grp h3{color:var(--blue2);font-size:13.5px;font-weight:600}
+.negprice{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
+
+/* KPIs */
+.kpi{border-radius:18px;padding:16px 18px;background:var(--card);border:1px solid var(--line)}
+.kpi .l{color:var(--mut);font-size:13px}
+.kpi .s{font-size:12.8px;color:var(--mut)}
+.kgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 6px}
+.side{padding:8px 10px;border-radius:12px;background:var(--inset);border:1px solid var(--line);cursor:pointer;min-width:0}
+.side small{display:block;color:var(--mut);font-size:11.5px}
+.side b{display:block;font-size:clamp(17px,1.9vw,21px);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.side.on{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset;background:rgba(59,130,246,.12)}
+.side.on small{color:#cfe0ff}
+.mgroup h3{color:var(--blue2);font-size:13.5px;font-weight:600}
+.mrow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.8px}
+.mrow:last-child{border-bottom:0}
+.mrow span{color:var(--mut)}.mrow b{font-weight:600;text-align:right}
+.mrow b small{display:block;font-weight:400;color:var(--dim);font-size:11.5px}
+
+/* Chart */
+.chartbox{position:relative;width:100%}
+.chartbox svg{display:block;width:100%;touch-action:pan-y}
+.tip{position:absolute;pointer-events:none;background:rgba(8,14,30,.96);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;font-size:12.5px;min-width:170px;opacity:0;transition:opacity .12s;z-index:5}
+.tip .r{display:flex;justify-content:space-between;gap:12px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:var(--mut)}
+.legend .li{display:flex;align-items:center;gap:6px;cursor:pointer}
+.legend .ln{width:22px;height:3px;border-radius:2px}
+.legend .li.on{color:var(--tx);font-weight:600}
+
+/* Tables */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:16px;border:1px solid var(--line);max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:10px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{position:sticky;top:0;background:#0c1630;color:var(--mut);font-weight:600;font-size:12.5px}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#0c1630;z-index:1}
+td:first-child{background:#0b1429}
+tr.on td{background:rgba(59,130,246,.1)}
+tr.on td:first-child{background:#11244a;box-shadow:inset 3px 0 0 var(--blue)}
+th.on{color:var(--blue2)}
+tbody tr:last-child td{border-bottom:0}
+
+/* Matrix */
+.mx{min-width:760px}
+.mx td{text-align:center;font-weight:600;padding:9px 8px}
+.mx td.c-pos{background:rgba(47,208,122,var(--a,.18));color:#bff3d6}
+.mx td.c-neg{background:rgba(255,90,110,var(--a,.18));color:#ffd0d6}
+.mx td.c-mid{background:rgba(245,176,65,.2);color:#ffe2ad}
+.mx td.hit{outline:2px solid var(--blue2);outline-offset:-2px}
+.mx tr.cur td:first-child{color:var(--blue2)}
+
+/* Forms */
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px}
+.field label em{font-style:normal;color:var(--tx);font-weight:600;text-align:right}
+.frow{display:flex;gap:10px;align-items:center;min-width:0}
+.frow input[type=range]{flex:1;min-width:0}
+.frow .inp{flex:0 0 130px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px}
+.formgrid.f3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* Indicators */
+.eq{font-size:15px;padding:10px 12px;border-radius:12px;background:var(--inset);border:1px solid var(--line);margin-bottom:8px}
+.stat{padding:14px;border-radius:14px;background:var(--inset);border:1px solid var(--line);min-width:0}
+.stat .l{font-size:12.5px;color:var(--mut)}
+.stat .v{font-size:22px;font-weight:700;letter-spacing:-.01em;margin-top:2px;overflow-wrap:anywhere}
+.stat.hero-s{background:linear-gradient(160deg,rgba(47,208,122,.14),var(--inset));border-color:rgba(47,208,122,.3)}
+.insight{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.insight li{padding:12px 14px;border-radius:12px;background:var(--inset);border-left:3px solid var(--blue);font-size:14px}
+.insight li.w{border-left-color:var(--amber)}
+.disc{margin:40px 0 30px;padding:18px;border-radius:14px;border:1px solid rgba(245,176,65,.35);background:rgba(245,176,65,.06);color:#e8d6b0;font-size:13.5px}
+footer{color:var(--dim);font-size:12px;padding:0 0 40px}
+
+@media (max-width:1000px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:1fr}.hero{grid-template-columns:1fr}
+  .inpgrid{grid-template-columns:1fr}.negcard{position:static}.formgrid.f3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}.bar-in{padding:8px 16px;gap:8px}.toc{padding:0 16px 8px}
+  .g2,.formgrid,.formgrid.f3{grid-template-columns:1fr}
+  .rentctl{flex:1 1 100%}.rentctl label{display:none}
+  .inp.sm{width:100px}
+  .frow .inp{flex-basis:112px}
+  section{padding-top:26px}
+  .hero{padding-top:28px}
+}
+@media (max-width:420px){.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <p class="loc" id="heroName"></p>
+      <h1>Gate Towers · Comparador de Negociación</h1>
+      <p class="sub">Análisis de inversión: entrada, mortgage, fees, cash-flow, break-even y patrimonio.</p>
+    </div>
+    <div class="hero-note">
+      <b>Tasa modelada: <span id="heroRate">3.99%</span></b> a <span id="heroTerm">25</span> años. Es solo un supuesto de modelo: la tasa real puede cambiar tras el periodo fijo del banco. Sin apreciación, sin prima por amueblado y sin rentas inventadas: la renta la defines tú.
+    </div>
+  </header>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="rentctl">
+      <label for="rent_r">Renta anual</label>
+      <input type="range" id="rent_r" aria-label="Renta anual">
+      <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED">
+    </div>
+    <div class="seg" role="tablist" aria-label="Escenario de las métricas detalladas">
+      <button type="button" role="tab" data-view="main">Principal</button>
+      <button type="button" role="tab" data-view="neg">Negociado</button>
+    </div>
+  </div>
+  <nav class="toc">
+    <a href="#inputs">Inputs</a><a href="#kpis">Comparación</a><a href="#impacto">Impacto</a><a href="#detalle">Detalle</a><a href="#grafico">Gráfico</a><a href="#breakeven">Break-even</a><a href="#stress">Tasa</a><a href="#matriz">Sensibilidad</a><a href="#ahorros">Mis ahorros</a><a href="#insights">Lectura</a>
+  </nav>
+</div>
+
+<main class="wrap">
+
+<section id="inputs">
+  <div class="sec-h"><div><h2>Inputs</h2><p>La propiedad principal define todos los supuestos. El escenario negociado solo cambia el precio de compra y hereda todo lo demás.</p></div>
+    <button type="button" class="btn ghost" id="btnReset">Restablecer valores por defecto</button></div>
+  <div class="inpgrid">
+    <div class="card">
+      <div class="grp">
+        <h3>Propiedad principal</h3>
+        <div class="formgrid">
+          <div class="field"><label for="name">Property name</label><input type="text" id="name" class="inp" maxlength="80"></div>
+          <div class="field"><label for="rentNote">Rent note <span class="dim">opcional</span></label><input type="text" id="rentNote" class="inp" maxlength="120"></div>
+          <div class="field"><label for="price">Purchase price (asking) <em id="price_v"></em></label><div class="frow"><input type="range" id="price_r" aria-label="Purchase price"><input type="number" id="price" class="inp num" step="any"></div></div>
+          <div class="field"><label for="sqft">Size (sqft) <em id="sqft_v"></em></label><div class="frow"><input type="range" id="sqft_r" aria-label="Size"><input type="number" id="sqft" class="inp num" step="any"></div></div>
+          <div class="field"><label for="pRent">Annual rent <em id="pRent_v"></em></label><div class="frow"><input type="range" id="pRent_r" aria-label="Annual rent"><input type="number" id="pRent" class="inp num" step="any"></div></div>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>Financiación</h3>
+        <div class="formgrid">
+          <div class="field"><label for="down">Down payment % <em id="down_v"></em></label><div class="frow"><input type="range" id="down_r" aria-label="Down payment %"><input type="number" id="down" class="inp num" step="any"></div></div>
+          <div class="field"><label for="rate">Mortgage rate <em id="rate_v"></em></label><div class="frow"><input type="range" id="rate_r" aria-label="Mortgage rate"><input type="number" id="rate" class="inp num" step="any"></div></div>
+          <div class="field"><label for="term">Mortgage term</label><select id="term" class="inp"><option value="15">15 años</option><option value="20">20 años</option><option value="25">25 años</option><option value="30">30 años</option></select></div>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>Operación anual</h3>
+        <div class="formgrid">
+          <div class="field"><label for="sc">Service charge (AED/sqft/año) <em id="sc_v"></em></label><div class="frow"><input type="range" id="sc_r" aria-label="Service charge"><input type="number" id="sc" class="inp num" step="any"></div></div>
+          <div class="field"><label for="vacM">Vacancy reserve (meses/año) <em id="vacM_v"></em></label><div class="frow"><input type="range" id="vacM_r" aria-label="Vacancy reserve"><input type="number" id="vacM" class="inp num" step="any"></div></div>
+          <div class="field"><label for="mgmt">Leasing / management (% renta) <em id="mgmt_v"></em></label><div class="frow"><input type="range" id="mgmt_r" aria-label="Leasing / management"><input type="number" id="mgmt" class="inp num" step="any"></div></div>
+          <div class="field"><label for="maint">Maintenance reserve (AED/año)</label><input type="number" id="maint" class="inp num" step="any"></div>
+          <div class="field"><label for="admin">Admin / incidentals (AED/año)</label><input type="number" id="admin" class="inp num" step="any"></div>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>Fees de compra</h3>
+        <div class="formgrid f3">
+          <div class="field"><label for="adgmPct">ADGM / registration fee (%)</label><input type="number" id="adgmPct" class="inp num" step="any"></div>
+          <div class="field"><label for="agencyPct">Agency fee (%) <span class="dim">+ VAT 5%</span></label><input type="number" id="agencyPct" class="inp num" step="any"></div>
+          <div class="field"><label for="efee">ADGM electronic fee (AED)</label><input type="number" id="efee" class="inp num" step="any"></div>
+          <div class="field"><label for="noc">NOC (AED)</label><input type="number" id="noc" class="inp num" step="any"></div>
+          <div class="field"><label for="conv">Conveyancing (AED)</label><input type="number" id="conv" class="inp num" step="any"></div>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>Objetivo y ahorros</h3>
+        <div class="formgrid f3">
+          <div class="field"><label for="tgt">Target AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
+          <div class="field"><label for="tol">Target tolerance (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
+          <div class="field"><label for="sav">Savings balance (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
+          <div class="field"><label for="savRate">Savings rate (%/año, pago mensual)</label><input type="number" id="savRate" class="inp num" step="any"></div>
+          <div class="field"><label for="savCap">Max interest-bearing balance (AED)</label><input type="number" id="savCap" class="inp num" step="any"></div>
+        </div>
+        <p class="tiny dim" style="margin:12px 0 0">El objetivo AED/sqft es una cifra tuya, no un juicio de mercado.</p>
+      </div>
+    </div>
+
+    <div class="card negcard">
+      <h3>Precio negociado</h3>
+      <div class="small muted">Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, fees y ahorros de la propiedad principal.</div>
+      <div class="negprice num" id="negBig"></div>
+      <div class="small" id="negDelta"></div>
+      <div class="field" style="margin-top:14px"><label for="neg">Negotiated purchase price <em id="neg_v"></em></label><div class="frow"><input type="range" id="neg_r" aria-label="Negotiated purchase price"><input type="number" id="neg" class="inp num" step="any"></div></div>
+      <div class="small muted" style="margin:14px 0 8px">Descuento rápido sobre el asking price:</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" id="cuts"></div>
+      <div id="negWarn"></div>
+    </div>
+  </div>
+</section>
+
+<section id="kpis">
+  <div class="sec-h"><div><h2>Principal vs Negociado</h2><p id="kpiSub"></p></div></div>
+  <div class="kgrid" id="kpiGrid"></div>
+</section>
+
+<section id="impacto">
+  <div class="sec-h"><div><h2>Impacto de negociación</h2><p id="impSub"></p></div></div>
+  <div class="grid g4" id="impGrid"></div>
+</section>
+
+<section id="detalle">
+  <div class="sec-h"><div><h2 id="detTitle">Métricas detalladas</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
+  <div class="grid g3" id="metrics"></div>
+</section>
+
+<section id="grafico">
+  <div class="sec-h"><div><h2>Cash-flow anual según la renta</h2><p>Donde cada línea cruza el cero está su break-even. Pasa el cursor o el dedo por el gráfico para leer valores.</p></div></div>
+  <div class="card">
+    <div class="chartbox" id="chart"><div class="tip" id="tip"></div></div>
+    <div class="legend" id="legend"></div>
+  </div>
+</section>
+
+<section id="breakeven">
+  <div class="sec-h"><div><h2>Panel de break-even</h2><p id="beSub"></p></div></div>
+  <div class="tscroll"><table id="beTable" style="min-width:720px"></table></div>
+</section>
+
+<section id="stress">
+  <div class="sec-h"><div><h2>Stress de tasa</h2><p>La tasa modelada no está garantizada para todo el plazo del mortgage: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.</p></div></div>
+  <div class="tscroll"><table id="stressTable" style="min-width:720px"></table></div>
+</section>
+
+<section id="matriz">
+  <div class="sec-h"><div><h2>Matriz de sensibilidad</h2><p id="mxSub"></p></div>
+    <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
+      <div class="field"><label for="mxStart">Precio inicial</label><input type="number" id="mxStart" class="inp sm num" step="any"></div>
+      <div class="field"><label for="mxStep">Paso</label><input type="number" id="mxStep" class="inp sm num" step="any"></div>
+    </div>
+  </div>
+  <div class="tscroll"><table id="mx" class="mx"></table></div>
+  <p class="tiny muted" style="margin-top:8px"><span class="badge b-green">Positivo</span> <span class="badge b-amber">Zona break-even ±AED 250/mes</span> <span class="badge b-red">Negativo</span> · Cifras en CF mensual. El recuadro azul marca la renta actual en las filas del asking y del precio negociado.</p>
+</section>
+
+<section id="ahorros">
+  <div class="sec-h"><div><h2>My cash benchmark</h2><p>Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.</p></div></div>
+  <div class="grid g2">
+    <div class="card" id="bench"></div>
+    <div class="card" id="savAlerts"></div>
+  </div>
+  <div class="tscroll" style="margin-top:14px"><table id="savTable" style="min-width:880px"></table></div>
+</section>
+
+<section id="insights">
+  <div class="sec-h"><div><h2>Lectura de inversión</h2><p>Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.</p></div></div>
+  <ul class="insight" id="insightList"></ul>
+</section>
+
+<div class="disc">This model is for investment analysis only. Actual mortgage rates, service charges, rental income, vacancy, maintenance and transaction costs may differ. Verify all figures with the bank, ADREC/ADGM, building management and the broker before purchase.</div>
+<footer>Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
+</main>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+
+/* DEFAULTS:START */
+const DEFAULTS={
+ name:'Gate Tower 3 · 1BR',price:1300000,sqft:900,rent:79963,rentNote:'Contrato vigente hasta 25 Ene 2027',
+ down:20,rate:3.99,term:25,sc:11.8,vacM:1,maint:4000,mgmt:0,admin:2000,
+ adgmPct:2,agencyPct:2,efee:1050,noc:3750,conv:2100,
+ tgt:1500,tol:5,sav:500000,savRate:6.25,savCap:500000,
+ neg:1250000,mxStart:null,mxStep:50000,view:'main'
+};
+/* DEFAULTS:END */
+
+/* CALC:START */
+const AGENCY_VAT=0.05;
+function payment(m,rate,term){const r=rate/1200,n=term*12;return r?m*r/(1-Math.pow(1+r,-n)):m/n}
+function fees(price,a){const adgm=price*a.adgmPct/100,agNet=price*a.agencyPct/100,vat=agNet*AGENCY_VAT;
+ return{adgm,agNet,vat,agency:agNet+vat,efee:a.efee,noc:a.noc,conv:a.conv,total:adgm+agNet+vat+a.efee+a.noc+a.conv}}
+function savingsInterest(a,balance){return Math.min(Math.max(balance,0),a.savCap)*a.savRate/100}
+function scenario(a,price){const down=price*a.down/100,f=fees(price,a);
+ return{price,sqft:a.sqft,downPct:a.down,down,mortgage:price-down,fees:f,ctc:down+f.total,finalCost:price+f.total}}
+function calc(a,price,rent=a.rent,rate=a.rate){
+ const s=scenario(a,price),r=rate/1200,m=s.mortgage,pm=payment(m,rate,a.term);
+ const bal=k=>r?m*Math.pow(1+r,k)-pm*(Math.pow(1+r,k)-1)/r:m-pm*k;
+ const scA=a.sqft*a.sc,vac=rent*a.vacM/12,mg=rent*a.mgmt/100,opex=scA+a.maint+mg+a.admin;
+ const noi=rent-vac-opex,debt=pm*12,cfA=noi-debt,bal12=bal(12),bal24=bal(24),prin1=m-bal12,prin2=m-bal24;
+ const rem=a.sav-s.ctc,interest=savingsInterest(a,rem);
+ return Object.assign(s,{rent,rate,pm,debt,scA,scM:scA/12,vac,mg,opex,eff:rent-vac,noi,cfA,cfM:cfA/12,
+  prin1,prin2,bal12,bal24,int1:debt-prin1,wealth:prin1+cfA,gy:rent/price*100,ny:noi/price*100,coc:cfA/s.ctc*100,
+  psf:price/a.sqft,rem,interest,combM:cfA/12+interest/12,combA:cfA+interest});
+}
+function breakEven(a,price,targetMonthly=0,rate=a.rate){
+ const d=1-a.vacM/12-a.mgmt/100;if(d<=0)return Infinity;
+ const debt=payment(scenario(a,price).mortgage,rate,a.term)*12;
+ return(a.sqft*a.sc+a.maint+a.admin+debt+12*targetMonthly)/d;
+}
+/* CALC:END */
+
+/* ---------- Estado + persistencia ---------- */
+const STORE='gt-negotiation-comparator-v1';
+const S=Object.assign({},DEFAULTS);
+function loadState(){
+ try{const raw=localStorage.getItem(STORE);if(!raw)return;const o=JSON.parse(raw);if(!o||typeof o!=='object')return;
+  Object.keys(DEFAULTS).forEach(k=>{if(!(k in o))return;const v=o[k],d=DEFAULTS[k];
+   if(k==='mxStart'){if(v===null||(typeof v==='number'&&isFinite(v)))S[k]=v;return}
+   if(typeof d==='number'?typeof v==='number'&&isFinite(v):typeof v===typeof d)S[k]=v});
+  if(S.view!=='main'&&S.view!=='neg')S.view='main';
+  if(![15,20,25,30].includes(S.term))S.term=DEFAULTS.term;
+ }catch(e){}
+}
+function saveState(){try{localStorage.setItem(STORE,JSON.stringify(S))}catch(e){}}
+
+/* ---------- Formato ---------- */
+const nf0=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+const nf2=new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const aed=v=>isFinite(v)?(v<-0.5?'−':'')+'AED '+nf0.format(Math.abs(Math.round(v))):'—';
+const saed=v=>{if(!isFinite(v))return'—';const r=Math.round(v);return(r>0?'+':r<0?'−':'')+'AED '+nf0.format(Math.abs(r))};
+const aed2=v=>'AED '+nf2.format(v);
+const pct=(v,d=2)=>isFinite(v)?v.toFixed(d)+'%':'—';
+const cls=v=>v>0.5?'pos':v<-0.5?'neg':'';
+const short=v=>Math.abs(v)>=1e6?'AED '+(v/1e6).toFixed(3).replace(/\.?0+$/,'')+'M':'AED '+nf0.format(v/1000)+'k';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LABEL={main:'Propiedad principal',neg:'Precio negociado'};
+const SHORT={main:'Principal',neg:'Negociado'};
+const SEL_COLOR='#3b82f6',LINE_COLOR={main:'#94a3b8',neg:'#2dd4bf'};
+
+function psfState(v){const lo=S.tgt*(1-S.tol/100),hi=S.tgt*(1+S.tol/100);
+ if(v<lo)return{t:'Below target',c:'b-green'};if(v<=hi)return{t:'Near target',c:'b-amber'};return{t:'Expensive',c:'b-red'}}
+const mxStart=()=>S.mxStart==null?S.neg-100000:S.mxStart;
+function both(){
+ const M=calc(S,S.price),N=calc(S,S.neg);
+ M.key='main';N.key='neg';M.be=breakEven(S,S.price);N.be=breakEven(S,S.neg);
+ return{M,N,sel:S.view==='neg'?N:M};
+}
+
+/* ---------- Inputs ---------- */
+const F=(k,o)=>Object.assign({k,get:()=>S[k],set:v=>{S[k]=v}},o);
+const rentField=k=>F(k,{smin:40000,smax:250000,step:2500,nmin:0,nmax:10000000,get:()=>S.rent,set:v=>{S.rent=v},fmt:aed});
+const FIELDS=[
+ rentField('rent'),rentField('pRent'),
+ F('price',{smin:500000,smax:5000000,step:10000,fmt:aed}),
+ F('sqft',{smin:300,smax:5000,step:1,fmt:v=>nf0.format(v)+' sqft'}),
+ F('down',{smin:15,smax:60,step:5,fmt:v=>v+'%'}),
+ F('rate',{smin:2,smax:8,step:.05,fmt:v=>v.toFixed(2)+'%'}),
+ F('sc',{smin:0,smax:40,step:.1,fmt:v=>'AED '+(Math.round(v*100)/100)}),
+ F('vacM',{smin:0,smax:6,step:.5,fmt:v=>v+(v===1?' mes':' meses')}),
+ F('mgmt',{smin:0,smax:25,step:.5,fmt:v=>v+'%'}),
+ F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),
+ F('adgmPct',{nmin:0,nmax:20}),F('agencyPct',{nmin:0,nmax:20}),
+ F('efee',{nmin:0,nmax:1e6}),F('noc',{nmin:0,nmax:1e6}),F('conv',{nmin:0,nmax:1e6}),
+ F('tgt',{nmin:1,nmax:100000}),F('tol',{nmin:0,nmax:100}),
+ F('sav',{nmin:0,nmax:1e10}),F('savRate',{nmin:0,nmax:100}),F('savCap',{nmin:0,nmax:1e10}),
+ F('neg',{smin:500000,smax:5000000,step:10000,fmt:aed}),
+ F('mxStart',{nmin:10000,nmax:5e7,get:mxStart}),
+ F('mxStep',{nmin:1000,nmax:5e6})
+];
+const TEXTS=['name','rentNote'];
+
+function bindField(f){
+ const n=$(f.k),r=$(f.k+'_r'),lo=f.nmin!=null?f.nmin:f.smin,hi=f.nmax!=null?f.nmax:f.smax;
+ if(n){
+  n.min=lo;n.max=hi;
+  n.addEventListener('input',()=>{const v=parseFloat(n.value);if(!isFinite(v)||v<lo||v>hi)return;f.set(v);render()});
+  const commit=()=>{const v=parseFloat(n.value);if(isFinite(v))f.set(Math.min(hi,Math.max(lo,v)));render()};
+  n.addEventListener('change',commit);n.addEventListener('blur',commit);
+ }
+ if(r){r.min=f.smin;r.max=f.smax;r.step=f.step;r.addEventListener('input',()=>{f.set(parseFloat(r.value));render()})}
+}
+function syncFields(){
+ FIELDS.forEach(f=>{const n=$(f.k),r=$(f.k+'_r'),v=f.get(),lbl=$(f.k+'_v');
+  if(n&&document.activeElement!==n)n.value=Math.round(v*100)/100;
+  if(r){if(document.activeElement!==r)r.value=v;
+   const p=(Math.min(Math.max(v,f.smin),f.smax)-f.smin)/(f.smax-f.smin)*100;r.style.setProperty('--p',p+'%')}
+  if(lbl&&f.fmt)lbl.textContent=f.fmt(v);
+ });
+ TEXTS.forEach(k=>{const el=$(k);if(document.activeElement!==el)el.value=S[k]});
+ $('term').value=String(S.term);
+ const up=S.neg>S.price;$('neg').classList.toggle('amber',up);
+ document.querySelectorAll('.seg [data-view]').forEach(b=>{const on=b.dataset.view===S.view;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
+}
+
+/* ---------- Render: cabecera y panel negociado ---------- */
+function renderHeader(R){
+ $('heroName').textContent=S.name||'Propiedad sin nombre';
+ $('heroRate').textContent=S.rate.toFixed(2)+'%';$('heroTerm').textContent=S.term;
+ const d=S.price-S.neg,up=d<0;
+ $('negBig').textContent=aed(S.neg);$('negBig').className='negprice num'+(up?' warn':'');
+ $('negDelta').innerHTML=up
+  ?`<span class="warn">${aed(-d)} (${pct(-d/S.price*100)}) por encima del asking price</span>`
+  :d===0?'<span class="muted">Igual al asking price</span>'
+  :`<span class="pos">${aed(d)} (${pct(d/S.price*100)}) por debajo del asking de ${aed(S.price)}</span>`;
+ $('cuts').innerHTML=[25000,50000,75000,100000,125000,150000].map(c=>`<button type="button" class="pill${Math.round(d)===c?' on':''}" data-cut="${c}">−${nf0.format(c/1000)}k</button>`).join('');
+ $('negWarn').innerHTML=up?'<div class="alert">⚠ El precio negociado es mayor que el asking price. Los deltas de negociación aparecen como pérdidas.</div>':'';
+}
+
+/* ---------- KPI lado a lado ---------- */
+function pairCard(label,m,n,{fmt=aed,colorize=false,better='higher',extraM='',extraN='',sub=''}={}){
+ const d=n-m,good=better==='higher'?d>0.5:d<-0.5,bad=better==='higher'?d<-0.5:d>0.5;
+ const side=(k,v,extra)=>`<div class="side${S.view===k?' on':''}" data-view="${k}"><small>${SHORT[k]}</small><b class="${colorize?cls(v):''}">${fmt(v)}</b>${extra}</div>`;
+ return `<div class="kpi"><div class="l">${label}</div><div class="pair">${side('main',m,extraM)}${side('neg',n,extraN)}</div>
+  <div class="s">Negociado vs principal: <span class="${good?'pos':bad?'neg':''}">${saed(d)}</span>${sub}</div></div>`;
+}
+function renderKpis(R){
+ const{M,N}=R,bM=psfState(M.psf),bN=psfState(N.psf);
+ $('kpiSub').textContent=`Renta anual ${aed(S.rent)}${S.rentNote?' ('+S.rentNote+')':''} · ${nf0.format(S.sqft)} sqft · ${S.down}% down payment · ${S.rate.toFixed(2)}% a ${S.term} años. El escenario en azul es el que muestra la sección de detalle.`;
+ const badge=b=>`<span class="badge ${b.c}" style="margin-top:4px">${b.t}</span>`;
+ $('kpiGrid').innerHTML=[
+  pairCard('Cash-flow mensual',M.cfM,N.cfM,{fmt:saed,colorize:true}),
+  pairCard('Cash-flow anual',M.cfA,N.cfA,{fmt:saed,colorize:true}),
+  pairCard('Break-even · renta anual',M.be,N.be,{better:'lower',sub:` · renta actual ${aed(S.rent)}`}),
+  pairCard('Cash-to-close',M.ctc,N.ctc,{better:'lower'}),
+  pairCard('Mortgage mensual',M.pm,N.pm,{better:'lower'}),
+  pairCard('Patrimonio año 1 (sin apreciación)',M.wealth,N.wealth,{fmt:saed,colorize:true}),
+  pairCard('AED/sqft',M.psf,N.psf,{better:'lower',extraM:badge(bM),extraN:badge(bN),sub:` · objetivo ${aed(S.tgt)} ±${S.tol}%`})
+ ].join('');
+}
+
+/* ---------- Impacto de negociación ---------- */
+function renderImpact(R){
+ const{M,N}=R,save=S.price-S.neg;
+ $('impSub').textContent=`Asking ${aed(S.price)} → negociado ${aed(S.neg)}. Valores positivos = a favor del escenario negociado.`;
+ const g=v=>v>0.5?'pos':v<-0.5?'neg':'';
+ const st=(l,v,c,sub='',hero=false)=>`<div class="stat${hero?' hero-s':''}"><div class="l">${l}</div><div class="v ${c}">${v}</div>${sub?`<div class="tiny muted">${sub}</div>`:''}</div>`;
+ const upfront=M.ctc-N.ctc,retained=Math.max(N.rem,0)-Math.max(M.rem,0),intGain=N.interest-M.interest;
+ $('impGrid').innerHTML=[
+  st('Price saving',saed(save),save<0?'warn':g(save),pct(save/S.price*100)+' del asking',true),
+  st('Down payment saved',saed(M.down-N.down),g(M.down-N.down)),
+  st('Mortgage reduced',saed(M.mortgage-N.mortgage),g(M.mortgage-N.mortgage)),
+  st('Monthly mortgage saving',saed(M.pm-N.pm),g(M.pm-N.pm),`${aed(M.pm)} → ${aed(N.pm)}`),
+  st('Fees saved',saed(M.fees.total-N.fees.total),g(M.fees.total-N.fees.total),'ADGM + agencia + VAT'),
+  st('Total upfront cash saved',saed(upfront),g(upfront),`Cash-to-close ${aed(M.ctc)} → ${aed(N.ctc)}`,true),
+  st('Break-even reduction',saed(M.be-N.be),g(M.be-N.be),`${aed(M.be)} → ${aed(N.be)} /año`),
+  st('CF mensual: mejora',saed(N.cfM-M.cfM),g(N.cfM-M.cfM),`${saed(M.cfM)} → ${saed(N.cfM)}`),
+  st('CF anual: mejora',saed(N.cfA-M.cfA),g(N.cfA-M.cfA),`${saed(M.cfA)} → ${saed(N.cfA)}`),
+  st('Extra cash retained in savings',saed(retained),g(retained),`Saldo restante ${aed(M.rem)} → ${aed(N.rem)}`),
+  st('Extra annual interest preserved',saed(intGain),g(intGain),`al ${S.savRate}% con tope ${aed(S.savCap)}`)
+ ].join('');
+}
+
+/* ---------- Detalle del escenario seleccionado ---------- */
+function mrow(l,v,c='',sub=''){return `<div class="mrow"><span>${l}</span><b class="${c}">${v}${sub?`<small>${sub}</small>`:''}</b></div>`}
+function renderDetail(R){
+ const s=R.sel,f=s.fees,before=savingsInterest(S,S.sav),lost=before-s.interest;
+ $('detTitle').textContent=`Métricas detalladas · ${LABEL[S.view]}`;
+ $('detSub').textContent=`${S.name} · ${aed(s.price)} · ${nf0.format(S.sqft)} sqft · renta ${aed(S.rent)}/año. Cambia de escenario con el selector de la barra superior.`;
+ $('detBadges').innerHTML=s.cfM>=0?'<span class="badge b-green">Cash-flow positivo</span>':'<span class="badge b-red">Cash-flow negativo</span>';
+ $('metrics').innerHTML=`
+ <div class="card flat mgroup"><h3>Financiación y entrada</h3>
+  ${mrow('Precio',aed(s.price))}${mrow('AED/sqft',aed(s.psf))}
+  ${mrow('Down payment',aed(s.down),'',pct(s.downPct,0)+' del precio')}
+  ${mrow('Mortgage',aed(s.mortgage))}
+  ${mrow('Cuota mensual',aed(s.pm),'',`${S.rate.toFixed(2)}% · ${S.term} años`)}${mrow('Cuota anual',aed(s.debt))}
+  ${mrow('ADGM / registro',aed(f.adgm),'',S.adgmPct+'% del precio')}
+  ${mrow('Agency fee (neto)',aed(f.agNet),'',S.agencyPct+'% del precio')}${mrow('VAT sobre agency (5%)',aed(f.vat))}
+  ${mrow('ADGM electronic fee',aed(f.efee))}${mrow('NOC',aed(f.noc))}${mrow('Conveyancing',aed(f.conv))}
+  ${mrow('Total fees',aed(f.total))}
+  ${mrow('Cash-to-close',aed(s.ctc),'','Down payment + fees')}${mrow('Final cost',aed(s.finalCost),'','Precio + fees')}
+ </div>
+ <div class="card flat mgroup"><h3>Operación anual</h3>
+  ${mrow('Renta bruta',aed(S.rent),'',S.rentNote?esc(S.rentNote):'')}${mrow('Vacancy reserve',saed(-s.vac),'neg',S.vacM+' mes(es)')}
+  ${mrow('Renta efectiva',aed(s.eff))}
+  ${mrow('Service charge',saed(-s.scA),'neg',`${nf0.format(S.sqft)} × AED ${S.sc} · ${aed2(s.scM)}/mes`)}
+  ${mrow('Maintenance',saed(-S.maint),'neg')}${mrow('Leasing / management',saed(-s.mg),'neg',S.mgmt+'% de la renta')}
+  ${mrow('Admin / incidentals',saed(-S.admin),'neg')}${mrow('Opex total (sin vacancy)',aed(s.opex))}
+  ${mrow('NOI (antes de mortgage)',aed(s.noi),cls(s.noi))}${mrow('Mortgage anual',saed(-s.debt),'neg')}
+  ${mrow('Cash-flow anual',saed(s.cfA),cls(s.cfA),saed(s.cfM)+'/mes')}
+ </div>
+ <div class="card flat mgroup"><h3>Rentabilidad y patrimonio</h3>
+  ${mrow('Gross yield',pct(s.gy))}${mrow('Net operating yield',pct(s.ny),'','NOI / precio, antes de mortgage')}
+  ${mrow('Cash-on-cash',pct(s.coc),cls(s.coc),'CF anual / cash-to-close')}
+  ${mrow('Break-even renta anual',aed(s.be),'',aed(s.be/12)+'/mes')}
+  ${mrow('Principal amortizado año 1',aed(s.prin1),'','Intereses año 1 '+aed(s.int1))}
+  ${mrow('Principal amortizado 2 años',aed(s.prin2))}${mrow('Saldo mortgage tras 2 años',aed(s.bal24))}
+  ${mrow('Wealth creation año 1',saed(s.wealth),cls(s.wealth),'Principal + CF, sin apreciación')}
+  ${mrow('Interés de ahorro que dejas de cobrar',saed(-lost),lost>0.5?'neg':'','por año, al '+S.savRate+'%')}
+ </div>`;
+}
+
+/* ---------- Gráfico ---------- */
+function niceTicks(a,b,n){const span=(b-a)||1,s0=span/n,mag=Math.pow(10,Math.floor(Math.log10(s0))),f=s0/mag;
+ const st=(f<1.5?1:f<3?2:f<7?5:10)*mag,lo=Math.floor(a/st)*st,hi=Math.ceil(b/st)*st,t=[];for(let v=lo;v<=hi+st/2;v+=st)t.push(Math.round(v));return{lo,hi,t}}
+const kfmt=v=>(v<0?'−':'')+nf0.format(Math.abs(v)/1000)+'k';
+function renderChart(R){
+ const box=$('chart'),tip=$('tip'),W=Math.max(280,box.clientWidth),narrow=W<560,H=narrow?300:390;
+ const m={l:narrow?46:62,r:14,t:16,b:narrow?40:44},rent=S.rent;
+ let x0=70000,x1=125000;if(rent<x0)x0=Math.floor(rent/5000)*5000;if(rent>x1)x1=Math.ceil(rent/5000)*5000;
+ const N=80,series=['main','neg'].map(k=>{const price=k==='main'?S.price:S.neg,on=S.view===k;
+  return{k,price,on,color:on?SEL_COLOR:LINE_COLOR[k],be:R[k==='main'?'M':'N'].be,cur:R[k==='main'?'M':'N'].cfA,
+   pts:Array.from({length:N+1},(_,i)=>{const x=x0+(x1-x0)*i/N;return[x,calc(S,price,x).cfA]})}});
+ let ymin=0,ymax=0;series.forEach(se=>se.pts.forEach(p=>{ymin=Math.min(ymin,p[1]);ymax=Math.max(ymax,p[1])}));
+ const yt=niceTicks(ymin,ymax,narrow?5:7);
+ const X=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r),Y=v=>m.t+(yt.hi-v)/(yt.hi-yt.lo)*(H-m.t-m.b);
+ let g='';
+ g+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${Math.max(0,Y(0)-m.t)}" fill="rgba(47,208,122,.05)"/>`;
+ g+=`<rect x="${m.l}" y="${Y(0)}" width="${W-m.l-m.r}" height="${Math.max(0,H-m.b-Y(0))}" fill="rgba(255,90,110,.05)"/>`;
+ yt.t.forEach(v=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(148,163,184,.1)"/><text x="${m.l-8}" y="${Y(v)+4}" fill="#8190aa" font-size="11" text-anchor="end">${kfmt(v)}</text>`});
+ const xs=narrow?(x1-x0>60000?20000:10000):(x1-x0>120000?10000:5000);
+ for(let v=Math.ceil(x0/xs)*xs;v<=x1;v+=xs){g+=`<line x1="${X(v)}" x2="${X(v)}" y1="${m.t}" y2="${H-m.b}" stroke="rgba(148,163,184,.06)"/><text x="${X(v)}" y="${H-m.b+17}" fill="#8190aa" font-size="11" text-anchor="middle">${nf0.format(v/1000)}k</text>`}
+ g+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" fill="#61708c" font-size="11" text-anchor="middle">Renta anual (AED)</text>`;
+ g+=`<text transform="translate(12 ${(m.t+H-m.b)/2}) rotate(-90)" fill="#61708c" font-size="11" text-anchor="middle">Cash-flow anual (AED)</text>`;
+ g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="5 4"/><text x="${W-m.r-4}" y="${Y(0)-6}" fill="#cbd5e1" font-size="11" text-anchor="end">Cash-flow = 0</text>`;
+ // renta actual
+ const rx=X(rent);
+ g+=`<line x1="${rx}" x2="${rx}" y1="${m.t}" y2="${H-m.b}" stroke="#f5b041" stroke-opacity=".7" stroke-dasharray="3 4"/>`;
+ g+=`<text x="${Math.min(Math.max(rx,m.l+60),W-m.r-60)}" y="${m.t+12}" fill="#f5b041" font-size="11" text-anchor="middle">Renta actual ${nf0.format(Math.round(rent/100)/10)}k</text>`;
+ // líneas: la no seleccionada primero
+ series.slice().sort((a,b)=>a.on-b.on).forEach(se=>{const d=se.pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join('');
+  if(se.on)g+=`<path d="${d}" fill="none" stroke="${SEL_COLOR}" stroke-width="9" stroke-opacity=".18" stroke-linecap="round"/>`;
+  g+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.on?3.2:1.8}" stroke-opacity="${se.on?1:.75}" stroke-linecap="round"/>`});
+ // break-even y punto actual
+ series.forEach(se=>{
+  if(se.be>=x0&&se.be<=x1){g+=`<circle cx="${X(se.be)}" cy="${Y(0)}" r="5" fill="${se.color}" stroke="#fff" stroke-width="1.5"/>`;
+   if(se.on)g+=`<text x="${X(se.be)}" y="${Y(0)+18}" fill="#bcd4ff" font-size="11" text-anchor="middle">BE ${nf0.format(Math.round(se.be/100)/10)}k</text>`}
+  g+=`<circle cx="${rx}" cy="${Y(se.cur)}" r="4.5" fill="#fff" stroke="${se.color}" stroke-width="2.5"/>`});
+ g+=`<line id="xh" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="rgba(255,255,255,.4)" visibility="hidden"/>`;
+ g+=`<rect id="ov" x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="transparent"/>`;
+ box.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cash-flow anual según la renta, principal y negociado">${g}</svg>`;box.appendChild(tip);
+ const ov=box.querySelector('#ov'),xh=box.querySelector('#xh');
+ const move=e=>{const rect=box.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
+  const rr=Math.max(x0,Math.min(x1,x0+(px-m.l)/(W-m.l-m.r)*(x1-x0))),xx=X(rr);
+  xh.setAttribute('x1',xx);xh.setAttribute('x2',xx);xh.setAttribute('visibility','visible');
+  tip.innerHTML=`<div class="muted tiny">Renta ${aed(rr)}/año</div>`+series.map(se=>{const v=calc(S,se.price,rr).cfM;
+   return `<div class="r"><span><span class="swatch" style="background:${se.color}"></span>${SHORT[se.k]}</span><b class="${cls(v)}">${saed(v)}/mes</b></div>`}).join('');
+  tip.style.opacity=1;const tw=tip.offsetWidth;tip.style.left=Math.min(W-tw-4,Math.max(4,xx+12>W-tw?xx-tw-12:xx+12))+'px';tip.style.top=(m.t+18)+'px'};
+ const out=()=>{tip.style.opacity=0;xh.setAttribute('visibility','hidden')};
+ ov.addEventListener('mousemove',move);ov.addEventListener('mouseleave',out);ov.addEventListener('touchstart',move,{passive:true});ov.addEventListener('touchmove',move,{passive:true});ov.addEventListener('touchend',out);
+ $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}"><span class="ln" style="background:${se.color}"></span>${SHORT[se.k]} · ${short(se.price)}${se.on?' · seleccionado':''}</span>`).join('')+
+  '<span class="li"><span class="ln" style="background:#f5b041;height:8px;width:8px;border-radius:50%"></span>Renta actual</span><span class="li"><span class="ln" style="background:#fff;height:8px;width:8px;border-radius:50%"></span>Break-even</span>';
+}
+
+/* ---------- Break-even ---------- */
+function gapCell(need){const gap=need-S.rent;return `<td class="${gap<=0?'pos':'neg'}">${gap<=0?'Cubierto (+'+aed(-gap)+')':'Faltan '+aed(gap)}</td>`}
+function renderBE(R){
+ $('beSub').textContent=`Renta anual necesaria para cada objetivo de cash-flow mensual, y la brecha frente a la renta actual (${aed(S.rent)}/año).`;
+ const on=k=>S.view===k?' class="on"':'';
+ let h=`<thead><tr><th>Objetivo de cash-flow</th><th${on('main')}>Principal · renta anual</th><th${on('main')}>Principal · vs actual</th><th${on('neg')}>Negociado · renta anual</th><th${on('neg')}>Negociado · vs actual</th></tr></thead><tbody>`;
+ [0,500,1000,1500,2000].forEach(t=>{const a=breakEven(S,S.price,t),b=breakEven(S,S.neg,t);
+  h+=`<tr><td>${t===0?'AED 0/mes (break-even)':'+AED '+nf0.format(t)+'/mes'}</td><td><b>${aed(a)}</b> <span class="dim tiny">${aed(a/12)}/mes</span></td>${gapCell(a)}<td><b>${aed(b)}</b> <span class="dim tiny">${aed(b/12)}/mes</span></td>${gapCell(b)}</tr>`});
+ $('beTable').innerHTML=h+'</tbody>';
+}
+
+/* ---------- Stress de tasa ---------- */
+function renderStress(){
+ const on=k=>S.view===k?' class="on"':'';
+ let h=`<thead><tr><th>Tasa</th><th${on('main')}>Principal · CF/mes</th><th${on('main')}>Principal · break-even</th><th${on('neg')}>Negociado · CF/mes</th><th${on('neg')}>Negociado · break-even</th></tr></thead><tbody>`;
+ [0,0.5,1,2].forEach(d=>{const r=S.rate+d,a=calc(S,S.price,S.rent,r),b=calc(S,S.neg,S.rent,r);
+  h+=`<tr><td>${r.toFixed(2)}%${d?' (+'+d+'%)':' (modelo)'}</td><td class="${cls(a.cfM)}">${saed(a.cfM)}</td><td>${aed(breakEven(S,S.price,0,r))}</td><td class="${cls(b.cfM)}">${saed(b.cfM)}</td><td>${aed(breakEven(S,S.neg,0,r))}</td></tr>`});
+ $('stressTable').innerHTML=h+'</tbody>';
+}
+
+/* ---------- Matriz ---------- */
+function renderMatrix(){
+ const cols=[];for(let r=80000;r<=120000;r+=5000)cols.push(r);
+ const start=mxStart(),step=S.mxStep,ask=Math.round(S.price),neg=Math.round(S.neg);
+ const prices=Array.from({length:6},(_,i)=>Math.round(start+i*step));
+ [ask,neg].forEach(p=>{if(!prices.includes(p))prices.push(p)});prices.sort((a,b)=>a-b);
+ const nearest=cols.reduce((a,b)=>Math.abs(b-S.rent)<Math.abs(a-S.rent)?b:a);
+ $('mxSub').textContent=`CF mensual con ${nf0.format(S.sqft)} sqft, ${S.down}% down payment, ${S.rate.toFixed(2)}% a ${S.term} años y AED ${S.sc}/sqft de service charge. Se incluyen siempre el asking y el precio negociado.`;
+ let h='<thead><tr><th>Precio \\ Renta anual</th>'+cols.map(c=>`<th style="text-align:center">${nf0.format(c/1000)}k</th>`).join('')+'<th>Break-even</th></tr></thead><tbody>';
+ prices.forEach(p=>{const mark=[p===ask?'asking':'',p===neg?'negociado':''].filter(Boolean).join(' · '),isCur=!!mark;
+  h+=`<tr class="${isCur?'cur':''}"><td>${short(p)}${isCur?` <span class="tiny">● ${mark}</span>`:''}</td>`+cols.map(r=>{const v=calc(S,p,r).cfM;
+   const k=Math.abs(v)<=250?'c-mid':v>0?'c-pos':'c-neg',a=Math.min(.55,.12+Math.abs(v)/5000).toFixed(2);
+   return `<td class="${k}${isCur&&r===nearest?' hit':''}" style="--a:${a}">${saed(v)}</td>`}).join('')+`<td>${aed(breakEven(S,p))}</td></tr>`});
+ $('mx').innerHTML=h+'</tbody>';
+}
+
+/* ---------- Ahorros ---------- */
+function renderSavings(R){
+ const{M,N}=R,capI=S.savCap*S.savRate/100,before=savingsInterest(S,S.sav);
+ $('bench').innerHTML=`<h3>Referencia: cuenta al ${S.savRate}%</h3>
+  <div class="eq num">${aed(S.savCap)} × ${S.savRate}% = <b>${aed(capI)}/año</b></div>
+  ${mrow('Equivalente mensual',aed(capI/12),'','El interés se paga mensualmente')}
+  ${mrow('En 2 años',aed(capI*2),'','Interés simple: lo que supera el tope no genera interés')}
+  ${mrow('Tu saldo actual genera',aed(before)+'/año','','min(saldo, tope) × tasa')}
+  <p class="small muted" style="margin:10px 0 0">Cada dirham que sale como down payment o fees deja de rendir ${S.savRate}% mientras tu saldo esté por debajo de ${aed(S.savCap)}. Ese es el listón que la propiedad debe superar, sumando cash-flow y amortización de principal.</p>`;
+ const al=[];
+ [M,N].forEach(s=>{if(s.rem<0)al.push(`<div class="alert" style="margin:0 0 10px">⚠ ${LABEL[s.key]}: el cash-to-close (${aed(s.ctc)}) supera tu saldo (${aed(S.sav)}) en ${aed(-s.rem)}.</div>`)});
+ const s=R.sel;
+ $('savAlerts').innerHTML=`<h3>Después de comprar · ${LABEL[S.view]}</h3>${al.join('')}
+  ${mrow('Saldo actual',aed(S.sav))}${mrow('Cash-to-close',saed(-s.ctc),'neg')}${mrow('Saldo restante',aed(s.rem),s.rem<0?'neg':'')}
+  ${mrow('Interés preservado',aed(s.interest)+'/año','pos',aed(s.interest/12)+'/mes')}
+  ${mrow('Interés que dejas de cobrar',saed(-(before-s.interest))+'/año',before-s.interest>0.5?'neg':'')}
+  ${mrow('Cash-flow de la propiedad',saed(s.cfM)+'/mes',cls(s.cfM),saed(s.cfA)+'/año')}
+  ${mrow('Ingreso combinado',saed(s.combM)+'/mes',cls(s.combM),saed(s.combA)+'/año · vs '+aed(before)+'/año sin comprar')}
+  <p class="tiny dim" style="margin:10px 0 0">Sin contar amortización de principal (${aed(s.prin1)} en el año 1), que es patrimonio pero no ingreso líquido.</p>`;
+ let h='<thead><tr><th>Escenario</th><th>Cash-to-close</th><th>Saldo restante</th><th>Interés preservado/año</th><th>Interés perdido/año</th><th>CF propiedad/año</th><th>Ingreso combinado/mes</th><th>Ingreso combinado/año</th></tr></thead><tbody>';
+ [M,N].forEach(x=>{h+=`<tr class="${S.view===x.key?'on':''}"><td>${LABEL[x.key]} · ${short(x.price)}</td><td>${aed(x.ctc)}</td><td class="${x.rem<0?'neg':''}">${aed(x.rem)}</td><td>${aed(x.interest)}</td><td class="${before-x.interest>0.5?'neg':''}">${saed(-(before-x.interest))}</td><td class="${cls(x.cfA)}">${saed(x.cfA)}</td><td class="${cls(x.combM)}">${saed(x.combM)}</td><td class="${cls(x.combA)}">${saed(x.combA)}</td></tr>`});
+ $('savTable').innerHTML=h+`<tr><td>Sin comprar</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${saed(before/12)}</td><td class="${cls(before)}">${saed(before)}</td></tr></tbody>`;
+}
+
+/* ---------- Lectura ---------- */
+function renderInsights(R){
+ const{M,N}=R,save=S.price-S.neg,before=savingsInterest(S,S.sav),L=[];
+ const cfTxt=v=>v>=0?`positivo (${saed(v)}/mes)`:`negativo (${saed(v)}/mes)`;
+ L.push({t:`Con una renta de ${aed(S.rent)}/año${S.rentNote?' ('+esc(S.rentNote)+')':''}, el cash-flow es ${cfTxt(M.cfM)} en la propiedad principal y ${cfTxt(N.cfM)} con el precio negociado.`});
+ L.push({t:`Break-even de renta anual: ${aed(M.be)} (principal) y ${aed(N.be)} (negociado). La renta actual ${S.rent>=N.be?'cubre el break-even negociado con '+aed(S.rent-N.be)+' de margen':'queda '+aed(N.be-S.rent)+'/año por debajo del break-even negociado'}.`});
+ const be50=breakEven(S,S.price)-breakEven(S,S.price-50000),cf50=calc(S,S.price-50000).cfM-M.cfM;
+ L.push({t:`Con estos supuestos, cada AED 50,000 menos de precio reduce el break-even en ${aed(be50)}/año y cambia el cash-flow en ${saed(cf50)}/mes.`});
+ if(save>0)L.push({t:`Negociar ${aed(save)} (${pct(save/S.price*100)}) reduce el cash-to-close en ${aed(M.ctc-N.ctc)} (${aed(M.ctc)} → ${aed(N.ctc)}) y el mortgage mensual en ${aed(M.pm-N.pm)}. El interés de ahorro preservado cambia en ${saed(N.interest-M.interest)}/año.`});
+ if(save<0)L.push({w:1,t:`El precio negociado está ${aed(-save)} por encima del asking price: todos los deltas de negociación juegan en contra.`});
+ L.push({t:`Si la tasa sube 1 punto (${(S.rate+1).toFixed(2)}%), el break-even pasa de ${aed(M.be)} a ${aed(breakEven(S,S.price,0,S.rate+1))}/año en la principal y de ${aed(N.be)} a ${aed(breakEven(S,S.neg,0,S.rate+1))}/año en la negociada.`});
+ L.push({t:`Patrimonio del año 1 sin apreciación (principal amortizado + cash-flow): ${saed(M.wealth)} (principal) y ${saed(N.wealth)} (negociado).`});
+ L.push({t:`Ingreso combinado (cash-flow + interés de ahorro): ${saed(M.combA)}/año (principal) y ${saed(N.combA)}/año (negociado), frente a ${aed(before)}/año sin comprar.`});
+ const pm=psfState(M.psf),pn=psfState(N.psf);
+ L.push({t:`AED/sqft: ${aed(M.psf)} (${pm.t}) en la principal y ${aed(N.psf)} (${pn.t}) en la negociada, frente a tu objetivo de ${aed(S.tgt)} ±${S.tol}%.`});
+ if(M.cfM<0||N.cfM<0){const worst=[M,N].filter(x=>x.cfM<0).map(x=>`${SHORT[x.key].toLowerCase()} ${aed(-x.cfA)}`).join(', ');
+  L.push({w:1,t:`Cash-flow negativo: con la renta actual hay que aportar de tu bolsillo (${worst} al año).`})}
+ [M,N].forEach(x=>{if(x.rem<0)L.push({w:1,t:`${LABEL[x.key]}: el cash-to-close supera tu saldo de ahorro en ${aed(-x.rem)}.`})});
+ $('insightList').innerHTML=L.map(x=>`<li${x.w?' class="w"':''}>${x.w?'⚠ ':''}${x.t}</li>`).join('');
+}
+
+/* ---------- Render global ---------- */
+let lastR=null;
+function render(){
+ syncFields();
+ const R=lastR=both();
+ renderHeader(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);renderInsights(R);
+ saveState();
+}
+
+/* ---------- Eventos ---------- */
+loadState();
+FIELDS.forEach(bindField);
+TEXTS.forEach(k=>$(k).addEventListener('input',e=>{S[k]=e.target.value;render()}));
+$('term').addEventListener('change',e=>{S.term=parseInt(e.target.value,10);render()});
+document.addEventListener('click',e=>{
+ const c=e.target.closest('[data-cut]');if(c){S.neg=Math.max(500000,S.price-(+c.dataset.cut));render();return}
+ const v=e.target.closest('[data-view]');if(v){S.view=v.dataset.view;render()}
+});
+$('btnReset').addEventListener('click',()=>{Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}render()});
+let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>renderChart(lastR||both()),120)});
+
+render();
+})();
+</script>
+</body>
+</html>

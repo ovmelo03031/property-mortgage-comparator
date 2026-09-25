@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gate Towers · Comparador de Negociación</title>
+<title>Property Cost</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='16' height='16' fill='%230e1a3a'/%3E%3Crect x='0' y='15' width='16' height='1' fill='%231c2d57'/%3E%3Crect x='1' y='5' width='4' height='10' fill='%232a4180'/%3E%3Crect x='1' y='5' width='1' height='10' fill='%234a6cc0'/%3E%3Crect x='4' y='5' width='1' height='10' fill='%231c2d57'/%3E%3Crect x='6' y='1' width='4' height='14' fill='%232a4180'/%3E%3Crect x='6' y='1' width='1' height='14' fill='%234a6cc0'/%3E%3Crect x='9' y='1' width='1' height='14' fill='%231c2d57'/%3E%3Crect x='11' y='5' width='4' height='10' fill='%232a4180'/%3E%3Crect x='11' y='5' width='1' height='10' fill='%234a6cc0'/%3E%3Crect x='14' y='5' width='1' height='10' fill='%231c2d57'/%3E%3Crect x='1' y='3' width='14' height='2' fill='%233b82f6'/%3E%3Crect x='1' y='3' width='14' height='1' fill='%237cb0ff'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='8' y='1' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='12' y='8' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='13' y='11' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='12' y='13' width='1' height='1' fill='%23f5b041'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -194,7 +194,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <div class="wrap">
   <header class="hero">
     <div>
-      <h1>Gate Towers · Comparador de Negociación</h1>
+      <h1>Property Cost</h1>
       <p class="sub">Análisis de inversión: entrada, mortgage, fees, cash-flow, break-even y patrimonio.</p>
     </div>
     <div class="hero-note">
@@ -216,7 +216,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
     </div>
   </div>
   <nav class="toc">
-    <a href="#inputs">Inputs</a><a href="#kpis">Comparación</a><a href="#impacto">Impacto</a><a href="#detalle">Detalle</a><a href="#grafico">Gráfico</a><a href="#breakeven">Break-even</a><a href="#stress">Tasa</a><a href="#matriz">Sensibilidad</a><a href="#ahorros">Mis ahorros</a><a href="#insights">Lectura</a>
+    <a href="#inputs">Inputs</a><a href="#kpis">Comparación</a><a href="#impacto">Impacto</a><a href="#maxprecio">Precio máximo</a><a href="#detalle">Detalle</a><a href="#grafico">Gráfico</a><a href="#breakeven">Break-even</a><a href="#stress">Tasa</a><a href="#renovacion">Renovación</a><a href="#matriz">Sensibilidad</a><a href="#ahorros">Mis ahorros</a><a href="#runway">Runway</a><a href="#entrada">Entrada</a><a href="#horizonte">Horizonte</a><a href="#insights">Lectura</a>
   </nav>
 </div>
 
@@ -225,6 +225,21 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <section id="inputs">
   <div class="sec-h"><div><h2>Inputs</h2><p>La propiedad principal define todos los supuestos. El escenario negociado solo cambia el precio de compra y hereda todo lo demás.</p></div>
     <button type="button" class="btn ghost" id="btnReset">Restablecer valores por defecto</button></div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="grp">
+      <h3>Objetivo y ahorros</h3>
+      <p class="small muted" style="margin:-4px 0 14px">La base del análisis: el precio por sqft que quieres pagar y el dinero del que partes. Todo lo demás se compara contra estas cifras.</p>
+      <div class="formgrid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+        <div class="field"><label for="tgt">Target AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
+        <div class="field"><label for="tol">Target tolerance (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
+        <div class="field"><label for="sav">Savings balance (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
+        <div class="field"><label for="savRate">Savings rate (%/año, pago mensual)</label><input type="number" id="savRate" class="inp num" step="any"></div>
+        <div class="field"><label for="savCap">Max interest-bearing balance (AED)</label><input type="number" id="savCap" class="inp num" step="any"></div>
+        <div class="field"><label for="reserve">Reserva para imprevistos (AED)</label><input type="number" id="reserve" class="inp num" step="any"></div>
+      </div>
+      <p class="tiny dim" style="margin:12px 0 0">El objetivo AED/sqft es una cifra tuya, no un juicio de mercado.</p>
+    </div>
+  </div>
   <div class="inpgrid">
     <div class="card">
       <div class="grp">
@@ -260,15 +275,22 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
         <p class="tiny dim" style="margin:10px 0 0">Calculados automáticamente a partir del precio de cada escenario. Son estimaciones del modelo: confirma los importes con el broker y ADGM.</p>
       </div>
       <div class="grp">
-        <h3>Objetivo y ahorros</h3>
+        <h3>Renovación de renta</h3>
         <div class="formgrid f3">
-          <div class="field"><label for="tgt">Target AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
-          <div class="field"><label for="tol">Target tolerance (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
-          <div class="field"><label for="sav">Savings balance (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
-          <div class="field"><label for="savRate">Savings rate (%/año, pago mensual)</label><input type="number" id="savRate" class="inp num" step="any"></div>
-          <div class="field"><label for="savCap">Max interest-bearing balance (AED)</label><input type="number" id="savCap" class="inp num" step="any"></div>
+          <div class="field"><label for="renewIn">Meses hasta renovar</label><input type="number" id="renewIn" class="inp num" step="any"></div>
+          <div class="field"><label for="renewPct">Cambio de renta al renovar (%)</label><input type="number" id="renewPct" class="inp num" step="any"></div>
+          <div class="field"><label for="renewGap">Meses vacíos al renovar</label><input type="number" id="renewGap" class="inp num" step="any"></div>
         </div>
-        <p class="tiny dim" style="margin:12px 0 0">El objetivo AED/sqft es una cifra tuya, no un juicio de mercado.</p>
+        <p class="tiny dim" style="margin:10px 0 0">Los KPIs usan la renta actual. El horizonte, el runway y el panel de renovación aplican este cambio desde el mes indicado. Con 0% y 0 meses vacíos, la renta no cambia.</p>
+      </div>
+      <div class="grp">
+        <h3>Salida (si vendes)</h3>
+        <div class="formgrid f3">
+          <div class="field"><label for="exitAgencyPct">Comisión de venta (%) <span class="dim">+ VAT 5%</span></label><input type="number" id="exitAgencyPct" class="inp num" step="any"></div>
+          <div class="field"><label for="prepayPct">Penalización por cancelar el mortgage (% del saldo)</label><input type="number" id="prepayPct" class="inp num" step="any"></div>
+          <div class="field"><label for="prepayCap">Tope de la penalización (AED)</label><input type="number" id="prepayCap" class="inp num" step="any"></div>
+        </div>
+        <p class="tiny dim" style="margin:10px 0 0">Sin apreciación: se asume que vendes al mismo precio de compra. La penalización por cancelación anticipada es una estimación; verifícala con tu banco.</p>
       </div>
     </div>
 
@@ -295,6 +317,11 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <div class="grid g4" id="impGrid"></div>
 </section>
 
+<section id="maxprecio">
+  <div class="sec-h"><div><h2>Precio máximo (walk-away)</h2><p id="mpSub"></p></div></div>
+  <div class="tscroll"><table id="mpTable" style="min-width:820px"></table></div>
+</section>
+
 <section id="detalle">
   <div class="sec-h"><div><h2 id="detTitle">Métricas detalladas</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
   <div class="grid g3" id="metrics"></div>
@@ -318,6 +345,11 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <div class="tscroll"><table id="stressTable" style="min-width:720px"></table></div>
 </section>
 
+<section id="renovacion">
+  <div class="sec-h"><div><h2>Renovación de renta</h2><p id="rnSub"></p></div></div>
+  <div class="tscroll"><table id="rnTable" style="min-width:560px"></table></div>
+</section>
+
 <section id="matriz">
   <div class="sec-h"><div><h2>Matriz de sensibilidad</h2><p id="mxSub"></p></div>
     <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
@@ -336,6 +368,25 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
     <div class="card" id="savAlerts"></div>
   </div>
   <div class="tscroll" style="margin-top:14px"><table id="savTable" style="min-width:880px"></table></div>
+</section>
+
+<section id="runway">
+  <div class="sec-h"><div><h2>Colchón de ahorros (runway)</h2><p>Cuánto aguanta tu saldo después de comprar, apartando la reserva para imprevistos y cubriendo el cash-flow mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.</p></div></div>
+  <div class="card" id="rwCard"></div>
+</section>
+
+<section id="entrada">
+  <div class="sec-h"><div><h2>Entrada óptima</h2><p id="enSub"></p></div></div>
+  <div class="alert info" id="enMarginal" style="margin:0 0 14px"></div>
+  <div class="tscroll"><table id="enTable" style="min-width:980px"></table></div>
+</section>
+
+<section id="horizonte">
+  <div class="sec-h"><div><h2>Comprar vs no comprar</h2><p id="hzSub"></p></div>
+    <div class="field"><label for="horizon">Horizonte</label><select id="horizon" class="inp sm"><option value="5">5 años</option><option value="10">10 años</option><option value="15">15 años</option><option value="20">20 años</option></select></div>
+  </div>
+  <div class="card" id="hzSummary" style="margin-bottom:14px"></div>
+  <div class="tscroll"><table id="hzTable" style="min-width:920px"></table></div>
 </section>
 
 <section id="insights">
@@ -357,7 +408,8 @@ const DEFAULTS={
  price:1300000,sqft:900,rent:79963,
  down:20,rate:3.99,term:25,sc:11.8,vacM:1,maint:4000,mgmt:0,admin:2000,
  tgt:1500,tol:5,sav:500000,savRate:6.25,savCap:500000,
- neg:1250000,mxStart:null,mxStep:50000,view:'main'
+ reserve:15000,renewIn:12,renewPct:0,renewGap:0,exitAgencyPct:2,prepayPct:1,prepayCap:10000,
+ neg:1250000,mxStart:null,mxStep:50000,view:'main',horizon:10
 };
 /* DEFAULTS:END */
 
@@ -384,6 +436,38 @@ function breakEven(a,price,targetMonthly=0,rate=a.rate){
  const debt=payment(scenario(a,price).mortgage,rate,a.term)*12;
  return(a.sqft*a.sc+a.maint+a.admin+debt+12*targetMonthly)/d;
 }
+// Highest price whose monthly cash-flow still reaches targetMonthly (inverse of calc).
+function maxPrice(a,targetMonthly=0,rent=a.rent){
+ const noi=rent*(1-a.vacM/12-a.mgmt/100)-(a.sqft*a.sc+a.maint+a.admin);
+ const perAed=12*payment(1,a.rate,a.term)*(1-a.down/100);
+ return perAed>0?Math.max(0,(noi-12*targetMonthly)/perAed):Infinity;
+}
+function renewedRent(a){return a.rent*(1+a.renewPct/100)}
+// Annual rent in force during month m (0-based): current, then vacant gap, then renewed.
+function rentAt(a,m){if(m<a.renewIn)return a.rent;if(m<a.renewIn+a.renewGap)return 0;return renewedRent(a)}
+function exitCost(a,price,balance){
+ const agency=price*a.exitAgencyPct/100*(1+FEE_RULES.agencyVat),penalty=Math.min(Math.max(balance,0)*a.prepayPct/100,a.prepayCap);
+ return{agency,penalty,total:agency+penalty};
+}
+// Month-by-month buy vs not-buy. No appreciation: the property is always worth its purchase price.
+function simulate(a,price,months,{shock=0}={}){
+ const s=scenario(a,price),r=a.rate/1200,n=a.term*12,pm=payment(s.mortgage,a.rate,a.term),fixed=(a.sqft*a.sc+a.maint+a.admin)/12;
+ let bal=s.mortgage,savBuy=a.sav-s.ctc-shock,savNo=a.sav,cumCF=0,runwayMonth=savBuy<0?0:null;
+ const years=[];
+ for(let m=0;m<months;m++){
+  const pay=m<n?pm:0;
+  if(m<n)bal=Math.max(0,bal-(pay-bal*r));
+  const cf=rentAt(a,m)/12*(1-a.vacM/12-a.mgmt/100)-fixed-pay;
+  savBuy+=Math.min(Math.max(savBuy,0),a.savCap)*a.savRate/1200+cf;
+  savNo+=Math.min(Math.max(savNo,0),a.savCap)*a.savRate/1200;
+  cumCF+=cf;
+  if(runwayMonth===null&&savBuy<0)runwayMonth=m+1;
+  if((m+1)%12===0){const equity=price-bal,exit=exitCost(a,price,bal).total;
+   years.push({year:(m+1)/12,balance:bal,equity,savBuy,savNo,cumCF,exit,nwHold:savBuy+equity,nwSold:savBuy+equity-exit})}
+ }
+ return{years,runwayMonth};
+}
+function firstYear(years,key){const y=years.find(x=>x[key]>=x.savNo);return y?y.year:null}
 /* CALC:END */
 
 /* ---------- Estado + persistencia ---------- */
@@ -396,6 +480,7 @@ function loadState(){
    if(typeof d==='number'?typeof v==='number'&&isFinite(v):typeof v===typeof d)S[k]=v});
   if(S.view!=='main'&&S.view!=='neg')S.view='main';
   if(![15,20,25,30].includes(S.term))S.term=DEFAULTS.term;
+  if(![5,10,15,20].includes(S.horizon))S.horizon=DEFAULTS.horizon;
  }catch(e){}
 }
 function saveState(){try{localStorage.setItem(STORE,JSON.stringify(S))}catch(e){}}
@@ -419,6 +504,8 @@ const mxStart=()=>S.mxStart==null?S.neg-100000:S.mxStart;
 function both(){
  const M=calc(S,S.price),N=calc(S,S.neg);
  M.key='main';N.key='neg';M.be=breakEven(S,S.price);N.be=breakEven(S,S.neg);
+ // 30 years of month-by-month history; the runway run also sets the emergency reserve aside.
+ [M,N].forEach(x=>{x.sim=simulate(S,x.price,360);x.run=simulate(S,x.price,360,{shock:S.reserve})});
  return{M,N,sel:S.view==='neg'?N:M};
 }
 
@@ -437,6 +524,9 @@ const FIELDS=[
  F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),
  F('tgt',{nmin:1,nmax:100000}),F('tol',{nmin:0,nmax:100}),
  F('sav',{nmin:0,nmax:1e10}),F('savRate',{nmin:0,nmax:100}),F('savCap',{nmin:0,nmax:1e10}),
+ F('reserve',{nmin:0,nmax:1e8}),
+ F('renewIn',{nmin:0,nmax:360}),F('renewPct',{nmin:-90,nmax:200}),F('renewGap',{nmin:0,nmax:24}),
+ F('exitAgencyPct',{nmin:0,nmax:20}),F('prepayPct',{nmin:0,nmax:20}),F('prepayCap',{nmin:0,nmax:1e7}),
  F('neg',{smin:500000,smax:5000000,step:10000,fmt:aed}),
  F('mxStart',{nmin:10000,nmax:5e7,get:mxStart}),
  F('mxStep',{nmin:1000,nmax:5e6})
@@ -700,6 +790,83 @@ function renderSavings(R){
  $('savTable').innerHTML=h+`<tr><td>Sin comprar</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${saed(before/12)}</td><td class="${cls(before)}">${saed(before)}</td></tr></tbody>`;
 }
 
+/* ---------- Precio máximo (walk-away) ---------- */
+function renderMaxPrice(){
+ const rr=renewedRent(S),showRenew=Math.round(rr)!==Math.round(S.rent);
+ $('mpSub').textContent=`El precio más alto al que el cash-flow mensual todavía llega a cada objetivo, con la renta actual (${aed(S.rent)}/año), ${S.down}% de entrada, ${S.rate.toFixed(2)}% a ${S.term} años y los mismos costes. Por encima de ese precio no cumples el objetivo: es tu límite para negociar.`;
+ const vs=(p,ref)=>{const d=p-ref;return `<td class="${d>=0?'pos':'neg'}">${d>=0?'Margen de '+aed(d):'Bajar '+aed(-d)}</td>`};
+ let h=`<thead><tr><th>Objetivo de cash-flow</th><th>Precio máximo</th><th>AED/sqft</th><th>vs asking</th><th>vs negociado</th><th>Cash-to-close</th>${showRenew?`<th>Precio máximo tras renovar (${aed(rr)}/año)</th>`:''}</tr></thead><tbody>`;
+ [0,500,1000,1500].forEach(t=>{
+  const p=maxPrice(S,t),lbl=t===0?'AED 0/mes (break-even)':'+AED '+nf0.format(t)+'/mes',pr=showRenew?`<td>${aed(maxPrice(S,t,rr))}</td>`:'';
+  if(!(p>0)){h+=`<tr><td>${lbl}</td><td class="neg" colspan="5">Ningún precio llega a este objetivo con la renta actual</td>${pr}</tr>`;return}
+  h+=`<tr><td>${lbl}</td><td><b>${aed(p)}</b></td><td>${aed(p/S.sqft)}</td>${vs(p,S.price)}${vs(p,S.neg)}<td>${aed(scenario(S,p).ctc)}</td>${pr}</tr>`});
+ $('mpTable').innerHTML=h+'</tbody>';
+}
+
+/* ---------- Renovación de renta ---------- */
+function renderRenewal(R){
+ const{M,N}=R,rr=renewedRent(S);
+ $('rnSub').textContent=`La renta pasa de ${aed(S.rent)} a ${aed(rr)}/año (${S.renewPct>=0?'+':''}${S.renewPct}%) en el mes ${S.renewIn+1}${S.renewGap?`, tras ${S.renewGap} ${S.renewGap===1?'mes':'meses'} sin inquilino`:''}. Ajusta los supuestos en Inputs → Renovación de renta.`;
+ const on=k=>S.view===k?' class="on"':'';
+ const row=(l,f,c)=>`<tr><td>${l}</td>${[M,N].map(x=>{const v=f(x);return `<td class="${c?c(v):''}">${typeof v==='string'?v:saed(v)}</td>`}).join('')}</tr>`;
+ const after=x=>calc(S,x.price,rr).cfM,y1=x=>x.sim.years[0].cumCF,y2=x=>x.sim.years[1].cumCF-x.sim.years[0].cumCF;
+ $('rnTable').innerHTML=`<thead><tr><th>Métrica</th><th${on('main')}>Principal</th><th${on('neg')}>Negociado</th></tr></thead><tbody>`+
+  row('CF/mes con la renta actual',x=>x.cfM,cls)+
+  row('CF/mes tras renovar',after,cls)+
+  row('Break-even vs renta renovada',x=>{const g=rr-x.be;return g>=0?'Cubierto (+'+aed(g)+')':'Faltan '+aed(-g)+'/año'},v=>v.startsWith('Cubierto')?'pos':'neg')+
+  row('Renta perdida por meses vacíos',()=>S.renewGap?saed(-S.renewGap*rr/12):'—',v=>v==='—'?'':'neg')+
+  row('CF del año 1 (según calendario)',y1,cls)+
+  row('CF del año 2 (según calendario)',y2,cls)+'</tbody>';
+}
+
+/* ---------- Runway ---------- */
+const monthsTxt=v=>v==null?'No se agota':v<=0?'0 meses':v<24?`${Math.round(v)} meses`:`${(v/12).toFixed(1)} años`;
+function renderRunway(R){
+ const{M,N}=R,free=x=>x.rem-S.reserve;
+ const al=[M,N].filter(x=>free(x)<0).map(x=>`<div class="alert" style="margin:0 0 10px">⚠ ${LABEL[x.key]}: después del cash-to-close no alcanza para la reserva de imprevistos (faltan ${aed(-free(x))}).</div>`).join('');
+ $('rwCard').innerHTML=al+calcHead+
+  calcRow('rwRem','Saldo tras cash-to-close','',M.rem,N.rem,{help:`Tu saldo actual (${aed(S.sav)}) menos el cash-to-close de cada escenario.`})+
+  calcRow('rwRes','Reserva para imprevistos','',-S.reserve,-S.reserve,{fmt:saed,help:'Dinero que apartas para una reparación grande, un electrodoméstico o un mes sin pago. Lo defines en Objetivo y ahorros.'})+
+  calcRow('rwFree','Colchón disponible','',free(M),free(N),{fmt:v=>`<span class="${v<0?'neg':''}">${aed(v)}</span>`,help:'Saldo tras cash-to-close menos la reserva. Es lo que puede absorber un cash-flow negativo.'})+
+  calcRow('rwCover','Cuotas de mortgage cubiertas','',Math.max(free(M),0)/M.pm,Math.max(free(N),0)/N.pm,{fmt:monthsTxt,help:'Cuántas cuotas completas podrías pagar solo con el colchón si la propiedad no generara renta.'})+
+  calcRow('rwMonths','Runway con el cash-flow actual','',M.run.runwayMonth,N.run.runwayMonth,{extra:' total',fmt:monthsTxt,help:'Meses hasta que el colchón llega a cero cubriendo el cash-flow negativo, con el interés de la cuenta y el cambio de renta al renovar. "No se agota" significa que dura más de 30 años o que el cash-flow es positivo.'});
+}
+
+/* ---------- Entrada óptima ---------- */
+function renderDownPay(R){
+ const s=R.sel,H=S.horizon,price=s.price;
+ $('enSub').textContent=`${LABEL[S.view]} (${aed(price)}): efecto de cada % de entrada, con el resto de supuestos igual. El patrimonio neto a ${H} años es ahorros + (precio − saldo del mortgage), sin apreciación. Cambia de escenario con el selector de la barra superior.`;
+ const dPm=payment(10000,S.rate,S.term),dMortInt=10000*S.rate/100,dSav=savingsInterest(S,s.rem)-savingsInterest(S,s.rem-10000);
+ $('enMarginal').innerHTML=`Cada <b>AED 10,000</b> más de entrada baja la cuota <b>${aed(dPm)}/mes</b> y ahorra unos <b>${aed(dMortInt)}/año</b> de intereses del mortgage (al ${S.rate.toFixed(2)}%), pero deja de generar <b>${aed(dSav)}/año</b> de interés de ahorro (al ${S.savRate}%, con el tope de ${aed(S.savCap)}). ${dSav>dMortInt?'Con estos supuestos, cada dirham extra de entrada rinde menos que en tu cuenta.':dSav<dMortInt?'Con estos supuestos, cada dirham extra de entrada ahorra más de lo que dejaría de rendir en tu cuenta.':'Con estos supuestos, las dos opciones rinden lo mismo.'}`;
+ const rows=[];for(let d=15;d<=60;d+=5){const a={...S,down:d},c=calc(a,price),y=simulate(a,price,H*12).years[H-1];rows.push({d,c,nw:y.nwHold,no:y.savNo})}
+ // Only down payments that fit in current savings are real options; a negative balance is not free money.
+ const feasible=rows.filter(r=>r.c.rem>=0),best=feasible.length?feasible.reduce((b,r)=>r.nw>b.nw?r:b):null;
+ let h=`<thead><tr><th>Entrada</th><th>Down payment</th><th>Cash-to-close</th><th>Cuota/mes</th><th>CF/mes</th><th>Interés de ahorro/año</th><th>CF + interés/año</th><th>Patrimonio neto a ${H} años</th></tr></thead><tbody>`;
+ rows.forEach(r=>{const over=r.c.rem<0;
+  h+=`<tr class="${r.d===S.down?'on':''}"><td>${r.d}%${r.d===S.down?' <span class="tiny">● actual</span>':''}${r===best?' <span class="badge b-green">Mejor a '+H+' años</span>':''}</td><td>${aed(r.c.down)}</td><td class="${over?'neg':''}">${aed(r.c.ctc)}${over?' <span class="tiny">supera ahorros</span>':''}</td><td>${aed(r.c.pm)}</td><td class="${cls(r.c.cfM)}">${saed(r.c.cfM)}</td><td>${aed(r.c.interest)}</td><td class="${cls(r.c.combA)}">${saed(r.c.combA)}</td>${over?'<td class="dim">No alcanza: faltan '+aed(-r.c.rem)+'</td>':`<td class="${r.nw>=r.no?'pos':'neg'}">${aed(r.nw)} <span class="dim tiny">${saed(r.nw-r.no)} vs no comprar</span></td>`}</tr>`});
+ $('enTable').innerHTML=h+'</tbody>';
+}
+
+/* ---------- Horizonte: comprar vs no comprar ---------- */
+const yearTxt=v=>v==null?'Más de 30 años':'Año '+v;
+function renderHorizon(R){
+ const{M,N}=R,H=S.horizon;
+ $('horizon').value=String(H);
+ $('hzSub').textContent=`Patrimonio neto acumulado mes a mes, sin apreciación. Comprando: ahorros restantes (con su interés y el cash-flow) + (precio − saldo del mortgage). "Si vendes" resta además la comisión de venta y la penalización del mortgage. Sin comprar: tu saldo actual rindiendo al ${S.savRate}% con el tope de ${aed(S.savCap)}.`;
+ const hold=x=>firstYear(x.sim.years,'nwHold'),sold=x=>firstYear(x.sim.years,'nwSold'),exitH=x=>x.sim.years[H-1].exit;
+ $('hzSummary').innerHTML=calcHead+
+  calcRow('hzHold','Comprar supera a no comprar','conservando',hold(M),hold(N),{fmt:yearTxt,help:'Primer año en que tu patrimonio neto comprando (sin vender) iguala o supera el de dejar todo el dinero en la cuenta.'})+
+  calcRow('hzSold','Recuperas fees de entrada y salida','si vendes',sold(M),sold(N),{fmt:yearTxt,help:'Primer año en que comprar y luego vender deja de ser peor que no haber comprado. Antes de ese año, vender implica perder dinero frente a la cuenta.'})+
+  calcRow('hzExit','Coste de salida en el año '+H,'',exitH(M),exitH(N),{extra:' total',help:`Comisión de venta ${S.exitAgencyPct}% + VAT, más la penalización por cancelar el mortgage (${S.prepayPct}% del saldo, tope ${aed(S.prepayCap)}).`});
+ const years=H<=10?Array.from({length:H},(_,i)=>i+1):[1,2,3,5,7,10,15,20].filter(y=>y<=H);
+ const on=k=>S.view===k?' class="on"':'';
+ const cell=(v,no)=>`<td class="${v>=no?'pos':'neg'}">${aed(v)} <span class="dim tiny">${saed(v-no)}</span></td>`;
+ let h=`<thead><tr><th>Año</th><th>Sin comprar</th><th${on('main')}>Principal · conservando</th><th${on('main')}>Principal · si vendes</th><th${on('neg')}>Negociado · conservando</th><th${on('neg')}>Negociado · si vendes</th></tr></thead><tbody>`;
+ years.forEach(y=>{const m=M.sim.years[y-1],n=N.sim.years[y-1];
+  h+=`<tr><td>Año ${y}</td><td>${aed(m.savNo)}</td>${cell(m.nwHold,m.savNo)}${cell(m.nwSold,m.savNo)}${cell(n.nwHold,n.savNo)}${cell(n.nwSold,n.savNo)}</tr>`});
+ $('hzTable').innerHTML=h+'</tbody>';
+}
+
 /* ---------- Lectura ---------- */
 function renderInsights(R){
  const{M,N}=R,save=S.price-S.neg,before=savingsInterest(S,S.sav),L=[];
@@ -717,6 +884,14 @@ function renderInsights(R){
  L.push({t:`AED/sqft: ${aed(M.psf)} (${pm.t}) en la principal y ${aed(N.psf)} (${pn.t}) en la negociada, frente a tu objetivo de ${aed(S.tgt)} ±${S.tol}%.`});
  if(M.cfM<0||N.cfM<0){const worst=[M,N].filter(x=>x.cfM<0).map(x=>`${SHORT[x.key].toLowerCase()} ${aed(-x.cfA)}`).join(', ');
   L.push({w:1,t:`Cash-flow negativo: con la renta actual hay que aportar de tu bolsillo (${worst} al año).`})}
+ const wa=maxPrice(S,0);
+ if(wa>0)L.push({t:`Precio máximo para cash-flow 0 con la renta actual: ${aed(wa)} (${aed(wa/S.sqft)}/sqft). ${wa>=S.neg?`El precio negociado queda ${aed(wa-S.neg)} por debajo de ese límite.`:`El precio negociado lo supera en ${aed(S.neg-wa)}.`}`});
+ else L.push({w:1,t:'Con la renta y los costes actuales, ningún precio deja el cash-flow en 0.'});
+ const H=S.horizon,hy=x=>firstYear(x.sim.years,'nwHold'),sy=x=>firstYear(x.sim.years,'nwSold');
+ L.push({t:`Comprar supera a no comprar (conservando la propiedad) en: ${yearTxt(hy(M)).toLowerCase()} (principal) y ${yearTxt(hy(N)).toLowerCase()} (negociado). Si vendes, recuperas los fees de entrada y salida en: ${yearTxt(sy(M)).toLowerCase()} y ${yearTxt(sy(N)).toLowerCase()}. Todo sin apreciación.`});
+ const d=x=>x.sim.years[H-1].nwHold-x.sim.years[H-1].savNo;
+ L.push({t:`A ${H} años, el patrimonio neto comprando queda ${saed(d(M))} (principal) y ${saed(d(N))} (negociado) frente a no comprar.`});
+ [M,N].forEach(x=>{const r=x.run.runwayMonth;if(r!=null)L.push({w:1,t:`${LABEL[x.key]}: con el cash-flow actual y la reserva apartada, tu colchón de ahorros se agota en ${monthsTxt(r)}.`})});
  [M,N].forEach(x=>{if(x.rem<0)L.push({w:1,t:`${LABEL[x.key]}: el cash-to-close supera tu saldo de ahorro en ${aed(-x.rem)}.`})});
  $('insightList').innerHTML=L.map(x=>`<li${x.w?' class="w"':''}>${x.w?'⚠ ':''}${x.t}</li>`).join('');
 }
@@ -726,7 +901,8 @@ let lastR=null;
 function render(){
  syncFields();
  const R=lastR=both();
- renderHeader(R);renderFees(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);renderInsights(R);
+ renderHeader(R);renderFees(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);
+ renderMaxPrice();renderRenewal(R);renderRunway(R);renderDownPay(R);renderHorizon(R);renderInsights(R);
  saveState();
 }
 
@@ -734,9 +910,10 @@ function render(){
 loadState();
 FIELDS.forEach(bindField);
 $('term').addEventListener('change',e=>{S.term=parseInt(e.target.value,10);render()});
+$('horizon').addEventListener('change',e=>{S.horizon=parseInt(e.target.value,10);render()});
 document.addEventListener('click',e=>{
  const hb=e.target.closest('[data-help]');const next=hb?(openFee===hb.dataset.help?null:hb.dataset.help):null;
- if(next!==openFee){openFee=next;renderFees(lastR||both());if(hb)document.querySelector(`[data-help="${next||hb.dataset.help}"]`).focus()}
+ if(next!==openFee){openFee=next;render();if(hb)document.querySelector(`[data-help="${next||hb.dataset.help}"]`).focus()}
  if(hb)return;
  const c=e.target.closest('[data-cut]');if(c){S.neg=Math.max(500000,S.price-(+c.dataset.cut));render();return}
  const v=e.target.closest('[data-view]');if(v){S.view=v.dataset.view;render()}

@@ -1,6 +1,6 @@
 # property-mortgage-comparator
 
-![Pixel-art banner: Gate Towers next to a cash-flow chart comparing the main and negotiated scenarios](assets/banner.png)
+![Pixel-art banner: a house, an apartment block, a calculator and a cash-flow chart crossing break-even](assets/banner.png)
 
 Interactive single-file dashboard (`index.html`) to compare a property at its asking price vs a negotiated price in Abu Dhabi: mortgage, fees, cash-flow, break-even, rate stress, sensitivity and savings opportunity cost.
 

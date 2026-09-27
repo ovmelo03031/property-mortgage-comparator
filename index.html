@@ -3,38 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Property Cost</title>
+<title>Comparador hipotecario</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='16' height='16' fill='%230e1a3a'/%3E%3Crect x='0' y='15' width='16' height='1' fill='%231c2d57'/%3E%3Crect x='1' y='5' width='4' height='10' fill='%232a4180'/%3E%3Crect x='1' y='5' width='1' height='10' fill='%234a6cc0'/%3E%3Crect x='4' y='5' width='1' height='10' fill='%231c2d57'/%3E%3Crect x='6' y='1' width='4' height='14' fill='%232a4180'/%3E%3Crect x='6' y='1' width='1' height='14' fill='%234a6cc0'/%3E%3Crect x='9' y='1' width='1' height='14' fill='%231c2d57'/%3E%3Crect x='11' y='5' width='4' height='10' fill='%232a4180'/%3E%3Crect x='11' y='5' width='1' height='10' fill='%234a6cc0'/%3E%3Crect x='14' y='5' width='1' height='10' fill='%231c2d57'/%3E%3Crect x='1' y='3' width='14' height='2' fill='%233b82f6'/%3E%3Crect x='1' y='3' width='14' height='1' fill='%237cb0ff'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='8' y='1' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='12' y='8' width='1' height='1' fill='%237cb0ff'/%3E%3Crect x='13' y='11' width='1' height='1' fill='%23f5b041'/%3E%3Crect x='12' y='13' width='1' height='1' fill='%23f5b041'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
 <style>
-:root{
-  --bg:#060c1b;--bg2:#0a1328;--card:#0e1831;--card2:#122042;--inset:#0a1226;
-  --line:rgba(148,163,184,.13);--line2:rgba(148,163,184,.26);
-  --tx:#e9eef8;--mut:#93a0b8;--dim:#61708c;
-  --blue:#3b82f6;--blue2:#7cb0ff;--green:#2fd07a;--red:#ff5a6e;--amber:#f5b041;
-  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+/* Design tokens: dark (default) + light, on [data-theme] and prefers-color-scheme. Roles, not colors. */
+:root,:root[data-theme="dark"]{
+  --bg:#070D1C;--sf:#0E172D;--sf2:#14203C;--in:#0A1326;
+  --ln:rgba(148,163,184,.16);--ln2:rgba(148,163,184,.34);
+  --tx:#EAF0FA;--mu:#AEB9CD;--dm:#8C9AB3;
+  --br:#2563EB;--brt:#8DB9FF;--brbg:rgba(59,130,246,.16);
+  --po:#45D98E;--pobg:rgba(69,217,142,.12);
+  --ne:#FF8A95;--nebg:rgba(255,138,149,.12);
+  --wa:#F5B84D;--wabg:rgba(245,184,77,.12);
+  --sp:#A9B4C8;--sn:#2DD4BF;
+  color-scheme:dark;
+  --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  /* Back-compat aliases used by legacy component classes */
+  --bg2:var(--sf);--card:var(--sf);--card2:var(--sf2);--inset:var(--in);
+  --line:var(--ln);--line2:var(--ln2);--mut:var(--mu);--dim:var(--dm);
+  --blue:var(--br);--blue2:var(--brt);--green:var(--po);--red:var(--ne);--amber:var(--wa);
+}
+:root[data-theme="light"]{
+  --bg:#F4F5F8;--sf:#FFFFFF;--sf2:#FFFFFF;--in:#EFF2F6;
+  --ln:rgba(15,23,42,.10);--ln2:rgba(15,23,42,.24);
+  --tx:#0D1526;--mu:#475369;--dm:#5B6780;
+  --br:#1D4ED8;--brt:#1D4ED8;--brbg:#E6EDFD;
+  --po:#0B7A45;--pobg:#E3F5EB;
+  --ne:#B4232F;--nebg:#FCE8EA;
+  --wa:#8A5300;--wabg:#FDF1DC;
+  --sp:#64748B;--sn:#0F8F7F;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme]){
+    --bg:#F4F5F8;--sf:#FFFFFF;--sf2:#FFFFFF;--in:#EFF2F6;
+    --ln:rgba(15,23,42,.10);--ln2:rgba(15,23,42,.24);
+    --tx:#0D1526;--mu:#475369;--dm:#5B6780;
+    --br:#1D4ED8;--brt:#1D4ED8;--brbg:#E6EDFD;
+    --po:#0B7A45;--pobg:#E3F5EB;
+    --ne:#B4232F;--nebg:#FCE8EA;
+    --wa:#8A5300;--wabg:#FDF1DC;
+    --sp:#64748B;--sn:#0F8F7F;
+    color-scheme:light;
+  }
 }
 *{box-sizing:border-box}
 html{scroll-padding-top:150px;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{margin:0;color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  background:radial-gradient(1100px 520px at 0% -8%,#15295a 0%,transparent 62%),radial-gradient(900px 480px at 100% 0%,#0d2b3f 0%,transparent 58%),var(--bg);background-attachment:fixed;
+body{margin:0;color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg);
   padding-bottom:env(safe-area-inset-bottom)}
+:root,:root[data-theme="dark"]{--hero-glow:radial-gradient(1100px 520px at 0% -8%,#15295a 0%,transparent 62%),radial-gradient(900px 480px at 100% 0%,#0d2b3f 0%,transparent 58%)}
+:root[data-theme="light"]{--hero-glow:none}
+@media (prefers-color-scheme:light){:root:not([data-theme]){--hero-glow:none}}
+body{background-image:var(--hero-glow);background-attachment:fixed}
 .num,td,.kv b,.big{font-variant-numeric:tabular-nums}
 .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
 a{color:var(--blue2)}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--blue2);outline-offset:2px}
 
+/* App bar */
+.appbar{position:sticky;top:0;z-index:50;background:var(--sf);border-bottom:1px solid var(--ln);padding-top:env(safe-area-inset-top)}
+.appbar-in{display:flex;align-items:center;gap:10px;padding:0 20px;height:64px;max-width:1280px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tx);flex:0 0 auto}
+.brand svg{border-radius:6px;flex:0 0 auto}
+.brand-tx{display:flex;flex-direction:column;line-height:1.15}
+.brand-name{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.brand-sub{font-size:11.5px;color:var(--mu)}
+.privacy{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mu);padding:0 8px;white-space:nowrap}
+.privacy svg{flex:0 0 auto}
+.abar-actions{display:flex;align-items:center;gap:6px;margin-left:auto}
+.abtn{display:inline-flex;align-items:center;gap:8px;height:40px;min-width:40px;padding:0 12px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--tx);cursor:pointer;font-size:13.5px;font-weight:500;white-space:nowrap}
+.abtn.outline{border-color:var(--ln2)}
+.abtn.icon{padding:0;width:40px;justify-content:center}
+.abtn:disabled{opacity:.4;cursor:not-allowed}
+.abtn:hover:not(:disabled){background:var(--in)}
+.adiv{width:1px;height:24px;background:var(--ln2);margin:0 2px}
+.menu-wrap{position:relative}
+.menu{position:absolute;right:0;top:calc(100% + 6px);min-width:220px;background:var(--sf2);border:1px solid var(--ln2);border-radius:12px;padding:6px;box-shadow:0 16px 40px -16px rgba(0,0,0,.6);z-index:60}
+.menu[hidden]{display:none}
+.menu button{display:flex;width:100%;align-items:center;gap:8px;padding:9px 10px;border:0;background:transparent;color:var(--tx);border-radius:8px;font-size:13.5px;text-align:left;cursor:pointer}
+.menu button:hover{background:var(--in)}
+@media (max-width:900px){.privacy,.abtn span.txt{display:none}.brand-sub{display:none}}
+
 /* Hero */
 .hero{padding:40px 0 22px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 12px;letter-spacing:-.015em}
 .sub{color:var(--mut);max-width:62ch;font-size:16.5px;margin:0}
-.hero-note{background:linear-gradient(160deg,rgba(59,130,246,.12),rgba(59,130,246,.02));border:1px solid rgba(124,176,255,.25);border-radius:14px;padding:14px 16px;font-size:13.5px;color:var(--mut)}
+.hero-note{background:var(--brbg);border:1px solid var(--ln2);border-radius:14px;padding:14px 16px;font-size:13.5px;color:var(--mut)}
 .hero-note b{color:var(--tx)}
 
 /* Sticky bar */
-.bar{position:sticky;top:0;z-index:40;background:rgba(6,12,27,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar{position:sticky;top:64px;z-index:40;background:var(--sf);border-bottom:1px solid var(--line);padding-top:0}
 .bar-in{display:flex;gap:14px;align-items:center;padding:10px 20px;flex-wrap:wrap;max-width:1280px;margin:0 auto}
 .rentctl{display:flex;align-items:center;gap:10px;flex:1 1 420px;min-width:0}
 .rentctl label{font-size:12.5px;color:var(--mut);white-space:nowrap}
@@ -77,12 +140,16 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .small{font-size:13px}.tiny{font-size:12px}
 .swatch{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:0}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);white-space:nowrap}
-.badge.b-green{color:var(--green);border-color:rgba(47,208,122,.4);background:rgba(47,208,122,.08)}
-.badge.b-red{color:var(--red);border-color:rgba(255,90,110,.4);background:rgba(255,90,110,.08)}
-.badge.b-amber{color:var(--amber);border-color:rgba(245,176,65,.45);background:rgba(245,176,65,.1)}
-.badge.b-blue{color:var(--blue2);border-color:rgba(124,176,255,.45);background:rgba(59,130,246,.12)}
-.alert{margin-top:12px;border:1px solid rgba(245,176,65,.45);background:rgba(245,176,65,.09);color:#ffd99a;border-radius:12px;padding:10px 12px;font-size:13px}
-.alert.info{border-color:rgba(124,176,255,.3);background:rgba(59,130,246,.07);color:#c8dbff}
+.badge.b-green{color:var(--po);border-color:var(--po);background:var(--pobg)}
+.badge.b-red{color:var(--ne);border-color:var(--ne);background:var(--nebg)}
+.badge.b-amber{color:var(--wa);border-color:var(--wa);background:var(--wabg)}
+.badge.b-blue{color:var(--brt);border-color:var(--brt);background:var(--brbg)}
+.alert{margin-top:12px;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--wa);background:var(--wabg);color:var(--tx);border-radius:12px;padding:10px 12px;font-size:13px}
+.alert svg,.alert>span:first-child{flex:0 0 auto;color:var(--wa)}
+.alert.info{border-color:var(--brt);background:var(--brbg)}
+.alert.info svg,.alert.info>span:first-child{color:var(--brt)}
+.alert.neg{border-color:var(--ne);background:var(--nebg)}
+.alert.neg svg,.alert.neg>span:first-child{color:var(--ne)}
 
 /* Input panel */
 .inpgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;align-items:start}
@@ -191,11 +258,36 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 </head>
 <body>
 
+<header class="appbar">
+  <div class="appbar-in">
+    <a href="#" class="brand" id="brandHome">
+      <svg width="30" height="30" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="0" width="16" height="16" fill="#0e1a3a"/><rect x="0" y="15" width="16" height="1" fill="#1c2d57"/><rect x="1" y="5" width="4" height="10" fill="#2a4180"/><rect x="1" y="5" width="1" height="10" fill="#4a6cc0"/><rect x="4" y="5" width="1" height="10" fill="#1c2d57"/><rect x="6" y="1" width="4" height="14" fill="#2a4180"/><rect x="6" y="1" width="1" height="14" fill="#4a6cc0"/><rect x="9" y="1" width="1" height="14" fill="#1c2d57"/><rect x="11" y="5" width="4" height="10" fill="#2a4180"/><rect x="11" y="5" width="1" height="10" fill="#4a6cc0"/><rect x="14" y="5" width="1" height="10" fill="#1c2d57"/><rect x="1" y="3" width="14" height="2" fill="#3b82f6"/><rect x="1" y="3" width="14" height="1" fill="#7cb0ff"/><rect x="2" y="7" width="1" height="1" fill="#f5b041"/><rect x="3" y="10" width="1" height="1" fill="#7cb0ff"/><rect x="2" y="12" width="1" height="1" fill="#f5b041"/><rect x="7" y="6" width="1" height="1" fill="#f5b041"/><rect x="8" y="9" width="1" height="1" fill="#f5b041"/><rect x="7" y="12" width="1" height="1" fill="#7cb0ff"/><rect x="8" y="1" width="1" height="1" fill="#7cb0ff"/><rect x="12" y="8" width="1" height="1" fill="#7cb0ff"/><rect x="13" y="11" width="1" height="1" fill="#f5b041"/><rect x="12" y="13" width="1" height="1" fill="#f5b041"/></svg>
+      <span class="brand-tx"><span class="brand-name">Comparador hipotecario</span><span class="brand-sub">Abu Dhabi · ADGM · cifras en AED</span></span>
+    </a>
+    <span class="privacy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Todo se calcula y guarda en este dispositivo</span>
+    <div class="abar-actions">
+      <button type="button" class="abtn outline" id="btnUndo" aria-keyshortcuts="Control+Z Meta+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg><span class="txt">Deshacer</span></button>
+      <button type="button" class="abtn outline icon" id="btnRedo" aria-label="Rehacer" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"></path><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"></path></svg></button>
+      <span class="adiv"></span>
+      <button type="button" class="abtn" id="btnGlossary" aria-haspopup="dialog" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span class="txt">Glosario</span></button>
+      <button type="button" class="abtn" id="btnCopyLink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span class="txt">Copiar enlace del escenario</span></button>
+      <button type="button" class="abtn outline" id="btnTheme" aria-pressed="false"><svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg><span class="txt" id="themeLabel">Modo oscuro</span></button>
+      <div class="menu-wrap">
+        <button type="button" class="abtn outline icon" id="btnMore" aria-haspopup="menu" aria-expanded="false" aria-label="Más opciones: restablecer todo, acerca de"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+        <div class="menu" id="moreMenu" role="menu" hidden>
+          <button type="button" role="menuitem" id="menuResetAll">Restablecer todo</button>
+          <button type="button" role="menuitem" id="menuAbout">Acerca de</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
 <div class="wrap">
   <header class="hero">
     <div>
-      <h1>Property Cost</h1>
-      <p class="sub">Análisis de inversión: entrada, mortgage, fees, cash-flow, break-even y patrimonio.</p>
+      <h1>Comparador hipotecario</h1>
+      <p class="sub">Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.</p>
     </div>
     <div class="hero-note">
       <b>Tasa modelada: <span id="heroRate">3.99%</span></b> a <span id="heroTerm">25</span> años. Es solo un supuesto de modelo: la tasa real puede cambiar tras el periodo fijo del banco. Sin apreciación, sin prima por amueblado y sin rentas inventadas: la renta la defines tú.
@@ -211,12 +303,12 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
       <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED">
     </div>
     <div class="seg" role="tablist" aria-label="Escenario de las métricas detalladas">
-      <button type="button" role="tab" data-view="main">Principal</button>
+      <button type="button" role="tab" data-view="main">Pedido</button>
       <button type="button" role="tab" data-view="neg">Negociado</button>
     </div>
   </div>
   <nav class="toc">
-    <a href="#inputs">Inputs</a><a href="#kpis">Comparación</a><a href="#impacto">Impacto</a><a href="#maxprecio">Precio máximo</a><a href="#detalle">Detalle</a><a href="#grafico">Gráfico</a><a href="#breakeven">Break-even</a><a href="#stress">Tasa</a><a href="#renovacion">Renovación</a><a href="#matriz">Sensibilidad</a><a href="#ahorros">Mis ahorros</a><a href="#runway">Runway</a><a href="#entrada">Entrada</a><a href="#horizonte">Horizonte</a><a href="#insights">Lectura</a>
+    <a href="#inputs">Supuestos</a><a href="#kpis">Comparación</a><a href="#impacto">Impacto</a><a href="#maxprecio">Precio límite</a><a href="#detalle">Detalle</a><a href="#grafico">Gráfico</a><a href="#breakeven">Renta mínima</a><a href="#stress">Tasa</a><a href="#renovacion">Renovación</a><a href="#matriz">Sensibilidad</a><a href="#ahorros">Mis ahorros</a><a href="#runway">Colchón</a><a href="#entrada">Entrada</a><a href="#horizonte">Horizonte</a><a href="#insights">Lectura</a>
   </nav>
 </div>
 
@@ -394,9 +486,22 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <ul class="insight" id="insightList"></ul>
 </section>
 
-<div class="disc">This model is for investment analysis only. Actual mortgage rates, service charges, rental income, vacancy, maintenance and transaction costs may differ. Verify all figures with the bank, ADREC/ADGM, building management and the broker before purchase.</div>
+<div class="disc">Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.</div>
 <footer>Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
 </main>
+
+<div class="menu-wrap" id="glossaryWrap" hidden>
+  <aside id="glossaryPanel" role="dialog" aria-modal="false" aria-labelledby="glossaryTitle" class="menu" style="position:fixed;right:16px;top:76px;width:min(360px,calc(100vw - 32px));max-height:70vh;overflow:auto;padding:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <h2 id="glossaryTitle" style="margin:0;font-family:var(--serif);font-weight:600;font-size:19px">Glosario</h2>
+      <button type="button" class="abtn icon" id="btnGlossaryClose" aria-label="Cerrar el glosario">✕</button>
+    </div>
+    <div id="glossaryBody" class="small muted">El glosario con los 12 términos se añade en la siguiente fase del rediseño.</div>
+  </aside>
+</div>
+<div id="toast" role="status" aria-live="polite" style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;display:none;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:var(--tx);color:var(--bg);font-size:14px;max-width:calc(100vw - 32px)">
+  <span id="toastMsg" style="flex:1"></span><button type="button" id="toastUndo" style="height:32px;padding:0 10px;border-radius:8px;border:0;background:var(--bg);color:var(--tx);font-weight:600;cursor:pointer">Deshacer</button>
+</div>
 
 <script>
 (function(){
@@ -494,8 +599,8 @@ const aed2=v=>'AED '+nf2.format(v);
 const pct=(v,d=2)=>isFinite(v)?v.toFixed(d)+'%':'—';
 const cls=v=>v>0.5?'pos':v<-0.5?'neg':'';
 const short=v=>Math.abs(v)>=1e6?'AED '+(v/1e6).toFixed(3).replace(/\.?0+$/,'')+'M':'AED '+nf0.format(v/1000)+'k';
-const LABEL={main:'Propiedad principal',neg:'Precio negociado'};
-const SHORT={main:'Principal',neg:'Negociado'};
+const LABEL={main:'Precio pedido',neg:'Precio negociado'};
+const SHORT={main:'Pedido',neg:'Negociado'};
 const SEL_COLOR='#3b82f6',LINE_COLOR={main:'#94a3b8',neg:'#2dd4bf'};
 
 function psfState(v){const lo=S.tgt*(1-S.tol/100),hi=S.tgt*(1+S.tol/100);
@@ -920,6 +1025,48 @@ document.addEventListener('click',e=>{
 });
 $('btnReset').addEventListener('click',()=>{Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}render()});
 let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>renderChart(lastR||both()),120)});
+
+/* ---------- Barra de la aplicación: tema, glosario, menú, enlace ---------- */
+const THEME_KEY='gt-negotiation-comparator-theme';
+function applyTheme(mode){
+ if(mode)document.documentElement.setAttribute('data-theme',mode);else document.documentElement.removeAttribute('data-theme');
+ const dark=mode?mode==='dark':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+ $('themeIconDark').style.display=dark?'':'none';$('themeIconLight').style.display=dark?'none':'';
+ $('themeLabel').textContent=dark?'Modo oscuro':'Modo claro';
+ $('btnTheme').setAttribute('aria-pressed',String(dark));
+ $('btnTheme').setAttribute('aria-label','Cambiar a modo '+(dark?'claro':'oscuro'));
+}
+(function initTheme(){let saved=null;try{saved=localStorage.getItem(THEME_KEY)}catch(e){}applyTheme(saved)})();
+$('btnTheme').addEventListener('click',()=>{
+ const dark=$('themeIconDark').style.display!=='none';
+ const next=dark?'light':'dark';
+ applyTheme(next);
+ try{localStorage.setItem(THEME_KEY,next)}catch(e){}
+});
+function closeMoreMenu(){$('moreMenu').hidden=true;$('btnMore').setAttribute('aria-expanded','false')}
+$('btnMore').addEventListener('click',e=>{e.stopPropagation();const open=$('moreMenu').hidden;$('moreMenu').hidden=!open;$('btnMore').setAttribute('aria-expanded',String(open))});
+$('menuResetAll').addEventListener('click',()=>{closeMoreMenu();$('btnReset').click()});
+$('menuAbout').addEventListener('click',()=>{closeMoreMenu();showToast('Comparador hipotecario · análisis local, sin servidor.')});
+document.addEventListener('click',e=>{if(!e.target.closest('.menu-wrap'))closeMoreMenu()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMoreMenu();closeGlossary()}});
+function openGlossary(){$('glossaryWrap').hidden=false;$('btnGlossary').setAttribute('aria-expanded','true')}
+function closeGlossary(){$('glossaryWrap').hidden=true;$('btnGlossary').setAttribute('aria-expanded','false')}
+$('btnGlossary').addEventListener('click',()=>{$('glossaryWrap').hidden?openGlossary():closeGlossary()});
+$('btnGlossaryClose').addEventListener('click',closeGlossary);
+let toastTimer=null;
+function showToast(msg,onUndo){
+ clearTimeout(toastTimer);const t=$('toast');$('toastMsg').textContent=msg;
+ $('toastUndo').style.display=onUndo?'':'none';
+ t.style.display='flex';
+ $('toastUndo').onclick=()=>{if(onUndo)onUndo();t.style.display='none'};
+ toastTimer=setTimeout(()=>{t.style.display='none'},8000);
+}
+function scenarioHash(){return '#p='+Math.round(S.price)+'&r='+Math.round(S.rent)+'&n='+Math.round(S.neg)}
+$('btnCopyLink').addEventListener('click',async()=>{
+ const url=location.origin+location.pathname+scenarioHash();
+ try{await navigator.clipboard.writeText(url);showToast('Enlace del escenario copiado.')}
+ catch(e){showToast('No se pudo copiar automáticamente: '+url)}
+});
 
 render();
 })();

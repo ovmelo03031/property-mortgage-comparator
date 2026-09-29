@@ -87,13 +87,17 @@ button,input,select{font:inherit;color:inherit}
 .menu[hidden],.acc-reset[hidden]{display:none}
 .menu button{display:flex;width:100%;align-items:center;gap:8px;padding:9px 10px;border:0;background:transparent;color:var(--tx);border-radius:8px;font-size:13.5px;text-align:left;cursor:pointer}
 .menu button:hover{background:var(--in)}
+.menu button:disabled{opacity:.45;cursor:not-allowed}
 @media (max-width:900px){.privacy,.abtn span.txt{display:none}.brand-sub{display:none}}
 .mobile-only-item{display:none}
 @media (max-width:560px){
-  #btnGlossary,#btnCopyLink,#btnTheme,.abar-actions .adiv{display:none}
+  #btnGlossary,#btnCopyLink,#btnTheme,#btnRedo,.abar-actions .adiv{display:none}
   .mobile-only-item{display:flex}
   .appbar-in{padding:0 10px;gap:6px}
-  .brand-name{font-size:16px}
+  .brand{flex:1 1 auto;min-width:0;gap:8px}.brand-tx{min-width:0}
+  .brand-name{font-size:15px;line-height:1.1}
+  .brand svg{width:26px;height:26px}
+  .abar-actions{margin-left:0}
   .abar-actions{gap:2px}
 }
 
@@ -327,6 +331,55 @@ tbody tr:last-child td{border-bottom:0}
 .disc{margin:40px 0 30px;padding:18px;border-radius:14px;border:1px solid var(--wa);background:var(--wabg);color:var(--tx);font-size:13.5px}
 footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 
+/* Mobile assumptions sheet (opened from the bottom bar below 720px) */
+.btn-sup{display:none;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:10px;border:0;background:var(--br);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;flex:0 0 auto}
+.sheet{position:fixed;inset:12px 0 0 0;z-index:70;display:flex;flex-direction:column;background:var(--sf);border-top:1px solid var(--ln2);border-radius:20px 20px 0 0;box-shadow:0 0 0 100vmax rgba(3,7,18,.55)}
+.sheet[hidden]{display:none}
+.sheet-grab{align-self:center;width:40px;height:5px;border-radius:3px;background:var(--ln2);margin-top:8px}
+.sheet-h{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;border-bottom:1px solid var(--ln)}
+.sheet-h h2{margin:0;flex:1;font-family:var(--serif);font-weight:600;font-size:24px;outline:none}
+.sheet-cf{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;font-size:13.5px;background:var(--nebg)}
+.sheet-cf.pos{background:var(--pobg)}.sheet-cf b.pos{color:var(--po)}.sheet-cf b.neg{color:var(--ne)}
+.sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px}
+.sheet-body .inpgrid{display:flex;flex-direction:column;gap:18px}
+.sheet-body .qs-card{display:contents}
+.sheet-body .qs-card>.grp{margin:0;padding:0;border:0}
+.sheet-body .qs-card>.grp:first-child{order:1}
+.sheet-body .negcard{order:2;position:static;background:var(--in);border:1px solid var(--ln2)}
+.sheet-body .qs-card>.grp:nth-child(2){order:3}
+.sheet-f{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--ln2);background:var(--sf)}
+.sheet-f .btn{height:52px;border-radius:12px;font-size:15px}
+.sheet-confirm{grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.sheet-confirm[hidden]{display:none}
+.sheet-confirm .row{display:flex;gap:8px}.sheet-confirm .btn{flex:1;height:48px}
+body.sheet-open{overflow:hidden}
+body.sheet-open #toast{bottom:96px!important}
+.det-m{display:none}
+.dm-h{display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.dm-h h3{margin:0;font-family:var(--serif);font-weight:600;font-size:24px}
+.dm-h .dm-link{border:0;background:transparent;font-family:inherit;padding:0;cursor:pointer;min-height:44px;display:flex;align-items:center;color:var(--brt);font-size:14px;font-weight:600}
+.dm-grp{border-radius:16px;background:var(--sf);border:1px solid var(--ln)}
+.dm-grp>summary{list-style:none;cursor:pointer;min-height:60px;display:flex;align-items:center;gap:10px;padding:10px 16px}
+.dm-grp>summary::-webkit-details-marker{display:none}
+.dm-grp>summary b{flex:1;font-size:16px;font-weight:600}
+.dm-grp>summary .acc-chev{transition:transform .15s}.dm-grp[open]>summary .acc-chev{transform:rotate(180deg)}
+.dm-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 12px;padding:0 16px 6px;font-size:12px;color:var(--dm)}
+.dm-list{margin:0;padding:0 16px 10px}
+.dm-row{display:flex;flex-direction:column;gap:2px;padding:9px 0;border-top:1px solid var(--ln)}
+.dm-row dt{font-size:13.5px;color:var(--mu)}
+.dm-row dd{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.dm-row dd.dm-d{display:block;font-size:12px;font-weight:400;color:var(--mu)}
+.dm-row .pos,.dm-row dd.dm-d.pos{color:var(--po)}.dm-row .neg,.dm-row dd.dm-d.neg{color:var(--ne)}
+.dm-gl{padding:16px;border-radius:16px;background:var(--sf);border:1px solid var(--ln)}
+.dm-gl h3{margin:0 0 6px;font-family:var(--serif);font-weight:600;font-size:21px}
+.dm-gl dl{margin:0}.dm-gl dl>div{padding:8px 0;border-top:1px solid var(--ln)}
+.dm-gl dt{font-weight:600;font-size:14px}.dm-gl dd{margin:2px 0 0;font-size:13px;color:var(--mu)}
+@media (max-width:720px){
+  #metrics{display:none}.det-m{display:flex;flex-direction:column;gap:14px}
+  #tab-detalle .sec-h{display:none}
+  .btn-sup{display:inline-flex}
+  .rentctl{flex-wrap:wrap}
+}
 @media (max-width:1000px){
   .g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:1fr}.hero{grid-template-columns:1fr}
   .inpgrid{grid-template-columns:1fr}.negcard{position:static}.formgrid.f3{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -346,7 +399,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   .rentctl{position:fixed;left:0;right:0;bottom:0;z-index:45;flex:0 0 auto;width:100%;background:var(--sf);border-top:1px solid var(--ln2);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -12px 24px -16px rgba(0,0,0,.5)}
   .rentctl label{display:block;width:100%;font-size:13px;margin-bottom:6px}
   .rentctl input[type=number]{margin-left:auto}
-  body{padding-bottom:88px}
+  body{padding-bottom:116px}
   .v-save-grid{flex-direction:column;gap:12px}
   .v-save-grid>div{border-left:0;padding-left:0;border-top:1px solid var(--ln);padding-top:10px}
   .v-save-grid>div:first-child{border-top:0;padding-top:0}
@@ -379,6 +432,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
       <div class="menu-wrap">
         <button type="button" class="abtn outline icon" id="btnMore" aria-haspopup="menu" aria-expanded="false" aria-label="Más opciones: restablecer todo, acerca de" data-i18n-aria="Más opciones: restablecer todo, acerca de"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
         <div class="menu" id="moreMenu" role="menu" hidden>
+          <button type="button" role="menuitem" id="menuRedo" class="mobile-only-item" data-i18n="Rehacer" disabled>Rehacer</button>
           <button type="button" role="menuitem" id="menuGlossary" class="mobile-only-item" data-i18n="Glosario">Glosario</button>
           <button type="button" role="menuitem" id="menuCopyLink" class="mobile-only-item" data-i18n="Compartir">Compartir</button>
           <button type="button" role="menuitem" id="menuTheme" class="mobile-only-item" data-i18n="Cambiar tema">Cambiar tema</button>
@@ -553,6 +607,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
       <label for="rent_r" data-i18n="Renta anual">Renta anual</label>
       <input type="range" id="rent_r" aria-label="Renta anual" data-i18n-aria="Renta anual">
       <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED" data-i18n-aria="Renta anual AED">
+      <button type="button" class="btn-sup" id="btnSupuestos" aria-haspopup="dialog" aria-controls="supSheet" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg><span data-i18n="Supuestos">Supuestos</span></button>
     </div>
     <div class="seg" role="radiogroup" aria-label="Escenario destacado" data-i18n-aria="Escenario destacado">
       <button type="button" role="radio" data-view="main" data-i18n="Pedido">Pedido</button>
@@ -647,6 +702,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <section id="detalle">
     <div class="sec-h"><div><h2 id="detTitle" data-i18n="Todas las cifras, lado a lado">Todas las cifras, lado a lado</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
     <div class="grid g3" id="metrics"></div>
+    <div class="det-m" id="detMobile"></div>
   </section>
 </div>
 
@@ -654,6 +710,21 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <footer data-i18n="Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.">Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
 </main>
 
+<div class="sheet" id="supSheet" role="dialog" aria-modal="true" aria-labelledby="supTitle" hidden>
+  <div class="sheet-grab" aria-hidden="true"></div>
+  <div class="sheet-h">
+    <h2 id="supTitle" tabindex="-1" data-i18n="Supuestos">Supuestos</h2>
+    <button type="button" class="abtn icon" id="btnUndoSheet" aria-label="Deshacer el último cambio" data-i18n-aria="Deshacer el último cambio" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg></button>
+    <button type="button" class="abtn icon" id="btnSupClose" aria-label="Cerrar y volver a los resultados" data-i18n-aria="Cerrar y volver a los resultados"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+  </div>
+  <div class="sheet-cf" id="supCfBar" aria-live="polite"><span data-i18n="Flujo al mes · pedido / negociado">Flujo al mes · pedido / negociado</span><b id="supCf"></b></div>
+  <div class="sheet-body" id="supBody"></div>
+  <div class="sheet-f">
+    <div id="supResetConfirm" class="sheet-confirm" hidden><span id="supResetMsg"></span><div class="row"><button type="button" class="btn" id="supResetYes" data-i18n="Sí, restablecer">Sí, restablecer</button><button type="button" class="btn ghost" id="supResetNo" data-i18n="Cancelar">Cancelar</button></div></div>
+    <button type="button" class="btn ghost" id="btnSupReset" data-i18n="Restablecer todo">Restablecer todo</button>
+    <button type="button" class="btn" id="btnSupDone" data-i18n="Ver resultados">Ver resultados</button>
+  </div>
+</div>
 <div class="menu-wrap" id="glossaryWrap" hidden>
   <aside id="glossaryPanel" role="dialog" aria-modal="false" aria-labelledby="glossaryTitle" class="menu" style="position:fixed;right:16px;top:76px;width:min(380px,calc(100vw - 32px));max-height:76vh;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px">
     <div style="display:flex;align-items:center;justify-content:space-between">
@@ -1243,6 +1314,16 @@ const I18N_EN={
  "opcional · AED 0 por defecto":"optional · AED 0 by default",
  "no aplica en EAU · 0%":"not applicable in the UAE · 0%",
  "seguro {{v}}/año":"insurance {{v}}/yr",
+ "Para cerrar: {{a}} pedido · {{b}} negociado":"To close: {{a}} asking · {{b}} negotiated",
+ "Flujo al año: {{a}} · {{b}}":"Yearly cash flow: {{a}} · {{b}}",
+ "Rentabilidad de tu dinero: {{a}} · {{b}}":"Cash-on-cash: {{a}} · {{b}}",
+ "Sin diferencia":"No difference",
+ "Negociado vs pedido: {{d}}":"Negotiated vs asking: {{d}}",
+ "Todas las cifras":"All figures",
+ "Deshacer el último cambio":"Undo the last change",
+ "Cerrar y volver a los resultados":"Close and go back to results",
+ "Flujo al mes · pedido / negociado":"Monthly cash flow · asking / negotiated",
+ "Ver resultados":"View results",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -1334,7 +1415,7 @@ let history=[],future=[];
 function snapshot(){const o={};HISTORY_KEYS.forEach(k=>o[k]=S[k]);return JSON.stringify(o)}
 function applyState(obj){HISTORY_KEYS.forEach(k=>{if(k in obj)S[k]=obj[k]})}
 function pushHistory(){history.push(snapshot());if(history.length>50)history.shift();future=[];updateUndoButtons()}
-function updateUndoButtons(){const u=$('btnUndo'),r=$('btnRedo');if(u)u.disabled=!history.length;if(r)r.disabled=!future.length}
+function updateUndoButtons(){const u=$('btnUndo'),r=$('btnRedo'),us=$('btnUndoSheet'),mr=$('menuRedo');if(mr)mr.disabled=!future.length;if(u)u.disabled=!history.length;if(us)us.disabled=!history.length;if(r)r.disabled=!future.length}
 function resetFieldMessages(){
  document.querySelectorAll('.field.invalid,.field.adjusted').forEach(f=>f.classList.remove('invalid','adjusted'));
  document.querySelectorAll('.field-msg').forEach(m=>{m.className='field-msg';m.textContent=fieldDef(m)});
@@ -1594,6 +1675,11 @@ function renderVerdict(R){
 }
 
 /* ---------- Barra de resultados: resumen compacto ---------- */
+function renderSupCf(R){
+ const el=$('supCf');if(!el)return;const{M,N}=R;
+ el.className=cls(N.cfM);el.textContent=(N.cfM>=0?'▲ ':'▼ ')+saed(M.cfM)+' / '+saed(N.cfM);
+ $('supCfBar').classList.toggle('pos',N.cfM>=0);
+}
 function renderBarSummary(R){
  const{M,N}=R,band=verdictBand(N.cfM),wa=maxPrice(S,0),el=$('barSummary');
  if(!el)return;
@@ -1606,6 +1692,47 @@ function renderBarSummary(R){
 
 /* ---------- Detalle del escenario seleccionado ---------- */
 function mrow(l,v,c='',sub=''){return `<div class="mrow"><span>${t(l)}</span><b class="${c}">${v}${sub?`<small>${sub}</small>`:''}</b></div>`}
+/* Mobile Detalle: grouped accordions, each row stacked Pedido / Negociado with the difference below */
+function renderDetailMobile(R){
+ const el=$('detMobile');if(!el)return;
+ const{M,N}=R,bef=savingsInterest(S,S.sav),lost=x=>bef-x.interest;
+ const wasOpen={};el.querySelectorAll('details[data-g]').forEach(d=>{wasOpen[d.dataset.g]=d.open});
+ const pp=v=>(v>0?'+':v<0?'−':'')+Math.abs(v).toFixed(2)+' pp';
+ const m=(l,v,o={})=>Object.assign({l,v,f:saed,good:0,tone:false},o);
+ const A=(l,v,o={})=>m(l,v,Object.assign({f:aed},o));
+ const P=(l,v,o={})=>m(l,v,Object.assign({f:x=>pct(x),pp:true},o));
+ const G=[
+  {g:'fin',t:'Financiación y entrada',s:t('Para cerrar: {{a}} pedido · {{b}} negociado',{a:aed(M.ctc),b:aed(N.ctc)}),rows:[
+   A('Precio',x=>x.price,{good:-1}),A('AED/sqft',x=>x.psf,{good:-1}),A('Entrada',x=>x.down),A('Hipoteca',x=>x.mortgage,{good:-1}),
+   A('Cuota mensual',x=>x.pm,{good:-1}),A('Cuota anual',x=>x.debt,{good:-1}),
+   A('ADGM / registro',x=>x.fees.adgm,{good:-1}),A('Comisión de agencia (neta)',x=>x.fees.agNet,{good:-1}),A(t('VAT sobre la comisión ({{p}}%)',{p:FEE_RULES.agencyVat*100}),x=>x.fees.vat,{good:-1}),
+   A('Tasa electrónica ADGM',x=>x.fees.efee),A('NOC',x=>x.fees.noc),A('Conveyancing',x=>x.fees.conv),
+   A('Total gastos de compra',x=>x.fees.total,{good:-1}),A('Dinero para cerrar la compra',x=>x.ctc,{good:-1}),A('Coste final',x=>x.finalCost,{good:-1})]},
+  {g:'op',t:'Operación anual',s:t('Flujo al año: {{a}} · {{b}}',{a:saed(M.cfA),b:saed(N.cfA)}),rows:[
+   A('Renta bruta',x=>x.rent),m('Reserva por vacancia',x=>-x.vac),A('Renta efectiva',x=>x.eff),
+   m('Comunidad (service charge)',x=>-x.scA),m('Mantenimiento',x=>-S.maint),m('Gestión del alquiler',x=>-x.mg),
+   m('Administración e imprevistos',x=>-S.admin),m('Seguro del inmueble',x=>-S.ins),
+   {l:'PMI (seguro hipotecario)',stat:'0%',note:t('no aplica en EAU · 0%')},
+   A('Gastos totales (sin vacancia)',x=>x.opex,{good:-1}),m('Ingreso neto antes de hipoteca',x=>x.noi,{tone:true,good:1}),
+   m('Hipoteca anual',x=>-x.debt,{good:1}),m('Flujo de caja anual',x=>x.cfA,{tone:true,good:1})]},
+  {g:'ret',t:'Rentabilidad y patrimonio',s:t('Rentabilidad de tu dinero: {{a}} · {{b}}',{a:pct(M.coc),b:pct(N.coc)}),rows:[
+   P('Rentabilidad bruta',x=>x.gy,{good:1}),P('Rentabilidad neta',x=>x.ny,{good:1}),P('Rentabilidad de tu dinero',x=>x.coc,{tone:true,good:1}),
+   A('Renta mínima para no perder dinero',x=>x.be,{good:-1}),A('Capital amortizado año 1',x=>x.prin1),A('Capital amortizado en 2 años',x=>x.prin2),
+   A('Saldo de hipoteca tras 2 años',x=>x.bal24,{good:-1}),m('Patrimonio generado año 1',x=>x.wealth,{tone:true,good:1}),
+   m('Interés de ahorro que dejas de cobrar',x=>-lost(x),{good:1})]}
+ ];
+ const row=r=>{
+  if(r.stat)return`<div class="dm-row"><dt>${t(r.l)}</dt><dd><span>${r.stat}</span><span>${r.stat}</span></dd><dd class="dm-d">${r.note}</dd></div>`;
+  const a=r.v(M),b=r.v(N),d=b-a,z=r.pp?Math.abs(d)<0.005:Math.abs(d)<0.5,tc=r.tone?cls:()=>'';
+  const good=r.good&&!z?(d*r.good>0?'pos':'neg'):'';
+  const ic=z?'':d>0?'▲':'▼';
+  return`<div class="dm-row"><dt>${t(r.l)}</dt><dd><span class="${tc(a)}">${r.f(a)}</span><span class="${tc(b)}">${r.f(b)}</span></dd><dd class="dm-d${good?' '+good:''}">${z?t('Sin diferencia'):`<span aria-hidden="true">${ic} </span>${t('Negociado vs pedido: {{d}}',{d:r.pp?pp(d):saed(d)})}`}</dd></div>`;
+ };
+ el.innerHTML=`<div class="dm-h"><h3>${t('Todas las cifras')}</h3><button type="button" class="dm-link" id="dmGlossLink">${t('Glosario')}</button></div>`+
+  G.map((g,i)=>`<details class="dm-grp" data-g="${g.g}"${(g.g in wasOpen?wasOpen[g.g]:i===0)?' open':''}><summary><span style="display:flex;flex-direction:column;flex:1;min-width:0"><b>${t(g.t)}</b><span class="tiny muted">${g.s}</span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><div class="dm-cols" aria-hidden="true"><span>${t('Pedido')}</span><span>${t('Negociado')}</span></div><dl class="dm-list">${g.rows.map(row).join('')}</dl></details>`).join('')+
+  `<section class="dm-gl" id="dmGlosario" aria-labelledby="dmGlT"><h3 id="dmGlT" tabindex="-1">${t('Glosario')}</h3><dl>${GLOSARIO.map(g=>`<div><dt>${t(g.t)}${LANG==='en'||!g.en?'':` <span class="dim tiny">${g.en}</span>`}</dt><dd>${t(g.d)}</dd></div>`).join('')}</dl></section>`;
+ $('dmGlossLink').addEventListener('click',()=>{const h=$('dmGlT');h.scrollIntoView({behavior:'smooth',block:'start'});h.focus({preventScroll:true})});
+}
 function renderDetail(R){
  const s=R.sel,f=s.fees,before=savingsInterest(S,S.sav),lost=before-s.interest;
  $('detTitle').textContent=t('Todas las cifras, lado a lado · {{scenario}}',{scenario:t(LABEL[S.view])});
@@ -1910,9 +2037,9 @@ let lastR=null;
 function render(){
  syncFields();
  const R=lastR=both();
- renderHeader(R);renderFees(R);renderVerdict(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);
+ renderHeader(R);renderFees(R);renderVerdict(R);renderKpis(R);renderImpact(R);renderDetail(R);renderDetailMobile(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);
  renderMaxPrice();renderRenewal(R);renderRunway(R);renderDownPay(R);renderHorizon(R);renderInsights(R);
- updateGroupSummaries(R);renderQsPreview(R);renderBarSummary(R);updateChartBtn();
+ updateGroupSummaries(R);renderQsPreview(R);renderBarSummary(R);renderSupCf(R);updateChartBtn();
  saveState();
 }
 
@@ -1956,6 +2083,10 @@ document.addEventListener('click',e=>{
  const c=e.target.closest('[data-cut]');if(c){pushHistory();S.neg=Math.max(500000,S.price-(+c.dataset.cut));render();return}
  const v=e.target.closest('[data-view]');if(v){S.view=v.dataset.view;render()}
 });
+function resetAllNow(){
+ pushHistory();Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}
+ resetFieldMessages();render();showToast(t('Restableciste todos los supuestos.'),undo);
+}
 function wireResetAll(){
  const btn=$('btnReset');
  if(!btn)return;
@@ -1963,9 +2094,8 @@ function wireResetAll(){
   const wrap=$('resetAllWrap');
   wrap.innerHTML=`<div class="notice" role="status" style="margin-bottom:0;padding:10px 14px"><span>${t('¿Restablecer los {{n}} supuestos? Podrás deshacerlo.',{n:HISTORY_KEYS.length})}</span><div class="row"><button type="button" class="primary" id="confirmResetAll">${t('Sí, restablecer')}</button><button type="button" id="cancelResetAll">${t('Cancelar')}</button></div></div>`;
   $('confirmResetAll').addEventListener('click',()=>{
-   pushHistory();Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}
    wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll();
-   resetFieldMessages();render();showToast(t('Restableciste todos los supuestos.'),undo);
+   resetAllNow();
   });
   $('cancelResetAll').addEventListener('click',()=>{wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll()});
  });
@@ -2035,6 +2165,51 @@ document.querySelectorAll('.tabs [role="tab"]').forEach((btn,i,all)=>{
  setTab(tab||'flujo',{hash:false});
 })();
 window.addEventListener('hashchange',()=>{const tab=(location.hash||'').replace('#','');if(TABS.includes(tab))setTab(tab,{hash:false})});
+
+/* ---------- Hoja móvil de supuestos ---------- */
+/* The real quick-start/advanced fields (.inpgrid) are moved into the dialog while it is open, so
+   ids, validation, steppers, undo and persistence keep working with no duplicated state logic. */
+const supSheet=$('supSheet'),supMQ=window.matchMedia('(max-width:720px)');
+let supOpener=null;
+const supBackground=()=>[document.querySelector('.appbar'),document.querySelector('main.wrap'),$('glossaryWrap')].filter(Boolean);
+function supFocusables(){return[...supSheet.querySelectorAll('button,input,select,textarea,summary,a[href],[tabindex]:not([tabindex="-1"])')].filter(e=>!e.disabled&&e.getClientRects().length>0)}
+function openSupSheet(){
+ if(!supSheet.hidden)return;
+ supOpener=document.activeElement;
+ $('supBody').appendChild(document.querySelector('.inpgrid'));
+ supSheet.hidden=false;document.body.classList.add('sheet-open');
+ supBackground().forEach(e=>e.setAttribute('inert',''));
+ $('btnSupuestos').setAttribute('aria-expanded','true');
+ $('supResetConfirm').hidden=true;$('btnSupReset').hidden=false;
+ $('supBody').scrollTop=0;$('supTitle').focus();
+}
+function closeSupSheet(restoreFocus=true){
+ if(supSheet.hidden)return;
+ $('visitNotice').after(document.querySelector('.inpgrid'));
+ supSheet.hidden=true;document.body.classList.remove('sheet-open');
+ supBackground().forEach(e=>e.removeAttribute('inert'));
+ $('btnSupuestos').setAttribute('aria-expanded','false');
+ const o=supOpener;supOpener=null;
+ if(restoreFocus){const target=o&&document.contains(o)&&o.getClientRects().length?o:$('btnSupuestos');if(target.getClientRects().length)target.focus()}
+}
+$('btnSupuestos').addEventListener('click',openSupSheet);
+$('btnSupClose').addEventListener('click',()=>closeSupSheet());
+$('btnSupDone').addEventListener('click',()=>closeSupSheet());
+$('btnUndoSheet').addEventListener('click',undo);
+$('btnSupReset').addEventListener('click',()=>{
+ $('supResetMsg').textContent=t('¿Restablecer los {{n}} supuestos? Podrás deshacerlo.',{n:HISTORY_KEYS.length});
+ $('supResetConfirm').hidden=false;$('btnSupReset').hidden=true;$('supResetYes').focus();
+});
+$('supResetYes').addEventListener('click',()=>{$('supResetConfirm').hidden=true;$('btnSupReset').hidden=false;resetAllNow();$('btnSupReset').focus()});
+$('supResetNo').addEventListener('click',()=>{$('supResetConfirm').hidden=true;$('btnSupReset').hidden=false;$('btnSupReset').focus()});
+supSheet.addEventListener('keydown',e=>{
+ if(e.key!=='Tab')return;
+ const f=supFocusables();if(!f.length)return;
+ const first=f[0],last=f[f.length-1],a=document.activeElement;
+ if(e.shiftKey&&(a===first||a===supSheet||a===$('supTitle'))){e.preventDefault();last.focus()}
+ else if(!e.shiftKey&&a===last){e.preventDefault();first.focus()}
+});
+try{supMQ.addEventListener('change',ev=>{if(!ev.matches)closeSupSheet(false)})}catch(e){}
 
 /* ---------- Escenario compartido por enlace / notas de primera visita ---------- */
 function parseScenarioHash(){
@@ -2109,6 +2284,7 @@ function closeMoreMenu(){$('moreMenu').hidden=true;$('btnMore').setAttribute('ar
 $('btnMore').addEventListener('click',e=>{e.stopPropagation();const open=$('moreMenu').hidden;$('moreMenu').hidden=!open;$('btnMore').setAttribute('aria-expanded',String(open))});
 $('menuResetAll').addEventListener('click',()=>{closeMoreMenu();$('btnReset').click()});
 $('menuAbout').addEventListener('click',()=>{closeMoreMenu();showToast(t('Comparador hipotecario · análisis local, sin servidor.'))});
+$('menuRedo').addEventListener('click',()=>{closeMoreMenu();redo()});
 $('menuGlossary').addEventListener('click',()=>{closeMoreMenu();openGlossary()});
 $('menuCopyLink').addEventListener('click',()=>{closeMoreMenu();$('btnCopyLink').click()});
 $('menuTheme').addEventListener('click',()=>{closeMoreMenu();$('btnTheme').click()});
@@ -2117,6 +2293,7 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Escape'){
   closeMoreMenu();closeGlossary();
   if(openFee!==null){const btn=document.querySelector(`[data-help="${openFee}"]`);openFee=null;render();if(btn)btn.focus()}
+  else if(!$('supSheet').hidden)closeSupSheet();
  }
 });
 const GLOSARIO=[

@@ -62,5 +62,15 @@ near('Mortgage fully repaid at term end', sim.years[D.term - 1].balance, 0, 1);
 near('Savings without buying after 1 year', sim.years[0].savNo, 500000 + 500000 * 0.0625);
 near('Net worth identity (hold)', sim.years[4].nwHold, sim.years[4].savBuy + D.price - sim.years[4].balance);
 
+// Optional annual property insurance: default 0 leaves everything unchanged; AED 1,200/yr is an annual operating cost.
+near('default insurance is 0', D.ins, 0, 0);
+const insured = calc({ ...D, ins: 1200 }, D.price);
+near('Insurance lowers annual CF by exactly 1200', main.cfA - insured.cfA, 1200, 0.001);
+near('Insurance lowers monthly CF by exactly 100', main.cfM - insured.cfM, 100, 0.001);
+near('Insurance raises annual opex by 1200', insured.opex - main.opex, 1200, 0.001);
+near('Break-even rent rises by insurance grossed up for vacancy', breakEven({ ...D, ins: 1200 }, D.price) - breakEven(D, D.price), 1200 / (1 - D.vacM / 12), 0.001);
+near('Max price for CF 0 falls with insurance', maxPrice({ ...D, ins: 1200 }, 0) < maxPrice(D, 0) ? 1 : 0, 1, 0);
+near('Simulated year-1 CF drops by 1200 with insurance', sim.years[0].cumCF - simulate({ ...D, ins: 1200 }, D.price, 12).years[0].cumCF, 1200, 0.001);
+
 console.log(failures ? `\n${failures} check(s) failed` : '\nAll checks passed');
 process.exit(failures ? 1 : 0);

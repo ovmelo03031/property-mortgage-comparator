@@ -335,24 +335,31 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <div class="appbar-in">
     <a href="#" class="brand" id="brandHome">
       <svg width="30" height="30" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="0" y="0" width="16" height="16" fill="#0e1a3a"/><rect x="0" y="15" width="16" height="1" fill="#1c2d57"/><rect x="1" y="5" width="4" height="10" fill="#2a4180"/><rect x="1" y="5" width="1" height="10" fill="#4a6cc0"/><rect x="4" y="5" width="1" height="10" fill="#1c2d57"/><rect x="6" y="1" width="4" height="14" fill="#2a4180"/><rect x="6" y="1" width="1" height="14" fill="#4a6cc0"/><rect x="9" y="1" width="1" height="14" fill="#1c2d57"/><rect x="11" y="5" width="4" height="10" fill="#2a4180"/><rect x="11" y="5" width="1" height="10" fill="#4a6cc0"/><rect x="14" y="5" width="1" height="10" fill="#1c2d57"/><rect x="1" y="3" width="14" height="2" fill="#3b82f6"/><rect x="1" y="3" width="14" height="1" fill="#7cb0ff"/><rect x="2" y="7" width="1" height="1" fill="#f5b041"/><rect x="3" y="10" width="1" height="1" fill="#7cb0ff"/><rect x="2" y="12" width="1" height="1" fill="#f5b041"/><rect x="7" y="6" width="1" height="1" fill="#f5b041"/><rect x="8" y="9" width="1" height="1" fill="#f5b041"/><rect x="7" y="12" width="1" height="1" fill="#7cb0ff"/><rect x="8" y="1" width="1" height="1" fill="#7cb0ff"/><rect x="12" y="8" width="1" height="1" fill="#7cb0ff"/><rect x="13" y="11" width="1" height="1" fill="#f5b041"/><rect x="12" y="13" width="1" height="1" fill="#f5b041"/></svg>
-      <span class="brand-tx"><span class="brand-name">Comparador hipotecario</span><span class="brand-sub">Abu Dhabi · ADGM · cifras en AED</span></span>
+      <span class="brand-tx"><span class="brand-name" data-i18n="Comparador hipotecario">Comparador hipotecario</span><span class="brand-sub" data-i18n="Abu Dhabi · ADGM · cifras en AED">Abu Dhabi · ADGM · cifras en AED</span></span>
     </a>
-    <span class="privacy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Todo se calcula y guarda en este dispositivo</span>
+    <span class="privacy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="Todo se calcula y guarda en este dispositivo">Todo se calcula y guarda en este dispositivo</span></span>
+    <div class="field" style="flex:0 0 auto">
+      <label for="langSelect" class="tiny muted" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)" data-i18n="Idioma">Idioma</label>
+      <select id="langSelect" class="inp sm" style="width:auto;padding:6px 8px" aria-label="Idioma / Language">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
     <div class="abar-actions">
-      <button type="button" class="abtn outline" id="btnUndo" aria-keyshortcuts="Control+Z Meta+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg><span class="txt">Deshacer</span></button>
-      <button type="button" class="abtn outline icon" id="btnRedo" aria-label="Rehacer" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"></path><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"></path></svg></button>
+      <button type="button" class="abtn outline" id="btnUndo" aria-keyshortcuts="Control+Z Meta+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg><span class="txt" data-i18n="Deshacer">Deshacer</span></button>
+      <button type="button" class="abtn outline icon" id="btnRedo" aria-label="Rehacer" data-i18n-aria="Rehacer" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"></path><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"></path></svg></button>
       <span class="adiv"></span>
-      <button type="button" class="abtn" id="btnGlossary" aria-haspopup="dialog" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span class="txt">Glosario</span></button>
-      <button type="button" class="abtn" id="btnCopyLink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span class="txt">Copiar enlace del escenario</span></button>
+      <button type="button" class="abtn" id="btnGlossary" aria-haspopup="dialog" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span class="txt" data-i18n="Glosario">Glosario</span></button>
+      <button type="button" class="abtn" id="btnCopyLink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span class="txt" data-i18n="Copiar enlace del escenario">Copiar enlace del escenario</span></button>
       <button type="button" class="abtn outline" id="btnTheme" aria-pressed="false"><svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg><span class="txt" id="themeLabel">Modo oscuro</span></button>
       <div class="menu-wrap">
-        <button type="button" class="abtn outline icon" id="btnMore" aria-haspopup="menu" aria-expanded="false" aria-label="Más opciones: restablecer todo, acerca de"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
+        <button type="button" class="abtn outline icon" id="btnMore" aria-haspopup="menu" aria-expanded="false" aria-label="Más opciones: restablecer todo, acerca de" data-i18n-aria="Más opciones: restablecer todo, acerca de"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
         <div class="menu" id="moreMenu" role="menu" hidden>
-          <button type="button" role="menuitem" id="menuGlossary" class="mobile-only-item">Glosario</button>
-          <button type="button" role="menuitem" id="menuCopyLink" class="mobile-only-item">Copiar enlace del escenario</button>
-          <button type="button" role="menuitem" id="menuTheme" class="mobile-only-item">Cambiar tema</button>
-          <button type="button" role="menuitem" id="menuResetAll">Restablecer todo</button>
-          <button type="button" role="menuitem" id="menuAbout">Acerca de</button>
+          <button type="button" role="menuitem" id="menuGlossary" class="mobile-only-item" data-i18n="Glosario">Glosario</button>
+          <button type="button" role="menuitem" id="menuCopyLink" class="mobile-only-item" data-i18n="Copiar enlace del escenario">Copiar enlace del escenario</button>
+          <button type="button" role="menuitem" id="menuTheme" class="mobile-only-item" data-i18n="Cambiar tema">Cambiar tema</button>
+          <button type="button" role="menuitem" id="menuResetAll" data-i18n="Restablecer todo">Restablecer todo</button>
+          <button type="button" role="menuitem" id="menuAbout" data-i18n="Acerca de">Acerca de</button>
         </div>
       </div>
     </div>
@@ -362,20 +369,18 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <div class="wrap">
   <header class="hero">
     <div>
-      <h1>Comparador hipotecario</h1>
-      <p class="sub">Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.</p>
+      <h1 data-i18n="Comparador hipotecario">Comparador hipotecario</h1>
+      <p class="sub" data-i18n="Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.">Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.</p>
     </div>
-    <div class="hero-note">
-      <b>Tasa modelada: <span id="heroRate">3.99%</span></b> a <span id="heroTerm">25</span> años. Es solo un supuesto de modelo: la tasa real puede cambiar tras el periodo fijo del banco. Sin apreciación, sin prima por amueblado y sin rentas inventadas: la renta la defines tú.
-    </div>
+    <div class="hero-note" id="heroNote"></div>
   </header>
 </div>
 
 <main class="wrap">
 
 <section id="inputs">
-  <div class="sec-h"><div><h2>Supuestos</h2><p>Empieza con lo esencial. El resto ya tiene valores por defecto razonables: ajústalos en «Supuestos avanzados» cuando los necesites.</p></div>
-    <div id="resetAllWrap"><button type="button" class="btn ghost" id="btnReset">Restablecer todo</button></div>
+  <div class="sec-h"><div><h2 data-i18n="Supuestos">Supuestos</h2><p data-i18n="Empieza con lo esencial. El resto ya tiene valores por defecto razonables: ajústalos en «Supuestos avanzados» cuando los necesites.">Empieza con lo esencial. El resto ya tiene valores por defecto razonables: ajústalos en «Supuestos avanzados» cuando los necesites.</p></div>
+    <div id="resetAllWrap"><button type="button" class="btn ghost" id="btnReset" data-i18n="Restablecer todo">Restablecer todo</button></div>
   </div>
 
   <div id="visitNotice"></div>
@@ -383,85 +388,85 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   <div class="inpgrid">
     <div class="card qs-card">
       <div class="grp" style="margin-top:0;padding-top:0;border-top:0">
-        <h3>Lo esencial</h3>
-        <p class="small muted" style="margin:-4px 0 14px">Los cinco datos que más pesan en el resultado. El resto hereda valores razonables.</p>
+        <h3 data-i18n="Lo esencial">Lo esencial</h3>
+        <p class="small muted" style="margin:-4px 0 14px" data-i18n="Los cinco datos que más pesan en el resultado. El resto hereda valores razonables.">Los cinco datos que más pesan en el resultado. El resto hereda valores razonables.</p>
         <div class="formgrid">
-          <div class="field"><label for="price">Precio pedido <em id="price_v"></em></label><div class="frow"><input type="range" id="price_r" aria-label="Precio pedido"><input type="number" id="price" class="inp num" step="any" aria-describedby="price_h"></div><span class="field-msg" id="price_h"></span></div>
-          <div class="field"><label for="sqft">Tamaño <em id="sqft_v"></em></label><div class="frow"><input type="range" id="sqft_r" aria-label="Tamaño"><input type="number" id="sqft" class="inp num" step="any" aria-describedby="sqft_h"></div><span class="field-msg" id="sqft_h"></span></div>
-          <div class="field"><label for="pRent">Renta anual esperada <em id="pRent_v"></em></label><div class="frow"><input type="range" id="pRent_r" aria-label="Renta anual esperada"><input type="number" id="pRent" class="inp num" step="any" aria-describedby="pRent_h"></div><span class="field-msg" id="pRent_h">La defines tú: el modelo no estima rentas ni aplica apreciación.</span></div>
-          <div class="field"><label for="down">Entrada <em id="down_v"></em></label><div class="frow"><input type="range" id="down_r" aria-label="Entrada, porcentaje del precio"><input type="number" id="down" class="inp num" step="any" aria-describedby="down_h"></div><span class="field-msg" id="down_h"></span></div>
-          <div class="field"><label for="rate">Tasa de interés anual <em id="rate_v"></em></label><div class="frow"><input type="range" id="rate_r" aria-label="Tasa de interés anual"><input type="number" id="rate" class="inp num" step="any" aria-describedby="rate_h"></div><span class="field-msg" id="rate_h">Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.</span></div>
+          <div class="field"><label for="price"><span data-i18n="Precio pedido">Precio pedido</span> <em id="price_v"></em></label><div class="frow"><input type="range" id="price_r" aria-label="Precio pedido" data-i18n-aria="Precio pedido"><input type="number" id="price" class="inp num" step="any" aria-describedby="price_h"></div><span class="field-msg" id="price_h"></span></div>
+          <div class="field"><label for="sqft"><span data-i18n="Tamaño">Tamaño</span> <em id="sqft_v"></em></label><div class="frow"><input type="range" id="sqft_r" aria-label="Tamaño" data-i18n-aria="Tamaño"><input type="number" id="sqft" class="inp num" step="any" aria-describedby="sqft_h"></div><span class="field-msg" id="sqft_h"></span></div>
+          <div class="field"><label for="pRent"><span data-i18n="Renta anual esperada">Renta anual esperada</span> <em id="pRent_v"></em></label><div class="frow"><input type="range" id="pRent_r" aria-label="Renta anual esperada" data-i18n-aria="Renta anual esperada"><input type="number" id="pRent" class="inp num" step="any" aria-describedby="pRent_h"></div><span class="field-msg" id="pRent_h" data-i18n="La defines tú: el modelo no estima rentas ni aplica apreciación.">La defines tú: el modelo no estima rentas ni aplica apreciación.</span></div>
+          <div class="field"><label for="down"><span data-i18n="Entrada">Entrada</span> <em id="down_v"></em></label><div class="frow"><input type="range" id="down_r" aria-label="Entrada, porcentaje del precio" data-i18n-aria="Entrada, porcentaje del precio"><input type="number" id="down" class="inp num" step="any" aria-describedby="down_h"></div><span class="field-msg" id="down_h"></span></div>
+          <div class="field"><label for="rate"><span data-i18n="Tasa de interés anual">Tasa de interés anual</span> <em id="rate_v"></em></label><div class="frow"><input type="range" id="rate_r" aria-label="Tasa de interés anual" data-i18n-aria="Tasa de interés anual"><input type="number" id="rate" class="inp num" step="any" aria-describedby="rate_h"></div><span class="field-msg" id="rate_h" data-i18n="Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.">Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.</span></div>
         </div>
         <div id="psfCalc" style="margin-top:14px"></div>
       </div>
 
       <div class="grp">
-        <h3>Supuestos avanzados</h3>
+        <h3 data-i18n="Supuestos avanzados">Supuestos avanzados</h3>
         <div id="accordions">
           <details class="acc" id="acc-obj" data-group="obj">
-            <summary><span class="acc-sum"><b>Objetivo y ahorros<span class="acc-badge" id="badge-obj" hidden></span></b><span id="sum-obj"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Objetivo y ahorros">Objetivo y ahorros</span><span class="acc-badge" id="badge-obj" hidden></span></b><span id="sum-obj"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
-              <p class="tiny dim" style="margin:0">El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.</p>
+              <p class="tiny dim" style="margin:0" data-i18n="El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.">El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.</p>
               <div class="formgrid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
-                <div class="field"><label for="tgt">Objetivo AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
-                <div class="field"><label for="tol">Tolerancia del objetivo (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
-                <div class="field"><label for="sav">Ahorros (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
-                <div class="field"><label for="savRate">Rentabilidad de tus ahorros (%/año)</label><input type="number" id="savRate" class="inp num" step="any"></div>
-                <div class="field"><label for="savCap">Saldo máximo con interés (AED)</label><input type="number" id="savCap" class="inp num" step="any"></div>
-                <div class="field"><label for="reserve">Reserva para imprevistos (AED)</label><input type="number" id="reserve" class="inp num" step="any"></div>
+                <div class="field"><label for="tgt" data-i18n="Objetivo AED/sqft">Objetivo AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
+                <div class="field"><label for="tol" data-i18n="Tolerancia del objetivo (±%)">Tolerancia del objetivo (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
+                <div class="field"><label for="sav" data-i18n="Ahorros (AED)">Ahorros (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
+                <div class="field"><label for="savRate" data-i18n="Rentabilidad de tus ahorros (%/año)">Rentabilidad de tus ahorros (%/año)</label><input type="number" id="savRate" class="inp num" step="any"></div>
+                <div class="field"><label for="savCap" data-i18n="Saldo máximo con interés (AED)">Saldo máximo con interés (AED)</label><input type="number" id="savCap" class="inp num" step="any"></div>
+                <div class="field"><label for="reserve" data-i18n="Reserva para imprevistos (AED)">Reserva para imprevistos (AED)</label><input type="number" id="reserve" class="inp num" step="any"></div>
               </div>
-              <button type="button" class="acc-reset" data-reset-group="obj">↺ Restablecer esta sección</button>
+              <button type="button" class="acc-reset" data-reset-group="obj"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
           <details class="acc" id="acc-fin" data-group="fin">
-            <summary><span class="acc-sum"><b>Financiación<span class="acc-badge" id="badge-fin" hidden></span></b><span id="sum-fin"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Financiación">Financiación</span><span class="acc-badge" id="badge-fin" hidden></span></b><span id="sum-fin"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
-              <div class="field" style="max-width:220px"><label for="term">Plazo de la hipoteca</label><select id="term" class="inp"><option value="15">15 años</option><option value="20">20 años</option><option value="25">25 años</option><option value="30">30 años</option></select></div>
-              <button type="button" class="acc-reset" data-reset-group="fin">↺ Restablecer esta sección</button>
+              <div class="field" style="max-width:220px"><label for="term" data-i18n="Plazo de la hipoteca">Plazo de la hipoteca</label><select id="term" class="inp"><option value="15" data-i18n="15 años">15 años</option><option value="20" data-i18n="20 años">20 años</option><option value="25" data-i18n="25 años">25 años</option><option value="30" data-i18n="30 años">30 años</option></select></div>
+              <button type="button" class="acc-reset" data-reset-group="fin"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
           <details class="acc" id="acc-gas" data-group="gas">
-            <summary><span class="acc-sum"><b>Gastos anuales<span class="acc-badge" id="badge-gas" hidden></span></b><span id="sum-gas"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Gastos anuales">Gastos anuales</span><span class="acc-badge" id="badge-gas" hidden></span></b><span id="sum-gas"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
               <div class="formgrid">
-                <div class="field"><label for="sc">Comunidad (service charge) AED/sqft/año <em id="sc_v"></em></label><div class="frow"><input type="range" id="sc_r" aria-label="Comunidad por sqft al año"><input type="number" id="sc" class="inp num" step="any"></div></div>
-                <div class="field"><label for="vacM">Meses al año sin inquilino <em id="vacM_v"></em></label><div class="frow"><input type="range" id="vacM_r" aria-label="Meses al año sin inquilino"><input type="number" id="vacM" class="inp num" step="any"></div></div>
-                <div class="field"><label for="mgmt">Gestión del alquiler (% de la renta) <em id="mgmt_v"></em></label><div class="frow"><input type="range" id="mgmt_r" aria-label="Gestión del alquiler"><input type="number" id="mgmt" class="inp num" step="any"></div></div>
-                <div class="field"><label for="maint">Mantenimiento (AED/año)</label><input type="number" id="maint" class="inp num" step="any"></div>
-                <div class="field"><label for="admin">Administración e imprevistos (AED/año)</label><input type="number" id="admin" class="inp num" step="any"></div>
+                <div class="field"><label for="sc"><span data-i18n="Comunidad (service charge) AED/sqft/año">Comunidad (service charge) AED/sqft/año</span> <em id="sc_v"></em></label><div class="frow"><input type="range" id="sc_r" aria-label="Comunidad por sqft al año" data-i18n-aria="Comunidad por sqft al año"><input type="number" id="sc" class="inp num" step="any"></div></div>
+                <div class="field"><label for="vacM"><span data-i18n="Meses al año sin inquilino">Meses al año sin inquilino</span> <em id="vacM_v"></em></label><div class="frow"><input type="range" id="vacM_r" aria-label="Meses al año sin inquilino" data-i18n-aria="Meses al año sin inquilino"><input type="number" id="vacM" class="inp num" step="any"></div></div>
+                <div class="field"><label for="mgmt"><span data-i18n="Gestión del alquiler (% de la renta)">Gestión del alquiler (% de la renta)</span> <em id="mgmt_v"></em></label><div class="frow"><input type="range" id="mgmt_r" aria-label="Gestión del alquiler" data-i18n-aria="Gestión del alquiler"><input type="number" id="mgmt" class="inp num" step="any"></div></div>
+                <div class="field"><label for="maint" data-i18n="Mantenimiento (AED/año)">Mantenimiento (AED/año)</label><input type="number" id="maint" class="inp num" step="any"></div>
+                <div class="field"><label for="admin" data-i18n="Administración e imprevistos (AED/año)">Administración e imprevistos (AED/año)</label><input type="number" id="admin" class="inp num" step="any"></div>
               </div>
-              <button type="button" class="acc-reset" data-reset-group="gas">↺ Restablecer esta sección</button>
+              <button type="button" class="acc-reset" data-reset-group="gas"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
           <details class="acc" id="acc-fee" data-group="fee">
-            <summary><span class="acc-sum"><b>Gastos de compra <span class="dim" style="font-weight:400">· calculados</span></b><span id="sum-fee"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Gastos de compra">Gastos de compra</span> <span class="dim" style="font-weight:400" data-i18n="· calculados">· calculados</span></b><span id="sum-fee"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
               <div id="feeList"></div>
-              <p class="tiny dim" style="margin:0">Calculados automáticamente a partir del precio de cada escenario. Son estimaciones del modelo: confirma los importes con el broker y ADGM.</p>
+              <p class="tiny dim" style="margin:0" data-i18n="Calculados automáticamente a partir del precio de cada escenario. Son estimaciones del modelo: confirma los importes con el broker y ADGM.">Calculados automáticamente a partir del precio de cada escenario. Son estimaciones del modelo: confirma los importes con el broker y ADGM.</p>
             </div>
           </details>
           <details class="acc" id="acc-ren" data-group="ren">
-            <summary><span class="acc-sum"><b>Renovación del alquiler<span class="acc-badge" id="badge-ren" hidden></span></b><span id="sum-ren"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Renovación del alquiler">Renovación del alquiler</span><span class="acc-badge" id="badge-ren" hidden></span></b><span id="sum-ren"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
               <div class="formgrid f3">
-                <div class="field"><label for="renewIn">Meses hasta renovar</label><input type="number" id="renewIn" class="inp num" step="any"></div>
-                <div class="field"><label for="renewPct">Cambio de renta al renovar (%)</label><input type="number" id="renewPct" class="inp num" step="any"></div>
-                <div class="field"><label for="renewGap">Meses vacíos al renovar</label><input type="number" id="renewGap" class="inp num" step="any"></div>
+                <div class="field"><label for="renewIn" data-i18n="Meses hasta renovar">Meses hasta renovar</label><input type="number" id="renewIn" class="inp num" step="any"></div>
+                <div class="field"><label for="renewPct" data-i18n="Cambio de renta al renovar (%)">Cambio de renta al renovar (%)</label><input type="number" id="renewPct" class="inp num" step="any"></div>
+                <div class="field"><label for="renewGap" data-i18n="Meses vacíos al renovar">Meses vacíos al renovar</label><input type="number" id="renewGap" class="inp num" step="any"></div>
               </div>
-              <p class="tiny dim" style="margin:0">Los KPIs usan la renta actual. El horizonte, el colchón de ahorros y el panel de renovación aplican este cambio desde el mes indicado. Con 0% y 0 meses vacíos, la renta no cambia.</p>
-              <button type="button" class="acc-reset" data-reset-group="ren">↺ Restablecer esta sección</button>
+              <p class="tiny dim" style="margin:0" data-i18n="Los KPIs usan la renta actual. El horizonte, el colchón de ahorros y el panel de renovación aplican este cambio desde el mes indicado. Con 0% y 0 meses vacíos, la renta no cambia.">Los KPIs usan la renta actual. El horizonte, el colchón de ahorros y el panel de renovación aplican este cambio desde el mes indicado. Con 0% y 0 meses vacíos, la renta no cambia.</p>
+              <button type="button" class="acc-reset" data-reset-group="ren"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
           <details class="acc" id="acc-ven" data-group="ven">
-            <summary><span class="acc-sum"><b>Venta (si vendes)<span class="acc-badge" id="badge-ven" hidden></span></b><span id="sum-ven"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <summary><span class="acc-sum"><b><span data-i18n="Venta (si vendes)">Venta (si vendes)</span><span class="acc-badge" id="badge-ven" hidden></span></b><span id="sum-ven"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
               <div class="formgrid f3">
-                <div class="field"><label for="exitAgencyPct">Comisión de venta (%) <span class="dim">+ VAT 5%</span></label><input type="number" id="exitAgencyPct" class="inp num" step="any"></div>
-                <div class="field"><label for="prepayPct">Penalización por cancelar la hipoteca (% del saldo)</label><input type="number" id="prepayPct" class="inp num" step="any"></div>
-                <div class="field"><label for="prepayCap">Tope de la penalización (AED)</label><input type="number" id="prepayCap" class="inp num" step="any"></div>
+                <div class="field"><label for="exitAgencyPct"><span data-i18n="Comisión de venta (%)">Comisión de venta (%)</span> <span class="dim" data-i18n="+ VAT 5%">+ VAT 5%</span></label><input type="number" id="exitAgencyPct" class="inp num" step="any"></div>
+                <div class="field"><label for="prepayPct" data-i18n="Penalización por cancelar la hipoteca (% del saldo)">Penalización por cancelar la hipoteca (% del saldo)</label><input type="number" id="prepayPct" class="inp num" step="any"></div>
+                <div class="field"><label for="prepayCap" data-i18n="Tope de la penalización (AED)">Tope de la penalización (AED)</label><input type="number" id="prepayCap" class="inp num" step="any"></div>
               </div>
-              <p class="tiny dim" style="margin:0">Sin apreciación: se asume que vendes al mismo precio de compra. La penalización por cancelación anticipada es una estimación; verifícala con tu banco.</p>
-              <button type="button" class="acc-reset" data-reset-group="ven">↺ Restablecer esta sección</button>
+              <p class="tiny dim" style="margin:0" data-i18n="Sin apreciación: se asume que vendes al mismo precio de compra. La penalización por cancelación anticipada es una estimación; verifícala con tu banco.">Sin apreciación: se asume que vendes al mismo precio de compra. La penalización por cancelación anticipada es una estimación; verifícala con tu banco.</p>
+              <button type="button" class="acc-reset" data-reset-group="ven"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
         </div>
@@ -469,16 +474,16 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
     </div>
 
     <div class="card negcard">
-      <h3>Precio negociado <span class="dim small" style="font-weight:400">· opcional</span></h3>
-      <div class="small muted">Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.</div>
+      <h3><span data-i18n="Precio negociado">Precio negociado</span> <span class="dim small" style="font-weight:400" data-i18n="· opcional">· opcional</span></h3>
+      <div class="small muted" data-i18n="Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.">Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.</div>
       <div class="negprice num" id="negBig"></div>
       <div class="small" id="negDelta"></div>
-      <div class="field" style="margin-top:14px"><label for="neg">Precio negociado <em id="neg_v"></em></label><div class="frow"><input type="range" id="neg_r" aria-label="Precio negociado"><input type="number" id="neg" class="inp num" step="any"></div></div>
-      <div class="small muted" style="margin:14px 0 8px">Rebaja rápida sobre el precio pedido:</div>
+      <div class="field" style="margin-top:14px"><label for="neg"><span data-i18n="Precio negociado">Precio negociado</span> <em id="neg_v"></em></label><div class="frow"><input type="range" id="neg_r" aria-label="Precio negociado" data-i18n-aria="Precio negociado"><input type="number" id="neg" class="inp num" step="any"></div></div>
+      <div class="small muted" style="margin:14px 0 8px" data-i18n="Rebaja rápida sobre el precio pedido:">Rebaja rápida sobre el precio pedido:</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap" id="cuts"></div>
       <div id="negWarn"></div>
       <div class="grp" id="qsPreviewWrap">
-        <h3>Vista previa</h3>
+        <h3 data-i18n="Vista previa">Vista previa</h3>
         <div id="qsPreview" aria-live="polite"></div>
       </div>
     </div>
@@ -497,12 +502,12 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
     <div class="v-save" id="verdictSavings"></div>
   </div>
 
-  <div class="sec-h" style="margin-top:26px"><div><h2>Indicadores clave</h2><p>Pedido y negociado, lado a lado. El escenario en azul es el que se detalla en la pestaña «Detalle completo».</p></div></div>
+  <div class="sec-h" style="margin-top:26px"><div><h2 data-i18n="Indicadores clave">Indicadores clave</h2><p data-i18n="Pedido y negociado, lado a lado. El escenario en azul es el que se detalla en la pestaña «Detalle completo».">Pedido y negociado, lado a lado. El escenario en azul es el que se detalla en la pestaña «Detalle completo».</p></div></div>
   <div class="kgrid" id="heroKpis"></div>
   <div class="kgrid" id="otrosIndicadores" style="margin-top:14px"></div>
 
   <div class="card" style="margin-top:20px">
-    <div class="sec-h" style="border-bottom:0;margin-bottom:10px;padding-bottom:0"><div><h2 style="font-size:22px">Lectura de inversión</h2><p>Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.</p></div></div>
+    <div class="sec-h" style="border-bottom:0;margin-bottom:10px;padding-bottom:0"><div><h2 style="font-size:22px" data-i18n="Lectura de inversión">Lectura de inversión</h2><p data-i18n="Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.">Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.</p></div></div>
     <ul class="insight" id="insightList"></ul>
   </div>
 </section>
@@ -510,27 +515,27 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 <div class="results-bar">
   <div class="bs" id="barSummary"></div>
   <div class="tabs-in">
-    <nav class="tabs" role="tablist" aria-label="Áreas del análisis">
-      <button type="button" role="tab" id="tabbtn-flujo" aria-controls="tab-flujo" data-tab="flujo">Flujo de caja</button>
-      <button type="button" role="tab" id="tabbtn-riesgo" aria-controls="tab-riesgo" data-tab="riesgo">Riesgo</button>
-      <button type="button" role="tab" id="tabbtn-estrategia" aria-controls="tab-estrategia" data-tab="estrategia">Estrategia</button>
-      <button type="button" role="tab" id="tabbtn-detalle" aria-controls="tab-detalle" data-tab="detalle">Detalle completo</button>
+    <nav class="tabs" role="tablist" aria-label="Áreas del análisis" data-i18n-aria="Áreas del análisis">
+      <button type="button" role="tab" id="tabbtn-flujo" aria-controls="tab-flujo" data-tab="flujo" data-i18n="Flujo de caja">Flujo de caja</button>
+      <button type="button" role="tab" id="tabbtn-riesgo" aria-controls="tab-riesgo" data-tab="riesgo" data-i18n="Riesgo">Riesgo</button>
+      <button type="button" role="tab" id="tabbtn-estrategia" aria-controls="tab-estrategia" data-tab="estrategia" data-i18n="Estrategia">Estrategia</button>
+      <button type="button" role="tab" id="tabbtn-detalle" aria-controls="tab-detalle" data-tab="detalle" data-i18n="Detalle completo">Detalle completo</button>
     </nav>
     <div class="rentctl">
-      <label for="rent_r">Renta anual</label>
-      <input type="range" id="rent_r" aria-label="Renta anual">
-      <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED">
+      <label for="rent_r" data-i18n="Renta anual">Renta anual</label>
+      <input type="range" id="rent_r" aria-label="Renta anual" data-i18n-aria="Renta anual">
+      <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED" data-i18n-aria="Renta anual AED">
     </div>
-    <div class="seg" role="radiogroup" aria-label="Escenario destacado">
-      <button type="button" role="radio" data-view="main">Pedido</button>
-      <button type="button" role="radio" data-view="neg">Negociado</button>
+    <div class="seg" role="radiogroup" aria-label="Escenario destacado" data-i18n-aria="Escenario destacado">
+      <button type="button" role="radio" data-view="main" data-i18n="Pedido">Pedido</button>
+      <button type="button" role="radio" data-view="neg" data-i18n="Negociado">Negociado</button>
     </div>
   </div>
 </div>
 
 <div id="tab-flujo" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-flujo" tabindex="0">
   <section id="grafico">
-    <div class="sec-h"><div><h2>Flujo de caja anual según la renta</h2><p>Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.</p></div>
+    <div class="sec-h"><div><h2 data-i18n="Flujo de caja anual según la renta">Flujo de caja anual según la renta</h2><p data-i18n="Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.">Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.</p></div>
       <button type="button" class="abtn outline" id="btnChartTable" aria-pressed="false">Ver como tabla</button>
     </div>
     <div class="card">
@@ -542,66 +547,66 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
   </section>
 
   <section id="breakeven">
-    <div class="sec-h"><div><h2>Renta que necesitas según tu objetivo</h2><p id="beSub"></p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Renta que necesitas según tu objetivo">Renta que necesitas según tu objetivo</h2><p id="beSub"></p></div></div>
     <div class="tscroll"><table id="beTable" style="min-width:720px"></table></div>
   </section>
 </div>
 
 <div id="tab-riesgo" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-riesgo" hidden tabindex="0">
   <section id="stress">
-    <div class="sec-h"><div><h2>Si sube la tasa de interés</h2><p>La tasa modelada no está garantizada para todo el plazo de la hipoteca: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.</p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Si sube la tasa de interés">Si sube la tasa de interés</h2><p data-i18n="La tasa modelada no está garantizada para todo el plazo de la hipoteca: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.">La tasa modelada no está garantizada para todo el plazo de la hipoteca: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.</p></div></div>
     <div class="tscroll"><table id="stressTable" style="min-width:720px"></table></div>
   </section>
 
   <section id="runway">
-    <div class="sec-h"><div><h2>Cuánto duran tus ahorros</h2><p>Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.</p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Cuánto duran tus ahorros">Cuánto duran tus ahorros</h2><p data-i18n="Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.">Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.</p></div></div>
     <div class="card" id="rwCard"></div>
   </section>
 
   <section id="renovacion">
-    <div class="sec-h"><div><h2>Cuando renueves el alquiler</h2><p id="rnSub"></p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Cuando renueves el alquiler">Cuando renueves el alquiler</h2><p id="rnSub"></p></div></div>
     <div class="tscroll"><table id="rnTable" style="min-width:560px"></table></div>
   </section>
 
   <section id="matriz">
-    <div class="sec-h"><div><h2>Sensibilidad: precio × renta</h2><p id="mxSub"></p></div>
+    <div class="sec-h"><div><h2 data-i18n="Sensibilidad: precio × renta">Sensibilidad: precio × renta</h2><p id="mxSub"></p></div>
       <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
-        <div class="field"><label for="mxStart">Precio inicial</label><input type="number" id="mxStart" class="inp sm num" step="any"></div>
-        <div class="field"><label for="mxStep">Paso</label><input type="number" id="mxStep" class="inp sm num" step="any"></div>
+        <div class="field"><label for="mxStart" data-i18n="Precio inicial">Precio inicial</label><input type="number" id="mxStart" class="inp sm num" step="any"></div>
+        <div class="field"><label for="mxStep" data-i18n="Paso">Paso</label><input type="number" id="mxStep" class="inp sm num" step="any"></div>
       </div>
     </div>
     <div class="tscroll"><table id="mx" class="mx"></table></div>
-    <p class="tiny muted" style="margin-top:8px"><span class="badge b-green">▲ Ganas dinero</span> <span class="badge b-amber">≈ Zona de equilibrio ±AED 250/mes</span> <span class="badge b-red">▼ Pierdes dinero</span> · Cifras en flujo de caja mensual. El recuadro azul marca tu renta actual en las filas del precio pedido y del negociado.</p>
+    <p class="tiny muted" style="margin-top:8px"><span class="badge b-green" data-i18n="▲ Ganas dinero">▲ Ganas dinero</span> <span class="badge b-amber" data-i18n="≈ Zona de equilibrio ±AED 250/mes">≈ Zona de equilibrio ±AED 250/mes</span> <span class="badge b-red" data-i18n="▼ Pierdes dinero">▼ Pierdes dinero</span> · Cifras en flujo de caja mensual. El recuadro azul marca tu renta actual en las filas del precio pedido y del negociado.</p>
   </section>
 </div>
 
 <div id="tab-estrategia" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-estrategia" hidden tabindex="0">
   <section id="impacto">
-    <div class="sec-h"><div><h2>Cuánto te ahorra negociar</h2><p id="impSub"></p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Cuánto te ahorra negociar">Cuánto te ahorra negociar</h2><p id="impSub"></p></div></div>
     <div class="grid g4" id="impGrid"></div>
   </section>
 
   <section id="maxprecio">
-    <div class="sec-h"><div><h2>Tu precio límite para negociar</h2><p id="mpSub"></p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Tu precio límite para negociar">Tu precio límite para negociar</h2><p id="mpSub"></p></div></div>
     <div class="tscroll"><table id="mpTable" style="min-width:820px"></table></div>
   </section>
 
   <section id="entrada">
-    <div class="sec-h"><div><h2>¿Cuánta entrada te conviene?</h2><p id="enSub"></p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="¿Cuánta entrada te conviene?">¿Cuánta entrada te conviene?</h2><p id="enSub"></p></div></div>
     <div class="alert info" id="enMarginal" style="margin:0 0 14px"></div>
     <div class="tscroll"><table id="enTable" style="min-width:980px"></table></div>
   </section>
 
   <section id="horizonte">
-    <div class="sec-h"><div><h2>Comprar o no comprar, año a año</h2><p id="hzSub"></p></div>
-      <div class="field"><label for="horizon">Horizonte</label><select id="horizon" class="inp sm"><option value="5">5 años</option><option value="10">10 años</option><option value="15">15 años</option><option value="20">20 años</option></select></div>
+    <div class="sec-h"><div><h2 data-i18n="Comprar o no comprar, año a año">Comprar o no comprar, año a año</h2><p id="hzSub"></p></div>
+      <div class="field"><label for="horizon" data-i18n="Horizonte">Horizonte</label><select id="horizon" class="inp sm"><option value="5" data-i18n="5 años">5 años</option><option value="10" data-i18n="10 años">10 años</option><option value="15" data-i18n="15 años">15 años</option><option value="20" data-i18n="20 años">20 años</option></select></div>
     </div>
     <div class="card" id="hzSummary" style="margin-bottom:14px"></div>
     <div class="tscroll"><table id="hzTable" style="min-width:920px"></table></div>
   </section>
 
   <section id="ahorros">
-    <div class="sec-h"><div><h2>Tus ahorros como referencia</h2><p>Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.</p></div></div>
+    <div class="sec-h"><div><h2 data-i18n="Tus ahorros como referencia">Tus ahorros como referencia</h2><p data-i18n="Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.">Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.</p></div></div>
     <div class="grid g2">
       <div class="card" id="bench"></div>
       <div class="card" id="savAlerts"></div>
@@ -612,27 +617,27 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 
 <div id="tab-detalle" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-detalle" hidden tabindex="0">
   <section id="detalle">
-    <div class="sec-h"><div><h2 id="detTitle">Todas las cifras, lado a lado</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
+    <div class="sec-h"><div><h2 id="detTitle" data-i18n="Todas las cifras, lado a lado">Todas las cifras, lado a lado</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
     <div class="grid g3" id="metrics"></div>
   </section>
 </div>
 
-<div class="disc">Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.</div>
-<footer>Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
+<div class="disc" data-i18n="Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.">Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.</div>
+<footer data-i18n="Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.">Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
 </main>
 
 <div class="menu-wrap" id="glossaryWrap" hidden>
   <aside id="glossaryPanel" role="dialog" aria-modal="false" aria-labelledby="glossaryTitle" class="menu" style="position:fixed;right:16px;top:76px;width:min(380px,calc(100vw - 32px));max-height:76vh;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:12px">
     <div style="display:flex;align-items:center;justify-content:space-between">
-      <h2 id="glossaryTitle" style="margin:0;font-family:var(--serif);font-weight:600;font-size:19px">Glosario</h2>
-      <button type="button" class="abtn icon" id="btnGlossaryClose" aria-label="Cerrar el glosario">✕</button>
+      <h2 id="glossaryTitle" style="margin:0;font-family:var(--serif);font-weight:600;font-size:19px" data-i18n="Glosario">Glosario</h2>
+      <button type="button" class="abtn icon" id="btnGlossaryClose" aria-label="Cerrar el glosario" data-i18n-aria="Cerrar el glosario">✕</button>
     </div>
-    <div class="field"><label for="glossaryQ" class="tiny muted">Buscar un término</label><input type="search" id="glossaryQ" class="inp" placeholder="p. ej. renta mínima"></div>
+    <div class="field"><label for="glossaryQ" class="tiny muted" data-i18n="Buscar un término">Buscar un término</label><input type="search" id="glossaryQ" class="inp" placeholder="p. ej. renta mínima" data-i18n-placeholder="p. ej. renta mínima"></div>
     <dl id="glossaryBody" style="margin:0;display:flex;flex-direction:column;gap:0"></dl>
   </aside>
 </div>
 <div id="toast" role="status" aria-live="polite" style="position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;display:none;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:var(--tx);color:var(--bg);font-size:14px;max-width:calc(100vw - 32px)">
-  <span id="toastMsg" style="flex:1"></span><button type="button" id="toastUndo" style="height:32px;padding:0 10px;border-radius:8px;border:0;background:var(--bg);color:var(--tx);font-weight:600;cursor:pointer">Deshacer</button>
+  <span id="toastMsg" style="flex:1"></span><button type="button" id="toastUndo" style="height:32px;padding:0 10px;border-radius:8px;border:0;background:var(--bg);color:var(--tx);font-weight:600;cursor:pointer" data-i18n="Deshacer">Deshacer</button>
 </div>
 
 <script>
@@ -707,6 +712,35 @@ function simulate(a,price,months,{shock=0}={}){
 function firstYear(years,key){const y=years.find(x=>x[key]>=x.savNo);return y?y.year:null}
 /* CALC:END */
 
+/* ---------- i18n: ES (source copy, default) / EN ----------
+ * t(base, vars) returns `base` untouched in Spanish; in English it looks
+ * `base` up (verbatim, including any {{placeholder}} tokens) in I18N_EN and
+ * falls back to `base` itself when no translation exists yet. Every call
+ * site keeps writing its real Spanish copy as `base`, so the Spanish string
+ * doubles as its own translation key — no separate key namespace to keep in
+ * sync. Interpolated values are passed via `vars` and substituted after
+ * lookup, so the same {{name}} tokens work in both languages regardless of
+ * where the language puts the value in the sentence. */
+let LANG='es';
+const LANG_KEY='gt-negotiation-comparator-lang';
+const I18N_EN={};
+function t(base,vars){
+ let s=LANG==='en'&&Object.prototype.hasOwnProperty.call(I18N_EN,base)?I18N_EN[base]:base;
+ if(vars)Object.keys(vars).forEach(k=>{s=s.split('{{'+k+'}}').join(vars[k])});
+ return s;
+}
+function applyStaticI18n(){
+ document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.getAttribute('data-i18n'))});
+ document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',t(el.getAttribute('data-i18n-aria')))});
+ document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.setAttribute('placeholder',t(el.getAttribute('data-i18n-placeholder')))});
+ document.querySelectorAll('[data-i18n-title]').forEach(el=>{el.setAttribute('title',t(el.getAttribute('data-i18n-title')))});
+ document.documentElement.lang=LANG;
+ document.title=t('Comparador hipotecario');
+ const sel=document.getElementById('langSelect');if(sel)sel.value=LANG;
+}
+
+(function initLang(){let saved=null;try{saved=localStorage.getItem(LANG_KEY)}catch(e){}LANG=saved==='en'?'en':'es';applyStaticI18n()})();
+
 /* ---------- Estado + persistencia ---------- */
 const STORE='gt-negotiation-comparator-v1';
 const S=Object.assign({},DEFAULTS);
@@ -765,7 +799,7 @@ const FIELDS=[
  F('down',{smin:15,smax:60,step:5,fmt:v=>v+'%'}),
  F('rate',{smin:2,smax:8,step:.05,fmt:v=>v.toFixed(2)+'%'}),
  F('sc',{smin:0,smax:40,step:.1,fmt:v=>'AED '+(Math.round(v*100)/100)}),
- F('vacM',{smin:0,smax:6,step:.5,fmt:v=>v+(v===1?' mes':' meses')}),
+ F('vacM',{smin:0,smax:6,step:.5,fmt:v=>v===1?t('{{v}} mes',{v}):t('{{v}} meses',{v})}),
  F('mgmt',{smin:0,smax:25,step:.5,fmt:v=>v+'%'}),
  F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),
  F('tgt',{nmin:1,nmax:100000}),F('tol',{nmin:0,nmax:100}),
@@ -787,7 +821,7 @@ function pushHistory(){history.push(snapshot());if(history.length>50)history.shi
 function updateUndoButtons(){const u=$('btnUndo'),r=$('btnRedo');if(u)u.disabled=!history.length;if(r)r.disabled=!future.length}
 function resetFieldMessages(){
  document.querySelectorAll('.field.invalid,.field.adjusted').forEach(f=>f.classList.remove('invalid','adjusted'));
- document.querySelectorAll('.field-msg').forEach(m=>{m.className='field-msg';m.textContent=m.dataset.def||''});
+ document.querySelectorAll('.field-msg').forEach(m=>{m.className='field-msg';m.textContent=fieldDef(m)});
 }
 function undo(){if(!history.length)return;future.push(snapshot());applyState(JSON.parse(history.pop()));resetFieldMessages();render();updateUndoButtons()}
 function redo(){if(!future.length)return;history.push(snapshot());applyState(JSON.parse(future.pop()));resetFieldMessages();render();updateUndoButtons()}
@@ -803,19 +837,20 @@ const FLBL={
  reserve:{u:'AED',def:''},renewIn:{u:'meses',def:''},renewPct:{u:'%',def:''},renewGap:{u:'meses',def:''},
  exitAgencyPct:{u:'%',def:''},prepayPct:{u:'%',def:''},prepayCap:{u:'AED',def:''},neg:{u:'AED',def:''}
 };
-function rangeTxt(lo,hi,u){return u==='%'?`${nf0.format(lo)}%–${nf0.format(hi)}%`:`${nf0.format(lo)}–${nf0.format(hi)} ${u}`}
+function rangeTxt(lo,hi,u){return u==='%'?`${nf0.format(lo)}%–${nf0.format(hi)}%`:`${nf0.format(lo)}–${nf0.format(hi)} ${t(u)}`}
+const fieldDef=el=>t(el.dataset.defKey||'');
 function bindField(f){
  const n=$(f.k),r=$(f.k+'_r'),lo=f.nmin!=null?f.nmin:f.smin,hi=f.nmax!=null?f.nmax:f.smax;
  const msgEl=$(f.k+'_h'),meta=FLBL[f.k]||{u:'',def:''};
- if(msgEl&&msgEl.dataset.def===undefined)msgEl.dataset.def=msgEl.textContent||meta.def||'';
- const resetMsg=()=>{if(!msgEl)return;msgEl.className='field-msg';msgEl.textContent=msgEl.dataset.def||''};
+ if(msgEl&&msgEl.dataset.defKey===undefined)msgEl.dataset.defKey=meta.def||'';
+ const resetMsg=()=>{if(!msgEl)return;msgEl.className='field-msg';msgEl.textContent=fieldDef(msgEl)};
  if(n){
   n.min=lo;n.max=hi;
   n.addEventListener('input',()=>{
    const field=n.closest('.field'),v=parseFloat(n.value);
    if(!isFinite(v)||v<lo||v>hi){
     field&&field.classList.add('invalid');n.setAttribute('aria-invalid','true');
-    if(msgEl){msgEl.className='field-msg err';msgEl.innerHTML=`<span aria-hidden="true">✕</span><span>Escribe un valor entre ${rangeTxt(lo,hi,meta.u)}. Los resultados siguen con ${f.fmt?f.fmt(f.get()):f.get()}.</span>`}
+    if(msgEl){msgEl.className='field-msg err';msgEl.innerHTML=`<span aria-hidden="true">✕</span><span>${t('Escribe un valor entre {{r}}. Los resultados siguen con {{v}}.',{r:rangeTxt(lo,hi,meta.u),v:f.fmt?f.fmt(f.get()):f.get()})}</span>`}
     return;
    }
    field&&field.classList.remove('invalid');n.removeAttribute('aria-invalid');
@@ -831,7 +866,7 @@ function bindField(f){
    f.set(clamped);
    if(clamped!==v){
     field&&field.classList.add('adjusted');
-    if(msgEl){msgEl.className='field-msg warn';msgEl.innerHTML=`<span aria-hidden="true">⚠</span><span>Ajustado a ${f.fmt?f.fmt(clamped):clamped}${clamped===lo?' (mínimo)':clamped===hi?' (máximo)':''}. Escribiste ${nf0.format(v)}. <button type="button" data-undo-field="${f.k}">Deshacer</button></span>`}
+    if(msgEl){msgEl.className='field-msg warn';msgEl.innerHTML=`<span aria-hidden="true">⚠</span><span>${(av=>clamped===lo?t('Ajustado a {{a}} (mínimo). Escribiste {{w}}.',av):clamped===hi?t('Ajustado a {{a}} (máximo). Escribiste {{w}}.',av):t('Ajustado a {{a}}. Escribiste {{w}}.',av))({a:f.fmt?f.fmt(clamped):clamped,w:nf0.format(v)})} <button type="button" data-undo-field="${f.k}">${t('Deshacer')}</button></span>`}
    }else{
     field&&field.classList.remove('adjusted');resetMsg();
    }
@@ -876,12 +911,12 @@ const GROUPS={
 function groupChanges(g){return GROUPS[g].keys.filter(k=>Math.abs((S[k]||0)-(DEFAULTS[k]||0))>1e-9).length}
 function summaryFor(g,R){
  switch(g){
-  case 'obj':return `${aed(S.tgt)}/sqft ±${S.tol}% · ${aed(S.sav)} al ${S.savRate}%`;
-  case 'fin':return `Plazo ${S.term} años`;
-  case 'gas':return `Comunidad AED ${S.sc}/sqft · ${S.vacM} ${S.vacM===1?'mes':'meses'} sin inquilino`;
-  case 'fee':return R?`${aed(R.M.fees.total)} pedido · ${aed(R.N.fees.total)} negociado`:'';
-  case 'ren':return(S.renewPct===0&&S.renewGap===0)?`Sin cambios en el mes ${S.renewIn+1}`:`${S.renewPct>=0?'+':''}${S.renewPct}% en el mes ${S.renewIn+1}`;
-  case 'ven':return `Comisión ${S.exitAgencyPct}% + VAT · penalización ${S.prepayPct}% (tope ${aed(S.prepayCap)})`;
+  case 'obj':return t('{{tgt}}/sqft ±{{tol}}% · {{sav}} al {{r}}%',{tgt:aed(S.tgt),tol:S.tol,sav:aed(S.sav),r:S.savRate});
+  case 'fin':return t('Plazo {{n}} años',{n:S.term});
+  case 'gas':return S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM});
+  case 'fee':return R?t('{{a}} pedido · {{b}} negociado',{a:aed(R.M.fees.total),b:aed(R.N.fees.total)}):'';
+  case 'ren':return(S.renewPct===0&&S.renewGap===0)?t('Sin cambios en el mes {{m}}',{m:S.renewIn+1}):t('{{pct}}% en el mes {{m}}',{pct:(S.renewPct>=0?'+':'')+S.renewPct,m:S.renewIn+1});
+  case 'ven':return t('Comisión {{a}}% + VAT · penalización {{p}}% (tope {{cap}})',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)});
  }
  return '';
 }
@@ -889,7 +924,7 @@ function updateGroupSummaries(R){
  Object.keys(GROUPS).forEach(g=>{
   const sumEl=$('sum-'+g);if(sumEl)sumEl.textContent=summaryFor(g,R);
   const n=groupChanges(g),b=$('badge-'+g);
-  if(b){if(n>0){b.hidden=false;b.textContent=n+(n===1?' cambio':' cambios')}else b.hidden=true}
+  if(b){if(n>0){b.hidden=false;b.textContent=n===1?t('{{n}} cambio',{n}):t('{{n}} cambios',{n})}else b.hidden=true}
  });
 }
 document.querySelectorAll('[data-reset-group]').forEach(btn=>{
@@ -897,9 +932,9 @@ document.querySelectorAll('[data-reset-group]').forEach(btn=>{
   const g=btn.dataset.resetGroup,keys=GROUPS[g].keys;
   if(!keys.length)return;
   pushHistory();
-  keys.forEach(k=>{S[k]=DEFAULTS[k];const fld=$(k),msg=$(k+'_h');if(fld)fld.closest('.field')?.classList.remove('invalid','adjusted');if(msg){msg.className='field-msg';msg.textContent=msg.dataset.def||''}});
+  keys.forEach(k=>{S[k]=DEFAULTS[k];const fld=$(k),msg=$(k+'_h');if(fld)fld.closest('.field')?.classList.remove('invalid','adjusted');if(msg){msg.className='field-msg';msg.textContent=fieldDef(msg)}});
   render();
-  showToast(`Restableciste «${GROUPS[g].title}» (${keys.length} valor${keys.length===1?'':'es'}).`,undo);
+  showToast(keys.length===1?t('Restableciste «{{g}}» ({{n}} valor).',{g:t(GROUPS[g].title),n:keys.length}):t('Restableciste «{{g}}» ({{n}} valores).',{g:t(GROUPS[g].title),n:keys.length}),undo);
  });
 });
 
@@ -917,93 +952,97 @@ function renderQsPreview(R){
 
 /* ---------- Render: cabecera y panel negociado ---------- */
 function renderHeader(R){
- $('heroRate').textContent=S.rate.toFixed(2)+'%';$('heroTerm').textContent=S.term;
+ $('heroNote').innerHTML=`<b>${t('Tasa modelada: {{rate}}',{rate:S.rate.toFixed(2)+'%'})}</b> ${t('a {{term}} años. Es solo un supuesto de modelo: la tasa real puede cambiar tras el periodo fijo del banco. Sin apreciación, sin prima por amueblado y sin rentas inventadas: la renta la defines tú.',{term:S.term})}`;
  const d=S.price-S.neg,up=d<0;
  $('negBig').textContent=aed(S.neg);$('negBig').className='negprice num'+(up?' warn':'');
  $('negDelta').innerHTML=up
-  ?`<span class="warn">${aed(-d)} (${pct(-d/S.price*100)}) por encima del asking price</span>`
-  :d===0?'<span class="muted">Igual al asking price</span>'
-  :`<span class="pos">${aed(d)} (${pct(d/S.price*100)}) por debajo del asking de ${aed(S.price)}</span>`;
+  ?`<span class="warn">${t('{{d}} ({{p}}) por encima del precio pedido',{d:aed(-d),p:pct(-d/S.price*100)})}</span>`
+  :d===0?`<span class="muted">${t('Igual al precio pedido')}</span>`
+  :`<span class="pos">${t('{{d}} ({{p}}) por debajo del pedido de {{price}}',{d:aed(d),p:pct(d/S.price*100),price:aed(S.price)})}</span>`;
  $('cuts').innerHTML=[25000,50000,75000,100000,125000,150000].map(c=>`<button type="button" class="pill${Math.round(d)===c?' on':''}" data-cut="${c}">−${nf0.format(c/1000)}k</button>`).join('');
- $('negWarn').innerHTML=up?'<div class="alert">⚠ El precio negociado es mayor que el asking price. Los deltas de negociación aparecen como pérdidas.</div>':'';
+ $('negWarn').innerHTML=up?`<div class="alert"><span aria-hidden="true">⚠</span><span>${t('El precio negociado es mayor que el precio pedido. Las diferencias de negociación aparecen como pérdidas.')}</span></div>`:'';
 }
 
 /* ---------- Fees de compra (calculados) ---------- */
-const FEE_HELP={
- adgm:`Tasa de registro del traspaso en ADGM: ${FEE_RULES.adgmPct}% del precio de compra. Cambia con el precio de cada escenario.`,
- agency:`Comisión del broker: ${FEE_RULES.agencyPct}% del precio de compra más ${FEE_RULES.agencyVat*100}% de VAT sobre esa comisión (${nf2.format(FEE_RULES.agencyPct*(1+FEE_RULES.agencyVat))}% del precio en total).`,
- efee:`Tasa del trámite electrónico de ADGM. Importe fijo estimado de AED ${nf0.format(FEE_RULES.efee)}: no depende del precio.`,
- noc:`No Objection Certificate: autorización del developer para vender la unidad. Importe fijo estimado de AED ${nf0.format(FEE_RULES.noc)}.`,
- conv:`Honorarios del conveyancer que gestiona la transferencia. Importe fijo estimado de AED ${nf0.format(FEE_RULES.conv)}.`,
- total:'Suma de todos los fees. Cash-to-close = down payment + total fees.'
-};
+function feeHelp(k){
+ switch(k){
+  case 'adgm':return t('Tasa de registro del traspaso en ADGM: {{pct}}% del precio de compra. Cambia con el precio de cada escenario.',{pct:FEE_RULES.adgmPct});
+  case 'agency':return t('Comisión del broker: {{pct}}% del precio de compra más {{vat}}% de VAT sobre esa comisión ({{total}}% del precio en total).',{pct:FEE_RULES.agencyPct,vat:FEE_RULES.agencyVat*100,total:nf2.format(FEE_RULES.agencyPct*(1+FEE_RULES.agencyVat))});
+  case 'efee':return t('Tasa del trámite electrónico de ADGM. Importe fijo estimado de AED {{v}}: no depende del precio.',{v:nf0.format(FEE_RULES.efee)});
+  case 'noc':return t('No Objection Certificate: autorización del developer para vender la unidad. Importe fijo estimado de AED {{v}}.',{v:nf0.format(FEE_RULES.noc)});
+  case 'conv':return t('Honorarios del conveyancer que gestiona la transferencia. Importe fijo estimado de AED {{v}}.',{v:nf0.format(FEE_RULES.conv)});
+  case 'total':return t('Suma de todos los gastos de compra. Dinero para cerrar = entrada + gastos de compra.');
+ }
+ return '';
+}
 let openFee=null;
-const calcHead='<div class="feerow head"><span>Concepto</span><b style="font-weight:600">Pedido</b><b style="font-weight:600">Negociado</b></div>';
-function calcRow(k,label,sub,m,n,{extra='',help=FEE_HELP[k],fmt=aed}={}){
- return `<div class="feerow${extra}${openFee===k?' open':''}"><span class="fl"><span>${label}${sub?`<small>${sub}</small>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="Qué es ${label}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">?</button></span><b>${fmt(m)}</b><b>${fmt(n)}</b><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
+function calcHeadHtml(){return `<div class="feerow head"><span>${t('Concepto')}</span><b style="font-weight:600">${t('Pedido')}</b><b style="font-weight:600">${t('Negociado')}</b></div>`}
+function calcRow(k,label,sub,m,n,{extra='',help,fmt=aed}={}){
+ if(help===undefined)help=feeHelp(k);
+ return `<div class="feerow${extra}${openFee===k?' open':''}"><span class="fl"><span>${label}${sub?`<small>${sub}</small>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">?</button></span><b>${fmt(m)}</b><b>${fmt(n)}</b><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
 function renderFees(R){
  const{M,N}=R,row=(k,label,sub,m,n,extra='')=>calcRow(k,label,sub,m,n,{extra});
- const badge=v=>{const b=psfState(v);return `<span class="badge ${b.c}">${b.t}</span>`};
- $('psfCalc').innerHTML=calcHead+
-  calcRow('psf','Precio por sqft','calculado',M.psf,N.psf,{help:`Lo que pagas por cada sqft: precio de compra ÷ tamaño (${nf0.format(S.sqft)} sqft). Principal: ${aed(S.price)} ÷ ${nf0.format(S.sqft)}. Negociado: ${aed(S.neg)} ÷ ${nf0.format(S.sqft)}. Se recalcula al cambiar el precio o el tamaño.`})+
-  calcRow('psfTgt','vs tu objetivo',aed(S.tgt)+' ±'+S.tol+'%',M.psf,N.psf,{fmt:badge,help:`Compara el precio por sqft con tu objetivo de ${aed(S.tgt)}/sqft. Below target: por debajo de ${aed(S.tgt*(1-S.tol/100))}. Near target: dentro de ±${S.tol}%. Expensive: por encima de ${aed(S.tgt*(1+S.tol/100))}. Es tu cifra, no un juicio de mercado.`});
- $('feeList').innerHTML=calcHead+
-  row('adgm','ADGM / registration fee',FEE_RULES.adgmPct+'%',M.fees.adgm,N.fees.adgm)+
-  row('agency','Agency fee',FEE_RULES.agencyPct+'% + VAT',M.fees.agency,N.fees.agency)+
-  row('efee','ADGM electronic fee','',M.fees.efee,N.fees.efee)+
-  row('noc','NOC','',M.fees.noc,N.fees.noc)+
-  row('conv','Conveyancing','',M.fees.conv,N.fees.conv)+
-  row('total','Total fees','',M.fees.total,N.fees.total,' total');
+ const badge=v=>{const b=psfState(v);return `<span class="badge ${b.c}">${t(b.t)}</span>`};
+ $('psfCalc').innerHTML=calcHeadHtml()+
+  calcRow('psf',t('Precio por sqft'),t('calculado'),M.psf,N.psf,{help:t('Lo que pagas por cada sqft: precio de compra ÷ tamaño ({{sqft}} sqft). Pedido: {{price}} ÷ {{sqft}}. Negociado: {{neg}} ÷ {{sqft}}. Se recalcula al cambiar el precio o el tamaño.',{sqft:nf0.format(S.sqft),price:aed(S.price),neg:aed(S.neg)})})+
+  calcRow('psfTgt',t('vs tu objetivo'),aed(S.tgt)+' ±'+S.tol+'%',M.psf,N.psf,{fmt:badge,help:t('Compara el precio por sqft con tu objetivo de {{tgt}}/sqft. Por debajo del objetivo: por debajo de {{lo}}. Cerca del objetivo: dentro de ±{{tol}}%. Caro: por encima de {{hi}}. Es tu cifra, no un juicio de mercado.',{tgt:aed(S.tgt),lo:aed(S.tgt*(1-S.tol/100)),tol:S.tol,hi:aed(S.tgt*(1+S.tol/100))})});
+ $('feeList').innerHTML=calcHeadHtml()+
+  row('adgm',t('ADGM / registro'),FEE_RULES.adgmPct+'%',M.fees.adgm,N.fees.adgm)+
+  row('agency',t('Comisión de agencia'),FEE_RULES.agencyPct+'% + VAT',M.fees.agency,N.fees.agency)+
+  row('efee',t('Tasa electrónica ADGM'),'',M.fees.efee,N.fees.efee)+
+  row('noc',t('NOC'),'',M.fees.noc,N.fees.noc)+
+  row('conv',t('Conveyancing'),'',M.fees.conv,N.fees.conv)+
+  row('total',t('Total gastos de compra'),'',M.fees.total,N.fees.total,' total');
 }
 
 /* ---------- KPI lado a lado ---------- */
 function pairCard(label,m,n,{fmt=aed,colorize=false,better='higher',extraM='',extraN='',sub=''}={}){
  const d=n-m,good=better==='higher'?d>0.5:d<-0.5,bad=better==='higher'?d<-0.5:d>0.5;
- const side=(k,v,extra)=>`<div class="side${S.view===k?' on':''}" data-view="${k}"><small>${SHORT[k]}</small><b class="${colorize?cls(v):''}">${fmt(v)}</b>${extra}</div>`;
- const dIcon=good?'▲':bad?'▼':'=',dWord=good?' a favor':bad?' en contra':'';
+ const side=(k,v,extra)=>`<div class="side${S.view===k?' on':''}" data-view="${k}"><small>${t(SHORT[k])}</small><b class="${colorize?cls(v):''}">${fmt(v)}</b>${extra}</div>`;
+ const dIcon=good?'▲':bad?'▼':'=',dWord=good?t(' a favor'):bad?t(' en contra'):'';
  return `<div class="kpi"><div class="l">${label}</div><div class="pair">${side('main',m,extraM)}${side('neg',n,extraN)}</div>
-  <div class="s">Negociado vs pedido: <span class="${good?'pos':bad?'neg':''}"><span aria-hidden="true">${dIcon} </span>${saed(d)}${dWord}</span>${sub}</div></div>`;
+  <div class="s">${t('Negociado vs pedido:')} <span class="${good?'pos':bad?'neg':''}"><span aria-hidden="true">${dIcon} </span>${saed(d)}${dWord}</span>${sub}</div></div>`;
 }
 function renderKpis(R){
  const{M,N}=R,bM=psfState(M.psf),bN=psfState(N.psf),wa=maxPrice(S,0);
- const badge=b=>`<span class="badge ${b.c}" style="margin-top:4px">${b.t}</span>`;
- const waCard=`<div class="kpi"><div class="l">Precio límite <span class="dim tiny">walk-away</span></div>
-  <div class="pair" style="grid-template-columns:1fr"><div class="side on" data-view="__wa"><small>Flujo de caja = 0</small><b>${wa>0?aed(wa):'Sin límite con esta renta'}</b></div></div>
-  <div class="s">${wa>0?`${aed(wa/S.sqft)}/sqft · por encima de este precio, no cumples el objetivo con la renta actual.`:'Ninguna renta cubre los costes.'}</div></div>`;
+ const badge=b=>`<span class="badge ${b.c}" style="margin-top:4px">${t(b.t)}</span>`;
+ const waCard=`<div class="kpi"><div class="l">${t('Precio límite')} <span class="dim tiny">${t('walk-away')}</span></div>
+  <div class="pair" style="grid-template-columns:1fr"><div class="side on" data-view="__wa"><small>${t('Flujo de caja = 0')}</small><b>${wa>0?aed(wa):t('Sin límite con esta renta')}</b></div></div>
+  <div class="s">${wa>0?t('{{v}}/sqft · por encima de este precio, no cumples el objetivo con la renta actual.',{v:aed(wa/S.sqft)}):t('Ninguna renta cubre los costes.')}</div></div>`;
  $('heroKpis').innerHTML=[
-  pairCard('Flujo de caja al mes',M.cfM,N.cfM,{fmt:saed,colorize:true}),
-  pairCard('Renta mínima para no perder dinero',M.be,N.be,{better:'lower',sub:` · renta actual ${aed(S.rent)}`}),
-  pairCard('Dinero para cerrar la compra',M.ctc,N.ctc,{better:'lower'}),
+  pairCard(t('Flujo de caja al mes'),M.cfM,N.cfM,{fmt:saed,colorize:true}),
+  pairCard(t('Renta mínima para no perder dinero'),M.be,N.be,{better:'lower',sub:` · ${t('renta actual {{v}}',{v:aed(S.rent)})}`}),
+  pairCard(t('Dinero para cerrar la compra'),M.ctc,N.ctc,{better:'lower'}),
   waCard
  ].join('');
  $('otrosIndicadores').innerHTML=[
-  pairCard('Cuota de la hipoteca',M.pm,N.pm,{better:'lower'}),
-  pairCard('Flujo de caja al año',M.cfA,N.cfA,{fmt:saed,colorize:true}),
-  pairCard('Patrimonio generado año 1',M.wealth,N.wealth,{fmt:saed,colorize:true,sub:' · sin apreciación'}),
-  pairCard('Precio por sqft',M.psf,N.psf,{better:'lower',extraM:badge(bM),extraN:badge(bN),sub:` · objetivo ${aed(S.tgt)} ±${S.tol}%`})
+  pairCard(t('Cuota de la hipoteca'),M.pm,N.pm,{better:'lower'}),
+  pairCard(t('Flujo de caja al año'),M.cfA,N.cfA,{fmt:saed,colorize:true}),
+  pairCard(t('Patrimonio generado año 1'),M.wealth,N.wealth,{fmt:saed,colorize:true,sub:' · '+t('sin apreciación')}),
+  pairCard(t('Precio por sqft'),M.psf,N.psf,{better:'lower',extraM:badge(bM),extraN:badge(bN),sub:` · ${t('objetivo {{v}} ±{{tol}}%',{v:aed(S.tgt),tol:S.tol})}`})
  ].join('');
 }
 
 /* ---------- Impacto de negociación ---------- */
 function renderImpact(R){
  const{M,N}=R,save=S.price-S.neg;
- $('impSub').textContent=`Precio pedido ${aed(S.price)} → negociado ${aed(S.neg)}. Valores positivos (▲) van a favor del precio negociado.`;
+ $('impSub').textContent=t('Precio pedido {{price}} → negociado {{neg}}. Valores positivos (▲) van a favor del precio negociado.',{price:aed(S.price),neg:aed(S.neg)});
  const g=v=>v>0.5?'pos':v<-0.5?'neg':'';
  const st=(l,v,c,sub='',hero=false)=>{const ic=c==='pos'?'▲ ':c==='neg'?'▼ ':c==='warn'?'⚠ ':'';
   return `<div class="stat${hero?' hero-s':''}"><div class="l">${l}</div><div class="v ${c}"><span aria-hidden="true">${ic}</span>${v}</div>${sub?`<div class="tiny muted">${sub}</div>`:''}</div>`};
  const upfront=M.ctc-N.ctc,retained=Math.max(N.rem,0)-Math.max(M.rem,0),intGain=N.interest-M.interest;
  $('impGrid').innerHTML=[
-  st('Ahorro en precio',saed(save),save<0?'warn':g(save),pct(save/S.price*100)+' del pedido',true),
-  st('Entrada que ahorras',saed(M.down-N.down),g(M.down-N.down)),
-  st('Hipoteca más pequeña',saed(M.mortgage-N.mortgage),g(M.mortgage-N.mortgage)),
-  st('Cuota mensual más baja',saed(M.pm-N.pm),g(M.pm-N.pm),`${aed(M.pm)} → ${aed(N.pm)}`),
-  st('Gastos de compra que ahorras',saed(M.fees.total-N.fees.total),g(M.fees.total-N.fees.total),'ADGM + agencia + VAT'),
-  st('Dinero para cerrar que ahorras',saed(upfront),g(upfront),`${aed(M.ctc)} → ${aed(N.ctc)}`,true),
-  st('Renta mínima más baja',saed(M.be-N.be),g(M.be-N.be),`${aed(M.be)} → ${aed(N.be)} /año`),
-  st('Flujo mensual: mejora',saed(N.cfM-M.cfM),g(N.cfM-M.cfM),`${saed(M.cfM)} → ${saed(N.cfM)}`),
-  st('Flujo anual: mejora',saed(N.cfA-M.cfA),g(N.cfA-M.cfA),`${saed(M.cfA)} → ${saed(N.cfA)}`),
-  st('Ahorros extra que conservas',saed(retained),g(retained),`Saldo restante ${aed(M.rem)} → ${aed(N.rem)}`),
-  st('Interés anual extra que conservas',saed(intGain),g(intGain),`al ${S.savRate}% con tope ${aed(S.savCap)}`)
+  st(t('Ahorro en precio'),saed(save),save<0?'warn':g(save),t('{{p}} del pedido',{p:pct(save/S.price*100)}),true),
+  st(t('Entrada que ahorras'),saed(M.down-N.down),g(M.down-N.down)),
+  st(t('Hipoteca más pequeña'),saed(M.mortgage-N.mortgage),g(M.mortgage-N.mortgage)),
+  st(t('Cuota mensual más baja'),saed(M.pm-N.pm),g(M.pm-N.pm),t('{{a}} → {{b}}',{a:aed(M.pm),b:aed(N.pm)})),
+  st(t('Gastos de compra que ahorras'),saed(M.fees.total-N.fees.total),g(M.fees.total-N.fees.total),t('ADGM + agencia + VAT')),
+  st(t('Dinero para cerrar que ahorras'),saed(upfront),g(upfront),t('{{a}} → {{b}}',{a:aed(M.ctc),b:aed(N.ctc)}),true),
+  st(t('Renta mínima más baja'),saed(M.be-N.be),g(M.be-N.be),t('{{a}} → {{b}} /año',{a:aed(M.be),b:aed(N.be)})),
+  st(t('Flujo mensual: mejora'),saed(N.cfM-M.cfM),g(N.cfM-M.cfM),t('{{a}} → {{b}}',{a:saed(M.cfM),b:saed(N.cfM)})),
+  st(t('Flujo anual: mejora'),saed(N.cfA-M.cfA),g(N.cfA-M.cfA),t('{{a}} → {{b}}',{a:saed(M.cfA),b:saed(N.cfA)})),
+  st(t('Ahorros extra que conservas'),saed(retained),g(retained),t('Saldo restante {{a}} → {{b}}',{a:aed(M.rem),b:aed(N.rem)})),
+  st(t('Interés anual extra que conservas'),saed(intGain),g(intGain),t('al {{r}}% con tope {{cap}}',{r:S.savRate,cap:aed(S.savCap)}))
  ].join('');
 }
 
@@ -1011,23 +1050,23 @@ function renderImpact(R){
 function verdictBand(cf){return cf>250?{icon:'▲',cls:'b-green',t:'Se paga sola'}:cf>=-250?{icon:'≈',cls:'b-amber',t:'Cerca del equilibrio'}:{icon:'▼',cls:'b-red',t:'Aportarías cada mes'}}
 function renderVerdict(R){
  const{M,N}=R,band=verdictBand(N.cfM),wa=maxPrice(S,0),save=S.price-S.neg,upfront=M.ctc-N.ctc,cfGain=N.cfM-M.cfM;
- $('verdictMeta').textContent=`Renta anual ${aed(S.rent)} · ${S.down}% de entrada · ${S.rate.toFixed(2)}% a ${S.term} años · sin apreciación`;
- $('verdictBadge').innerHTML=`<span class="badge ${band.cls}" style="font-size:14px;padding:6px 12px"><span aria-hidden="true">${band.icon}</span> Veredicto: ${band.t}</span>`;
+ $('verdictMeta').textContent=t('Renta anual {{rent}} · {{down}}% de entrada · {{rate}}% a {{term}} años · sin apreciación',{rent:aed(S.rent),down:S.down,rate:S.rate.toFixed(2),term:S.term});
+ $('verdictBadge').innerHTML=`<span class="badge ${band.cls}" style="font-size:14px;padding:6px 12px"><span aria-hidden="true">${band.icon}</span> ${t('Veredicto: {{band}}',{band:t(band.t)})}</span>`;
  const lo=Math.min(M.cfM,N.cfM),hi=Math.max(M.cfM,N.cfM);
  let headline;
- if(band.t==='Se paga sola')headline=`Con la renta actual, esta compra se paga sola: te quedan entre ${aed(lo)} y ${aed(hi)} al mes.`;
- else if(band.t==='Cerca del equilibrio')headline=`Con la renta actual, el flujo de caja está cerca del equilibrio: entre ${saed(lo)} y ${saed(hi)} al mes.`;
- else headline=`Con la renta actual, esta compra no se paga sola: pondrías entre ${aed(Math.abs(hi))} y ${aed(Math.abs(lo))} al mes.`;
+ if(band.t==='Se paga sola')headline=t('Con la renta actual, esta compra se paga sola: te quedan entre {{lo}} y {{hi}} al mes.',{lo:aed(lo),hi:aed(hi)});
+ else if(band.t==='Cerca del equilibrio')headline=t('Con la renta actual, el flujo de caja está cerca del equilibrio: entre {{lo}} y {{hi}} al mes.',{lo:saed(lo),hi:saed(hi)});
+ else headline=t('Con la renta actual, esta compra no se paga sola: pondrías entre {{lo}} y {{hi}} al mes.',{lo:aed(Math.abs(hi)),hi:aed(Math.abs(lo))});
  $('verdictHeadline').textContent=headline;
  const overBudget=N.rem<0;
- $('verdictAlert').innerHTML=overBudget?`<div class="alert neg" role="alert"><span aria-hidden="true">▼</span><span><b>Precio negociado:</b> el dinero para cerrar (${aed(N.ctc)}) supera tus ahorros (${aed(S.sav)}) en ${aed(-N.rem)}.</span></div>`:'';
- $('verdictSub').textContent=wa>0?`Negociar a ${aed(S.neg)} ${cfGain>0?'mejora el flujo y reduce lo que pagas al cerrar':'cambia el flujo y lo que pagas al cerrar'}. ${S.neg>wa?`Aun así, ese precio supera en ${aed(S.neg-wa)} tu precio límite para no perder dinero cada mes (${aed(wa)}).`:`Ese precio queda ${aed(wa-S.neg)} por debajo de tu precio límite para no perder dinero (${aed(wa)}).`}`:'Con la renta y los costes actuales, ningún precio deja el flujo de caja en 0.';
+ $('verdictAlert').innerHTML=overBudget?`<div class="alert neg" role="alert"><span aria-hidden="true">▼</span><span><b>${t('Precio negociado:')}</b> ${t('el dinero para cerrar ({{ctc}}) supera tus ahorros ({{sav}}) en {{gap}}.',{ctc:aed(N.ctc),sav:aed(S.sav),gap:aed(-N.rem)})}</span></div>`:'';
+ $('verdictSub').textContent=wa>0?t('Negociar a {{neg}} {{effect}}. {{compare}}',{neg:aed(S.neg),effect:cfGain>0?t('mejora el flujo y reduce lo que pagas al cerrar'):t('cambia el flujo y lo que pagas al cerrar'),compare:S.neg>wa?t('Aun así, ese precio supera en {{gap}} tu precio límite para no perder dinero cada mes ({{wa}}).',{gap:aed(S.neg-wa),wa:aed(wa)}):t('Ese precio queda {{gap}} por debajo de tu precio límite para no perder dinero ({{wa}}).',{gap:aed(wa-S.neg),wa:aed(wa)})}):t('Con la renta y los costes actuales, ningún precio deja el flujo de caja en 0.');
  $('verdictSavings').innerHTML=save>0?`
-  <span class="l">Negociar te ahorra</span>
+  <span class="l">${t('Negociar te ahorra')}</span>
   <div class="v-save-grid">
-   <div><b>${aed(save)}</b><span>en precio (${pct(save/S.price*100)} del pedido)</span></div>
-   <div><b>${aed(upfront)}</b><span>menos para cerrar la compra</span></div>
-   <div><b>${saed(cfGain)} <small>/mes</small></b><span>de flujo de caja</span></div>
+   <div><b>${aed(save)}</b><span>${t('en precio ({{p}} del pedido)',{p:pct(save/S.price*100)})}</span></div>
+   <div><b>${aed(upfront)}</b><span>${t('menos para cerrar la compra')}</span></div>
+   <div><b>${saed(cfGain)} <small>/mes</small></b><span>${t('de flujo de caja')}</span></div>
   </div>`:'';
 }
 
@@ -1035,49 +1074,49 @@ function renderVerdict(R){
 function renderBarSummary(R){
  const{M,N}=R,band=verdictBand(N.cfM),wa=maxPrice(S,0),el=$('barSummary');
  if(!el)return;
- el.innerHTML=`<span class="badge ${band.cls}"><span aria-hidden="true">${band.icon}</span>${band.t}</span>`+
-  `<span class="bs-item"><small>Flujo al mes</small><b class="${cls(N.cfM)}">${saed(M.cfM)} / ${saed(N.cfM)}</b></span>`+
-  `<span class="bs-item"><small>Renta mínima al año</small><b>${aed(M.be)} / ${aed(N.be)}</b></span>`+
-  `<span class="bs-item"><small>Para cerrar</small><b>${aed(M.ctc)} / ${aed(N.ctc)}</b></span>`+
-  `<span class="bs-item"><small>Precio límite</small><b>${wa>0?aed(wa):'—'}</b></span>`;
+ el.innerHTML=`<span class="badge ${band.cls}"><span aria-hidden="true">${band.icon}</span>${t(band.t)}</span>`+
+  `<span class="bs-item"><small>${t('Flujo al mes')}</small><b class="${cls(N.cfM)}">${saed(M.cfM)} / ${saed(N.cfM)}</b></span>`+
+  `<span class="bs-item"><small>${t('Renta mínima al año')}</small><b>${aed(M.be)} / ${aed(N.be)}</b></span>`+
+  `<span class="bs-item"><small>${t('Para cerrar')}</small><b>${aed(M.ctc)} / ${aed(N.ctc)}</b></span>`+
+  `<span class="bs-item"><small>${t('Precio límite')}</small><b>${wa>0?aed(wa):'—'}</b></span>`;
 }
 
 /* ---------- Detalle del escenario seleccionado ---------- */
-function mrow(l,v,c='',sub=''){return `<div class="mrow"><span>${l}</span><b class="${c}">${v}${sub?`<small>${sub}</small>`:''}</b></div>`}
+function mrow(l,v,c='',sub=''){return `<div class="mrow"><span>${t(l)}</span><b class="${c}">${v}${sub?`<small>${sub}</small>`:''}</b></div>`}
 function renderDetail(R){
  const s=R.sel,f=s.fees,before=savingsInterest(S,S.sav),lost=before-s.interest;
- $('detTitle').textContent=`Todas las cifras, lado a lado · ${LABEL[S.view]}`;
- $('detSub').textContent=`${aed(s.price)} · ${nf0.format(S.sqft)} sqft · renta ${aed(S.rent)}/año. Cambia de escenario con el selector de la barra de pestañas.`;
- $('detBadges').innerHTML=s.cfM>=0?'<span class="badge b-green">▲ Flujo de caja positivo</span>':'<span class="badge b-red">▼ Flujo de caja negativo</span>';
+ $('detTitle').textContent=t('Todas las cifras, lado a lado · {{scenario}}',{scenario:t(LABEL[S.view])});
+ $('detSub').textContent=t('{{price}} · {{sqft}} sqft · renta {{rent}}/año. Cambia de escenario con el selector de la barra de pestañas.',{price:aed(s.price),sqft:nf0.format(S.sqft),rent:aed(S.rent)});
+ $('detBadges').innerHTML=s.cfM>=0?`<span class="badge b-green">▲ ${t('Flujo de caja positivo')}</span>`:`<span class="badge b-red">▼ ${t('Flujo de caja negativo')}</span>`;
  $('metrics').innerHTML=`
- <div class="card flat mgroup"><h3>Financiación y entrada</h3>
+ <div class="card flat mgroup"><h3>${t('Financiación y entrada')}</h3>
   ${mrow('Precio',aed(s.price))}${mrow('AED/sqft',aed(s.psf))}
-  ${mrow('Entrada',aed(s.down),'',pct(s.downPct,0)+' del precio')}
+  ${mrow('Entrada',aed(s.down),'',t('{{p}} del precio',{p:pct(s.downPct,0)}))}
   ${mrow('Hipoteca',aed(s.mortgage))}
-  ${mrow('Cuota mensual',aed(s.pm),'',`${S.rate.toFixed(2)}% · ${S.term} años`)}${mrow('Cuota anual',aed(s.debt))}
-  ${mrow('ADGM / registro',aed(f.adgm),'',FEE_RULES.adgmPct+'% del precio')}
-  ${mrow('Comisión de agencia (neta)',aed(f.agNet),'',FEE_RULES.agencyPct+'% del precio')}${mrow('VAT sobre la comisión ('+FEE_RULES.agencyVat*100+'%)',aed(f.vat))}
+  ${mrow('Cuota mensual',aed(s.pm),'',t('{{rate}}% · {{term}} años',{rate:S.rate.toFixed(2),term:S.term}))}${mrow('Cuota anual',aed(s.debt))}
+  ${mrow('ADGM / registro',aed(f.adgm),'',t('{{p}}% del precio',{p:FEE_RULES.adgmPct}))}
+  ${mrow('Comisión de agencia (neta)',aed(f.agNet),'',t('{{p}}% del precio',{p:FEE_RULES.agencyPct}))}${mrow(t('VAT sobre la comisión ({{p}}%)',{p:FEE_RULES.agencyVat*100}),aed(f.vat))}
   ${mrow('Tasa electrónica ADGM',aed(f.efee))}${mrow('NOC',aed(f.noc))}${mrow('Conveyancing',aed(f.conv))}
   ${mrow('Total gastos de compra',aed(f.total))}
-  ${mrow('Dinero para cerrar la compra',aed(s.ctc),'','Entrada + gastos de compra')}${mrow('Coste final',aed(s.finalCost),'','Precio + gastos de compra')}
+  ${mrow('Dinero para cerrar la compra',aed(s.ctc),'',t('Entrada + gastos de compra'))}${mrow('Coste final',aed(s.finalCost),'',t('Precio + gastos de compra'))}
  </div>
- <div class="card flat mgroup"><h3>Operación anual</h3>
-  ${mrow('Renta bruta',aed(S.rent))}${mrow('Reserva por vacancia',saed(-s.vac),'neg',S.vacM+' mes(es)')}
+ <div class="card flat mgroup"><h3>${t('Operación anual')}</h3>
+  ${mrow('Renta bruta',aed(S.rent))}${mrow('Reserva por vacancia',saed(-s.vac),'neg',t('{{n}} mes(es)',{n:S.vacM}))}
   ${mrow('Renta efectiva',aed(s.eff))}
-  ${mrow('Comunidad (service charge)',saed(-s.scA),'neg',`${nf0.format(S.sqft)} × AED ${S.sc} · ${aed2(s.scM)}/mes`)}
-  ${mrow('Mantenimiento',saed(-S.maint),'neg')}${mrow('Gestión del alquiler',saed(-s.mg),'neg',S.mgmt+'% de la renta')}
+  ${mrow('Comunidad (service charge)',saed(-s.scA),'neg',t('{{sqft}} × AED {{sc}} · {{monthly}}/mes',{sqft:nf0.format(S.sqft),sc:S.sc,monthly:aed2(s.scM)}))}
+  ${mrow('Mantenimiento',saed(-S.maint),'neg')}${mrow('Gestión del alquiler',saed(-s.mg),'neg',t('{{p}}% de la renta',{p:S.mgmt}))}
   ${mrow('Administración e imprevistos',saed(-S.admin),'neg')}${mrow('Gastos totales (sin vacancia)',aed(s.opex))}
   ${mrow('Ingreso neto antes de hipoteca',aed(s.noi),cls(s.noi))}${mrow('Hipoteca anual',saed(-s.debt),'neg')}
-  ${mrow('Flujo de caja anual',saed(s.cfA),cls(s.cfA),saed(s.cfM)+'/mes')}
+  ${mrow('Flujo de caja anual',saed(s.cfA),cls(s.cfA),saed(s.cfM)+t('/mes'))}
  </div>
- <div class="card flat mgroup"><h3>Rentabilidad y patrimonio</h3>
-  ${mrow('Rentabilidad bruta',pct(s.gy))}${mrow('Rentabilidad neta',pct(s.ny),'','Ingreso neto / precio, antes de hipoteca')}
-  ${mrow('Rentabilidad de tu dinero',pct(s.coc),cls(s.coc),'Flujo anual / dinero para cerrar')}
-  ${mrow('Renta mínima para no perder dinero',aed(s.be),'',aed(s.be/12)+'/mes')}
-  ${mrow('Capital amortizado año 1',aed(s.prin1),'','Intereses año 1 '+aed(s.int1))}
+ <div class="card flat mgroup"><h3>${t('Rentabilidad y patrimonio')}</h3>
+  ${mrow('Rentabilidad bruta',pct(s.gy))}${mrow('Rentabilidad neta',pct(s.ny),'',t('Ingreso neto / precio, antes de hipoteca'))}
+  ${mrow('Rentabilidad de tu dinero',pct(s.coc),cls(s.coc),t('Flujo anual / dinero para cerrar'))}
+  ${mrow('Renta mínima para no perder dinero',aed(s.be),'',aed(s.be/12)+t('/mes'))}
+  ${mrow('Capital amortizado año 1',aed(s.prin1),'',t('Intereses año 1 {{v}}',{v:aed(s.int1)}))}
   ${mrow('Capital amortizado en 2 años',aed(s.prin2))}${mrow('Saldo de hipoteca tras 2 años',aed(s.bal24))}
-  ${mrow('Patrimonio generado año 1',saed(s.wealth),cls(s.wealth),'Capital amortizado + flujo, sin apreciación')}
-  ${mrow('Interés de ahorro que dejas de cobrar',saed(-lost),lost>0.5?'neg':'','por año, al '+S.savRate+'%')}
+  ${mrow('Patrimonio generado año 1',saed(s.wealth),cls(s.wealth),t('Capital amortizado + flujo, sin apreciación'))}
+  ${mrow('Interés de ahorro que dejas de cobrar',saed(-lost),lost>0.5?'neg':'',t('por año, al {{r}}%',{r:S.savRate}))}
  </div>`;
 }
 
@@ -1101,13 +1140,13 @@ function renderChart(R){
  yt.t.forEach(v=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(148,163,184,.1)"/><text x="${m.l-8}" y="${Y(v)+4}" fill="#8190aa" font-size="11" text-anchor="end">${kfmt(v)}</text>`});
  const xs=narrow?(x1-x0>60000?20000:10000):(x1-x0>120000?10000:5000);
  for(let v=Math.ceil(x0/xs)*xs;v<=x1;v+=xs){g+=`<line x1="${X(v)}" x2="${X(v)}" y1="${m.t}" y2="${H-m.b}" stroke="rgba(148,163,184,.06)"/><text x="${X(v)}" y="${H-m.b+17}" fill="#8190aa" font-size="11" text-anchor="middle">${nf0.format(v/1000)}k</text>`}
- g+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" fill="#61708c" font-size="11" text-anchor="middle">Renta anual (AED)</text>`;
- g+=`<text transform="translate(12 ${(m.t+H-m.b)/2}) rotate(-90)" fill="#61708c" font-size="11" text-anchor="middle">Flujo de caja anual (AED)</text>`;
- g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="5 4"/><text x="${W-m.r-4}" y="${Y(0)-6}" fill="#cbd5e1" font-size="11" text-anchor="end">Flujo de caja = 0</text>`;
+ g+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" fill="#61708c" font-size="11" text-anchor="middle">${t('Renta anual (AED)')}</text>`;
+ g+=`<text transform="translate(12 ${(m.t+H-m.b)/2}) rotate(-90)" fill="#61708c" font-size="11" text-anchor="middle">${t('Flujo de caja anual (AED)')}</text>`;
+ g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="#cbd5e1" stroke-width="1.4" stroke-dasharray="5 4"/><text x="${W-m.r-4}" y="${Y(0)-6}" fill="#cbd5e1" font-size="11" text-anchor="end">${t('Flujo de caja = 0')}</text>`;
  // renta actual
  const rx=X(rent);
  g+=`<line x1="${rx}" x2="${rx}" y1="${m.t}" y2="${H-m.b}" stroke="#f5b041" stroke-opacity=".7" stroke-dasharray="3 4"/>`;
- g+=`<text x="${Math.min(Math.max(rx,m.l+60),W-m.r-60)}" y="${m.t+12}" fill="#f5b041" font-size="11" text-anchor="middle">Renta actual ${nf0.format(Math.round(rent/100)/10)}k</text>`;
+ g+=`<text x="${Math.min(Math.max(rx,m.l+60),W-m.r-60)}" y="${m.t+12}" fill="#f5b041" font-size="11" text-anchor="middle">${t('Renta actual {{v}}k',{v:nf0.format(Math.round(rent/100)/10)})}</text>`;
  // líneas: la no seleccionada primero
  series.slice().sort((a,b)=>a.on-b.on).forEach(se=>{const d=se.pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join('');
   if(se.on)g+=`<path d="${d}" fill="none" stroke="${SEL_COLOR}" stroke-width="9" stroke-opacity=".18" stroke-linecap="round"/>`;
@@ -1115,18 +1154,18 @@ function renderChart(R){
  // break-even y punto actual
  series.forEach(se=>{
   if(se.be>=x0&&se.be<=x1){g+=`<circle cx="${X(se.be)}" cy="${Y(0)}" r="5" fill="${se.color}" stroke="#fff" stroke-width="1.5"/>`;
-   if(se.on)g+=`<text x="${X(se.be)}" y="${Y(0)+18}" fill="#bcd4ff" font-size="11" text-anchor="middle">Mínima ${nf0.format(Math.round(se.be/100)/10)}k</text>`}
+   if(se.on)g+=`<text x="${X(se.be)}" y="${Y(0)+18}" fill="#bcd4ff" font-size="11" text-anchor="middle">${t('Mínima {{v}}k',{v:nf0.format(Math.round(se.be/100)/10)})}</text>`}
   g+=`<circle cx="${rx}" cy="${Y(se.cur)}" r="4.5" fill="#fff" stroke="${se.color}" stroke-width="2.5"/>`});
  g+=`<line id="xh" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="rgba(255,255,255,.4)" visibility="hidden"/>`;
  g+=`<rect id="ov" x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="transparent"/>`;
- const beTxt=series.map(se=>`${SHORT[se.k]} ${se.be>x1||se.be<x0?'fuera de este rango':'con '+aed(se.be)}`).join('; ');
- box.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Flujo de caja anual según la renta, pedido y negociado. Cruza el cero: ${beTxt}. Con foco, usa las flechas izquierda y derecha para explorar.">${g}</svg>`;box.appendChild(tip);
+ const beTxt=series.map(se=>`${t(SHORT[se.k])} ${se.be>x1||se.be<x0?t('fuera de este rango'):t('con {{v}}',{v:aed(se.be)})}`).join('; ');
+ box.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="${t('Flujo de caja anual según la renta, pedido y negociado. Cruza el cero: {{beTxt}}. Con foco, usa las flechas izquierda y derecha para explorar.',{beTxt})}">${g}</svg>`;box.appendChild(tip);
  const svg=box.querySelector('svg'),ov=box.querySelector('#ov'),xh=box.querySelector('#xh');
  tip.setAttribute('aria-live','polite');
  const showAt=rr=>{const xx=X(rr);
   xh.setAttribute('x1',xx);xh.setAttribute('x2',xx);xh.setAttribute('visibility','visible');
-  tip.innerHTML=`<div class="muted tiny">Renta ${aed(rr)}/año</div>`+series.map(se=>{const v=calc(S,se.price,rr).cfM;
-   return `<div class="r"><span><span class="swatch" style="background:${se.color}"></span>${SHORT[se.k]}</span><b class="${cls(v)}">${saed(v)}/mes</b></div>`}).join('');
+  tip.innerHTML=`<div class="muted tiny">${t('Renta {{v}}/año',{v:aed(rr)})}</div>`+series.map(se=>{const v=calc(S,se.price,rr).cfM;
+   return `<div class="r"><span><span class="swatch" style="background:${se.color}"></span>${t(SHORT[se.k])}</span><b class="${cls(v)}">${saed(v)}${t('/mes')}</b></div>`}).join('');
   tip.style.opacity=1;const tw=tip.offsetWidth;tip.style.left=Math.min(W-tw-4,Math.max(4,xx+12>W-tw?xx-tw-12:xx+12))+'px';tip.style.top=(m.t+18)+'px'};
  const move=e=>{const rect=box.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
   showAt(Math.max(x0,Math.min(x1,x0+(px-m.l)/(W-m.l-m.r)*(x1-x0))))};
@@ -1144,34 +1183,34 @@ function renderChart(R){
  svg.addEventListener('blur',out);
  // Ver como tabla
  const chartRows=Array.from({length:12},(_,i)=>Math.round(x0+(x1-x0)*i/11));
- let th='<thead><tr><th>Renta anual</th>'+series.map(se=>`<th${se.on?' class="on"':''}>${SHORT[se.k]} · flujo/mes</th>`).join('')+'</tr></thead><tbody>';
+ let th='<thead><tr><th>'+t('Renta anual')+'</th>'+series.map(se=>`<th${se.on?' class="on"':''}>${t(SHORT[se.k])} · ${t('flujo/mes')}</th>`).join('')+'</tr></thead><tbody>';
  chartRows.forEach(rr=>{th+=`<tr><td>${aed(rr)}</td>`+series.map(se=>{const v=calc(S,se.price,rr).cfM;return `<td class="${cls(v)}">${saed(v)}</td>`}).join('')+'</tr>'});
  $('chartTable').innerHTML=th+'</tbody>';
  // Estado vacío: ninguna línea cruza el rango visible
  const anyCross=series.some(se=>se.be>=x0&&se.be<=x1);
  $('chartEmpty').hidden=anyCross;
- if(!anyCross)$('chartEmpty').innerHTML='<span aria-hidden="true">i</span><span>El gráfico no cruza el cero: con estos gastos, ninguna renta entre '+aed(x0)+' y '+aed(x1)+' llega a flujo de caja 0. Revisa «Gastos anuales» en Supuestos.</span>';
- $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}"><span class="ln" style="background:${se.color}"></span>${SHORT[se.k]} · ${short(se.price)}${se.on?' · seleccionado':''}</span>`).join('')+
-  '<span class="li"><span class="ln" style="background:#f5b041;height:8px;width:8px;border-radius:50%"></span>Renta actual</span><span class="li"><span class="ln" style="background:#fff;height:8px;width:8px;border-radius:50%"></span>Renta mínima</span>';
+ if(!anyCross)$('chartEmpty').innerHTML='<span aria-hidden="true">i</span><span>'+t('El gráfico no cruza el cero: con estos gastos, ninguna renta entre {{x0}} y {{x1}} llega a flujo de caja 0. Revisa «Gastos anuales» en Supuestos.',{x0:aed(x0),x1:aed(x1)})+'</span>';
+ $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}"><span class="ln" style="background:${se.color}"></span>${t(SHORT[se.k])} · ${short(se.price)}${se.on?' · '+t('seleccionado'):''}</span>`).join('')+
+  `<span class="li"><span class="ln" style="background:#f5b041;height:8px;width:8px;border-radius:50%"></span>${t('Renta actual')}</span><span class="li"><span class="ln" style="background:#fff;height:8px;width:8px;border-radius:50%"></span>${t('Renta mínima')}</span>`;
 }
 
 /* ---------- Break-even ---------- */
-function gapCell(need){const gap=need-S.rent;return `<td class="${gap<=0?'pos':'neg'}">${gap<=0?'Cubierto (+'+aed(-gap)+')':'Faltan '+aed(gap)}</td>`}
+function gapCell(need){const gap=need-S.rent;return `<td class="${gap<=0?'pos':'neg'}">${gap<=0?t('Cubierto (+{{v}})',{v:aed(-gap)}):t('Faltan {{v}}',{v:aed(gap)})}</td>`}
 function renderBE(R){
- $('beSub').textContent=`Renta anual necesaria para cada objetivo de flujo de caja mensual, y la brecha frente a la renta actual (${aed(S.rent)}/año).`;
+ $('beSub').textContent=t('Renta anual necesaria para cada objetivo de flujo de caja mensual, y la brecha frente a la renta actual ({{rent}}/año).',{rent:aed(S.rent)});
  const on=k=>S.view===k?' class="on"':'';
- let h=`<thead><tr><th>Objetivo al mes</th><th${on('main')}>Pedido · renta anual</th><th${on('main')}>Pedido · vs actual</th><th${on('neg')}>Negociado · renta anual</th><th${on('neg')}>Negociado · vs actual</th></tr></thead><tbody>`;
- [0,500,1000,1500,2000].forEach(t=>{const a=breakEven(S,S.price,t),b=breakEven(S,S.neg,t);
-  h+=`<tr><td>${t===0?'AED 0/mes (no perder dinero)':'+AED '+nf0.format(t)+'/mes'}</td><td><b>${aed(a)}</b> <span class="dim tiny">${aed(a/12)}/mes</span></td>${gapCell(a)}<td><b>${aed(b)}</b> <span class="dim tiny">${aed(b/12)}/mes</span></td>${gapCell(b)}</tr>`});
+ let h=`<thead><tr><th>${t('Objetivo al mes')}</th><th${on('main')}>${t('Pedido · renta anual')}</th><th${on('main')}>${t('Pedido · vs actual')}</th><th${on('neg')}>${t('Negociado · renta anual')}</th><th${on('neg')}>${t('Negociado · vs actual')}</th></tr></thead><tbody>`;
+ [0,500,1000,1500,2000].forEach(goal=>{const a=breakEven(S,S.price,goal),b=breakEven(S,S.neg,goal);
+  h+=`<tr><td>${goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)})}</td><td><b>${aed(a)}</b> <span class="dim tiny">${aed(a/12)}${t('/mes')}</span></td>${gapCell(a)}<td><b>${aed(b)}</b> <span class="dim tiny">${aed(b/12)}${t('/mes')}</span></td>${gapCell(b)}</tr>`});
  $('beTable').innerHTML=h+'</tbody>';
 }
 
 /* ---------- Stress de tasa ---------- */
 function renderStress(){
  const on=k=>S.view===k?' class="on"':'';
- let h=`<thead><tr><th>Tasa</th><th${on('main')}>Pedido · flujo/mes</th><th${on('main')}>Pedido · renta mínima</th><th${on('neg')}>Negociado · flujo/mes</th><th${on('neg')}>Negociado · renta mínima</th></tr></thead><tbody>`;
+ let h=`<thead><tr><th>${t('Tasa')}</th><th${on('main')}>${t('Pedido · flujo/mes')}</th><th${on('main')}>${t('Pedido · renta mínima')}</th><th${on('neg')}>${t('Negociado · flujo/mes')}</th><th${on('neg')}>${t('Negociado · renta mínima')}</th></tr></thead><tbody>`;
  [0,0.5,1,2].forEach(d=>{const r=S.rate+d,a=calc(S,S.price,S.rent,r),b=calc(S,S.neg,S.rent,r);
-  h+=`<tr><td>${r.toFixed(2)}%${d?' (+'+d+'%)':' (modelo)'}</td><td class="${cls(a.cfM)}">${saed(a.cfM)}</td><td>${aed(breakEven(S,S.price,0,r))}</td><td class="${cls(b.cfM)}">${saed(b.cfM)}</td><td>${aed(breakEven(S,S.neg,0,r))}</td></tr>`});
+  h+=`<tr><td>${r.toFixed(2)}%${d?' (+'+d+'%)':' ('+t('modelo')+')'}</td><td class="${cls(a.cfM)}">${saed(a.cfM)}</td><td>${aed(breakEven(S,S.price,0,r))}</td><td class="${cls(b.cfM)}">${saed(b.cfM)}</td><td>${aed(breakEven(S,S.neg,0,r))}</td></tr>`});
  $('stressTable').innerHTML=h+'</tbody>';
 }
 
@@ -1182,9 +1221,9 @@ function renderMatrix(){
  const prices=Array.from({length:6},(_,i)=>Math.round(start+i*step));
  [ask,neg].forEach(p=>{if(!prices.includes(p))prices.push(p)});prices.sort((a,b)=>a-b);
  const nearest=cols.reduce((a,b)=>Math.abs(b-S.rent)<Math.abs(a-S.rent)?b:a);
- $('mxSub').textContent=`Flujo de caja mensual con ${nf0.format(S.sqft)} sqft, ${S.down}% de entrada, ${S.rate.toFixed(2)}% a ${S.term} años y AED ${S.sc}/sqft de comunidad. Se incluyen siempre el precio pedido y el negociado.`;
- let h='<thead><tr><th>Precio \\ Renta anual</th>'+cols.map(c=>`<th style="text-align:center">${nf0.format(c/1000)}k</th>`).join('')+'<th>Renta mínima</th></tr></thead><tbody>';
- prices.forEach(p=>{const mark=[p===ask?'pedido':'',p===neg?'negociado':''].filter(Boolean).join(' · '),isCur=!!mark;
+ $('mxSub').textContent=t('Flujo de caja mensual con {{sqft}} sqft, {{down}}% de entrada, {{rate}}% a {{term}} años y AED {{sc}}/sqft de comunidad. Se incluyen siempre el precio pedido y el negociado.',{sqft:nf0.format(S.sqft),down:S.down,rate:S.rate.toFixed(2),term:S.term,sc:S.sc});
+ let h='<thead><tr><th>'+t('Precio \\ Renta anual')+'</th>'+cols.map(c=>`<th style="text-align:center">${nf0.format(c/1000)}k</th>`).join('')+'<th>'+t('Renta mínima')+'</th></tr></thead><tbody>';
+ prices.forEach(p=>{const mark=[p===ask?t('pedido'):'',p===neg?t('negociado'):''].filter(Boolean).join(' · '),isCur=!!mark;
   h+=`<tr class="${isCur?'cur':''}"><td>${short(p)}${isCur?` <span class="tiny">● ${mark}</span>`:''}</td>`+cols.map(r=>{const v=calc(S,p,r).cfM;
    const k=Math.abs(v)<=250?'c-mid':v>0?'c-pos':'c-neg',a=Math.min(.55,.12+Math.abs(v)/5000).toFixed(2);
    return `<td class="${k}${isCur&&r===nearest?' hit':''}" style="--a:${a}">${saed(v)}</td>`}).join('')+`<td>${aed(breakEven(S,p))}</td></tr>`});
@@ -1194,36 +1233,36 @@ function renderMatrix(){
 /* ---------- Ahorros ---------- */
 function renderSavings(R){
  const{M,N}=R,capI=S.savCap*S.savRate/100,before=savingsInterest(S,S.sav);
- $('bench').innerHTML=`<h3>Referencia: cuenta al ${S.savRate}%</h3>
-  <div class="eq num">${aed(S.savCap)} × ${S.savRate}% = <b>${aed(capI)}/año</b></div>
-  ${mrow('Equivalente mensual',aed(capI/12),'','El interés se paga mensualmente')}
-  ${mrow('En 2 años',aed(capI*2),'','Interés simple: lo que supera el tope no genera interés')}
-  ${mrow('Tu saldo actual genera',aed(before)+'/año','','mín(saldo, tope) × tasa')}
-  <p class="small muted" style="margin:10px 0 0">Cada dirham que sale como entrada o gastos de compra deja de rendir ${S.savRate}% mientras tu saldo esté por debajo de ${aed(S.savCap)}. Ese es el listón que la propiedad debe superar, sumando flujo de caja y capital amortizado.</p>`;
+ $('bench').innerHTML=`<h3>${t('Referencia: cuenta al {{r}}%',{r:S.savRate})}</h3>
+  <div class="eq num">${aed(S.savCap)} × ${S.savRate}% = <b>${aed(capI)}${t('/año')}</b></div>
+  ${mrow('Equivalente mensual',aed(capI/12),'',t('El interés se paga mensualmente'))}
+  ${mrow('En 2 años',aed(capI*2),'',t('Interés simple: lo que supera el tope no genera interés'))}
+  ${mrow('Tu saldo actual genera',aed(before)+t('/año'),'',t('mín(saldo, tope) × tasa'))}
+  <p class="small muted" style="margin:10px 0 0">${t('Cada dirham que sale como entrada o gastos de compra deja de rendir {{r}}% mientras tu saldo esté por debajo de {{cap}}. Ese es el listón que la propiedad debe superar, sumando flujo de caja y capital amortizado.',{r:S.savRate,cap:aed(S.savCap)})}</p>`;
  const al=[];
- [M,N].forEach(s=>{if(s.rem<0)al.push(`<div class="alert neg" role="alert"><span aria-hidden="true">▼</span><span><b>${LABEL[s.key]}:</b> el dinero para cerrar (${aed(s.ctc)}) supera tu saldo (${aed(S.sav)}) en ${aed(-s.rem)}.</span></div>`)});
+ [M,N].forEach(s=>{if(s.rem<0)al.push(`<div class="alert neg" role="alert"><span aria-hidden="true">▼</span><span><b>${t(LABEL[s.key])}:</b> ${t('el dinero para cerrar ({{ctc}}) supera tu saldo ({{sav}}) en {{gap}}.',{ctc:aed(s.ctc),sav:aed(S.sav),gap:aed(-s.rem)})}</span></div>`)});
  const s=R.sel;
- $('savAlerts').innerHTML=`<h3>Después de comprar · ${LABEL[S.view]}</h3>${al.join('')}
+ $('savAlerts').innerHTML=`<h3>${t('Después de comprar · {{scenario}}',{scenario:t(LABEL[S.view])})}</h3>${al.join('')}
   ${mrow('Saldo actual',aed(S.sav))}${mrow('Dinero para cerrar la compra',saed(-s.ctc),'neg')}${mrow('Saldo restante',aed(s.rem),s.rem<0?'neg':'')}
-  ${mrow('Interés preservado',aed(s.interest)+'/año','pos',aed(s.interest/12)+'/mes')}
-  ${mrow('Interés que dejas de cobrar',saed(-(before-s.interest))+'/año',before-s.interest>0.5?'neg':'')}
-  ${mrow('Flujo de caja de la propiedad',saed(s.cfM)+'/mes',cls(s.cfM),saed(s.cfA)+'/año')}
-  ${mrow('Ingreso combinado',saed(s.combM)+'/mes',cls(s.combM),saed(s.combA)+'/año · vs '+aed(before)+'/año sin comprar')}
-  <p class="tiny dim" style="margin:10px 0 0">Sin contar el capital amortizado (${aed(s.prin1)} en el año 1), que es patrimonio pero no ingreso líquido.</p>`;
- let h='<thead><tr><th>Escenario</th><th>Para cerrar</th><th>Saldo restante</th><th>Interés preservado/año</th><th>Interés perdido/año</th><th>Flujo propiedad/año</th><th>Ingreso combinado/mes</th><th>Ingreso combinado/año</th></tr></thead><tbody>';
- [M,N].forEach(x=>{h+=`<tr class="${S.view===x.key?'on':''}"><td>${LABEL[x.key]} · ${short(x.price)}</td><td>${aed(x.ctc)}</td><td class="${x.rem<0?'neg':''}">${aed(x.rem)}</td><td>${aed(x.interest)}</td><td class="${before-x.interest>0.5?'neg':''}">${saed(-(before-x.interest))}</td><td class="${cls(x.cfA)}">${saed(x.cfA)}</td><td class="${cls(x.combM)}">${saed(x.combM)}</td><td class="${cls(x.combA)}">${saed(x.combA)}</td></tr>`});
- $('savTable').innerHTML=h+`<tr><td>Sin comprar</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${saed(before/12)}</td><td class="${cls(before)}">${saed(before)}</td></tr></tbody>`;
+  ${mrow('Interés preservado',aed(s.interest)+t('/año'),'pos',aed(s.interest/12)+t('/mes'))}
+  ${mrow('Interés que dejas de cobrar',saed(-(before-s.interest))+t('/año'),before-s.interest>0.5?'neg':'')}
+  ${mrow('Flujo de caja de la propiedad',saed(s.cfM)+t('/mes'),cls(s.cfM),saed(s.cfA)+t('/año'))}
+  ${mrow('Ingreso combinado',saed(s.combM)+t('/mes'),cls(s.combM),t('{{a}}/año · vs {{b}}/año sin comprar',{a:saed(s.combA),b:aed(before)}))}
+  <p class="tiny dim" style="margin:10px 0 0">${t('Sin contar el capital amortizado ({{v}} en el año 1), que es patrimonio pero no ingreso líquido.',{v:aed(s.prin1)})}</p>`;
+ let h='<thead><tr><th>'+t('Escenario')+'</th><th>'+t('Para cerrar')+'</th><th>'+t('Saldo restante')+'</th><th>'+t('Interés preservado/año')+'</th><th>'+t('Interés perdido/año')+'</th><th>'+t('Flujo propiedad/año')+'</th><th>'+t('Ingreso combinado/mes')+'</th><th>'+t('Ingreso combinado/año')+'</th></tr></thead><tbody>';
+ [M,N].forEach(x=>{h+=`<tr class="${S.view===x.key?'on':''}"><td>${t(LABEL[x.key])} · ${short(x.price)}</td><td>${aed(x.ctc)}</td><td class="${x.rem<0?'neg':''}">${aed(x.rem)}</td><td>${aed(x.interest)}</td><td class="${before-x.interest>0.5?'neg':''}">${saed(-(before-x.interest))}</td><td class="${cls(x.cfA)}">${saed(x.cfA)}</td><td class="${cls(x.combM)}">${saed(x.combM)}</td><td class="${cls(x.combA)}">${saed(x.combA)}</td></tr>`});
+ $('savTable').innerHTML=h+`<tr><td>${t('Sin comprar')}</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${saed(before/12)}</td><td class="${cls(before)}">${saed(before)}</td></tr></tbody>`;
 }
 
 /* ---------- Precio límite (walk-away) ---------- */
 function renderMaxPrice(){
  const rr=renewedRent(S),showRenew=Math.round(rr)!==Math.round(S.rent);
- $('mpSub').textContent=`El precio más alto al que el flujo de caja mensual todavía llega a cada objetivo, con la renta actual (${aed(S.rent)}/año), ${S.down}% de entrada, ${S.rate.toFixed(2)}% a ${S.term} años y los mismos costes. Por encima de ese precio no cumples el objetivo: es tu límite para negociar.`;
- const vs=(p,ref)=>{const d=p-ref;return `<td class="${d>=0?'pos':'neg'}">${d>=0?'Margen de '+aed(d):'Bajar '+aed(-d)}</td>`};
- let h=`<thead><tr><th>Objetivo de flujo de caja</th><th>Precio límite</th><th>AED/sqft</th><th>vs pedido</th><th>vs negociado</th><th>Dinero para cerrar</th>${showRenew?`<th>Precio límite tras renovar (${aed(rr)}/año)</th>`:''}</tr></thead><tbody>`;
- [0,500,1000,1500].forEach(t=>{
-  const p=maxPrice(S,t),lbl=t===0?'AED 0/mes (no perder dinero)':'+AED '+nf0.format(t)+'/mes',pr=showRenew?`<td>${aed(maxPrice(S,t,rr))}</td>`:'';
-  if(!(p>0)){h+=`<tr><td>${lbl}</td><td class="neg" colspan="5">Ningún precio llega a este objetivo con la renta actual</td>${pr}</tr>`;return}
+ $('mpSub').textContent=t('El precio más alto al que el flujo de caja mensual todavía llega a cada objetivo, con la renta actual ({{rent}}/año), {{down}}% de entrada, {{rate}}% a {{term}} años y los mismos costes. Por encima de ese precio no cumples el objetivo: es tu límite para negociar.',{rent:aed(S.rent),down:S.down,rate:S.rate.toFixed(2),term:S.term});
+ const vs=(p,ref)=>{const d=p-ref;return `<td class="${d>=0?'pos':'neg'}">${d>=0?t('Margen de {{v}}',{v:aed(d)}):t('Bajar {{v}}',{v:aed(-d)})}</td>`};
+ let h=`<thead><tr><th>${t('Objetivo de flujo de caja')}</th><th>${t('Precio límite')}</th><th>AED/sqft</th><th>${t('vs pedido')}</th><th>${t('vs negociado')}</th><th>${t('Dinero para cerrar')}</th>${showRenew?`<th>${t('Precio límite tras renovar ({{v}}/año)',{v:aed(rr)})}</th>`:''}</tr></thead><tbody>`;
+ [0,500,1000,1500].forEach(goal=>{
+  const p=maxPrice(S,goal),lbl=goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)}),pr=showRenew?`<td>${aed(maxPrice(S,goal,rr))}</td>`:'';
+  if(!(p>0)){h+=`<tr><td>${lbl}</td><td class="neg" colspan="5">${t('Ningún precio llega a este objetivo con la renta actual')}</td>${pr}</tr>`;return}
   h+=`<tr><td>${lbl}</td><td><b>${aed(p)}</b></td><td>${aed(p/S.sqft)}</td>${vs(p,S.price)}${vs(p,S.neg)}<td>${aed(scenario(S,p).ctc)}</td>${pr}</tr>`});
  $('mpTable').innerHTML=h+'</tbody>';
 }
@@ -1231,93 +1270,107 @@ function renderMaxPrice(){
 /* ---------- Renovación de renta ---------- */
 function renderRenewal(R){
  const{M,N}=R,rr=renewedRent(S);
- $('rnSub').textContent=`La renta pasa de ${aed(S.rent)} a ${aed(rr)}/año (${S.renewPct>=0?'+':''}${S.renewPct}%) en el mes ${S.renewIn+1}${S.renewGap?`, tras ${S.renewGap} ${S.renewGap===1?'mes':'meses'} sin inquilino`:''}. Ajusta el supuesto en Supuestos → Renovación del alquiler.`;
+ const rv={a:aed(S.rent),b:aed(rr),pct:(S.renewPct>=0?'+':'')+S.renewPct+'%',m:S.renewIn+1,g:S.renewGap};
+ $('rnSub').textContent=!S.renewGap
+  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv)
+  :S.renewGap===1
+  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras 1 mes sin inquilino. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv)
+  :t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras {{g}} meses sin inquilino. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv);
  const on=k=>S.view===k?' class="on"':'';
- const row=(l,f,c)=>`<tr><td>${l}</td>${[M,N].map(x=>{const v=f(x);return `<td class="${c?c(v):''}">${typeof v==='string'?v:saed(v)}</td>`}).join('')}</tr>`;
+ const row=(l,f,c)=>`<tr><td>${t(l)}</td>${[M,N].map(x=>{const v=f(x);return `<td class="${c?c(v,x):''}">${typeof v==='string'?v:saed(v)}</td>`}).join('')}</tr>`;
  const after=x=>calc(S,x.price,rr).cfM,y1=x=>x.sim.years[0].cumCF,y2=x=>x.sim.years[1].cumCF-x.sim.years[0].cumCF;
- $('rnTable').innerHTML=`<thead><tr><th>Métrica</th><th${on('main')}>Pedido</th><th${on('neg')}>Negociado</th></tr></thead><tbody>`+
+ $('rnTable').innerHTML=`<thead><tr><th>${t('Métrica')}</th><th${on('main')}>${t('Pedido')}</th><th${on('neg')}>${t('Negociado')}</th></tr></thead><tbody>`+
   row('Flujo/mes con la renta actual',x=>x.cfM,cls)+
   row('Flujo/mes tras renovar',after,cls)+
-  row('Renta mínima vs renta renovada',x=>{const g=rr-x.be;return g>=0?'Cubierto (+'+aed(g)+')':'Faltan '+aed(-g)+'/año'},v=>v.startsWith('Cubierto')?'pos':'neg')+
+  row('Renta mínima vs renta renovada',x=>{const g=rr-x.be;return g>=0?t('Cubierto (+{{v}})',{v:aed(g)}):t('Faltan {{v}}/año',{v:aed(-g)})},(v,x)=>rr-x.be>=0?'pos':'neg')+
   row('Renta perdida por meses vacíos',()=>S.renewGap?saed(-S.renewGap*rr/12):'—',v=>v==='—'?'':'neg')+
   row('Flujo del año 1 (según calendario)',y1,cls)+
   row('Flujo del año 2 (según calendario)',y2,cls)+'</tbody>';
 }
 
 /* ---------- Runway ---------- */
-const monthsTxt=v=>v==null?'No se agota':v<=0?'0 meses':v<24?`${Math.round(v)} meses`:`${(v/12).toFixed(1)} años`;
+const monthsTxt=v=>v==null?t('No se agota'):v<=0?t('0 meses'):v<24?t('{{n}} meses',{n:Math.round(v)}):t('{{n}} años',{n:(v/12).toFixed(1)});
 function renderRunway(R){
  const{M,N}=R,free=x=>x.rem-S.reserve;
- const al=[M,N].filter(x=>free(x)<0).map(x=>`<div class="alert" role="alert"><span aria-hidden="true">⚠</span><span><b>${LABEL[x.key]}:</b> después de cerrar la compra no alcanza para la reserva de imprevistos (faltan ${aed(-free(x))}).</span></div>`).join('');
- $('rwCard').innerHTML=al+calcHead+
-  calcRow('rwRem','Saldo tras cerrar la compra','',M.rem,N.rem,{help:`Tu saldo actual (${aed(S.sav)}) menos el dinero para cerrar de cada escenario.`})+
-  calcRow('rwRes','Reserva para imprevistos','',-S.reserve,-S.reserve,{fmt:saed,help:'Dinero que apartas para una reparación grande, un electrodoméstico o un mes sin pago. Lo defines en Objetivo y ahorros.'})+
-  calcRow('rwFree','Colchón disponible','',free(M),free(N),{fmt:v=>`<span class="${v<0?'neg':''}">${aed(v)}</span>`,help:'Saldo tras cerrar la compra menos la reserva. Es lo que puede absorber un flujo de caja negativo.'})+
-  calcRow('rwCover','Cuotas de hipoteca cubiertas','',Math.max(free(M),0)/M.pm,Math.max(free(N),0)/N.pm,{fmt:monthsTxt,help:'Cuántas cuotas completas podrías pagar solo con el colchón si la propiedad no generara renta.'})+
-  calcRow('rwMonths','Duración con el flujo de caja actual','',M.run.runwayMonth,N.run.runwayMonth,{extra:' total',fmt:monthsTxt,help:'Meses hasta que el colchón llega a cero cubriendo el flujo de caja negativo, con el interés de la cuenta y el cambio de renta al renovar. "No se agota" significa que dura más de 30 años o que el flujo de caja es positivo.'});
+ const al=[M,N].filter(x=>free(x)<0).map(x=>`<div class="alert" role="alert"><span aria-hidden="true">⚠</span><span><b>${t(LABEL[x.key])}:</b> ${t('después de cerrar la compra no alcanza para la reserva de imprevistos (faltan {{v}}).',{v:aed(-free(x))})}</span></div>`).join('');
+ $('rwCard').innerHTML=al+calcHeadHtml()+
+  calcRow('rwRem',t('Saldo tras cerrar la compra'),'',M.rem,N.rem,{help:t('Tu saldo actual ({{sav}}) menos el dinero para cerrar de cada escenario.',{sav:aed(S.sav)})})+
+  calcRow('rwRes',t('Reserva para imprevistos'),'',-S.reserve,-S.reserve,{fmt:saed,help:t('Dinero que apartas para una reparación grande, un electrodoméstico o un mes sin pago. Lo defines en Objetivo y ahorros.')})+
+  calcRow('rwFree',t('Colchón disponible'),'',free(M),free(N),{fmt:v=>`<span class="${v<0?'neg':''}">${aed(v)}</span>`,help:t('Saldo tras cerrar la compra menos la reserva. Es lo que puede absorber un flujo de caja negativo.')})+
+  calcRow('rwCover',t('Cuotas de hipoteca cubiertas'),'',Math.max(free(M),0)/M.pm,Math.max(free(N),0)/N.pm,{fmt:monthsTxt,help:t('Cuántas cuotas completas podrías pagar solo con el colchón si la propiedad no generara renta.')})+
+  calcRow('rwMonths',t('Duración con el flujo de caja actual'),'',M.run.runwayMonth,N.run.runwayMonth,{extra:' total',fmt:monthsTxt,help:t('Meses hasta que el colchón llega a cero cubriendo el flujo de caja negativo, con el interés de la cuenta y el cambio de renta al renovar. "No se agota" significa que dura más de 30 años o que el flujo de caja es positivo.')});
 }
 
 /* ---------- Entrada óptima ---------- */
 function renderDownPay(R){
  const s=R.sel,H=S.horizon,price=s.price;
- $('enSub').textContent=`${LABEL[S.view]} (${aed(price)}): efecto de cada % de entrada, con el resto de supuestos igual. El patrimonio neto a ${H} años es ahorros + (precio − saldo de la hipoteca), sin apreciación. Cambia de escenario con el selector de la barra de pestañas.`;
+ $('enSub').textContent=t('{{scenario}} ({{price}}): efecto de cada % de entrada, con el resto de supuestos igual. El patrimonio neto a {{h}} años es ahorros + (precio − saldo de la hipoteca), sin apreciación. Cambia de escenario con el selector de la barra de pestañas.',{scenario:t(LABEL[S.view]),price:aed(price),h:H});
  const dPm=payment(10000,S.rate,S.term),dMortInt=10000*S.rate/100,dSav=savingsInterest(S,s.rem)-savingsInterest(S,s.rem-10000);
- $('enMarginal').innerHTML=`Cada <b>AED 10,000</b> más de entrada baja la cuota <b>${aed(dPm)}/mes</b> y ahorra unos <b>${aed(dMortInt)}/año</b> de intereses de la hipoteca (al ${S.rate.toFixed(2)}%), pero deja de generar <b>${aed(dSav)}/año</b> de interés de ahorro (al ${S.savRate}%, con el tope de ${aed(S.savCap)}). ${dSav>dMortInt?'Con estos supuestos, cada dirham extra de entrada rinde menos que en tu cuenta.':dSav<dMortInt?'Con estos supuestos, cada dirham extra de entrada ahorra más de lo que dejaría de rendir en tu cuenta.':'Con estos supuestos, las dos opciones rinden lo mismo.'}`;
+ const mv={pm:aed(dPm),mi:aed(dMortInt),r:S.rate.toFixed(2),sv:aed(dSav),sr:S.savRate,cap:aed(S.savCap)};
+ $('enMarginal').innerHTML=dSav>dMortInt
+  ?t('Cada <b>AED 10,000</b> más de entrada baja la cuota <b>{{pm}}/mes</b> y ahorra unos <b>{{mi}}/año</b> de intereses de la hipoteca (al {{r}}%), pero deja de generar <b>{{sv}}/año</b> de interés de ahorro (al {{sr}}%, con el tope de {{cap}}). Con estos supuestos, cada dirham extra de entrada rinde menos que en tu cuenta.',mv)
+  :dSav<dMortInt
+  ?t('Cada <b>AED 10,000</b> más de entrada baja la cuota <b>{{pm}}/mes</b> y ahorra unos <b>{{mi}}/año</b> de intereses de la hipoteca (al {{r}}%), pero deja de generar <b>{{sv}}/año</b> de interés de ahorro (al {{sr}}%, con el tope de {{cap}}). Con estos supuestos, cada dirham extra de entrada ahorra más de lo que dejaría de rendir en tu cuenta.',mv)
+  :t('Cada <b>AED 10,000</b> más de entrada baja la cuota <b>{{pm}}/mes</b> y ahorra unos <b>{{mi}}/año</b> de intereses de la hipoteca (al {{r}}%), pero deja de generar <b>{{sv}}/año</b> de interés de ahorro (al {{sr}}%, con el tope de {{cap}}). Con estos supuestos, las dos opciones rinden lo mismo.',mv);
  const rows=[];for(let d=15;d<=60;d+=5){const a={...S,down:d},c=calc(a,price),y=simulate(a,price,H*12).years[H-1];rows.push({d,c,nw:y.nwHold,no:y.savNo})}
  // Only down payments that fit in current savings are real options; a negative balance is not free money.
  const feasible=rows.filter(r=>r.c.rem>=0),best=feasible.length?feasible.reduce((b,r)=>r.nw>b.nw?r:b):null;
- let h=`<thead><tr><th>Entrada</th><th>Importe</th><th>Para cerrar</th><th>Cuota/mes</th><th>Flujo/mes</th><th>Interés de ahorro/año</th><th>Flujo + interés/año</th><th>Patrimonio neto a ${H} años</th></tr></thead><tbody>`;
+ let h=`<thead><tr><th>${t('Entrada')}</th><th>${t('Importe')}</th><th>${t('Para cerrar')}</th><th>${t('Cuota/mes')}</th><th>${t('Flujo/mes')}</th><th>${t('Interés de ahorro/año')}</th><th>${t('Flujo + interés/año')}</th><th>${t('Patrimonio neto a {{h}} años',{h:H})}</th></tr></thead><tbody>`;
  rows.forEach(r=>{const over=r.c.rem<0;
-  h+=`<tr class="${r.d===S.down?'on':''}"><td>${r.d}%${r.d===S.down?' <span class="tiny">● actual</span>':''}${r===best?' <span class="badge b-green">Mejor a '+H+' años</span>':''}</td><td>${aed(r.c.down)}</td><td class="${over?'neg':''}">${aed(r.c.ctc)}${over?' <span class="tiny">supera ahorros</span>':''}</td><td>${aed(r.c.pm)}</td><td class="${cls(r.c.cfM)}">${saed(r.c.cfM)}</td><td>${aed(r.c.interest)}</td><td class="${cls(r.c.combA)}">${saed(r.c.combA)}</td>${over?'<td class="dim">No alcanza: faltan '+aed(-r.c.rem)+'</td>':`<td class="${r.nw>=r.no?'pos':'neg'}">${aed(r.nw)} <span class="dim tiny">${saed(r.nw-r.no)} vs no comprar</span></td>`}</tr>`});
+  h+=`<tr class="${r.d===S.down?'on':''}"><td>${r.d}%${r.d===S.down?` <span class="tiny">● ${t('actual')}</span>`:''}${r===best?` <span class="badge b-green">${t('Mejor a {{h}} años',{h:H})}</span>`:''}</td><td>${aed(r.c.down)}</td><td class="${over?'neg':''}">${aed(r.c.ctc)}${over?` <span class="tiny">${t('supera ahorros')}</span>`:''}</td><td>${aed(r.c.pm)}</td><td class="${cls(r.c.cfM)}">${saed(r.c.cfM)}</td><td>${aed(r.c.interest)}</td><td class="${cls(r.c.combA)}">${saed(r.c.combA)}</td>${over?`<td class="dim">${t('No alcanza: faltan {{v}}',{v:aed(-r.c.rem)})}</td>`:`<td class="${r.nw>=r.no?'pos':'neg'}">${aed(r.nw)} <span class="dim tiny">${t('{{v}} vs no comprar',{v:saed(r.nw-r.no)})}</span></td>`}</tr>`});
  $('enTable').innerHTML=h+'</tbody>';
 }
 
 /* ---------- Horizonte: comprar vs no comprar ---------- */
-const yearTxt=v=>v==null?'Más de 30 años':'Año '+v;
+const yearTxt=v=>v==null?t('Más de 30 años'):t('Año {{v}}',{v});
 function renderHorizon(R){
  const{M,N}=R,H=S.horizon;
  $('horizon').value=String(H);
- $('hzSub').textContent=`Patrimonio neto acumulado mes a mes, sin apreciación. Comprando: ahorros restantes (con su interés y el flujo de caja) + (precio − saldo de la hipoteca). "Si vendes" resta además la comisión de venta y la penalización de la hipoteca. Sin comprar: tu saldo actual rindiendo al ${S.savRate}% con el tope de ${aed(S.savCap)}.`;
+ $('hzSub').textContent=t('Patrimonio neto acumulado mes a mes, sin apreciación. Comprando: ahorros restantes (con su interés y el flujo de caja) + (precio − saldo de la hipoteca). "Si vendes" resta además la comisión de venta y la penalización de la hipoteca. Sin comprar: tu saldo actual rindiendo al {{r}}% con el tope de {{cap}}.',{r:S.savRate,cap:aed(S.savCap)});
  const hold=x=>firstYear(x.sim.years,'nwHold'),sold=x=>firstYear(x.sim.years,'nwSold'),exitH=x=>x.sim.years[H-1].exit;
- $('hzSummary').innerHTML=calcHead+
-  calcRow('hzHold','Comprar supera a no comprar','conservando',hold(M),hold(N),{fmt:yearTxt,help:'Primer año en que tu patrimonio neto comprando (sin vender) iguala o supera el de dejar todo el dinero en la cuenta.'})+
-  calcRow('hzSold','Recuperas los gastos de entrada y salida','si vendes',sold(M),sold(N),{fmt:yearTxt,help:'Primer año en que comprar y luego vender deja de ser peor que no haber comprado. Antes de ese año, vender implica perder dinero frente a la cuenta.'})+
-  calcRow('hzExit','Coste de salida en el año '+H,'',exitH(M),exitH(N),{extra:' total',help:`Comisión de venta ${S.exitAgencyPct}% + VAT, más la penalización por cancelar la hipoteca (${S.prepayPct}% del saldo, tope ${aed(S.prepayCap)}).`});
+ $('hzSummary').innerHTML=calcHeadHtml()+
+  calcRow('hzHold',t('Comprar supera a no comprar'),t('conservando'),hold(M),hold(N),{fmt:yearTxt,help:t('Primer año en que tu patrimonio neto comprando (sin vender) iguala o supera el de dejar todo el dinero en la cuenta.')})+
+  calcRow('hzSold',t('Recuperas los gastos de entrada y salida'),t('si vendes'),sold(M),sold(N),{fmt:yearTxt,help:t('Primer año en que comprar y luego vender deja de ser peor que no haber comprado. Antes de ese año, vender implica perder dinero frente a la cuenta.')})+
+  calcRow('hzExit',t('Coste de salida en el año {{h}}',{h:H}),'',exitH(M),exitH(N),{extra:' total',help:t('Comisión de venta {{a}}% + VAT, más la penalización por cancelar la hipoteca ({{p}}% del saldo, tope {{cap}}).',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)})});
  const years=H<=10?Array.from({length:H},(_,i)=>i+1):[1,2,3,5,7,10,15,20].filter(y=>y<=H);
  const on=k=>S.view===k?' class="on"':'';
  const cell=(v,no)=>`<td class="${v>=no?'pos':'neg'}">${aed(v)} <span class="dim tiny">${saed(v-no)}</span></td>`;
- let h=`<thead><tr><th>Año</th><th>Sin comprar</th><th${on('main')}>Pedido · conservando</th><th${on('main')}>Pedido · si vendes</th><th${on('neg')}>Negociado · conservando</th><th${on('neg')}>Negociado · si vendes</th></tr></thead><tbody>`;
+ let h=`<thead><tr><th>${t('Año')}</th><th>${t('Sin comprar')}</th><th${on('main')}>${t('Pedido · conservando')}</th><th${on('main')}>${t('Pedido · si vendes')}</th><th${on('neg')}>${t('Negociado · conservando')}</th><th${on('neg')}>${t('Negociado · si vendes')}</th></tr></thead><tbody>`;
  years.forEach(y=>{const m=M.sim.years[y-1],n=N.sim.years[y-1];
-  h+=`<tr><td>Año ${y}</td><td>${aed(m.savNo)}</td>${cell(m.nwHold,m.savNo)}${cell(m.nwSold,m.savNo)}${cell(n.nwHold,n.savNo)}${cell(n.nwSold,n.savNo)}</tr>`});
+  h+=`<tr><td>${t('Año {{v}}',{v:y})}</td><td>${aed(m.savNo)}</td>${cell(m.nwHold,m.savNo)}${cell(m.nwSold,m.savNo)}${cell(n.nwHold,n.savNo)}${cell(n.nwSold,n.savNo)}</tr>`});
  $('hzTable').innerHTML=h+'</tbody>';
 }
 
 /* ---------- Lectura ---------- */
 function renderInsights(R){
  const{M,N}=R,save=S.price-S.neg,before=savingsInterest(S,S.sav),L=[];
- const cfTxt=v=>v>=0?`positivo (${saed(v)}/mes)`:`negativo (${saed(v)}/mes)`;
- L.push({t:`Con una renta de ${aed(S.rent)}/año, el flujo de caja es ${cfTxt(M.cfM)} en el precio pedido y ${cfTxt(N.cfM)} con el precio negociado.`});
- L.push({t:`Renta mínima para no perder dinero: ${aed(M.be)} (pedido) y ${aed(N.be)} (negociado). La renta actual ${S.rent>=N.be?'cubre la renta mínima negociada con '+aed(S.rent-N.be)+' de margen':'queda '+aed(N.be-S.rent)+'/año por debajo de la renta mínima negociada'}.`});
+ const cfTxt=v=>v>=0?t('positivo ({{v}}/mes)',{v:saed(v)}):t('negativo ({{v}}/mes)',{v:saed(v)});
+ L.push({t:t('Con una renta de {{rent}}/año, el flujo de caja es {{a}} en el precio pedido y {{b}} con el precio negociado.',{rent:aed(S.rent),a:cfTxt(M.cfM),b:cfTxt(N.cfM)})});
+ L.push({t:S.rent>=N.be
+  ?t('Renta mínima para no perder dinero: {{a}} (pedido) y {{b}} (negociado). La renta actual cubre la renta mínima negociada con {{m}} de margen.',{a:aed(M.be),b:aed(N.be),m:aed(S.rent-N.be)})
+  :t('Renta mínima para no perder dinero: {{a}} (pedido) y {{b}} (negociado). La renta actual queda {{m}}/año por debajo de la renta mínima negociada.',{a:aed(M.be),b:aed(N.be),m:aed(N.be-S.rent)})});
  const be50=breakEven(S,S.price)-breakEven(S,S.price-50000),cf50=calc(S,S.price-50000).cfM-M.cfM;
- L.push({t:`Con estos supuestos, cada AED 50,000 menos de precio reduce la renta mínima en ${aed(be50)}/año y cambia el flujo de caja en ${saed(cf50)}/mes.`});
- if(save>0)L.push({t:`Negociar ${aed(save)} (${pct(save/S.price*100)}) reduce el dinero para cerrar en ${aed(M.ctc-N.ctc)} (${aed(M.ctc)} → ${aed(N.ctc)}) y la cuota mensual en ${aed(M.pm-N.pm)}. El interés de ahorro preservado cambia en ${saed(N.interest-M.interest)}/año.`});
- if(save<0)L.push({w:1,t:`El precio negociado está ${aed(-save)} por encima del precio pedido: todas las diferencias de negociación juegan en contra.`});
- L.push({t:`Si la tasa sube 1 punto (${(S.rate+1).toFixed(2)}%), la renta mínima pasa de ${aed(M.be)} a ${aed(breakEven(S,S.price,0,S.rate+1))}/año en el pedido y de ${aed(N.be)} a ${aed(breakEven(S,S.neg,0,S.rate+1))}/año en el negociado.`});
- L.push({t:`Patrimonio del año 1 sin apreciación (capital amortizado + flujo de caja): ${saed(M.wealth)} (pedido) y ${saed(N.wealth)} (negociado).`});
- L.push({t:`Ingreso combinado (flujo de caja + interés de ahorro): ${saed(M.combA)}/año (pedido) y ${saed(N.combA)}/año (negociado), frente a ${aed(before)}/año sin comprar.`});
+ L.push({t:t('Con estos supuestos, cada AED 50,000 menos de precio reduce la renta mínima en {{be}}/año y cambia el flujo de caja en {{cf}}/mes.',{be:aed(be50),cf:saed(cf50)})});
+ if(save>0)L.push({t:t('Negociar {{save}} ({{pct}}) reduce el dinero para cerrar en {{d}} ({{a}} → {{b}}) y la cuota mensual en {{pm}}. El interés de ahorro preservado cambia en {{int}}/año.',{save:aed(save),pct:pct(save/S.price*100),d:aed(M.ctc-N.ctc),a:aed(M.ctc),b:aed(N.ctc),pm:aed(M.pm-N.pm),int:saed(N.interest-M.interest)})});
+ if(save<0)L.push({w:1,t:t('El precio negociado está {{v}} por encima del precio pedido: todas las diferencias de negociación juegan en contra.',{v:aed(-save)})});
+ L.push({t:t('Si la tasa sube 1 punto ({{r}}%), la renta mínima pasa de {{a}} a {{b}}/año en el pedido y de {{c}} a {{d}}/año en el negociado.',{r:(S.rate+1).toFixed(2),a:aed(M.be),b:aed(breakEven(S,S.price,0,S.rate+1)),c:aed(N.be),d:aed(breakEven(S,S.neg,0,S.rate+1))})});
+ L.push({t:t('Patrimonio del año 1 sin apreciación (capital amortizado + flujo de caja): {{a}} (pedido) y {{b}} (negociado).',{a:saed(M.wealth),b:saed(N.wealth)})});
+ L.push({t:t('Ingreso combinado (flujo de caja + interés de ahorro): {{a}}/año (pedido) y {{b}}/año (negociado), frente a {{c}}/año sin comprar.',{a:saed(M.combA),b:saed(N.combA),c:aed(before)})});
  const pm=psfState(M.psf),pn=psfState(N.psf);
- L.push({t:`AED/sqft: ${aed(M.psf)} (${pm.t}) en el pedido y ${aed(N.psf)} (${pn.t}) en el negociado, frente a tu objetivo de ${aed(S.tgt)} ±${S.tol}%.`});
- if(M.cfM<0||N.cfM<0){const worst=[M,N].filter(x=>x.cfM<0).map(x=>`${SHORT[x.key].toLowerCase()} ${aed(-x.cfA)}`).join(', ');
-  L.push({w:1,t:`Flujo de caja negativo: con la renta actual hay que aportar de tu bolsillo (${worst} al año).`})}
+ L.push({t:t('AED/sqft: {{a}} ({{as}}) en el pedido y {{b}} ({{bs}}) en el negociado, frente a tu objetivo de {{tgt}} ±{{tol}}%.',{a:aed(M.psf),as:t(pm.t),b:aed(N.psf),bs:t(pn.t),tgt:aed(S.tgt),tol:S.tol})});
+ if(M.cfM<0||N.cfM<0){const worst=[M,N].filter(x=>x.cfM<0).map(x=>`${t(SHORT[x.key]).toLowerCase()} ${aed(-x.cfA)}`).join(', ');
+  L.push({w:1,t:t('Flujo de caja negativo: con la renta actual hay que aportar de tu bolsillo ({{w}} al año).',{w:worst})})}
  const wa=maxPrice(S,0);
- if(wa>0)L.push({t:`Precio límite para flujo de caja 0 con la renta actual: ${aed(wa)} (${aed(wa/S.sqft)}/sqft). ${wa>=S.neg?`El precio negociado queda ${aed(wa-S.neg)} por debajo de ese límite.`:`El precio negociado lo supera en ${aed(S.neg-wa)}.`}`});
- else L.push({w:1,t:'Con la renta y los costes actuales, ningún precio deja el flujo de caja en 0.'});
+ if(wa>0)L.push({t:wa>=S.neg
+  ?t('Precio límite para flujo de caja 0 con la renta actual: {{p}} ({{psf}}/sqft). El precio negociado queda {{d}} por debajo de ese límite.',{p:aed(wa),psf:aed(wa/S.sqft),d:aed(wa-S.neg)})
+  :t('Precio límite para flujo de caja 0 con la renta actual: {{p}} ({{psf}}/sqft). El precio negociado lo supera en {{d}}.',{p:aed(wa),psf:aed(wa/S.sqft),d:aed(S.neg-wa)})});
+ else L.push({w:1,t:t('Con la renta y los costes actuales, ningún precio deja el flujo de caja en 0.')});
  const H=S.horizon,hy=x=>firstYear(x.sim.years,'nwHold'),sy=x=>firstYear(x.sim.years,'nwSold');
- L.push({t:`Comprar supera a no comprar (conservando la propiedad) en: ${yearTxt(hy(M)).toLowerCase()} (pedido) y ${yearTxt(hy(N)).toLowerCase()} (negociado). Si vendes, recuperas los gastos de entrada y salida en: ${yearTxt(sy(M)).toLowerCase()} y ${yearTxt(sy(N)).toLowerCase()}. Todo sin apreciación.`});
+ L.push({t:t('Comprar supera a no comprar (conservando la propiedad) en: {{a}} (pedido) y {{b}} (negociado). Si vendes, recuperas los gastos de entrada y salida en: {{c}} y {{d}}. Todo sin apreciación.',{a:yearTxt(hy(M)).toLowerCase(),b:yearTxt(hy(N)).toLowerCase(),c:yearTxt(sy(M)).toLowerCase(),d:yearTxt(sy(N)).toLowerCase()})});
  const d=x=>x.sim.years[H-1].nwHold-x.sim.years[H-1].savNo;
- L.push({t:`A ${H} años, el patrimonio neto comprando queda ${saed(d(M))} (pedido) y ${saed(d(N))} (negociado) frente a no comprar.`});
- [M,N].forEach(x=>{const r=x.run.runwayMonth;if(r!=null)L.push({w:1,t:`${LABEL[x.key]}: con el flujo de caja actual y la reserva apartada, tu colchón de ahorros se agota en ${monthsTxt(r)}.`})});
- [M,N].forEach(x=>{if(x.rem<0)L.push({w:1,t:`${LABEL[x.key]}: el dinero para cerrar supera tu saldo de ahorro en ${aed(-x.rem)}.`})});
+ L.push({t:t('A {{h}} años, el patrimonio neto comprando queda {{a}} (pedido) y {{b}} (negociado) frente a no comprar.',{h:H,a:saed(d(M)),b:saed(d(N))})});
+ [M,N].forEach(x=>{const r=x.run.runwayMonth;if(r!=null)L.push({w:1,t:t('{{s}}: con el flujo de caja actual y la reserva apartada, tu colchón de ahorros se agota en {{m}}.',{s:t(LABEL[x.key]),m:monthsTxt(r)})})});
+ [M,N].forEach(x=>{if(x.rem<0)L.push({w:1,t:t('{{s}}: el dinero para cerrar supera tu saldo de ahorro en {{v}}.',{s:t(LABEL[x.key]),v:aed(-x.rem)})})});
  $('insightList').innerHTML=L.map(x=>`<li${x.w?' class="w"':''}>${x.w?'⚠ ':''}${x.t}</li>`).join('');
 }
 
@@ -1328,7 +1381,7 @@ function render(){
  const R=lastR=both();
  renderHeader(R);renderFees(R);renderVerdict(R);renderKpis(R);renderImpact(R);renderDetail(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);
  renderMaxPrice();renderRenewal(R);renderRunway(R);renderDownPay(R);renderHorizon(R);renderInsights(R);
- updateGroupSummaries(R);renderQsPreview(R);renderBarSummary(R);
+ updateGroupSummaries(R);renderQsPreview(R);renderBarSummary(R);updateChartBtn();
  saveState();
 }
 
@@ -1350,24 +1403,24 @@ function wireResetAll(){
  if(!btn)return;
  btn.addEventListener('click',()=>{
   const wrap=$('resetAllWrap');
-  wrap.innerHTML=`<div class="notice" role="status" style="margin-bottom:0;padding:10px 14px"><span>¿Restablecer los ${HISTORY_KEYS.length} supuestos? Podrás deshacerlo.</span><div class="row"><button type="button" class="primary" id="confirmResetAll">Sí, restablecer</button><button type="button" id="cancelResetAll">Cancelar</button></div></div>`;
+  wrap.innerHTML=`<div class="notice" role="status" style="margin-bottom:0;padding:10px 14px"><span>${t('¿Restablecer los {{n}} supuestos? Podrás deshacerlo.',{n:HISTORY_KEYS.length})}</span><div class="row"><button type="button" class="primary" id="confirmResetAll">${t('Sí, restablecer')}</button><button type="button" id="cancelResetAll">${t('Cancelar')}</button></div></div>`;
   $('confirmResetAll').addEventListener('click',()=>{
    pushHistory();Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}
-   wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">Restablecer todo</button>';wireResetAll();
-   resetFieldMessages();render();showToast('Restableciste todos los supuestos.',undo);
+   wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll();
+   resetFieldMessages();render();showToast(t('Restableciste todos los supuestos.'),undo);
   });
-  $('cancelResetAll').addEventListener('click',()=>{wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">Restablecer todo</button>';wireResetAll()});
+  $('cancelResetAll').addEventListener('click',()=>{wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll()});
  });
 }
 wireResetAll();
 function renderVisitNotice(info){
  const el=$('visitNotice');if(!el)return;
  if(info.hadSaved&&info.snap){
-  el.innerHTML=`<div class="notice" role="status"><span><b>Hemos recuperado tu último análisis</b> guardado en este navegador: ${aed(info.snap.price||DEFAULTS.price)} · renta ${aed(info.snap.rent||DEFAULTS.rent)}.</span><div class="row"><button type="button" class="primary" id="visitContinue">Continuar</button><button type="button" id="visitFresh">Empezar de cero</button></div></div>`;
+  el.innerHTML=`<div class="notice" role="status"><span><b>${t('Hemos recuperado tu último análisis')}</b> ${t('guardado en este navegador: {{price}} · renta {{rent}}.',{price:aed(info.snap.price||DEFAULTS.price),rent:aed(info.snap.rent||DEFAULTS.rent)})}</span><div class="row"><button type="button" class="primary" id="visitContinue">${t('Continuar')}</button><button type="button" id="visitFresh">${t('Empezar de cero')}</button></div></div>`;
   $('visitContinue').addEventListener('click',()=>{el.innerHTML=''});
   $('visitFresh').addEventListener('click',()=>{pushHistory();Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}resetFieldMessages();render();el.innerHTML=''});
  }else if(info.privateMode){
-  el.innerHTML='<div class="notice info" role="status"><span>Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Copiar enlace del escenario» para conservarlo.</span></div>';
+  el.innerHTML=`<div class="notice info" role="status"><span>${t('Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Copiar enlace del escenario» para conservarlo.')}</span></div>`;
  }else{
   el.innerHTML='';
  }
@@ -1379,10 +1432,11 @@ document.addEventListener('keydown',e=>{
 $('btnUndo').addEventListener('click',undo);
 $('btnRedo').addEventListener('click',redo);
 updateUndoButtons();
+function updateChartBtn(){$('btnChartTable').textContent=t($('chartTableWrap').hidden?'Ver como tabla':'Ver como gráfico')}
 $('btnChartTable').addEventListener('click',()=>{
  const on=$('chartTableWrap').hidden;
  $('chartTableWrap').hidden=!on;$('btnChartTable').setAttribute('aria-pressed',String(on));
- $('btnChartTable').textContent=on?'Ver como gráfico':'Ver como tabla';
+ updateChartBtn();
 });
 let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>renderChart(lastR||both()),120)});
 
@@ -1390,9 +1444,9 @@ let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>
 const TABS=['flujo','riesgo','estrategia','detalle'];
 const TAB_KEY='gt-negotiation-comparator-tab';
 let activeTab='flujo';
-function setTab(t,opts){
+function setTab(tab,opts){
  opts=opts||{};
- activeTab=TABS.includes(t)?t:'flujo';
+ activeTab=TABS.includes(tab)?tab:'flujo';
  TABS.forEach(k=>{
   const panel=$('tab-'+k),btn=$('tabbtn-'+k),on=k===activeTab;
   if(panel)panel.hidden=!on;
@@ -1416,11 +1470,11 @@ document.querySelectorAll('.tabs [role="tab"]').forEach((btn,i,all)=>{
  });
 });
 (function initTab(){
- let t=(location.hash||'').replace('#','');
- if(!TABS.includes(t)){try{t=localStorage.getItem(TAB_KEY)}catch(e){t=null}}
- setTab(t||'flujo',{hash:false});
+ let tab=(location.hash||'').replace('#','');
+ if(!TABS.includes(tab)){try{tab=localStorage.getItem(TAB_KEY)}catch(e){tab=null}}
+ setTab(tab||'flujo',{hash:false});
 })();
-window.addEventListener('hashchange',()=>{const t=(location.hash||'').replace('#','');if(TABS.includes(t))setTab(t,{hash:false})});
+window.addEventListener('hashchange',()=>{const tab=(location.hash||'').replace('#','');if(TABS.includes(tab))setTab(tab,{hash:false})});
 
 /* ---------- Escenario compartido por enlace / notas de primera visita ---------- */
 function parseScenarioHash(){
@@ -1435,10 +1489,10 @@ function clearHash(){try{history.replaceState(null,'',location.pathname+'#'+acti
 function renderSharedScenario(sc){
  const el=$('visitNotice');if(!el)return;
  const parts=[];
- if(sc.price!=null)parts.push('precio pedido '+aed(sc.price));
- if(sc.rent!=null)parts.push('renta '+aed(sc.rent));
- if(sc.neg!=null)parts.push('negociado '+aed(sc.neg));
- el.innerHTML=`<div class="notice" role="status"><span>Este enlace trae un escenario compartido: ${parts.join(' · ')}. Nada se ha guardado todavía.</span><div class="row"><button type="button" class="primary" id="scenarioApply">Guardar como mi análisis</button><button type="button" id="scenarioDiscard">Descartar</button></div></div>`;
+ if(sc.price!=null)parts.push(t('precio pedido {{v}}',{v:aed(sc.price)}));
+ if(sc.rent!=null)parts.push(t('renta {{v}}',{v:aed(sc.rent)}));
+ if(sc.neg!=null)parts.push(t('negociado {{v}}',{v:aed(sc.neg)}));
+ el.innerHTML=`<div class="notice" role="status"><span>${t('Este enlace trae un escenario compartido: {{parts}}. Nada se ha guardado todavía.',{parts:parts.join(' · ')})}</span><div class="row"><button type="button" class="primary" id="scenarioApply">${t('Guardar como mi análisis')}</button><button type="button" id="scenarioDiscard">${t('Descartar')}</button></div></div>`;
  $('scenarioApply').addEventListener('click',()=>{
   pushHistory();
   if(sc.price!=null)S.price=sc.price;
@@ -1457,11 +1511,20 @@ function applyTheme(mode){
  if(mode)document.documentElement.setAttribute('data-theme',mode);else document.documentElement.removeAttribute('data-theme');
  const dark=mode?mode==='dark':window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
  $('themeIconDark').style.display=dark?'':'none';$('themeIconLight').style.display=dark?'none':'';
- $('themeLabel').textContent=dark?'Modo oscuro':'Modo claro';
+ $('themeLabel').textContent=dark?t('Modo oscuro'):t('Modo claro');
  $('btnTheme').setAttribute('aria-pressed',String(dark));
- $('btnTheme').setAttribute('aria-label','Cambiar a modo '+(dark?'claro':'oscuro'));
+ $('btnTheme').setAttribute('aria-label',t('Cambiar a modo {{m}}',{m:dark?t('claro'):t('oscuro')}));
 }
 (function initTheme(){let saved=null;try{saved=localStorage.getItem(THEME_KEY)}catch(e){}applyTheme(saved)})();
+
+/* ---------- Idioma: ES (por defecto) / EN ---------- */
+$('langSelect').addEventListener('change',e=>{
+ LANG=e.target.value==='en'?'en':'es';
+ try{localStorage.setItem(LANG_KEY,LANG)}catch(e){}
+ applyStaticI18n();render();
+ applyTheme(document.documentElement.getAttribute('data-theme'));
+ if(!$('glossaryWrap').hidden)renderGlossary($('glossaryQ').value);
+});
 $('btnTheme').addEventListener('click',()=>{
  const dark=$('themeIconDark').style.display!=='none';
  const next=dark?'light':'dark';
@@ -1471,7 +1534,7 @@ $('btnTheme').addEventListener('click',()=>{
 function closeMoreMenu(){$('moreMenu').hidden=true;$('btnMore').setAttribute('aria-expanded','false')}
 $('btnMore').addEventListener('click',e=>{e.stopPropagation();const open=$('moreMenu').hidden;$('moreMenu').hidden=!open;$('btnMore').setAttribute('aria-expanded',String(open))});
 $('menuResetAll').addEventListener('click',()=>{closeMoreMenu();$('btnReset').click()});
-$('menuAbout').addEventListener('click',()=>{closeMoreMenu();showToast('Comparador hipotecario · análisis local, sin servidor.')});
+$('menuAbout').addEventListener('click',()=>{closeMoreMenu();showToast(t('Comparador hipotecario · análisis local, sin servidor.'))});
 $('menuGlossary').addEventListener('click',()=>{closeMoreMenu();openGlossary()});
 $('menuCopyLink').addEventListener('click',()=>{closeMoreMenu();$('btnCopyLink').click()});
 $('menuTheme').addEventListener('click',()=>{closeMoreMenu();$('btnTheme').click()});
@@ -1498,8 +1561,8 @@ const GLOSARIO=[
 ];
 function renderGlossary(filter){
  const q=(filter||'').trim().toLowerCase();
- const items=GLOSARIO.filter(g=>!q||g.t.toLowerCase().includes(q)||g.en.toLowerCase().includes(q)||g.d.toLowerCase().includes(q));
- $('glossaryBody').innerHTML=items.length?items.map(g=>`<div style="padding:11px 0;border-top:1px solid var(--ln)"><dt style="font-weight:600;font-size:14.5px">${g.t}${g.en?` <span class="dim tiny">${g.en}</span>`:''}</dt><dd style="margin:2px 0 0;font-size:13.5px;color:var(--mu)">${g.d}</dd></div>`).join(''):'<p class="small muted">Ningún término coincide con tu búsqueda.</p>';
+ const items=GLOSARIO.map(g=>({t:t(g.t),en:LANG==='en'?'':g.en,d:t(g.d)})).filter(g=>!q||g.t.toLowerCase().includes(q)||g.en.toLowerCase().includes(q)||g.d.toLowerCase().includes(q));
+ $('glossaryBody').innerHTML=items.length?items.map(g=>`<div style="padding:11px 0;border-top:1px solid var(--ln)"><dt style="font-weight:600;font-size:14.5px">${g.t}${g.en?` <span class="dim tiny">${g.en}</span>`:''}</dt><dd style="margin:2px 0 0;font-size:13.5px;color:var(--mu)">${g.d}</dd></div>`).join(''):`<p class="small muted">${t('Ningún término coincide con tu búsqueda.')}</p>`;
 }
 function openGlossary(){$('glossaryWrap').hidden=false;$('btnGlossary').setAttribute('aria-expanded','true');renderGlossary();$('glossaryQ').value='';$('glossaryQ').focus()}
 function closeGlossary(){if($('glossaryWrap').hidden)return;$('glossaryWrap').hidden=true;$('btnGlossary').setAttribute('aria-expanded','false');$('btnGlossary').focus()}
@@ -1508,17 +1571,17 @@ $('btnGlossaryClose').addEventListener('click',closeGlossary);
 $('glossaryQ').addEventListener('input',e=>renderGlossary(e.target.value));
 let toastTimer=null;
 function showToast(msg,onUndo){
- clearTimeout(toastTimer);const t=$('toast');$('toastMsg').textContent=msg;
+ clearTimeout(toastTimer);const toastEl=$('toast');$('toastMsg').textContent=msg;
  $('toastUndo').style.display=onUndo?'':'none';
- t.style.display='flex';
- $('toastUndo').onclick=()=>{if(onUndo)onUndo();t.style.display='none'};
- toastTimer=setTimeout(()=>{t.style.display='none'},8000);
+ toastEl.style.display='flex';
+ $('toastUndo').onclick=()=>{if(onUndo)onUndo();toastEl.style.display='none'};
+ toastTimer=setTimeout(()=>{toastEl.style.display='none'},8000);
 }
 function scenarioHash(){return '#p='+Math.round(S.price)+'&r='+Math.round(S.rent)+'&n='+Math.round(S.neg)}
 $('btnCopyLink').addEventListener('click',async()=>{
  const url=location.origin+location.pathname+scenarioHash();
- try{await navigator.clipboard.writeText(url);showToast('Enlace del escenario copiado.')}
- catch(e){showToast('No se pudo copiar automáticamente: '+url)}
+ try{await navigator.clipboard.writeText(url);showToast(t('Enlace del escenario copiado.'))}
+ catch(e){showToast(t('No se pudo copiar automáticamente: {{url}}',{url}))}
 });
 
 render();

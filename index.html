@@ -187,6 +187,11 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .acc-sum{display:flex;flex-direction:column;flex-grow:1;min-width:0}
 .acc-sum b{font-size:15px;font-weight:600}
 .acc-sum span{font-size:12.5px;color:var(--mu)}
+.opt-tag{display:inline-block;padding:1px 8px;border-radius:999px;background:var(--brbg);color:var(--brt);font-size:11.5px;font-weight:700;margin-left:4px}
+.opt-tag.na{background:var(--in);color:var(--mu)}
+.pmi-row{gap:4px}.pmi-l{font-size:14px;font-weight:500;display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.pmi-v{display:flex;align-items:center;justify-content:flex-end;height:48px;padding:0 14px;border:1px dashed var(--ln2);border-radius:12px;background:var(--in);color:var(--mu);font-weight:600}
+.pmi-note{font-size:12.5px;color:var(--mu)}
 .acc-badge{padding:1px 8px;border-radius:999px;background:var(--wabg);color:var(--wa);font-size:12px;font-weight:600;margin-left:6px}
 .acc-chev{transition:transform .15s ease-out;flex:0 0 auto;color:var(--mu)}
 .acc[open]>summary .acc-chev{transform:rotate(180deg)}
@@ -454,6 +459,8 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
                 <div class="field"><label for="mgmt"><span data-i18n="Gestión del alquiler (% de la renta)">Gestión del alquiler (% de la renta)</span> <em id="mgmt_v"></em></label><div class="frow"><input type="range" id="mgmt_r" aria-label="Gestión del alquiler" data-i18n-aria="Gestión del alquiler"><input type="number" id="mgmt" class="inp num" step="any"></div></div>
                 <div class="field"><label for="maint" data-i18n="Mantenimiento (AED/año)">Mantenimiento (AED/año)</label><input type="number" id="maint" class="inp num" step="any"></div>
                 <div class="field"><label for="admin" data-i18n="Administración e imprevistos (AED/año)">Administración e imprevistos (AED/año)</label><input type="number" id="admin" class="inp num" step="any"></div>
+                <div class="field"><label for="ins"><span data-i18n="Seguro anual del inmueble (AED/año)">Seguro anual del inmueble (AED/año)</span> <span class="opt-tag" data-i18n="Opcional">Opcional</span></label><input type="number" id="ins" class="inp num" step="any" aria-describedby="ins_h"><span class="field-msg" id="ins_h" data-i18n="Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.">Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.</span></div>
+                <div class="field pmi-row"><span class="pmi-l" id="pmi_l"><span data-i18n="PMI (seguro hipotecario)">PMI (seguro hipotecario)</span> <span class="opt-tag na" data-i18n="No aplica en EAU">No aplica en EAU</span></span><output class="pmi-v num" for="pmi_l" aria-labelledby="pmi_l" aria-describedby="pmi_h">0%</output><span class="pmi-note" id="pmi_h" data-i18n="Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.">Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.</span></div>
               </div>
               <button type="button" class="acc-reset" data-reset-group="gas"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
@@ -669,7 +676,7 @@ const $=id=>document.getElementById(id);
 /* DEFAULTS:START */
 const DEFAULTS={
  price:1300000,sqft:900,rent:79963,
- down:20,rate:3.99,term:25,sc:11.8,vacM:1,maint:4000,mgmt:0,admin:2000,
+ down:20,rate:3.99,term:25,sc:11.8,vacM:1,maint:4000,mgmt:0,admin:2000,ins:0,
  tgt:1500,tol:5,sav:500000,savRate:6.25,savCap:500000,
  reserve:15000,renewIn:12,renewPct:0,renewGap:0,exitAgencyPct:2,prepayPct:1,prepayCap:10000,
  neg:1250000,mxStart:null,mxStep:50000,view:'main',horizon:10
@@ -687,7 +694,7 @@ function scenario(a,price){const down=price*a.down/100,f=fees(price);
 function calc(a,price,rent=a.rent,rate=a.rate){
  const s=scenario(a,price),r=rate/1200,m=s.mortgage,pm=payment(m,rate,a.term);
  const bal=k=>r?m*Math.pow(1+r,k)-pm*(Math.pow(1+r,k)-1)/r:m-pm*k;
- const scA=a.sqft*a.sc,vac=rent*a.vacM/12,mg=rent*a.mgmt/100,opex=scA+a.maint+mg+a.admin;
+ const scA=a.sqft*a.sc,vac=rent*a.vacM/12,mg=rent*a.mgmt/100,opex=scA+a.maint+mg+a.admin+a.ins;
  const noi=rent-vac-opex,debt=pm*12,cfA=noi-debt,bal12=bal(12),bal24=bal(24),prin1=m-bal12,prin2=m-bal24;
  const rem=a.sav-s.ctc,interest=savingsInterest(a,rem);
  return Object.assign(s,{rent,rate,pm,debt,scA,scM:scA/12,vac,mg,opex,eff:rent-vac,noi,cfA,cfM:cfA/12,
@@ -697,11 +704,11 @@ function calc(a,price,rent=a.rent,rate=a.rate){
 function breakEven(a,price,targetMonthly=0,rate=a.rate){
  const d=1-a.vacM/12-a.mgmt/100;if(d<=0)return Infinity;
  const debt=payment(scenario(a,price).mortgage,rate,a.term)*12;
- return(a.sqft*a.sc+a.maint+a.admin+debt+12*targetMonthly)/d;
+ return(a.sqft*a.sc+a.maint+a.admin+a.ins+debt+12*targetMonthly)/d;
 }
 // Highest price whose monthly cash-flow still reaches targetMonthly (inverse of calc).
 function maxPrice(a,targetMonthly=0,rent=a.rent){
- const noi=rent*(1-a.vacM/12-a.mgmt/100)-(a.sqft*a.sc+a.maint+a.admin);
+ const noi=rent*(1-a.vacM/12-a.mgmt/100)-(a.sqft*a.sc+a.maint+a.admin+a.ins);
  const perAed=12*payment(1,a.rate,a.term)*(1-a.down/100);
  return perAed>0?Math.max(0,(noi-12*targetMonthly)/perAed):Infinity;
 }
@@ -714,7 +721,7 @@ function exitCost(a,price,balance){
 }
 // Month-by-month buy vs not-buy. No appreciation: the property is always worth its purchase price.
 function simulate(a,price,months,{shock=0}={}){
- const s=scenario(a,price),r=a.rate/1200,n=a.term*12,pm=payment(s.mortgage,a.rate,a.term),fixed=(a.sqft*a.sc+a.maint+a.admin)/12;
+ const s=scenario(a,price),r=a.rate/1200,n=a.term*12,pm=payment(s.mortgage,a.rate,a.term),fixed=(a.sqft*a.sc+a.maint+a.admin+a.ins)/12;
  let bal=s.mortgage,savBuy=a.sav-s.ctc-shock,savNo=a.sav,cumCF=0,runwayMonth=savBuy<0?0:null;
  const years=[];
  for(let m=0;m<months;m++){
@@ -1072,7 +1079,7 @@ const I18N_EN={
  "Renta anual {{rent}} · {{down}}% de entrada · {{rate}}% a {{term}} años · sin apreciación":"Annual rent {{rent}} · {{down}}% down payment · {{rate}}% over {{term}} years · no appreciation",
  "Renta bruta":"Gross rent",
  "Renta efectiva":"Effective rent",
- "Renta efectiva menos comunidad, mantenimiento, gestión y administración.":"Effective rent minus service charge, maintenance, management and admin.",
+ "Renta efectiva menos comunidad, mantenimiento, gestión, administración y seguro.":"Effective rent minus service charge, maintenance, management, admin and insurance.",
  "Renta mínima":"Minimum rent",
  "Renta mínima al año":"Minimum rent per year",
  "Renta mínima al año · negociado":"Minimum rent per year · negotiated",
@@ -1224,7 +1231,18 @@ const I18N_EN={
  "↺ Restablecer esta sección":"↺ Reset this section",
  "≈ Zona de equilibrio ±AED 250/mes":"≈ Break-even zone ±AED 250/mo",
  "▲ Ganas dinero":"▲ You make money",
- "▼ Pierdes dinero":"▼ You lose money"
+ "▼ Pierdes dinero":"▼ You lose money",
+ "Seguro anual del inmueble (AED/año)":"Annual property insurance (AED/yr)",
+ "Opcional":"Optional",
+ "Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.":"If your bank or the building requires it, add it here. Counted as an annual expense.",
+ "PMI (seguro hipotecario)":"PMI (mortgage insurance)",
+ "No aplica en EAU":"Not applicable in the UAE",
+ "Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.":"Private Mortgage Insurance: cover paid in the US when the down payment is small. It does not exist in the UAE, so it stays at 0. If it were used, it would be a % of the mortgage balance per year.",
+ "Seguro {{v}}/año":"Insurance {{v}}/yr",
+ "Seguro del inmueble":"Property insurance",
+ "opcional · AED 0 por defecto":"optional · AED 0 by default",
+ "no aplica en EAU · 0%":"not applicable in the UAE · 0%",
+ "seguro {{v}}/año":"insurance {{v}}/yr",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -1299,7 +1317,7 @@ const FIELDS=[
  F('sc',{smin:0,smax:40,step:.1,fmt:v=>'AED '+(Math.round(v*100)/100)}),
  F('vacM',{smin:0,smax:6,step:.5,fmt:v=>v===1?t('{{v}} mes',{v}):t('{{v}} meses',{v})}),
  F('mgmt',{smin:0,smax:25,step:.5,fmt:v=>v+'%'}),
- F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),
+ F('maint',{nmin:0,nmax:1e6}),F('admin',{nmin:0,nmax:1e6}),F('ins',{nmin:0,nmax:1e6}),
  F('tgt',{nmin:1,nmax:100000}),F('tol',{nmin:0,nmax:100}),
  F('sav',{nmin:0,nmax:1e10}),F('savRate',{nmin:0,nmax:100}),F('savCap',{nmin:0,nmax:1e10}),
  F('reserve',{nmin:0,nmax:1e8}),
@@ -1330,7 +1348,7 @@ const FLBL={
  pRent:{u:'AED',def:'La defines tú: el modelo no estima rentas ni aplica apreciación.'},rent:{u:'AED',def:''},
  down:{u:'%',def:'Parte del precio que pagas con tus ahorros; el resto lo financia la hipoteca.'},
  rate:{u:'%',def:'Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.'},
- sc:{u:'AED',def:''},vacM:{u:'meses',def:''},mgmt:{u:'%',def:''},maint:{u:'AED',def:''},admin:{u:'AED',def:''},
+ sc:{u:'AED',def:''},vacM:{u:'meses',def:''},mgmt:{u:'%',def:''},maint:{u:'AED',def:''},admin:{u:'AED',def:''},ins:{u:'AED',def:'Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.'},
  tgt:{u:'AED/sqft',def:''},tol:{u:'%',def:''},sav:{u:'AED',def:''},savRate:{u:'%',def:''},savCap:{u:'AED',def:''},
  reserve:{u:'AED',def:''},renewIn:{u:'meses',def:''},renewPct:{u:'%',def:''},renewGap:{u:'meses',def:''},
  exitAgencyPct:{u:'%',def:''},prepayPct:{u:'%',def:''},prepayCap:{u:'AED',def:''},neg:{u:'AED',def:''}
@@ -1402,7 +1420,7 @@ function syncFields(){
 const GROUPS={
  obj:{title:'Objetivo y ahorros',keys:['tgt','tol','sav','savRate','savCap','reserve']},
  fin:{title:'Financiación',keys:['term']},
- gas:{title:'Gastos anuales',keys:['sc','vacM','mgmt','maint','admin']},
+ gas:{title:'Gastos anuales',keys:['sc','vacM','mgmt','maint','admin','ins']},
  fee:{title:'Gastos de compra',keys:[]},
  ren:{title:'Renovación del alquiler',keys:['renewIn','renewPct','renewGap']},
  ven:{title:'Venta (si vendes)',keys:['exitAgencyPct','prepayPct','prepayCap']}
@@ -1412,7 +1430,7 @@ function summaryFor(g,R){
  switch(g){
   case 'obj':return t('{{tgt}}/sqft ±{{tol}}% · {{sav}} al {{r}}%',{tgt:aed(S.tgt),tol:S.tol,sav:aed(S.sav),r:S.savRate});
   case 'fin':return t('Plazo {{n}} años',{n:S.term});
-  case 'gas':return S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM});
+  case 'gas':return(S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM}))+(S.ins>0?' · '+t('Seguro {{v}}/año',{v:aed(S.ins)}):'');
   case 'fee':return R?t('{{a}} pedido · {{b}} negociado',{a:aed(R.M.fees.total),b:aed(R.N.fees.total)}):'';
   case 'ren':return(S.renewPct===0&&S.renewGap===0)?t('Sin cambios en el mes {{m}}',{m:S.renewIn+1}):t('{{pct}}% en el mes {{m}}',{pct:(S.renewPct>=0?'+':'')+S.renewPct,m:S.renewIn+1});
   case 'ven':return t('Comisión {{a}}% + VAT · penalización {{p}}% (tope {{cap}})',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)});
@@ -1610,7 +1628,7 @@ function renderDetail(R){
   ${mrow('Renta efectiva',aed(s.eff))}
   ${mrow('Comunidad (service charge)',saed(-s.scA),'neg',t('{{sqft}} × AED {{sc}} · {{monthly}}/mes',{sqft:nf0.format(S.sqft),sc:S.sc,monthly:aed2(s.scM)}))}
   ${mrow('Mantenimiento',saed(-S.maint),'neg')}${mrow('Gestión del alquiler',saed(-s.mg),'neg',t('{{p}}% de la renta',{p:S.mgmt}))}
-  ${mrow('Administración e imprevistos',saed(-S.admin),'neg')}${mrow('Gastos totales (sin vacancia)',aed(s.opex))}
+  ${mrow('Administración e imprevistos',saed(-S.admin),'neg')}${mrow('Seguro del inmueble',saed(-S.ins),'neg',t('opcional · AED 0 por defecto'))}${mrow('PMI (seguro hipotecario)','0%','',t('no aplica en EAU · 0%'))}${mrow('Gastos totales (sin vacancia)',aed(s.opex))}
   ${mrow('Ingreso neto antes de hipoteca',aed(s.noi),cls(s.noi))}${mrow('Hipoteca anual',saed(-s.debt),'neg')}
   ${mrow('Flujo de caja anual',saed(s.cfA),cls(s.cfA),saed(s.cfM)+t('/mes'))}
  </div>
@@ -1928,7 +1946,7 @@ function setupStepper(key,step){
  n.addEventListener('input',upd);n.addEventListener('blur',()=>setTimeout(upd,0));
  stepperSyncs.push(upd);upd();
 }
-[['rate',.05],['vacM',.5],['mgmt',.5],['tol',1],['savRate',.25]].forEach(x=>setupStepper(x[0],x[1]));
+[['rate',.05],['vacM',.5],['mgmt',.5],['tol',1],['savRate',.25],['ins',100]].forEach(x=>setupStepper(x[0],x[1]));
 $('term').addEventListener('change',e=>{pushHistory();S.term=parseInt(e.target.value,10);render()});
 $('horizon').addEventListener('change',e=>{S.horizon=parseInt(e.target.value,10);render()});
 document.addEventListener('click',e=>{
@@ -2023,9 +2041,9 @@ function parseScenarioHash(){
  const h=location.hash.replace('#','');
  if(!h||TABS.includes(h))return null;
  const params={};h.split('&').forEach(kv=>{const i=kv.indexOf('=');if(i>0)params[kv.slice(0,i)]=kv.slice(i+1)});
- const p=parseFloat(params.p),r=parseFloat(params.r),n=parseFloat(params.n);
+ const p=parseFloat(params.p),r=parseFloat(params.r),n=parseFloat(params.n),ins=parseFloat(params.i);
  if(!isFinite(p)&&!isFinite(r)&&!isFinite(n))return null;
- return{price:isFinite(p)?p:null,rent:isFinite(r)?r:null,neg:isFinite(n)?n:null,lang:params.l==='en'||params.l==='es'?params.l:null};
+ return{price:isFinite(p)?p:null,rent:isFinite(r)?r:null,neg:isFinite(n)?n:null,ins:isFinite(ins)&&ins>0?Math.min(ins,1e6):null,lang:params.l==='en'||params.l==='es'?params.l:null};
 }
 function clearHash(){try{history.replaceState(null,'',location.pathname+'#'+activeTab)}catch(e){}}
 function renderSharedScenario(sc){
@@ -2035,12 +2053,14 @@ function renderSharedScenario(sc){
  if(sc.price!=null)parts.push(t('precio pedido {{v}}',{v:aed(sc.price)}));
  if(sc.rent!=null)parts.push(t('renta {{v}}',{v:aed(sc.rent)}));
  if(sc.neg!=null)parts.push(t('negociado {{v}}',{v:aed(sc.neg)}));
+ if(sc.ins!=null)parts.push(t('seguro {{v}}/año',{v:aed(sc.ins)}));
  el.innerHTML=`<div class="notice" role="status"><span>${t('Este enlace trae un escenario compartido: {{parts}}. Nada se ha guardado todavía.',{parts:parts.join(' · ')})}</span><div class="row"><button type="button" class="primary" id="scenarioApply">${t('Guardar como mi análisis')}</button><button type="button" id="scenarioDiscard">${t('Descartar')}</button></div></div>`;
  $('scenarioApply').addEventListener('click',()=>{
   pushHistory();
   if(sc.price!=null)S.price=sc.price;
   if(sc.rent!=null)S.rent=sc.rent;
   if(sc.neg!=null)S.neg=sc.neg;
+  if(sc.ins!=null)S.ins=sc.ins;
   el.innerHTML='';clearHash();render();
  });
  $('scenarioDiscard').addEventListener('click',()=>{el.innerHTML='';clearHash();renderVisitNotice(storageInfo)});
@@ -2104,7 +2124,7 @@ const GLOSARIO=[
  {t:'Renta mínima para no perder dinero',en:'break-even',d:'La renta anual con la que el flujo de caja es exactamente 0.'},
  {t:'Precio límite',en:'walk-away price',d:'El precio más alto al que todavía alcanzas tu objetivo de flujo de caja. Por encima de ese precio, conviene no comprar.'},
  {t:'Dinero para cerrar la compra',en:'cash-to-close',d:'Entrada + gastos de compra: lo que sale de tus ahorros el día de la firma.'},
- {t:'Ingreso neto antes de hipoteca',en:'NOI · net operating income',d:'Renta efectiva menos comunidad, mantenimiento, gestión y administración.'},
+ {t:'Ingreso neto antes de hipoteca',en:'NOI · net operating income',d:'Renta efectiva menos comunidad, mantenimiento, gestión, administración y seguro.'},
  {t:'Rentabilidad bruta y neta',en:'gross / net operating yield',d:'Renta (bruta) o ingreso neto (neta) dividido por el precio. Ninguna de las dos tiene en cuenta la hipoteca.'},
  {t:'Rentabilidad de tu dinero',en:'cash-on-cash',d:'Flujo de caja anual ÷ dinero para cerrar la compra. Compárala con lo que rinde tu cuenta de ahorro.'},
  {t:'Capital amortizado',en:'principal',d:'La parte de cada cuota de hipoteca que reduce tu deuda. Es patrimonio, no dinero en mano.'},
@@ -2131,7 +2151,7 @@ function showToast(msg,onUndo){
  $('toastUndo').onclick=()=>{if(onUndo)onUndo();toastEl.style.display='none'};
  toastTimer=setTimeout(()=>{toastEl.style.display='none'},8000);
 }
-function scenarioHash(){return '#p='+Math.round(S.price)+'&r='+Math.round(S.rent)+'&n='+Math.round(S.neg)+(LANG==='en'?'&l=en':'')}
+function scenarioHash(){return '#p='+Math.round(S.price)+'&r='+Math.round(S.rent)+'&n='+Math.round(S.neg)+(S.ins>0?'&i='+Math.round(S.ins):'')+(LANG==='en'?'&l=en':'')}
 $('btnCopyLink').addEventListener('click',async()=>{
  const url=location.origin+location.pathname+scenarioHash();
  try{await navigator.clipboard.writeText(url);showToast(t('Enlace del escenario copiado.'))}

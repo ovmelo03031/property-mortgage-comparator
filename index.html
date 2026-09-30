@@ -55,10 +55,6 @@ html{scroll-padding-top:150px;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{margin:0;color:var(--tx);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg);
   padding-bottom:env(safe-area-inset-bottom)}
-:root,:root[data-theme="dark"]{--hero-glow:radial-gradient(1100px 520px at 0% -8%,#15295a 0%,transparent 62%),radial-gradient(900px 480px at 100% 0%,#0d2b3f 0%,transparent 58%)}
-:root[data-theme="light"]{--hero-glow:none}
-@media (prefers-color-scheme:light){:root:not([data-theme]){--hero-glow:none}}
-body{background-image:var(--hero-glow);background-attachment:fixed}
 .num,td,.kv b,.big{font-variant-numeric:tabular-nums}
 a{color:var(--blue2)}
 button,input,select{font:inherit;color:inherit}
@@ -124,7 +120,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);lin
 @media (min-width:721px){.rentctl{flex:1 1 250px;max-width:330px}.rentctl label{font-size:13px}.rentctl input.inp.sm{flex:0 0 84px;width:84px;height:36px;border-radius:8px;font-size:14px;font-weight:600;text-align:right;padding:0 8px}.seg{border-radius:10px;background:var(--in)}.seg button{height:34px;padding:0 12px;border-radius:8px}}
 
 /* Inputs */
-.inp{background:var(--inset);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;width:100%;min-width:0}
+.inp{background:var(--inset);border:1px solid var(--line2);border-radius:12px;padding:8px 10px;width:100%;min-width:0}
 .inp.sm{width:112px;padding:6px 8px}
 .inp.amber{border-color:var(--amber);color:var(--amber)}
 select.inp{appearance:auto}
@@ -142,8 +138,8 @@ section{padding:34px 0 8px}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,29px);margin:0;letter-spacing:-.01em}
 .sec-h p{margin:4px 0 0;color:var(--mut);font-size:14px;max-width:70ch}
 h3{font-size:15px;margin:0 0 10px;font-weight:650}
-.card{background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
-.card.flat{background:var(--card);border-radius:14px}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.card.flat{background:var(--sf);border-radius:16px}
 .grid{display:grid;gap:14px}
 .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -276,11 +272,17 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .kpi-h h3{margin:0;font-size:15px;font-weight:600}
 .kpi-help{flex:0 0 auto;width:32px;height:32px;border-radius:50%;border:1px solid var(--ln2);background:transparent;color:var(--brt);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .kpi-help:hover,.kpi-help[aria-expanded="true"]{background:var(--brbg)}
+.empty-box{margin-top:12px;padding:16px;border:1px dashed var(--ln2);border-radius:12px;font-size:13.5px;color:var(--mu)}
+.empty-box[hidden]{display:none}
+.empty-box b{display:block;color:var(--tx);font-size:14.5px;margin-bottom:2px}
+.kpi-alert{display:flex;gap:8px;margin:0;padding:10px 12px;border-radius:12px;background:var(--wabg);font-size:13.5px;line-height:1.4}
+.kpi-alert>span:first-child{color:var(--wa);flex:0 0 auto}
+.kpi-link{align-self:flex-start;min-height:44px;padding:0;border:0;background:none;color:var(--brt);text-decoration:underline;font-size:14px;cursor:pointer}
 .kpi-note{margin:0;padding:10px 12px;border-radius:12px;background:var(--brbg);font-size:13.5px;line-height:1.45}
 .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .side{container-type:inline-size;display:flex;flex-direction:column;padding:10px 12px;border-radius:12px;background:var(--in);border:1px solid var(--ln);cursor:pointer;min-width:0}
 .side small{display:block;color:var(--mu);font-size:12.5px}
-.side b{display:block;font-size:clamp(14px,12cqi,24px);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.side b{display:block;font-size:clamp(14px,13cqi,24px);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .side.on{border:2px solid var(--br);padding:9px 11px}
 .side:not(.on){border-width:1px}
 .kpi-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:600;background:var(--wabg);color:var(--wa)}
@@ -488,7 +490,7 @@ tbody tr:last-child td{border-bottom:0}
 .stat{container-type:inline-size;padding:14px;border-radius:14px;background:var(--inset);border:1px solid var(--line);min-width:0}
 .stat .l{font-size:12.5px;color:var(--mut)}
 .stat .v{font-size:clamp(14px,12cqi,22px);font-weight:700;letter-spacing:-.01em;margin-top:2px;white-space:nowrap}
-.stat.hero-s{background:linear-gradient(160deg,var(--pobg),var(--inset));border-color:var(--po)}
+.stat.hero-s{background:var(--pobg);border-color:var(--po)}
 .insight{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .insight li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--in);font-size:14.5px}
 .insight li[hidden]{display:none}
@@ -621,6 +623,8 @@ body.sheet-open #toast{bottom:96px!important}
 .pmt-h{display:flex;flex-direction:column;gap:0}
 .pmt-h b{font-size:14px}
 .side-panel .pmt-card{border:0;background:none;padding:0}
+#inpgrid .pmt-c{flex-direction:row;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:0 8px;padding:8px 12px}
+#inpgrid .pmt-c .pl{flex:1 1 100%}
 .side-panel .feerow .badge{white-space:normal;text-align:center;font-size:11.5px;line-height:1.2;max-width:96px;padding:2px 8px}
 
 /* Quick start (first visit) */
@@ -808,6 +812,35 @@ body.qs-mode .app-shell{display:none}
   .qs-grid{padding-bottom:190px}
 }
 @media (max-width:420px){.feerow{gap:6px 10px}.feerow>b{min-width:0}.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
+
+/* Advanced groups: label left, compact field right, slider row beneath (design anatomy) */
+.acc-body .formgrid,.acc-body .formgrid.f3{grid-template-columns:minmax(0,1fr);gap:12px}
+.acc-body .field{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 10px}
+.acc-body .field>label,.acc-body .pmi-row>.pmi-l{grid-column:1;grid-row:1;font-size:13.5px;line-height:1.3;justify-content:flex-start;align-items:center;flex-wrap:wrap}
+.acc-body .field label em{display:none}
+.acc-body .field>.frow{display:contents}
+.acc-body .field .fin{grid-column:2;grid-row:1;width:118px;height:36px;padding:0 10px}
+.acc-body .field .fin .inp{flex:1 1 auto;width:100%;min-width:0;min-height:0;padding:0;border:0;background:transparent;font-size:14px;font-weight:600;text-align:right;outline:none;border-radius:0}
+.acc-body .field .fin input{font-size:14px}
+.acc-body .field .stepper{grid-column:2;grid-row:1;width:150px;height:38px;border-radius:10px;flex:none}
+.acc-body .field .stepper .inp{font-size:14px;min-height:0}
+.acc-body .field .stepper button{flex-basis:36px;width:36px;height:36px}
+.acc-body .field .stepper button:first-child{border-radius:9px 0 0 9px}.acc-body .field .stepper button:last-child{border-radius:0 9px 9px 0}
+.acc-body .field .stepper .fin-u{padding-left:4px}
+.acc-body .field .frow input[type=range]{grid-column:1/-1;grid-row:2;width:100%}
+.acc-body .field>.field-msg{grid-column:1/-1}
+.acc-body .pmi-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 10px}
+.acc-body .pmi-row .pmi-st{grid-column:2;grid-row:1;width:150px;height:38px;border-radius:10px;border-style:dashed}
+.acc-body .pmi-row .pmi-st button{flex-basis:36px;width:36px;height:36px}
+.acc-body .pmi-row .pmi-v{flex:1 1 auto;height:auto;padding:0 4px;border:0;border-radius:0;background:transparent;justify-content:center;font-size:14px}
+.acc-body .pmi-row>.pmi-note{grid-column:1/-1}
+.stp-v{flex:1 1 auto;text-align:center;font-weight:600;font-size:14px}
+@media (max-width:720px){
+  .acc-body .field .fin{height:44px}
+  .acc-body .field .stepper{height:44px}
+  .acc-body .field .stepper button{flex-basis:44px;width:44px;height:42px}
+  .acc-body .pmi-row .pmi-st{height:44px}
+}
 
 /* Narrow layouts: card variants of the wide tables (tb-w/cd-w switch at <=1199px, tb-n/cd-n at <=720px) */
 .cd,.mob-tog,.rw-tiles{display:none}
@@ -1054,7 +1087,7 @@ body.qs-mode .app-shell{display:none}
             <summary><span class="acc-sum"><b><span data-i18n="Objetivo y ahorros">Objetivo y ahorros</span><span class="acc-badge" id="badge-obj" hidden></span></b><span id="sum-obj"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
               <p class="tiny dim" style="margin:0" data-i18n="El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.">El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.</p>
-              <div class="formgrid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+              <div class="formgrid">
                 <div class="field"><label for="tgt" data-i18n="Objetivo AED/sqft">Objetivo AED/sqft</label><input type="number" id="tgt" class="inp num" step="any"></div>
                 <div class="field"><label for="tol" data-i18n="Tolerancia del objetivo (±%)">Tolerancia del objetivo (±%)</label><input type="number" id="tol" class="inp num" step="any"></div>
                 <div class="field"><label for="sav" data-i18n="Ahorros (AED)">Ahorros (AED)</label><input type="number" id="sav" class="inp num" step="any"></div>
@@ -1068,7 +1101,7 @@ body.qs-mode .app-shell{display:none}
           <details class="acc" id="acc-fin" data-group="fin">
             <summary><span class="acc-sum"><b><span data-i18n="Financiación">Financiación</span><span class="acc-badge" id="badge-fin" hidden></span></b><span id="sum-fin"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
             <div class="acc-body">
-              <div class="field" style="max-width:220px"><label for="term" data-i18n="Plazo de la hipoteca">Plazo de la hipoteca</label><select id="term" class="inp"><option value="15" data-i18n="15 años">15 años</option><option value="20" data-i18n="20 años">20 años</option><option value="25" data-i18n="25 años">25 años</option><option value="30" data-i18n="30 años">30 años</option></select></div>
+              <div class="field"><label for="term" id="term_l" data-i18n="Plazo de la hipoteca">Plazo de la hipoteca</label><select id="term" class="inp"><option value="15" data-i18n="15 años">15 años</option><option value="20" data-i18n="20 años">20 años</option><option value="25" data-i18n="25 años">25 años</option><option value="30" data-i18n="30 años">30 años</option></select></div>
               <button type="button" class="acc-reset" data-reset-group="fin"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
@@ -1090,7 +1123,7 @@ body.qs-mode .app-shell{display:none}
             <div class="acc-body">
               <div class="formgrid">
                 <div class="field"><label for="ins"><span data-i18n="Seguro anual del inmueble (AED/año)">Seguro anual del inmueble (AED/año)</span> <span class="opt-tag" data-i18n="Opcional">Opcional</span></label><input type="number" id="ins" class="inp num" step="any" aria-describedby="ins_h"><span class="field-msg" id="ins_h" data-i18n="Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.">Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.</span></div>
-                <div class="field pmi-row"><span class="pmi-l" id="pmi_l"><span data-i18n="PMI (seguro hipotecario)">PMI (seguro hipotecario)</span> <span class="opt-tag na" data-i18n="No aplica en EAU">No aplica en EAU</span></span><output class="pmi-v num" for="pmi_l" aria-labelledby="pmi_l" aria-describedby="pmi_h">0%</output><span class="pmi-note" id="pmi_h" data-i18n="Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.">Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.</span></div>
+                <div class="field pmi-row"><span class="pmi-l" id="pmi_l"><span data-i18n="PMI (seguro hipotecario)">PMI (seguro hipotecario)</span> <span class="opt-tag na" data-i18n="No aplica en EAU">No aplica en EAU</span></span><div class="stepper pmi-st" role="group" aria-labelledby="pmi_l"><button type="button" disabled aria-label="Restar" data-i18n-aria="Restar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></button><output class="pmi-v num" for="pmi_l" aria-labelledby="pmi_l" aria-describedby="pmi_h">0%</output><button type="button" disabled aria-label="Sumar" data-i18n-aria="Sumar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div><span class="pmi-note" id="pmi_h" data-i18n="Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.">Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.</span></div>
               </div>
               <button type="button" class="acc-reset" data-reset-group="seg"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
@@ -1188,7 +1221,7 @@ body.qs-mode .app-shell{display:none}
     <div class="card">
       <div class="chartbox" id="chart"><div class="tip" id="tip"></div></div>
       <div class="legend" id="legend"></div>
-      <div id="chartEmpty" class="alert info" hidden></div>
+      <div id="chartEmpty" class="empty-box" hidden></div>
       <div class="tscroll" id="chartTableWrap" hidden style="margin-top:14px"><table id="chartTable"></table></div>
     </div>
   </section>
@@ -1601,11 +1634,13 @@ const I18N_EN={
  "Dinero que apartas para una reparación grande, un electrodoméstico o un mes sin pago. Lo defines en Objetivo y ahorros.":"Money you set aside for a big repair, an appliance or a month without payment. You set it under Target and savings.",
  "Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.":"Where each line crosses zero is its minimum rent to break even. Move your cursor or finger over the chart, or tab in and use ← → to read values.",
  "Duración con el flujo de caja actual":"How long it lasts at the current cash flow",
- "El gráfico no cruza el cero: con estos gastos, ninguna renta entre {{x0}} y {{x1}} llega a flujo de caja 0. Revisa «Gastos anuales» en Supuestos.":"The chart doesn't cross zero: with these costs, no rent between {{x0}} and {{x1}} reaches zero cash flow. Check “Yearly costs” under Assumptions.",
+ "El gráfico no cruza el cero":"The chart never crosses zero",
+ "Ninguna línea llega a flujo 0 entre {{x0}} y {{x1}} de renta. Los puntos de renta mínima no se dibujan.":"No line reaches cash flow 0 between {{x0}} and {{x1}} of rent. The minimum-rent points are not drawn.",
  "El interés se paga mensualmente":"Interest is paid monthly",
  "El precio más alto al que el flujo de caja mensual todavía llega a cada objetivo, con la renta actual ({{rent}}/año), {{down}}% de entrada, {{rate}}% a {{term}} años y los mismos costes. Por encima de ese precio no cumples el objetivo: es tu límite para negociar.":"The highest price at which monthly cash flow still reaches each target, with the current rent ({{rent}}/yr), {{down}}% down payment, {{rate}}% over {{term}} years and the same costs. Above that price you miss the target: it is your limit when negotiating.",
  "El precio más alto al que todavía alcanzas tu objetivo de flujo de caja. Por encima de ese precio, conviene no comprar.":"The highest price at which you still reach your cash flow target. Above that price, it's better not to buy.",
- "El precio negociado es mayor que el precio pedido. Las diferencias de negociación aparecen como pérdidas.":"The negotiated price is higher than the asking price. Negotiation differences show up as losses.",
+ "Negociado mayor que el pedido:":"Negotiated above asking:",
+ "las diferencias de negociación aparecen en contra (▼).":"negotiation differences show as against you (▼).",
  "El precio negociado está {{v}} por encima del precio pedido: todas las diferencias de negociación juegan en contra.":"The negotiated price is {{v}} above the asking price: every negotiation difference works against you.",
  "El precio por sqft que quieres pagar y el dinero del que partes: la base de comparación de todo lo demás.":"The price per sqft you want to pay and the money you start with: the baseline for everything else.",
  "El precio que pide el vendedor.":"The price the seller is asking.",
@@ -1625,7 +1660,7 @@ const I18N_EN={
  "Ese precio queda {{gap}} por debajo de tu precio límite para no perder dinero ({{wa}}).":"That price is {{gap}} below your walk-away price for not losing money ({{wa}}).",
  "Este enlace trae un escenario compartido: {{parts}}. Nada se ha guardado todavía.":"This link carries a shared scenario: {{parts}}. Nothing has been saved yet.",
  "Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.":"This model is for investment analysis only. The real mortgage rate, service charge, rent, vacant months, maintenance and purchase costs may differ. Verify every figure with the bank, ADREC/ADGM, the building management and the broker before buying.",
- "Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Compartir» para conservarlo.":"This browser can't save (private mode). The calculations work the same, but they're lost when you close the tab. Use “Share” to keep it.",
+ "Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Compartir» para conservarlo en un enlace.":"This browser can't save (private mode). The calculations work the same, but they're lost when you close the tab. Use “Share” to keep it in a link.",
  "Estrategia":"Strategy",
  "Faltan {{v}}":"{{v}} short",
  "Faltan {{v}}/año":"{{v}}/yr short",
@@ -1734,6 +1769,8 @@ const I18N_EN={
  "Negociar te ahorra":"Negotiating saves you",
  "Negociar {{save}} ({{pct}}) reduce el dinero para cerrar en {{d}} ({{a}} → {{b}}) y la cuota mensual en {{pm}}. El interés de ahorro preservado cambia en {{int}}/año.":"Negotiating {{save}} ({{pct}}) off cuts the cash needed to close by {{d}} ({{a}} → {{b}}) and the monthly payment by {{pm}}. The savings interest you preserve changes by {{int}}/yr.",
  "Ninguna renta cubre los costes.":"No rent covers the costs.",
+ "Con estos gastos, toda la renta se va en meses vacíos y gestión: ningún importe llega a flujo 0.":"With these costs, all the rent goes to vacant months and management: no amount reaches cash flow 0.",
+ "Revisar «Gastos anuales»":"Review “Annual costs”",
  "Ningún precio llega a este objetivo con la renta actual":"No price reaches this target at the current rent",
  "Ningún término coincide con tu búsqueda.":"No term matches your search.",
  "No Objection Certificate: autorización del developer para vender la unidad. Importe fijo estimado de AED {{v}}.":"No Objection Certificate: the developer's authorisation to sell the unit. Estimated flat amount of AED {{v}}.",
@@ -1890,6 +1927,7 @@ const I18N_EN={
  "mejora el flujo y reduce lo que pagas al cerrar":"improves cash flow and lowers what you pay at closing",
  "menos para cerrar la compra":"less cash to close",
  "meses":"months",
+ "años":"years",
  "modelo":"model",
  "mín(saldo, tope) × tasa":"min(balance, cap) × rate",
  "negativo ({{v}}/mes)":"negative ({{v}}/mo)",
@@ -2332,7 +2370,7 @@ function renderHeader(R){
   :`<span class="pos"><span aria-hidden="true">▼</span><span>${t('{{d}} ({{p}}) por debajo del precio pedido.',{d:aed(d),p:pct(d/S.price*100)})}</span></span>`;
  const CUTS=[25000,50000,75000,100000,125000,150000],onIdx=CUTS.findIndex(c=>Math.round(d)===c);
  $('cuts').innerHTML=CUTS.map((c,i)=>{const on=i===onIdx;return `<button type="button" role="radio" aria-checked="${on}" tabindex="${on||(onIdx<0&&i===0)?0:-1}" class="pill${on?' on':''}" data-cut="${c}">−${nf0.format(c/1000)}k</button>`}).join('');
- $('negWarn').innerHTML=up?`<div class="alert"><span aria-hidden="true">⚠</span><span>${t('El precio negociado es mayor que el precio pedido. Las diferencias de negociación aparecen como pérdidas.')}</span></div>`:'';
+ $('negWarn').innerHTML=up?`<div class="alert" role="alert"><span aria-hidden="true">⚠</span><span><b>${t('Negociado mayor que el pedido:')}</b> ${t('las diferencias de negociación aparecen en contra (▼).')}</span></div>`:'';
 }
 
 /* ---------- Fees de compra (calculados) ---------- */
@@ -2377,18 +2415,20 @@ const ICON_INFO='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" str
 const priceShort=v=>v>=1e6?(+(v/1e6).toFixed(2))+'M':(+(v/1e3).toFixed(1))+'k';
 /* Level-1 KPI card: title + help, Pedido/Negociado tiles, polarity chip, context line.
    tiles=[{k,l,v,c}] · chip={i,cls,txt} · note = help text */
-function kpiCard(key,title,note,tiles,chip,ctx){
+function kpiCard(key,title,note,tiles,chip,ctx,extra=''){
  const open=openKpi===key,side=x=>`<div class="side${x.k&&S.view===x.k?' on':''}"${x.k?` data-view="${x.k}"`:''}><small>${x.l}</small><b class="${x.c||''}">${x.v}</b></div>`;
  return `<article class="kpi"><div class="kpi-h"><h3>${title}</h3><button type="button" class="kpi-help" data-kpi="${key}" aria-expanded="${open}" aria-controls="kn-${key}" aria-label="${t('Qué es {{label}}',{label:title})}">${ICON_INFO}</button></div>
   <p class="kpi-note" id="kn-${key}"${open?'':' hidden'}>${note}</p>
   <div class="pair">${tiles.map(side).join('')}</div>
-  <span class="kpi-chip ${chip.cls}"><span aria-hidden="true">${chip.i}</span>${chip.txt}</span>
-  <p class="kpi-ctx">${ctx}</p></article>`;
+  ${chip?`<span class="kpi-chip ${chip.cls}"><span aria-hidden="true">${chip.i}</span>${chip.txt}</span>
+  <p class="kpi-ctx">${ctx}</p>`:extra}</article>`;
 }
-function pairCard(key,title,note,m,n,{fmt=aed,colorize=false,better='higher',lm,ln,chipGood,chipBad,ctx}){
+function pairCard(key,title,note,m,n,{fmt=aed,colorize=false,better='higher',lm,ln,chipGood,chipBad,ctx,empty=false}){
  const d=n-m,good=better==='higher'?d>0.5:d<-0.5,bad=better==='higher'?d<-0.5:d>0.5,ad=Math.abs(d);
  const chip=good?{i:'▲',cls:'good',txt:chipGood(ad)}:bad?{i:'▼',cls:'bad',txt:chipBad(ad)}:{i:'=',cls:'',txt:t('Sin diferencia entre precios')};
- return kpiCard(key,title,note,[{k:'main',l:lm,v:fmt(m),c:colorize?cls(m):''},{k:'neg',l:ln,v:fmt(n),c:colorize?cls(n):''}],chip,ctx);
+ const tiles=[{k:'main',l:lm,v:fmt(m),c:colorize?cls(m):''},{k:'neg',l:ln,v:fmt(n),c:colorize?cls(n):''}];
+ if(empty&&(!isFinite(m)||!isFinite(n)))return kpiCard(key,title,note,tiles,null,null,`<p class="kpi-alert" role="note"><span aria-hidden="true">⚠</span><span>${t('Con estos gastos, toda la renta se va en meses vacíos y gestión: ningún importe llega a flujo 0.')}</span></p><button type="button" class="kpi-link" data-open-group="gas">${t('Revisar «Gastos anuales»')}</button>`);
+ return kpiCard(key,title,note,tiles,chip,ctx);
 }
 function otherCell(label,m,n,{fmt=aed,colorize=false,sub=''}={}){
  const c=v=>colorize?` class="${cls(v)}"`:'';
@@ -2411,7 +2451,7 @@ function renderKpis(R){
   pairCard('cf',t('Flujo de caja al mes'),t('Lo que te queda cada mes después de pagar la hipoteca y los gastos del inmueble, con la renta actual. Si es negativo (▼), pones dinero de tu bolsillo.'),M.cfM,N.cfM,{fmt:saed,colorize:true,lm,ln,
    chipGood:v=>t('+{{v}}/mes a favor del negociado',{v:aed(v)}),chipBad:v=>t('−{{v}}/mes en contra del negociado',{v:aed(v)}),
    ctx:t('Lo que te queda (o pones de tu bolsillo) cada mes, después de hipoteca y gastos. ▼ significa que pones dinero.')}),
-  pairCard('be',t('Renta mínima para no perder dinero'),t('La renta anual mínima con la que el flujo de caja llega a 0: cubre la hipoteca, los gastos y los meses sin inquilino. Cuanto más baja, mejor.'),M.be,N.be,{better:'lower',lm,ln,
+  pairCard('be',t('Renta mínima para no perder dinero'),t('La renta anual mínima con la que el flujo de caja llega a 0: cubre la hipoteca, los gastos y los meses sin inquilino. Cuanto más baja, mejor.'),M.be,N.be,{better:'lower',lm,ln,empty:true,
    chipGood:v=>t('{{v}}/año menos con el negociado',{v:aed(v)}),chipBad:v=>t('{{v}}/año más con el negociado',{v:aed(v)}),
    ctx:t('Por año. Con tu renta actual ({{rent}}): {{a}} en el pedido y {{b}} en el negociado.',{rent:aed(S.rent),a:gap(M),b:gap(N)})}),
   pairCard('ctc',t('Dinero para cerrar la compra'),t('Lo que necesitas tener el día de la compra: la entrada más los gastos de compra (registro, comisión, VAT, NOC y conveyancing).'),M.ctc,N.ctc,{better:'lower',lm,ln,
@@ -2689,7 +2729,7 @@ function renderChart(R){
  // Estado vacío: ninguna línea cruza el rango visible
  const anyCross=series.some(se=>se.be>=x0&&se.be<=x1);
  $('chartEmpty').hidden=anyCross;
- if(!anyCross)$('chartEmpty').innerHTML='<span aria-hidden="true">i</span><span>'+t('El gráfico no cruza el cero: con estos gastos, ninguna renta entre {{x0}} y {{x1}} llega a flujo de caja 0. Revisa «Gastos anuales» en Supuestos.',{x0:aed(x0),x1:aed(x1)})+'</span>';
+ if(!anyCross)$('chartEmpty').innerHTML='<span><b>'+t('El gráfico no cruza el cero')+'</b>'+t('Ninguna línea llega a flujo 0 entre {{x0}} y {{x1}} de renta. Los puntos de renta mínima no se dibujan.',{x0:aed(x0),x1:aed(x1)})+' <button type="button" class="kpi-link" data-open-group="gas">'+t('Revisar «Gastos anuales»')+'</button></span>';
  const lgLine=se=>`<svg width="26" height="6" aria-hidden="true"><line x1="1" x2="25" y1="3" y2="3" stroke="${se.color}" stroke-width="3"${se.dash?' stroke-dasharray="6 4"':''} stroke-linecap="round"/></svg>`;
  $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}">${lgLine(se)}${t(SHORT[se.k])} · ${short(se.price)}${se.on?' · '+t('destacado'):''}</span>`).join('')+
   `<span class="li"><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--sp)"/></svg>${t('Renta mínima')}</span><span class="li"><svg width="14" height="14" aria-hidden="true"><line x1="7" x2="7" y1="0" y2="14" stroke="var(--wa)" stroke-width="2" stroke-dasharray="3 2"/></svg>${t('Tu renta actual')}</span><span class="lg-hint">${t('Con el foco en el gráfico: ← → mueven el cursor · Inicio/Fin saltan a los extremos')}</span>`;
@@ -2772,8 +2812,8 @@ function renderSavings(R){
  [M,N].forEach(s=>{if(s.rem<0)al.push(`<div class="alert neg" role="alert"><span aria-hidden="true">▼</span><span><b>${t(LABEL[s.key])}:</b> ${t('el dinero para cerrar ({{ctc}}) supera tu saldo ({{sav}}) en {{gap}}.',{ctc:aed(s.ctc),sav:aed(S.sav),gap:aed(-s.rem)})}</span></div>`)});
  const s=R.sel;
  const alertsH=`<h3>${t('Después de comprar · {{scenario}}',{scenario:t(LABEL[S.view])})}</h3>${al.join('')}
-  ${mrow('Saldo actual',aed(S.sav))}${mrow('Dinero para cerrar la compra',saed(-s.ctc),'neg')}${mrow('Saldo restante',aed(s.rem),s.rem<0?'neg':'')}
-  ${mrow('Interés que conservas',aed(s.interest)+t('/año'),'pos',aed(s.interest/12)+t('/mes'))}
+  ${mrow('Saldo actual',aed(S.sav))}${mrow('Dinero para cerrar la compra','▼ '+saed(-s.ctc),'neg')}${mrow('Saldo restante',(s.rem<0?'▼ ':'')+aed(s.rem),s.rem<0?'neg':'')}
+  ${mrow('Interés que conservas','▲ '+aed(s.interest)+t('/año'),'pos',aed(s.interest/12)+t('/mes'))}
   ${mrow('Interés que dejas de cobrar',G(-(before-s.interest))+saed(-(before-s.interest))+t('/año'),before-s.interest>0.5?'neg':'')}
   ${mrow('Flujo de caja de la propiedad',G(s.cfM)+saed(s.cfM)+t('/mes'),cls(s.cfM),saed(s.cfA)+t('/año'))}
   ${mrow('Ingreso combinado',G(s.combM)+saed(s.combM)+t('/mes'),cls(s.combM),t('{{a}}/año · vs {{b}}/año sin comprar',{a:saed(s.combA),b:aed(before)}))}
@@ -2841,8 +2881,8 @@ function renderRenewal(R){
  $('rnCard').innerHTML=calcHeadHtml()+
   row('Flujo/mes con la renta actual',x=>x.cfM,cls)+
   row('Flujo/mes tras renovar',after,cls)+
-  row('Renta mínima vs renta renovada',x=>{const g=rr-x.be;return g>=0?t('Cubierto (+{{v}})',{v:aed(g)}):t('Faltan {{v}}/año',{v:aed(-g)})},(v,x)=>rr-x.be>=0?'pos':'neg')+
-  row('Renta perdida por meses vacíos',()=>S.renewGap?saed(-S.renewGap*rr/12):'—',v=>v==='—'?'':'neg')+
+  row('Renta mínima vs renta renovada',x=>{const g=rr-x.be;return g>=0?'▲ '+t('Cubierto (+{{v}})',{v:aed(g)}):'▼ '+t('Faltan {{v}}/año',{v:aed(-g)})},(v,x)=>rr-x.be>=0?'pos':'neg')+
+  row('Renta perdida por meses vacíos',()=>S.renewGap?'▼ '+saed(-S.renewGap*rr/12):'—',v=>v==='—'?'':'neg')+
   row('Flujo del año 1 (según calendario)',y1,cls)+
   row('Flujo del año 2 (según calendario)',y2,cls);
 }
@@ -3108,6 +3148,27 @@ function setupStepper(key,step){
 }
 [['rate',.05],['vacM',.5],['mgmt',.5],['tol',1],['savRate',.25],['ins',100]].forEach(x=>setupStepper(x[0],x[1]));
 $('term').addEventListener('change',e=>{pushHistory();S.term=parseInt(e.target.value,10);render()});
+/* Advanced groups: unit adornment inside the field (design) and Plazo as a stepper over the four allowed terms */
+document.querySelectorAll('.acc-body input.inp').forEach(n=>{
+ const u=(FLBL[n.id]||{}).u,unit=u?document.createElement('span'):null;
+ if(unit){unit.className='fin-u';unit.setAttribute('aria-hidden','true');unit.textContent=t(u)}
+ if(n.parentNode.classList.contains('stepper')){if(unit)n.after(unit);return}
+ const w=document.createElement('span');w.className='fin';n.parentNode.insertBefore(w,n);w.appendChild(n);if(unit)w.appendChild(unit);
+});
+(function(){
+ const sel=$('term'),vals=[...sel.options].map(o=>+o.value),lo=vals[0],hi=vals[vals.length-1];
+ sel.hidden=true;sel.setAttribute('aria-hidden','true');sel.tabIndex=-1;
+ const lbl=document.querySelector('label[for="term"]');if(lbl)lbl.removeAttribute('for');
+ const w=document.createElement('div');w.className='stepper';w.setAttribute('role','group');w.setAttribute('aria-labelledby','term_l');
+ const mk=(dir,path,i18n)=>{const b=document.createElement('button');b.type='button';b.dataset.i18nAria=i18n;b.setAttribute('aria-label',t(i18n));
+  b.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="'+path+'"></path></svg>';
+  b.addEventListener('click',()=>{const i=vals.indexOf(S.term),nv=vals[Math.min(vals.length-1,Math.max(0,(i<0?vals.indexOf(25):i)+dir))];if(nv===S.term)return;sel.value=String(nv);sel.dispatchEvent(new Event('change',{bubbles:true}))});return b};
+ const minus=mk(-1,'M5 12h14','Restar'),plus=mk(1,'M12 5v14M5 12h14','Sumar'),out=document.createElement('output');out.className='stp-v';out.setAttribute('aria-live','polite');out.setAttribute('for','term');
+ w.append(minus,out,plus);sel.after(w);
+ const upd=()=>{out.textContent=S.term+' '+t('años');minus.disabled=S.term<=lo;plus.disabled=S.term>=hi};
+ stepperSyncs.push(upd);upd();
+})();
+
 document.addEventListener('click',e=>{
  const hb=e.target.closest('[data-dh]');
  if(hb){const id=hb.dataset.dh;detOpen.has(id)?detOpen.delete(id):detOpen.add(id);renderDetail(lastR||both());const nb=document.querySelector(`[data-dh="${id}"]`);if(nb)nb.focus();return}
@@ -3117,6 +3178,7 @@ $('horizon').addEventListener('click',e=>{const b=e.target.closest('[data-hz]');
 $('horizon').addEventListener('keydown',e=>{const bs=[...document.querySelectorAll('#horizon [data-hz]')],i=bs.findIndex(b=>+b.dataset.hz===S.horizon);let j=i;
  if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%bs.length;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+bs.length)%bs.length;else return;
  e.preventDefault();bs[j].click()});
+document.addEventListener('click',e=>{const og=e.target.closest('[data-open-group]');if(og)openAssumptionGroup(og.dataset.openGroup)});
 document.addEventListener('click',e=>{
  const vl=e.target.closest('[data-verdict-link]');
  if(vl){const r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;$('resumen').scrollIntoView({behavior:r?'auto':'smooth',block:'start'});const h=$('verdictHeadline');h.setAttribute('tabindex','-1');h.focus({preventScroll:true});return}
@@ -3155,7 +3217,7 @@ function renderVisitNotice(info){
   $('visitContinue').addEventListener('click',()=>{el.innerHTML=''});
   $('visitFresh').addEventListener('click',()=>{pushHistory();Object.assign(S,DEFAULTS);try{localStorage.removeItem(STORE)}catch(e){}resetFieldMessages();render();el.innerHTML=''});
  }else if(info.privateMode){
-  el.innerHTML=`<div class="notice info" role="status"><span>${t('Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Compartir» para conservarlo.')}</span></div>`;
+  el.innerHTML=`<div class="notice info" role="status"><span>${t('Este navegador no permite guardar (modo privado). Los cálculos funcionan igual; al cerrar la pestaña se pierden. Usa «Compartir» para conservarlo en un enlace.')}</span></div>`;
  }else{
   el.innerHTML='';
  }
@@ -3304,6 +3366,11 @@ if(sharedScenario)renderSharedScenario(sharedScenario);else renderVisitNotice(st
 /* One instance of the inputs (#inpgrid) lives in the side panel; the mobile sheet and the quick-start
    screen borrow its blocks and give them back, so ids, validation, undo and persistence are shared. */
 const sideMQ=window.matchMedia('(max-width:1199px)');
+function openAssumptionGroup(g){
+ const d=$('acc-'+g);if(supMQ.matches)openSupSheet();else openSideDrawer();
+ if(!d)return;d.open=true;
+ setTimeout(()=>{d.scrollIntoView({block:'nearest'});const sm=d.querySelector('summary');if(sm)sm.focus()},60);
+}
 let sideOpener=null;
 const sideIsOpen=()=>document.body.classList.contains('side-open');
 function syncSupBtn(){

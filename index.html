@@ -671,7 +671,9 @@ body.qs-mode .app-shell{display:none}
 #qsForm .pmt-c{background:none;border-left:1px solid var(--ln);border-radius:0;padding:12px 16px}
 #qsForm .pmt-c .pv{font-size:18px}
 #qsForm .qs-n{background:var(--brbg);color:var(--brt)}
-.qs-cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 18px}
+.qs-actions{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 18px}
+.qs-cta{display:contents}
+.qs-flow{display:none}
 .qs-go{height:52px;padding:0 24px;border:0;border-radius:12px;background:var(--br);color:#fff;font-size:16px;font-weight:600;cursor:pointer}
 .qs-ex{height:52px;padding:0 20px;border-radius:12px;border:1px solid var(--ln2);background:transparent;color:var(--tx);font-size:15px;cursor:pointer}
 .qs-ex:hover{background:var(--in)}
@@ -716,6 +718,22 @@ body.qs-mode .app-shell{display:none}
   .rentctl input[type=range]::-webkit-slider-thumb{width:24px;height:24px}
   .rentctl input[type=range]::-moz-range-thumb{width:18px;height:18px}
   .btn-sup{grid-area:sup}
+  .sheet-h .abtn.icon,.abtn.icon{width:44px;height:44px}
+  .brand{min-height:44px}
+  .langseg button{height:44px}
+  .kpi-help{width:44px;height:44px;margin:-8px 0;border-color:transparent}
+  .help{position:relative;isolation:isolate;width:44px;height:44px;margin:-10px;border:0;background:transparent}
+  .help::before{content:"";position:absolute;left:10px;top:10px;width:24px;height:24px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line2);background:var(--inset);z-index:-1}
+  .help:hover::before,.help:focus-visible::before,.help[aria-expanded="true"]::before{border-color:var(--blue2);background:var(--brbg)}
+  .inp,.inp.sm{min-height:44px;box-sizing:border-box}
+  .lec-more{min-height:44px}
+  .ess-reset,.acc-reset{min-height:44px}
+  .fhelp{width:44px;height:44px;margin:-8px 0;border-color:transparent}
+  .cuts .pill{min-height:44px;height:44px}
+  .sheet-cf b{white-space:nowrap}
+  .sheet-body #psfCalc{display:none}
+  .fin{height:44px}
+  .rentctl input[type=number]{height:44px}
   .rent-cap{grid-area:cap;display:block;font-size:12px;color:var(--dm)}
   body{padding-bottom:148px}
   .verdict{padding:20px;gap:14px;border-radius:20px}
@@ -746,7 +764,6 @@ body.qs-mode .app-shell{display:none}
   .abtn,.abtn.icon{min-height:44px}
   .pill{min-height:36px;display:inline-flex;align-items:center}
   .acc>summary{min-height:48px}
-  .help{width:24px;height:24px}
 }
 @media (max-width:1199px){
   .app-shell{grid-template-columns:minmax(0,1fr)}
@@ -779,7 +796,14 @@ body.qs-mode .app-shell{display:none}
   #qsForm .pmt-card{grid-template-columns:1fr}
   #qsForm .pmt-c{border-left:0;border-top:1px solid var(--ln)}
   #qsForm .qs-set{grid-template-columns:1fr}
-  .qs-cta>button{flex:1 1 100%}
+  .qs-actions{margin:18px 0 12px}
+  .qs-ex{flex:1 1 100%}
+  .qs-cta{display:flex;flex-direction:column;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:45;box-sizing:border-box;padding:12px 16px calc(14px + env(safe-area-inset-bottom));background:var(--sf);border-top:1px solid var(--ln2);box-shadow:0 -12px 24px -16px rgba(0,0,0,.5)}
+  .qs-flow{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13.5px;color:var(--mu)}
+  .qs-flow b{color:var(--tx);white-space:nowrap}.qs-flow b.pos{color:var(--po)}.qs-flow b.neg{color:var(--ne)}
+  .qs-cta>button{width:100%}
+  .qs-prev{display:none}
+  .qs-grid{padding-bottom:190px}
 }
 @media (max-width:420px){.feerow{gap:6px 10px}.feerow>b{min-width:0}.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
 
@@ -952,8 +976,11 @@ body.qs-mode .app-shell{display:none}
       <h1 id="qsTitle" data-i18n="¿Es buena compra? ¿Y cuánto te ahorra negociar?">¿Es buena compra? ¿Y cuánto te ahorra negociar?</h1>
       <p class="qs-intro" data-i18n="Escribe cinco datos y verás al instante cuánto flujo de caja tendrías cada mes, con el precio pedido y con el negociado. Lo demás ya tiene valores razonables.">Escribe cinco datos y verás al instante cuánto flujo de caja tendrías cada mes, con el precio pedido y con el negociado. Lo demás ya tiene valores razonables.</p>
       <div class="qs-form" id="qsForm"></div>
-      <div class="qs-cta">
-        <button type="button" class="qs-go" id="qsGo"><span data-i18n="Ver el análisis completo">Ver el análisis completo</span><span aria-hidden="true"> →</span></button>
+      <div class="qs-actions">
+        <div class="qs-cta">
+          <div class="qs-flow" aria-live="polite"><span data-i18n="Flujo al mes · pedido / negociado">Flujo al mes · pedido / negociado</span><b id="qsFlowV"></b></div>
+          <button type="button" class="qs-go" id="qsGo"><span data-i18n="Ver el análisis completo">Ver el análisis completo</span><span aria-hidden="true"> →</span></button>
+        </div>
         <button type="button" class="qs-ex" id="qsExample" data-i18n="Usar la propiedad de ejemplo">Usar la propiedad de ejemplo</button>
       </div>
       <details class="qs-defaults"><summary data-i18n="Valores por defecto que usaremos (puedes cambiarlos luego)">Valores por defecto que usaremos (puedes cambiarlos luego)</summary><ul id="qsDefaults"></ul></details>
@@ -2033,6 +2060,11 @@ const I18N_EN={
  "Coste de salida en el año {{h}}: {{a}} / {{b}}. Sin apreciación.":"Exit cost in year {{h}}: {{a}} / {{b}}. No appreciation.",
  "Ingreso combinado {{a}}/mes vs {{b}}/mes sin comprar":"Combined income {{a}}/mo vs {{b}}/mo without buying",
  "Cómo se calcula (5 filas)":"How it is calculated (5 rows)",
+ "{{n}} cifras · entrada, hipoteca, gastos":"{{n}} figures · down payment, mortgage, costs",
+ "Renta → gastos → ingreso neto → flujo":"Rent → costs → net income → cash flow",
+ "Rentabilidades, capital amortizado, patrimonio":"Yields, principal paid down, net worth",
+ "{{d}} a favor del negociado":"{{d}} in favour of the negotiated price",
+ "{{d}} en contra del negociado":"{{d}} against the negotiated price",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -2430,8 +2462,10 @@ function renderVerdict(R){
 
 /* ---------- Barra de resultados: resumen compacto ---------- */
 function renderSupCf(R){
- const el=$('supCf');if(!el)return;const{M,N}=R;
- el.className=cls(N.cfM);el.textContent=(N.cfM>=0?'▲ ':'▼ ')+saed(M.cfM)+' / '+saed(N.cfM);
+ const{M,N}=R,sg=v=>{const r=Math.round(v);return(r>0?'+':r<0?'−':'')+nf0.format(Math.abs(r))},txt=(N.cfM>=0?'▲ ':'▼ ')+sg(M.cfM)+' / '+sg(N.cfM);
+ const qf=$('qsFlowV');if(qf){qf.className=cls(N.cfM);qf.textContent=txt}
+ const el=$('supCf');if(!el)return;
+ el.className=cls(N.cfM);el.textContent=txt;
  $('supCfBar').classList.toggle('pos',N.cfM>=0);
 }
 function renderBarSummary(R){
@@ -2459,20 +2493,20 @@ function renderDetailMobile(R){
  const A=(l,v,o={})=>m(l,v,Object.assign({f:aed},o));
  const P=(l,v,o={})=>m(l,v,Object.assign({f:x=>pct(x),pp:true},o));
  const G=[
-  {g:'fin',t:'Financiación y entrada',s:t('Para cerrar: {{a}} pedido · {{b}} negociado',{a:aed(M.ctc),b:aed(N.ctc)}),rows:[
+  {g:'fin',t:'Precio y compra',s:t('{{n}} cifras · entrada, hipoteca, gastos',{n:15}),rows:[
    A('Precio',x=>x.price,{good:-1}),A('AED/sqft',x=>x.psf,{good:-1}),A('Entrada',x=>x.down),A('Hipoteca',x=>x.mortgage,{good:-1}),
    A('Cuota mensual',x=>x.pm,{good:-1}),A('Cuota anual',x=>x.debt,{good:-1}),
    A('ADGM / registro',x=>x.fees.adgm,{good:-1}),A('Comisión de agencia (neta)',x=>x.fees.agNet,{good:-1}),A(t('VAT sobre la comisión ({{p}}%)',{p:FEE_RULES.agencyVat*100}),x=>x.fees.vat,{good:-1}),
    A('Tasa electrónica ADGM',x=>x.fees.efee),A('NOC',x=>x.fees.noc),A('Conveyancing',x=>x.fees.conv),
    A('Total gastos de compra',x=>x.fees.total,{good:-1}),A('Dinero para cerrar la compra',x=>x.ctc,{good:-1}),A('Coste final',x=>x.finalCost,{good:-1})]},
-  {g:'op',t:'Operación anual',s:t('Flujo al año: {{a}} · {{b}}',{a:saed(M.cfA),b:saed(N.cfA)}),rows:[
+  {g:'op',t:'Operación anual',s:t('Renta → gastos → ingreso neto → flujo'),rows:[
    A('Renta bruta',x=>x.rent),m('Reserva por vacancia',x=>-x.vac),A('Renta efectiva',x=>x.eff),
    m('Comunidad (service charge)',x=>-x.scA),m('Mantenimiento',x=>-S.maint),m('Gestión del alquiler',x=>-x.mg),
    m('Administración e imprevistos',x=>-S.admin),m('Seguro del inmueble',x=>-S.ins),
    {l:'PMI (seguro hipotecario)',stat:'0%',note:t('no aplica en EAU · 0%')},
    A('Gastos totales (sin vacancia)',x=>x.opex,{good:-1}),m('Ingreso neto antes de hipoteca',x=>x.noi,{tone:true,good:1}),
    m('Hipoteca anual',x=>-x.debt,{good:1}),m('Flujo de caja anual',x=>x.cfA,{tone:true,good:1})]},
-  {g:'ret',t:'Rentabilidad y patrimonio',s:t('Rentabilidad de tu dinero: {{a}} · {{b}}',{a:pct(M.coc),b:pct(N.coc)}),rows:[
+  {g:'ret',t:'Rentabilidad y patrimonio',s:t('Rentabilidades, capital amortizado, patrimonio'),rows:[
    P('Rentabilidad bruta',x=>x.gy,{good:1}),P('Rentabilidad neta',x=>x.ny,{good:1}),P('Rentabilidad de tu dinero',x=>x.coc,{tone:true,good:1}),
    A('Renta mínima para no perder dinero',x=>x.be,{good:-1}),A('Capital amortizado año 1',x=>x.prin1),A('Capital amortizado en 2 años',x=>x.prin2),
    A('Saldo de hipoteca tras 2 años',x=>x.bal24,{good:-1}),m('Patrimonio generado año 1',x=>x.wealth,{tone:true,good:1}),
@@ -2482,8 +2516,8 @@ function renderDetailMobile(R){
   if(r.stat)return`<div class="dm-row"><dt>${t(r.l)}</dt><dd><span>${r.stat}</span><span>${r.stat}</span></dd><dd class="dm-d">${r.note}</dd></div>`;
   const a=r.v(M),b=r.v(N),d=b-a,z=r.pp?Math.abs(d)<0.005:Math.abs(d)<0.5,tc=r.tone?cls:()=>'';
   const good=r.good&&!z?(d*r.good>0?'pos':'neg'):'';
-  const ic=z?'':d>0?'▲':'▼';
-  return`<div class="dm-row"><dt>${t(r.l)}</dt><dd><span class="${tc(a)}">${r.f(a)}</span><span class="${tc(b)}">${r.f(b)}</span></dd><dd class="dm-d${good?' '+good:''}">${z?t('Sin diferencia'):`<span aria-hidden="true">${ic} </span>${t('Negociado vs pedido: {{d}}',{d:r.pp?pp(d):saed(d)})}`}</dd></div>`;
+  const ic=z||!r.good?'=':d*r.good>0?'▲':'▼';
+  return`<div class="dm-row"><dt>${t(r.l)}</dt><dd><span class="${tc(a)}">${r.f(a)}</span><span class="${tc(b)}">${r.f(b)}</span></dd><dd class="dm-d${good?' '+good:''}">${z?t('Sin diferencia'):`<span aria-hidden="true">${ic} </span>${(dv=>!r.good?dv:good==='pos'?t('{{d}} a favor del negociado',{d:dv}):t('{{d}} en contra del negociado',{d:dv}))(r.pp?pp(d):saed(d))}`}</dd></div>`;
  };
  el.innerHTML=`<div class="dm-h"><h3>${t('Todas las cifras')}</h3><button type="button" class="dm-link" id="dmGlossLink">${t('Glosario')}</button></div>`+
   G.map((g,i)=>`<details class="dm-grp" data-g="${g.g}"${(g.g in wasOpen?wasOpen[g.g]:i===0)?' open':''}><summary><span style="display:flex;flex-direction:column;flex:1;min-width:0"><b>${t(g.t)}</b><span class="tiny muted">${g.s}</span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><div class="dm-cols" aria-hidden="true"><span>${t('Pedido')}</span><span>${t('Negociado')}</span></div><dl class="dm-list">${g.rows.map(row).join('')}</dl></details>`).join('')+

@@ -895,6 +895,20 @@ body.qs-mode .app-shell{display:none}
 }
 @media (max-width:1199px){
   .tb-w{display:none!important}
+/* Desktop with the 360px panel: wide tables wrap inside the results column instead of scrolling */
+@media (min-width:1200px) and (max-width:1699px){
+  .tb-w table{min-width:0!important;table-layout:auto}
+  .tb-w th,.tb-w td{white-space:normal;padding:9px 6px;font-size:13px;vertical-align:top}
+  .tb-w th{font-size:12px}
+  .tb-w .mx th,.tb-w .mx td{white-space:nowrap}
+  #enTable td:last-child{min-width:0}
+  .be3 th,.be3 td{padding:9px 6px}
+  .be3 td .sub,.be3 td .gap{white-space:normal}
+}
+@media (min-width:1200px) and (max-width:1399px){
+  #matriz .tb-w{display:none!important}
+  #matriz .cd-w{display:block}
+}
   .cd-w{display:block}
   #ahorros>.sec-h{display:none}
 }

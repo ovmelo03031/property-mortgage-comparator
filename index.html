@@ -340,13 +340,63 @@ th.on{color:var(--blue2)}
 tbody tr:last-child td{border-bottom:0}
 
 /* Matrix */
-.mx{min-width:760px}
-.mx td{text-align:center;font-weight:600;padding:9px 8px}
-.mx td.c-pos{background:color-mix(in srgb,var(--po) calc(var(--a,.1)*100%),var(--sf));color:var(--tx)}
-.mx td.c-neg{background:color-mix(in srgb,var(--ne) calc(var(--a,.1)*100%),var(--sf));color:var(--tx)}
-.mx td.c-mid{background:color-mix(in srgb,var(--wa) 14%,var(--sf));color:var(--tx)}
-.mx td.hit{outline:2px solid var(--blue2);outline-offset:-2px}
-.mx tr.cur td:first-child{color:var(--blue2)}
+.mx{min-width:760px;border-collapse:separate;border-spacing:3px;width:100%}
+.mx th,.mx td{border-bottom:0}
+.mx thead th{text-align:center;padding:8px 4px}
+.mx thead th:first-child{text-align:left;padding:8px}
+.mx thead th:last-child{text-align:right;padding:8px}
+.mx th.hl{color:var(--brt);font-weight:700}
+.mx td{text-align:center;font-weight:600;padding:9px 4px;border-radius:6px;color:var(--tx)}
+.mx td:first-child{text-align:left;padding:8px;font-weight:600;border-radius:0;background:var(--sf)}
+.mx td:last-child{text-align:right;padding:8px;font-weight:400;color:var(--mu);background:none}
+.mx td .gl{font-size:11px;font-weight:600}
+.mx td.c-pos{background:color-mix(in srgb,var(--po) calc(var(--a,.1)*100%),var(--sf))}
+.mx td.c-pos .gl{color:var(--po)}
+.mx td.c-neg{background:color-mix(in srgb,var(--ne) calc(var(--a,.1)*100%),var(--sf))}
+.mx td.c-neg .gl{color:var(--ne)}
+.mx td.c-mid{background:var(--wabg)}
+.mx td.c-mid .gl{color:var(--wa)}
+.mx td.hit{outline:2px solid var(--brt);outline-offset:-2px}
+.mx td:first-child .tg{font-size:12px;font-weight:600;color:var(--brt)}
+.mx-legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:13px;color:var(--mu);margin-top:12px}
+.mx-legend>span{display:flex;align-items:center;gap:6px}
+.mx-legend .chip{padding:1px 8px;border-radius:6px;font-weight:700}
+.mx-legend .chip.c-pos{background:var(--pobg);color:var(--po)}
+.mx-legend .chip.c-mid{background:var(--wabg);color:var(--wa)}
+.mx-legend .chip.c-neg{background:var(--nebg);color:var(--ne)}
+.mx-legend .hit-sw{width:18px;height:14px;border-radius:4px;border:2px solid var(--brt)}
+.mx-legend .mx-unit{margin-left:auto;color:var(--dm)}
+
+/* Stress table (7 columns with micro-bars) */
+.st7 caption{caption-side:top;text-align:left;font-size:13px;color:var(--dm);padding:0 0 8px}
+.st7 th,.st7 td{padding:12px 10px}
+.st7 thead th{text-align:left}
+.st7 thead th.r,.st7 td.r{text-align:right}
+.st7 tbody th{text-align:left;font-weight:600;position:sticky;left:0;background:var(--sf);z-index:1;font-size:14.5px}
+.st7 tbody th small{font-weight:400;color:var(--mu);font-size:13px;margin-left:4px}
+.st7 td.bar{width:130px}
+.st7 td.v{width:1%;white-space:nowrap}
+.tabpanel section .tscroll{border:0;border-radius:0}
+.st7 .mb{display:block;height:10px;border-radius:3px;background:var(--ne)}
+.st7 .mb.up{background:var(--po)}
+.st7 .mb.n{opacity:.7}
+.st7 td.v{font-weight:600}
+.st7 tr.base td,.st7 tr.base th{background:var(--brbg)}
+.st7 thead th.on{color:var(--tx)}
+
+/* Runway bar + renovación inputs */
+.rw-bar{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.rw-bar .bars{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px}
+.rw-bar .bars span{display:block;min-width:3px}
+.rw-bar .lg{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--mu)}
+.rw-foot{margin:12px 0 0;display:flex;gap:8px;font-size:13.5px;color:var(--po)}
+.rw-foot.warn{color:var(--wa)}.rw-foot.bad{color:var(--ne)}
+.rn-in{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:2px 0 14px}
+.rn-in .field{gap:4px;justify-content:flex-end}
+.rn-in .field label{font-size:12.5px}
+.rn-in .inp{height:38px;padding:0 10px;font-size:14px;font-weight:600;border-radius:10px}
+.rn-in .field-msg:empty{display:none}
+.rn-rows .feerow>b{white-space:nowrap}
 
 /* Forms */
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -896,18 +946,25 @@ body.qs-mode .app-shell{display:none}
 <div id="tab-riesgo" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-riesgo" hidden tabindex="0">
   <section id="stress">
     <div class="sec-h"><div><h2 data-i18n="Si sube la tasa de interés">Si sube la tasa de interés</h2><p data-i18n="La tasa modelada no está garantizada para todo el plazo de la hipoteca: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.">La tasa modelada no está garantizada para todo el plazo de la hipoteca: tras el periodo fijo, el banco puede aplicar una tasa distinta. Mismo precio y misma renta, distinta tasa.</p></div></div>
-    <div class="tscroll"><table id="stressTable" style="min-width:720px"></table></div>
+    <div class="tscroll"><table id="stressTable" class="st7"></table></div>
   </section>
 
-  <section id="runway">
-    <div class="sec-h"><div><h2 data-i18n="Cuánto duran tus ahorros">Cuánto duran tus ahorros</h2><p data-i18n="Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.">Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.</p></div></div>
-    <div class="card" id="rwCard"></div>
-  </section>
+  <div class="two-col eq">
+    <section id="runway">
+      <div class="sec-h"><div><h2 data-i18n="Cuánto duran tus ahorros">Cuánto duran tus ahorros</h2><p data-i18n="Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.">Tu saldo tras comprar, apartando la reserva para imprevistos y cubriendo el flujo de caja mes a mes. Incluye el interés que sigue generando tu cuenta y el cambio de renta al renovar.</p></div></div>
+      <div class="card" id="rwCard"></div>
+    </section>
 
-  <section id="renovacion">
-    <div class="sec-h"><div><h2 data-i18n="Cuando renueves el alquiler">Cuando renueves el alquiler</h2><p id="rnSub"></p></div></div>
-    <div class="tscroll"><table id="rnTable" style="min-width:560px"></table></div>
-  </section>
+    <section id="renovacion">
+      <div class="sec-h"><div><h2 data-i18n="Cuando renueves el alquiler">Cuando renueves el alquiler</h2><p id="rnSub"></p></div></div>
+      <div class="rn-in">
+        <div class="field"><label for="rnI_renewIn" data-i18n="Meses hasta renovar">Meses hasta renovar</label><input type="number" id="rnI_renewIn" class="inp num" step="any"><div class="field-msg" id="rnI_renewIn_h" aria-live="polite"></div></div>
+        <div class="field"><label for="rnI_renewPct" data-i18n="Cambio de renta (%)">Cambio de renta (%)</label><input type="number" id="rnI_renewPct" class="inp num" step="any"><div class="field-msg" id="rnI_renewPct_h" aria-live="polite"></div></div>
+        <div class="field"><label for="rnI_renewGap" data-i18n="Meses vacíos al renovar">Meses vacíos al renovar</label><input type="number" id="rnI_renewGap" class="inp num" step="any"><div class="field-msg" id="rnI_renewGap_h" aria-live="polite"></div></div>
+      </div>
+      <div class="card" id="rnCard"></div>
+    </section>
+  </div>
 
   <section id="matriz">
     <div class="sec-h"><div><h2 data-i18n="Sensibilidad: precio × renta">Sensibilidad: precio × renta</h2><p id="mxSub"></p></div>
@@ -917,7 +974,7 @@ body.qs-mode .app-shell{display:none}
       </div>
     </div>
     <div class="tscroll"><table id="mx" class="mx"></table></div>
-    <p class="tiny muted" style="margin-top:8px"><span class="badge b-green" data-i18n="▲ Ganas dinero">▲ Ganas dinero</span> <span class="badge b-amber" data-i18n="≈ Zona de equilibrio ±AED 250/mes">≈ Zona de equilibrio ±AED 250/mes</span> <span class="badge b-red" data-i18n="▼ Pierdes dinero">▼ Pierdes dinero</span> · <span data-i18n="Cifras en flujo de caja mensual. El recuadro azul marca tu renta actual en las filas del precio pedido y del negociado.">Cifras en flujo de caja mensual. El recuadro azul marca tu renta actual en las filas del precio pedido y del negociado.</span></p>
+    <div class="mx-legend"><span><span class="chip c-pos">▲</span><span data-i18n="Ganas dinero">Ganas dinero</span></span><span><span class="chip c-mid">≈</span><span data-i18n="Cerca del equilibrio (±AED 250/mes)">Cerca del equilibrio (±AED 250/mes)</span></span><span><span class="chip c-neg">▼</span><span data-i18n="Pierdes dinero">Pierdes dinero</span></span><span><span class="hit-sw"></span><span data-i18n="Tu renta actual en las filas del pedido y del negociado">Tu renta actual en las filas del pedido y del negociado</span></span><span class="mx-unit" data-i18n="Cifras en AED al mes">Cifras en AED al mes</span></div>
   </section>
 </div>
 
@@ -1673,6 +1730,25 @@ const I18N_EN={
  "{{v}} al mes":"{{v}} per month",
  "Donde cada línea cruza el cero está su renta mínima para no perder dinero.":"Where each line crosses zero is its minimum rent to avoid losing money.",
  "De la renta al flujo de caja":"From rent to cash flow",
+ "Flujo de caja al mes y renta mínima al año, por escenario":"Monthly cash flow and break-even rent per year, by scenario",
+ "Pedido · flujo al mes":"Asking · monthly cash flow",
+ "Negociado · flujo al mes":"Negotiated · monthly cash flow",
+ "La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}.":"Rent goes from {{a}} to {{b}}/yr ({{pct}}) in month {{m}}.",
+ "La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras 1 mes sin inquilino.":"Rent goes from {{a}} to {{b}}/yr ({{pct}}) in month {{m}}, after 1 month without a tenant.",
+ "La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras {{g}} meses sin inquilino.":"Rent goes from {{a}} to {{b}}/yr ({{pct}}) in month {{m}}, after {{g}} months without a tenant.",
+ "Ajusta el supuesto aquí mismo:":"Adjust the assumption right here:",
+ "De {{sav}} de ahorros: {{a}} para cerrar la compra, {{b}} de reserva y {{c}} de colchón ({{s}}).":"Of {{sav}} in savings: {{a}} to close the purchase, {{b}} as reserve and {{c}} as cushion ({{s}}).",
+ "Cerrar la compra {{p}}%":"Closing the purchase {{p}}%",
+ "Reserva {{p}}%":"Reserve {{p}}%",
+ "Colchón {{p}}% · {{s}}":"Cushion {{p}}% · {{s}}",
+ "«No se agota»: el colchón dura más de 30 años con estos supuestos.":"“Never runs out”: the cushion lasts more than 30 years under these assumptions.",
+ "Con el flujo de caja actual el colchón dura {{v}} ({{s}}).":"At the current cash flow the cushion lasts {{v}} ({{s}}).",
+ "Cambio de renta (%)":"Rent change (%)",
+ "Ganas dinero":"You make money",
+ "Cerca del equilibrio (±AED 250/mes)":"Near break-even (±AED 250/month)",
+ "Pierdes dinero":"You lose money",
+ "Tu renta actual en las filas del pedido y del negociado":"Your current rent in the asking and negotiated rows",
+ "Cifras en AED al mes":"Figures in AED per month",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -1760,6 +1836,7 @@ const FIELDS=[
 
 /* ---------- Historial de deshacer/rehacer ---------- */
 const HISTORY_KEYS=Object.keys(DEFAULTS);
+const INLINE_KEYS=['renewIn','renewPct','renewGap'];
 let history=[],future=[];
 function snapshot(){const o={};HISTORY_KEYS.forEach(k=>o[k]=S[k]);return JSON.stringify(o)}
 function applyState(obj){HISTORY_KEYS.forEach(k=>{if(k in obj)S[k]=obj[k]})}
@@ -1786,14 +1863,19 @@ const FLBL={
 function rangeTxt(lo,hi,u){return u==='%'?`${nf0.format(lo)}%–${nf0.format(hi)}%`:`${nf0.format(lo)}–${nf0.format(hi)} ${t(u)}`}
 const fieldDef=el=>t(el.dataset.defKey||'');
 const parseNum=v=>{const c=String(v).replace(/[,\s]/g,'');return c===''?NaN:Number(c)};
-function bindField(f){
- const n=$(f.k),r=$(f.k+'_r'),lo=f.nmin!=null?f.nmin:f.smin,hi=f.nmax!=null?f.nmax:f.smax;
- const msgEl=$(f.k+'_h'),meta=FLBL[f.k]||{u:'',def:''};
+function bindField(f,pre=''){
+ const n=$(pre+f.k),r=pre?null:$(f.k+'_r'),lo=f.nmin!=null?f.nmin:f.smin,hi=f.nmax!=null?f.nmax:f.smax;
+ const msgEl=$(pre+f.k+'_h'),meta=FLBL[f.k]||{u:'',def:''};
  if(msgEl&&msgEl.dataset.defKey===undefined)msgEl.dataset.defKey=meta.def||'';
  const resetMsg=()=>{if(!msgEl)return;msgEl.className='field-msg';msgEl.textContent=fieldDef(msgEl)};
  if(n){
   n.min=lo;n.max=hi;
+  /* Snapshot taken when editing starts: typing applies live, so history must record the state from before the first keystroke */
+  let editSnap=null;
+  const startEdit=()=>{if(editSnap===null)editSnap=snapshot()};
+  n.addEventListener('focus',startEdit);
   n.addEventListener('input',()=>{
+   startEdit();
    const field=n.closest('.field'),v=parseNum(n.value);
    if(!isFinite(v)||v<lo||v>hi){
     field&&field.classList.add('invalid');n.setAttribute('aria-invalid','true');
@@ -1808,14 +1890,15 @@ function bindField(f){
   });
   const commit=()=>{
    const field=n.closest('.field'),v=parseNum(n.value);
-   if(!isFinite(v)){field&&field.classList.remove('invalid');n.removeAttribute('aria-invalid');render();return}
-   const clamped=Math.min(hi,Math.max(lo,v)),changed=clamped!==f.get();
+   if(!isFinite(v)){field&&field.classList.remove('invalid');n.removeAttribute('aria-invalid');editSnap=null;render();return}
+   const clamped=Math.min(hi,Math.max(lo,v)),before=editSnap!==null?editSnap:snapshot();
    field&&field.classList.remove('invalid');n.removeAttribute('aria-invalid');
-   if(changed)pushHistory();
    f.set(clamped);
+   if(snapshot()!==before){history.push(before);if(history.length>50)history.shift();future=[];updateUndoButtons()}
+   editSnap=null;
    if(clamped!==v){
     field&&field.classList.add('adjusted');
-    if(msgEl){msgEl.className='field-msg warn';msgEl.innerHTML=`<span aria-hidden="true">⚠</span><span>${(av=>clamped===lo?t('Ajustado a {{a}} (mínimo). Escribiste {{w}}.',av):clamped===hi?t('Ajustado a {{a}} (máximo). Escribiste {{w}}.',av):t('Ajustado a {{a}}. Escribiste {{w}}.',av))({a:f.fmt?f.fmt(clamped):clamped,w:nf0.format(v)})} <button type="button" data-undo-field="${f.k}">${t('Deshacer')}</button></span>`}
+    if(msgEl){msgEl.className='field-msg warn';msgEl.innerHTML=`<span aria-hidden="true">⚠</span><span>${(av=>clamped===lo?t('Ajustado a {{a}} (mínimo). Escribiste {{w}}.',av):clamped===hi?t('Ajustado a {{a}} (máximo). Escribiste {{w}}.',av):t('Ajustado a {{a}}. Escribiste {{w}}.',av))({a:f.fmt?f.fmt(clamped):clamped,w:nf0.format(v)})} <button type="button" data-undo-field="${pre+f.k}">${t('Deshacer')}</button></span>`}
    }else{
     field&&field.classList.remove('adjusted');resetMsg();
    }
@@ -1844,6 +1927,7 @@ function syncFields(){
    const p=(Math.min(Math.max(v,f.smin),f.smax)-f.smin)/(f.smax-f.smin)*100;r.style.setProperty('--p',p+'%')}
   if(lbl&&f.fmt)lbl.textContent=f.fmt(v);
  });
+ INLINE_KEYS.forEach(k=>{const n=$('rnI_'+k);if(n&&document.activeElement!==n)n.value=Math.round(S[k]*100)/100});
  $('term').value=String(S.term);
  const up=S.neg>S.price;$('neg').closest('.fin').classList.toggle('amber',up);
  document.querySelectorAll('.seg [data-view]').forEach(b=>{const on=b.dataset.view===S.view;b.classList.toggle('on',on);b.setAttribute('aria-checked',String(on))});
@@ -2271,11 +2355,13 @@ function renderBridge(R){
 }
 
 /* ---------- Stress de tasa ---------- */
+const gl=v=>v>0.5?'▲ ':v<-0.5?'▼ ':'';
 function renderStress(){
  const on=k=>S.view===k?' class="on"':'';
- let h=`<thead><tr><th>${t('Tasa')}</th><th${on('main')}>${t('Pedido · flujo/mes')}</th><th${on('main')}>${t('Pedido · renta mínima')}</th><th${on('neg')}>${t('Negociado · flujo/mes')}</th><th${on('neg')}>${t('Negociado · renta mínima')}</th></tr></thead><tbody>`;
+ let h=`<caption>${t('Flujo de caja al mes y renta mínima al año, por escenario')}</caption><thead><tr><th>${t('Tasa')}</th><th colspan="2"${on('main')}>${t('Pedido · flujo al mes')}</th><th class="r${S.view==='main'?' on':''}">${t('Pedido · renta mínima')}</th><th colspan="2"${on('neg')}>${t('Negociado · flujo al mes')}</th><th class="r${S.view==='neg'?' on':''}">${t('Negociado · renta mínima')}</th></tr></thead><tbody>`;
+ const cf=(x,n)=>{const v=x.cfM;return `<td class="bar"><span class="mb${v>0.5?' up':''}${n?' n':''}" aria-hidden="true" style="width:${Math.min(110,Math.round(Math.abs(v)/2000*110))}px"></span></td><td class="v ${cls(v)}"><span aria-hidden="true">${gl(v)}</span>${saed(v)}</td>`};
  [0,0.5,1,2].forEach(d=>{const r=S.rate+d,a=calc(S,S.price,S.rent,r),b=calc(S,S.neg,S.rent,r);
-  h+=`<tr><td>${r.toFixed(2)}%${d?' (+'+d+'%)':' ('+t('modelo')+')'}</td><td class="${cls(a.cfM)}">${saed(a.cfM)}</td><td>${aed(breakEven(S,S.price,0,r))}</td><td class="${cls(b.cfM)}">${saed(b.cfM)}</td><td>${aed(breakEven(S,S.neg,0,r))}</td></tr>`});
+  h+=`<tr${d?'':' class="base"'}><th scope="row">${r.toFixed(2)}%<small>${d?'+'+d:t('modelo')}</small></th>${cf(a,0)}<td class="r">${aed(breakEven(S,S.price,0,r))}</td>${cf(b,1)}<td class="r">${aed(breakEven(S,S.neg,0,r))}</td></tr>`});
  $('stressTable').innerHTML=h+'</tbody>';
 }
 
@@ -2287,11 +2373,12 @@ function renderMatrix(){
  [ask,neg].forEach(p=>{if(!prices.includes(p))prices.push(p)});prices.sort((a,b)=>a-b);
  const nearest=cols.reduce((a,b)=>Math.abs(b-S.rent)<Math.abs(a-S.rent)?b:a);
  $('mxSub').textContent=t('Flujo de caja mensual con {{sqft}} sqft, {{down}}% de entrada, {{rate}}% a {{term}} años y AED {{sc}}/sqft de comunidad. Se incluyen siempre el precio pedido y el negociado.',{sqft:nf0.format(S.sqft),down:S.down,rate:S.rate.toFixed(2),term:S.term,sc:S.sc});
- let h='<thead><tr><th>'+t('Precio \\ Renta anual')+'</th>'+cols.map(c=>`<th style="text-align:center">${nf0.format(c/1000)}k</th>`).join('')+'<th>'+t('Renta mínima')+'</th></tr></thead><tbody>';
+ const sgn=v=>{const r=Math.round(v);return(r>0?'+':r<0?'−':'')+nf0.format(Math.abs(r))};
+ let h='<thead><tr><th>'+t('Precio \\ Renta anual')+'</th>'+cols.map(c=>`<th${c===nearest?' class="hl"':''}>${nf0.format(c/1000)}k</th>`).join('')+'<th>'+t('Renta mínima')+'</th></tr></thead><tbody>';
  prices.forEach(p=>{const mark=[p===ask?t('pedido'):'',p===neg?t('negociado'):''].filter(Boolean).join(' · '),isCur=!!mark;
-  h+=`<tr class="${isCur?'cur':''}"><td>${short(p)}${isCur?` <span class="tiny">● ${mark}</span>`:''}</td>`+cols.map(r=>{const v=calc(S,p,r).cfM;
-   const k=Math.abs(v)<=250?'c-mid':v>0?'c-pos':'c-neg',a=Math.min(.2,.05+Math.abs(v)/5000*.15).toFixed(2);
-   return `<td class="${k}${isCur&&r===nearest?' hit':''}" style="--a:${a}">${saed(v)}</td>`}).join('')+`<td>${aed(breakEven(S,p))}</td></tr>`});
+  h+=`<tr class="${isCur?'cur':''}"><td>${short(p)}${isCur?` <span class="tg">● ${mark}</span>`:''}</td>`+cols.map(r=>{const v=calc(S,p,r).cfM;
+   const k=Math.abs(v)<=250?'c-mid':v>0?'c-pos':'c-neg',a=Math.min(.42,.10+Math.abs(v)/6000).toFixed(2);
+   return `<td class="${k}${isCur&&r===nearest?' hit':''}" style="--a:${a}"><span class="gl" aria-hidden="true">${k==='c-mid'?'≈':v>0?'▲':'▼'} </span>${sgn(v)}</td>`}).join('')+`<td>${aed(breakEven(S,p))}</td></tr>`});
  $('mx').innerHTML=h+'</tbody>';
 }
 
@@ -2336,21 +2423,20 @@ function renderMaxPrice(){
 function renderRenewal(R){
  const{M,N}=R,rr=renewedRent(S);
  const rv={a:aed(S.rent),b:aed(rr),pct:(S.renewPct>=0?'+':'')+S.renewPct+'%',m:S.renewIn+1,g:S.renewGap};
- $('rnSub').textContent=!S.renewGap
-  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv)
+ $('rnSub').textContent=(!S.renewGap
+  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}.',rv)
   :S.renewGap===1
-  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras 1 mes sin inquilino. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv)
-  :t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras {{g}} meses sin inquilino. Ajusta el supuesto en Supuestos → Renovación del alquiler.',rv);
- const on=k=>S.view===k?' class="on"':'';
- const row=(l,f,c)=>`<tr><td>${t(l)}</td>${[M,N].map(x=>{const v=f(x);return `<td class="${c?c(v,x):''}">${typeof v==='string'?v:saed(v)}</td>`}).join('')}</tr>`;
+  ?t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras 1 mes sin inquilino.',rv)
+  :t('La renta pasa de {{a}} a {{b}}/año ({{pct}}) en el mes {{m}}, tras {{g}} meses sin inquilino.',rv))+' '+t('Ajusta el supuesto aquí mismo:');
+ const row=(l,f,c)=>`<div class="feerow"><span class="fl"><span>${t(l)}</span></span>${[M,N].map(x=>{const v=f(x),k=c?c(v,x):'';return `<b class="${k}">${typeof v==='string'?v:`<span aria-hidden="true">${gl(v)}</span>${saed(v)}`}</b>`}).join('')}</div>`;
  const after=x=>calc(S,x.price,rr).cfM,y1=x=>x.sim.years[0].cumCF,y2=x=>x.sim.years[1].cumCF-x.sim.years[0].cumCF;
- $('rnTable').innerHTML=`<thead><tr><th>${t('Métrica')}</th><th${on('main')}>${t('Pedido')}</th><th${on('neg')}>${t('Negociado')}</th></tr></thead><tbody>`+
+ $('rnCard').innerHTML=calcHeadHtml()+
   row('Flujo/mes con la renta actual',x=>x.cfM,cls)+
   row('Flujo/mes tras renovar',after,cls)+
   row('Renta mínima vs renta renovada',x=>{const g=rr-x.be;return g>=0?t('Cubierto (+{{v}})',{v:aed(g)}):t('Faltan {{v}}/año',{v:aed(-g)})},(v,x)=>rr-x.be>=0?'pos':'neg')+
   row('Renta perdida por meses vacíos',()=>S.renewGap?saed(-S.renewGap*rr/12):'—',v=>v==='—'?'':'neg')+
   row('Flujo del año 1 (según calendario)',y1,cls)+
-  row('Flujo del año 2 (según calendario)',y2,cls)+'</tbody>';
+  row('Flujo del año 2 (según calendario)',y2,cls);
 }
 
 /* ---------- Runway ---------- */
@@ -2358,12 +2444,19 @@ const monthsTxt=v=>v==null?t('No se agota'):v<=0?t('0 meses'):v<24?t('{{n}} mese
 function renderRunway(R){
  const{M,N}=R,free=x=>x.rem-S.reserve;
  const al=[M,N].filter(x=>free(x)<0).map(x=>`<div class="alert" role="alert"><span aria-hidden="true">⚠</span><span><b>${t(LABEL[x.key])}:</b> ${t('después de cerrar la compra no alcanza para la reserva de imprevistos (faltan {{v}}).',{v:aed(-free(x))})}</span></div>`).join('');
- $('rwCard').innerHTML=al+calcHeadHtml()+
+ const sel=R.sel,sav=Math.max(S.sav,0);
+ let bar='';
+ if(sav>0){const a=Math.min(sel.ctc,sav),b=Math.min(S.reserve,sav-a),c=Math.max(sav-a-b,0),pc=v=>Math.round(v/sav*100),sc=t(S.view==='main'?'pedido':'negociado');
+  bar=`<div class="rw-bar" role="img" aria-label="${t('De {{sav}} de ahorros: {{a}} para cerrar la compra, {{b}} de reserva y {{c}} de colchón ({{s}}).',{sav:aed(sav),a:aed(a),b:aed(b),c:aed(c),s:sc})}"><div class="bars">${[[a,'--sp'],[b,'--wa'],[c,'--po']].filter(x=>x[0]>0).map(x=>`<span style="flex:${x[0]} 1 0;background:var(${x[1]})"></span>`).join('')}</div><div class="lg"><span>${t('Cerrar la compra {{p}}%',{p:pc(a)})}</span><span>${t('Reserva {{p}}%',{p:pc(b)})}</span><span>${t('Colchón {{p}}% · {{s}}',{p:pc(c),s:sc})}</span></div></div>`}
+ const rm=sel.run.runwayMonth,sc2=t(S.view==='main'?'pedido':'negociado');
+ const foot=rm==null?`<p class="rw-foot"><span aria-hidden="true">▲</span><span>${t('«No se agota»: el colchón dura más de 30 años con estos supuestos.')}</span></p>`
+  :`<p class="rw-foot ${rm<=0?'bad':'warn'}"><span aria-hidden="true">▼</span><span>${t('Con el flujo de caja actual el colchón dura {{v}} ({{s}}).',{v:monthsTxt(rm),s:sc2})}</span></p>`;
+ $('rwCard').innerHTML=al+bar+calcHeadHtml()+
   calcRow('rwRem',t('Saldo tras cerrar la compra'),'',M.rem,N.rem,{help:t('Tu saldo actual ({{sav}}) menos el dinero para cerrar de cada escenario.',{sav:aed(S.sav)})})+
   calcRow('rwRes',t('Reserva para imprevistos'),'',-S.reserve,-S.reserve,{fmt:saed,help:t('Dinero que apartas para una reparación grande, un electrodoméstico o un mes sin pago. Lo defines en Objetivo y ahorros.')})+
   calcRow('rwFree',t('Colchón disponible'),'',free(M),free(N),{fmt:v=>`<span class="${v<0?'neg':''}">${aed(v)}</span>`,help:t('Saldo tras cerrar la compra menos la reserva. Es lo que puede absorber un flujo de caja negativo.')})+
   calcRow('rwCover',t('Cuotas de hipoteca cubiertas'),'',Math.max(free(M),0)/M.pm,Math.max(free(N),0)/N.pm,{fmt:monthsTxt,help:t('Cuántas cuotas completas podrías pagar solo con el colchón si la propiedad no generara renta.')})+
-  calcRow('rwMonths',t('Duración con el flujo de caja actual'),'',M.run.runwayMonth,N.run.runwayMonth,{extra:' total',fmt:monthsTxt,help:t('Meses hasta que el colchón llega a cero cubriendo el flujo de caja negativo, con el interés de la cuenta y el cambio de renta al renovar. "No se agota" significa que dura más de 30 años o que el flujo de caja es positivo.')});
+  calcRow('rwMonths',t('Duración con el flujo de caja actual'),'',M.run.runwayMonth,N.run.runwayMonth,{extra:' total',fmt:monthsTxt,help:t('Meses hasta que el colchón llega a cero cubriendo el flujo de caja negativo, con el interés de la cuenta y el cambio de renta al renovar. "No se agota" significa que dura más de 30 años o que el flujo de caja es positivo.')})+foot;
 }
 
 /* ---------- Entrada óptima ---------- */
@@ -2502,7 +2595,9 @@ function render(){
 /* ---------- Eventos ---------- */
 const storageInfo=detectStorage();
 loadState();
-FIELDS.forEach(bindField);
+FIELDS.forEach(f=>bindField(f));
+/* Renovación editable dentro de la pestaña Riesgo: mismos campos, misma validación, historial y render */
+INLINE_KEYS.forEach(k=>bindField(FIELDS.find(f=>f.k===k),'rnI_'));
 /* Stepper wrappers for small-step inputs; they reuse the field's own validation, history and render path */
 const stepperSyncs=[];
 function setupStepper(key,step){

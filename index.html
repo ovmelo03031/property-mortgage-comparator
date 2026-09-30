@@ -732,6 +732,7 @@ body.qs-mode .app-shell{display:none}
   .help::before{content:"";position:absolute;left:10px;top:10px;width:24px;height:24px;box-sizing:border-box;border-radius:50%;border:1px solid var(--ln2);background:transparent;z-index:-1}
   .help:hover::before,.help:focus-visible::before,.help[aria-expanded="true"]::before{border-color:var(--brt);background:var(--brbg)}
   .inp,.inp.sm{min-height:44px;box-sizing:border-box}
+  .notice .row button{height:44px}
   .lec-more{min-height:44px}
   .ess-reset,.acc-reset{min-height:44px}
   .fhelp{width:44px;height:44px;margin:-8px 0;border-color:transparent}
@@ -820,6 +821,7 @@ body.qs-mode .app-shell{display:none}
 .acc-body .field label em{display:none}
 .acc-body .field>.frow{display:contents}
 .acc-body .field .fin{grid-column:2;grid-row:1;width:118px;height:36px;padding:0 10px}
+.acc-body .field:has(#tgt) .fin{width:150px}
 .acc-body .field .fin .inp{flex:1 1 auto;width:100%;min-width:0;min-height:0;padding:0;border:0;background:transparent;font-size:14px;font-weight:600;text-align:right;outline:none;border-radius:0}
 .acc-body .field .fin input{font-size:14px}
 .acc-body .field .stepper{grid-column:2;grid-row:1;width:150px;height:38px;border-radius:10px;flex:none}
@@ -837,9 +839,10 @@ body.qs-mode .app-shell{display:none}
 .stp-v{flex:1 1 auto;text-align:center;font-weight:600;font-size:14px}
 @media (max-width:720px){
   .acc-body .field .fin{height:44px}
-  .acc-body .field .stepper{height:44px}
-  .acc-body .field .stepper button{flex-basis:44px;width:44px;height:42px}
-  .acc-body .pmi-row .pmi-st{height:44px}
+  .acc-body .field .stepper{height:48px}
+  .acc-body .field .stepper button{flex-basis:46px;width:46px;height:46px}
+  .acc-body .pmi-row .pmi-st{height:48px}
+  .acc-body .pmi-row .pmi-st button{flex-basis:46px;width:46px;height:46px}
 }
 
 /* Narrow layouts: card variants of the wide tables (tb-w/cd-w switch at <=1199px, tb-n/cd-n at <=720px) */
@@ -1873,7 +1876,7 @@ const I18N_EN={
  "Si la tasa sube 1 punto ({{r}}%), la renta mínima pasa de {{a}} a {{b}}/año en el pedido y de {{c}} a {{d}}/año en el negociado.":"If the rate rises 1 point ({{r}}%), the minimum rent goes from {{a}} to {{b}}/yr at the asking price and from {{c}} to {{d}}/yr at the negotiated price.",
  "Si sube la tasa de interés":"If interest rates rise",
  "Sin apreciación: se asume que vendes al mismo precio de compra. La penalización por cancelación anticipada es una estimación; verifícala con tu banco.":"No appreciation: the model assumes you sell at the same price you paid. The early repayment penalty is an estimate; check it with your bank.",
- "Sin cambios en el mes {{m}}":"No change in month {{m}}",
+ "Sin cambios: 0% en el mes {{m}}":"No change: 0% in month {{m}}",
  "Sin comprar":"Not buying",
  "Sin contar el capital amortizado ({{v}} en el año 1), que es patrimonio pero no ingreso líquido.":"Not counting principal paid down ({{v}} in year 1), which is equity but not spendable income.",
  "Sin límite con esta renta":"No limit at this rent",
@@ -1995,6 +1998,7 @@ const I18N_EN={
  "Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.":"Private Mortgage Insurance: cover paid in the US when the down payment is small. It does not exist in the UAE, so it stays at 0. If it were used, it would be a % of the mortgage balance per year.",
  "Seguro {{v}}/año":"Insurance {{v}}/yr",
  "Seguro del inmueble":"Property insurance",
+ "Seguro anual del inmueble":"Annual property insurance",
  "opcional · AED 0 por defecto":"optional · AED 0 by default",
  "no aplica en EAU · 0%":"not applicable in the UAE · 0%",
  "seguro {{v}}/año":"insurance {{v}}/yr",
@@ -2321,7 +2325,7 @@ function summaryFor(g,R){
   case 'gas':return(S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM}));
   case 'seg':return S.ins>0?t('Seguro {{v}}/año',{v:aed(S.ins)})+' · '+t('PMI no aplica en EAU'):t('Sin seguro del inmueble · PMI no aplica en EAU');
   case 'fee':return R?t('{{a}} pedido · {{b}} negociado',{a:aed(R.M.fees.total),b:aed(R.N.fees.total)}):'';
-  case 'ren':return(S.renewPct===0&&S.renewGap===0)?t('Sin cambios en el mes {{m}}',{m:S.renewIn+1}):t('{{pct}}% en el mes {{m}}',{pct:(S.renewPct>=0?'+':'')+S.renewPct,m:S.renewIn+1});
+  case 'ren':return(S.renewPct===0&&S.renewGap===0)?t('Sin cambios: 0% en el mes {{m}}',{m:S.renewIn+1}):t('{{pct}}% en el mes {{m}}',{pct:(S.renewPct>=0?'+':'')+S.renewPct,m:S.renewIn+1});
   case 'ven':return t('Comisión {{a}}% + VAT · penalización {{p}}% (tope {{cap}})',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)});
  }
  return '';
@@ -2614,7 +2618,7 @@ function detRows(R){
   r('maint',t('Mantenimiento'),'',[-S.maint,-S.maint],'','saed'),
   r('mg',t('Gestión del alquiler'),t('{{p}}% de la renta',{p:S.mgmt}),both2(x=>-x.mg),'','saed'),
   r('admin',t('Administración e imprevistos'),'',[-S.admin,-S.admin],'','saed'),
-  r('ins',t('Seguro del inmueble'),t('opcional · AED 0 por defecto'),[-S.ins,-S.ins],'','saed'),
+  r('ins',t('Seguro anual del inmueble'),t('opcional · AED 0 por defecto'),[-S.ins,-S.ins],'','saed'),
   r('opex',t('Gastos totales (sin meses vacíos)'),'',both2(x=>x.opex),''),
   r('noi',t('Ingreso neto antes de hipoteca'),t('NOI'),both2(x=>x.noi),'hi','aed',{tot:1,help:t('Renta efectiva menos los gastos de operación, antes de pagar la hipoteca. En inglés, NOI (net operating income).')}),
   r('debtA',t('Hipoteca anual'),'',both2(x=>-x.debt),'hi','saed'),

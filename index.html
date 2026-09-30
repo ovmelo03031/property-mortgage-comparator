@@ -66,28 +66,29 @@ button,input,select{font:inherit;color:inherit}
 
 /* App bar */
 .appbar{position:sticky;top:0;z-index:50;background:var(--sf);border-bottom:1px solid var(--ln);padding-top:env(safe-area-inset-top)}
-.appbar-in{display:flex;align-items:center;gap:10px;padding:0 20px;height:64px;max-width:1280px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tx);flex:0 0 auto}
+.appbar-in{display:flex;align-items:center;gap:12px;padding:0 24px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tx);flex:0 0 auto;margin-right:auto}
 .brand svg{border-radius:6px;flex:0 0 auto}
 .brand-tx{display:flex;flex-direction:column;line-height:1.15}
-.brand-name{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.01em}
-.brand-sub{font-size:11.5px;color:var(--mu)}
-.privacy{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mu);padding:0 8px;white-space:nowrap}
+.brand-name{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--mu)}
+.privacy{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mu);padding:0 12px;white-space:nowrap}
 .privacy svg{flex:0 0 auto}
-.abar-actions{display:flex;align-items:center;gap:6px;margin-left:auto}
-.abtn{display:inline-flex;align-items:center;gap:8px;height:40px;min-width:40px;padding:0 12px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--tx);cursor:pointer;font-size:13.5px;font-weight:500;white-space:nowrap}
+.abar-actions{display:flex;align-items:center;gap:8px}
+.abtn{display:inline-flex;align-items:center;gap:8px;height:40px;min-width:40px;padding:0 12px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--tx);cursor:pointer;font-size:14px;font-weight:400;white-space:nowrap}
 .abtn.outline{border-color:var(--ln2)}
 .abtn.icon{padding:0;width:40px;justify-content:center}
 .abtn:disabled{opacity:.4;cursor:not-allowed}
+#btnTheme{background:var(--in)}#btnUndo{padding:0 14px}#btnRedo{color:var(--dm)}#btnRedo:disabled{color:var(--dm)}
 .abtn:hover:not(:disabled){background:var(--in)}
-.adiv{width:1px;height:24px;background:var(--ln2);margin:0 2px}
+.adiv{width:1px;height:24px;background:var(--ln2)}
 .menu-wrap{position:relative}
 .menu{position:absolute;right:0;top:calc(100% + 6px);min-width:220px;background:var(--sf2);border:1px solid var(--ln2);border-radius:12px;padding:6px;box-shadow:0 16px 40px -16px rgba(0,0,0,.6);z-index:60}
 .menu[hidden],.acc-reset[hidden]{display:none}
 .menu button{display:flex;width:100%;align-items:center;gap:8px;padding:9px 10px;border:0;background:transparent;color:var(--tx);border-radius:8px;font-size:13.5px;text-align:left;cursor:pointer}
 .menu button:hover{background:var(--in)}
 .menu button:disabled{opacity:.45;cursor:not-allowed}
-@media (max-width:1279px){.privacy{display:none}}
+@media (max-width:1359px){.privacy{display:none}}
 @media (max-width:1100px){.abtn span.txt{display:none}}
 @media (max-width:900px){.brand-sub{display:none}}
 .mobile-only-item{display:none}
@@ -260,8 +261,9 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .feerow>b{font-weight:600;text-align:right;min-width:86px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .feerow .fl{color:var(--mut);display:flex;align-items:center;gap:6px;min-width:0}
 .feerow .fl small{display:block;color:var(--dim);font-size:11.5px;line-height:1.3}
-.help{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1px solid var(--line2);background:var(--inset);color:var(--blue2);font-size:11px;font-weight:700;line-height:1;padding:0;cursor:help;display:inline-flex;align-items:center;justify-content:center}
-.help:hover,.help:focus-visible,.help[aria-expanded="true"]{border-color:var(--blue2);background:var(--brbg)}
+.help{flex:0 0 auto;width:28px;height:28px;border-radius:50%;border:1px solid var(--ln2);background:transparent;color:var(--brt);line-height:1;padding:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.help svg{width:16px;height:16px}
+.help:hover,.help:focus-visible,.help[aria-expanded="true"]{border-color:var(--brt);background:var(--brbg)}
 .htip{display:none;position:absolute;left:0;right:0;top:calc(100% - 2px);z-index:6;background:var(--sf2);border:1px solid var(--ln2);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--tx);line-height:1.45;box-shadow:0 12px 30px -12px rgba(0,0,0,.7)}
 .feerow:has(.help:hover) .htip,.feerow:has(.help:focus-visible) .htip,.feerow.open .htip,.hz-tile:has(.help:hover) .htip,.hz-tile:has(.help:focus-visible) .htip,.hz-tile.open .htip{display:block}
 .negprice{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
@@ -723,8 +725,8 @@ body.qs-mode .app-shell{display:none}
   .langseg button{height:44px}
   .kpi-help{width:44px;height:44px;margin:-8px 0;border-color:transparent}
   .help{position:relative;isolation:isolate;width:44px;height:44px;margin:-10px;border:0;background:transparent}
-  .help::before{content:"";position:absolute;left:10px;top:10px;width:24px;height:24px;box-sizing:border-box;border-radius:50%;border:1px solid var(--line2);background:var(--inset);z-index:-1}
-  .help:hover::before,.help:focus-visible::before,.help[aria-expanded="true"]::before{border-color:var(--blue2);background:var(--brbg)}
+  .help::before{content:"";position:absolute;left:10px;top:10px;width:24px;height:24px;box-sizing:border-box;border-radius:50%;border:1px solid var(--ln2);background:transparent;z-index:-1}
+  .help:hover::before,.help:focus-visible::before,.help[aria-expanded="true"]::before{border-color:var(--brt);background:var(--brbg)}
   .inp,.inp.sm{min-height:44px;box-sizing:border-box}
   .lec-more{min-height:44px}
   .ess-reset,.acc-reset{min-height:44px}
@@ -893,8 +895,6 @@ body.qs-mode .app-shell{display:none}
   .btn-sup{width:44px;padding:0;justify-content:center}
   .btn-sup span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 }
-@media (max-width:1199px){
-  .tb-w{display:none!important}
 /* Desktop with the 360px panel: wide tables wrap inside the results column instead of scrolling */
 @media (min-width:1200px) and (max-width:1699px){
   .tb-w table{min-width:0!important;table-layout:auto}
@@ -909,6 +909,8 @@ body.qs-mode .app-shell{display:none}
   #matriz .tb-w{display:none!important}
   #matriz .cd-w{display:block}
 }
+@media (max-width:1199px){
+  .tb-w{display:none!important}
   .cd-w{display:block}
   #ahorros>.sec-h{display:none}
 }
@@ -959,13 +961,13 @@ body.qs-mode .app-shell{display:none}
       <span class="brand-tx"><span class="brand-name" data-i18n="Comparador hipotecario">Comparador hipotecario</span><span class="brand-sub" data-i18n="Abu Dhabi · ADGM · cifras en AED">Abu Dhabi · ADGM · cifras en AED</span></span>
     </a>
     <span class="privacy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span data-i18n="Todo se calcula y guarda en este dispositivo">Todo se calcula y guarda en este dispositivo</span></span>
-    <div class="langseg" id="langSeg" role="radiogroup" aria-label="Idioma / Language"><span class="langseg-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><button type="button" role="radio" aria-checked="true" tabindex="0" lang="es" title="Español" data-lang="es">ES</button><button type="button" role="radio" aria-checked="false" tabindex="-1" lang="en" title="English" data-lang="en">EN</button></div>
     <div class="abar-actions">
       <button type="button" class="abtn outline" id="btnUndo" aria-keyshortcuts="Control+Z Meta+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"></path></svg><span class="txt" data-i18n="Deshacer">Deshacer</span></button>
       <button type="button" class="abtn outline icon" id="btnRedo" aria-label="Rehacer" data-i18n-aria="Rehacer" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"></path><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"></path></svg></button>
       <span class="adiv"></span>
       <button type="button" class="abtn" id="btnGlossary" aria-haspopup="dialog" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span class="txt" data-i18n="Glosario">Glosario</span></button>
       <button type="button" class="abtn" id="btnCopyLink" aria-label="Compartir: copia un enlace con este escenario. Los datos van dentro del enlace, no a un servidor." data-i18n-aria="Compartir: copia un enlace con este escenario. Los datos van dentro del enlace, no a un servidor."><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg><span class="txt" data-i18n="Compartir">Compartir</span></button>
+      <div class="langseg" id="langSeg" role="radiogroup" aria-label="Idioma / Language"><span class="langseg-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><button type="button" role="radio" aria-checked="true" tabindex="0" lang="es" title="Español" data-lang="es">ES</button><button type="button" role="radio" aria-checked="false" tabindex="-1" lang="en" title="English" data-lang="en">EN</button></div>
       <button type="button" class="abtn outline" id="btnTheme" aria-pressed="false"><svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg><span class="txt" id="themeLabel">Modo oscuro</span></button>
       <div class="menu-wrap">
         <button type="button" class="abtn outline icon" id="btnMore" aria-haspopup="menu" aria-expanded="false" aria-label="Más opciones: restablecer todo, acerca de" data-i18n-aria="Más opciones: restablecer todo, acerca de"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="19" cy="12" r="1.8"></circle></svg></button>
@@ -2349,7 +2351,7 @@ let openFee=null;
 function calcHeadHtml(){return `<div class="feerow head"><span>${t('Concepto')}</span><b style="font-weight:600">${t('Pedido')}</b><b style="font-weight:600">${t('Negociado')}</b></div>`}
 function calcRow(k,label,sub,m,n,{extra='',help,fmt=aed}={}){
  if(help===undefined)help=feeHelp(k);
- return `<div class="feerow${extra}${openFee===k?' open':''}"><span class="fl"><span>${label}${sub?`<small>${sub}</small>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">?</button></span><b>${fmt(m)}</b><b>${fmt(n)}</b><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
+ return `<div class="feerow${extra}${openFee===k?' open':''}"><span class="fl"><span>${label}${sub?`<small>${sub}</small>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">${ICON_INFO}</button></span><b>${fmt(m)}</b><b>${fmt(n)}</b><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
 function renderFees(R){
  const{M,N}=R,row=(k,label,sub,m,n,extra='')=>calcRow(k,label,sub,m,n,{extra});
  const badge=v=>{const b=psfState(v);return `<span class="badge ${b.c}">${t(b.t)}</span>`};
@@ -2891,7 +2893,7 @@ function renderDownPay(R){
 /* ---------- Horizonte: comprar vs no comprar ---------- */
 const yearTxt=v=>v==null?t('Más de 30 años'):t('Año {{v}}',{v});
 function hzTile(k,label,sub,m,n,{fmt=aed,help}={}){
- return `<div class="hz-tile${openFee===k?' open':''}"><span class="hz-t"><span>${label}${sub?` <span class="hz-s">${sub}</span>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">?</button></span><div class="hz-v"><span><small>${t('Pedido')}</small><b>${fmt(m)}</b></span><span><small>${t('Negociado')}</small><b>${fmt(n)}</b></span></div><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
+ return `<div class="hz-tile${openFee===k?' open':''}"><span class="hz-t"><span>${label}${sub?` <span class="hz-s">${sub}</span>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">${ICON_INFO}</button></span><div class="hz-v"><span><small>${t('Pedido')}</small><b>${fmt(m)}</b></span><span><small>${t('Negociado')}</small><b>${fmt(n)}</b></span></div><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
 function renderHorizon(R){
  const{M,N}=R,H=S.horizon;
  document.querySelectorAll('#horizon [data-hz]').forEach(b=>{const on=+b.dataset.hz===H;b.classList.toggle('on',on);b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});

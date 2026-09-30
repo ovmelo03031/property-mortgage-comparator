@@ -60,7 +60,6 @@ body{margin:0;color:var(--tx);font-family:var(--sans);font-size:15px;line-height
 @media (prefers-color-scheme:light){:root:not([data-theme]){--hero-glow:none}}
 body{background-image:var(--hero-glow);background-attachment:fixed}
 .num,td,.kv b,.big{font-variant-numeric:tabular-nums}
-.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
 a{color:var(--blue2)}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--blue2);outline-offset:2px}
@@ -88,7 +87,8 @@ button,input,select{font:inherit;color:inherit}
 .menu button{display:flex;width:100%;align-items:center;gap:8px;padding:9px 10px;border:0;background:transparent;color:var(--tx);border-radius:8px;font-size:13.5px;text-align:left;cursor:pointer}
 .menu button:hover{background:var(--in)}
 .menu button:disabled{opacity:.45;cursor:not-allowed}
-@media (max-width:900px){.privacy,.abtn span.txt{display:none}.brand-sub{display:none}}
+@media (max-width:1100px){.privacy,.abtn span.txt{display:none}}
+@media (max-width:900px){.brand-sub{display:none}}
 .mobile-only-item{display:none}
 @media (max-width:560px){
   #btnGlossary,#btnCopyLink,#btnTheme,#btnRedo,.abar-actions .adiv{display:none}
@@ -107,11 +107,9 @@ button,input,select{font:inherit;color:inherit}
 .langseg button[aria-checked="true"]{background:var(--br);color:#fff;font-weight:700}
 @media (max-width:560px){.langseg-ic{display:none}.langseg button{width:44px;height:38px}}
 
-/* Hero */
-.hero{padding:40px 0 22px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:end}
+/* Headings */
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);line-height:1.05;margin:0 0 12px;letter-spacing:-.015em}
-.sub{color:var(--mut);max-width:62ch;font-size:16.5px;margin:0}
-.hero-note{background:var(--brbg);border:1px solid var(--ln2);border-radius:14px;padding:14px 16px;font-size:13.5px;color:var(--mut)}
+.hero-note{background:var(--brbg);border:1px solid var(--ln2);border-radius:14px;padding:12px 14px;font-size:12.5px;color:var(--mut)}
 .hero-note b{color:var(--tx)}
 
 /* Renta + escenario (usado en la barra de resultados) */
@@ -159,16 +157,24 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .alert{margin-top:12px;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--wa);background:var(--wabg);color:var(--tx);border-radius:12px;padding:10px 12px;font-size:13px}
 .alert svg,.alert>span:first-child{flex:0 0 auto;color:var(--wa)}
 .alert.info{border-color:var(--brt);background:var(--brbg)}
+#enMarginal{display:block;font-size:14px;padding:12px 14px;overflow-wrap:anywhere}
 .alert.info svg,.alert.info>span:first-child{color:var(--brt)}
 .alert.neg{border-color:var(--ne);background:var(--nebg)}
 .alert.neg svg,.alert.neg>span:first-child{color:var(--ne)}
 
 /* Input panel */
-.inpgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;align-items:start}
-.negcard{position:sticky;top:120px}
-.grp{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line)}
-.grp:first-of-type{margin-top:6px;padding-top:0;border-top:0}
-.grp h3{color:var(--blue2);font-size:13.5px;font-weight:600}
+.inpgrid{display:flex;flex-direction:column;gap:20px;min-width:0}
+.inpgrid>.grp{margin:0;padding:0;border:0}
+.negcard{background:var(--in);border:1px solid var(--ln2);border-radius:16px;padding:16px}
+.negcard>h3{color:var(--sn)}
+.grp h3,.negcard>h3{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--brt)}
+.negcard>h3{color:var(--sn)}
+.side-foot{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.side-foot .btn{width:100%;height:40px;padding:0 14px}
+.qs-set{display:contents}
+.qs-set-h{display:none}
+.qs-set>#psfCalc,.qs-set>#pmtCalc{grid-column:1/-1}
+.ps-only{display:block}
 
 /* Quick start + validation */
 .field.invalid .inp{border-color:var(--ne);color:var(--ne)}
@@ -201,7 +207,6 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .acc[open]>summary .acc-chev{transform:rotate(180deg)}
 .acc-body{padding:0 0 16px;display:flex;flex-direction:column;gap:14px}
 .acc-reset{align-self:flex-start;display:flex;align-items:center;gap:6px;height:34px;padding:0 10px;border-radius:8px;border:1px solid var(--ln2);background:transparent;color:var(--tx);font-size:13px;cursor:pointer}
-.qs-card h3{margin-bottom:4px}
 .pmt-card{border:1px solid var(--ln);border-radius:14px;background:var(--in);padding:12px 14px}
 .pmt-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px}
 .pmt-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;padding:6px 0;border-top:1px dashed var(--ln);font-size:13.8px;align-items:baseline}
@@ -222,7 +227,8 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .v-save-grid span{font-size:13px;color:var(--mu)}
 
 /* Barra de resultados: pestañas + renta */
-.results-bar{position:sticky;top:64px;z-index:40;background:var(--sf);border:1px solid var(--ln);border-radius:16px;margin:6px 0 18px}
+.tabs-box{background:var(--in);border:1px solid var(--ln2);border-radius:20px;min-width:0}
+.results-bar{position:sticky;top:64px;z-index:40;background:var(--sf);border-bottom:1px solid var(--ln);border-radius:19px 19px 0 0;box-shadow:0 12px 28px -22px rgba(0,0,0,.6)}
 .bs{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;padding:8px 16px;border-bottom:1px dashed var(--ln);font-size:12.5px}
 .bs .badge{flex:0 0 auto}
 .bs-item{display:flex;flex-direction:column;line-height:1.25}
@@ -233,8 +239,12 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{border:0;background:transparent;color:var(--mu);font-weight:500;font-size:14px;padding:0 14px;height:40px;border-radius:9px;cursor:pointer;white-space:nowrap}
 .tabs button[aria-selected="true"]{background:var(--brbg);color:var(--tx);font-weight:700;box-shadow:inset 0 -3px 0 var(--br)}
-.tabpanel{padding-top:6px}
+.tabpanel{padding:20px;display:flex;flex-direction:column;gap:20px;min-width:0}
 .tabpanel[hidden]{display:none}
+.tabpanel>section{background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:24px;min-width:0}
+.tabpanel>section .sec-h{border-bottom:0;padding-bottom:0}
+.tabpanel>section h2{font-size:22px}
+.tabpanel>section>.card{background:none;border:0;padding:0}
 .feerow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px 16px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.8px}
 .feerow:last-child{border-bottom:0}
 .feerow.head{font-size:11.5px;color:var(--dim);padding-top:0}
@@ -342,11 +352,7 @@ footer{color:var(--dim);font-size:12px;padding:0 0 40px}
 .sheet-cf.pos{background:var(--pobg)}.sheet-cf b.pos{color:var(--po)}.sheet-cf b.neg{color:var(--ne)}
 .sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:16px}
 .sheet-body .inpgrid{display:flex;flex-direction:column;gap:18px}
-.sheet-body .qs-card{display:contents}
-.sheet-body .qs-card>.grp{margin:0;padding:0;border:0}
-.sheet-body .qs-card>.grp:first-child{order:1}
-.sheet-body .negcard{order:2;position:static;background:var(--in);border:1px solid var(--ln2)}
-.sheet-body .qs-card>.grp:nth-child(2){order:3}
+.sheet-body #resetAllWrap{display:none}
 .sheet-f{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--ln2);background:var(--sf)}
 .sheet-f .btn{height:52px;border-radius:12px;font-size:15px}
 .sheet-confirm{grid-column:1/-1;display:flex;flex-direction:column;gap:8px;font-size:14px}
@@ -380,19 +386,73 @@ body.sheet-open #toast{bottom:96px!important}
   .btn-sup{display:inline-flex}
   .rentctl{flex-wrap:wrap}
 }
+/* App shell: fixed Supuestos panel (>=1200px) + results column */
+.app-shell{display:grid;grid-template-columns:360px minmax(0,1fr);align-items:start}
+.side-panel{position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box;background:var(--sf);border-right:1px solid var(--ln);padding:24px}
+.side-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:20px}
+.side-h h2{font-size:24px}
+.side-close{display:none}
+.side-backdrop{display:none}
+.res-col{min-width:0;padding:32px 40px 48px;display:flex;flex-direction:column;gap:28px}
+.res-col>section{padding:0}
+#visitNotice:empty{display:none}
+#visitNotice .notice{margin-bottom:0}
+.res-col .disc{margin:0}
+.res-col footer{padding:0}
+.lectura{background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:24px}
+.side-panel .formgrid,.side-panel .formgrid.f3{grid-template-columns:1fr}
+.side-panel .field .frow .inp{flex-basis:118px}
+
+/* Quick start (first visit) */
+.qs{display:none}
+body.qs-mode .qs{display:block}
+body.qs-mode .app-shell{display:none}
+.qs-grid{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:48px;padding:48px 96px 56px;max-width:1440px;margin:0 auto;box-sizing:border-box;align-items:start}
+.qs-main{min-width:0}
+.qs-eyebrow{margin:0 0 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--brt)}
+.qs h1{font-size:46px;text-wrap:balance;margin:0 0 14px}
+.qs-intro{font-size:17px;color:var(--mu);margin:0 0 28px;max-width:60ch}
+.qs-form{background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:28px}
+#qsForm .grp{margin:0}
+#qsForm #blkEssential>h3,#qsForm #blkEssential>p{display:none}
+#qsForm .ps-only{display:none}
+#qsForm .formgrid{display:flex;flex-direction:column;gap:28px}
+#qsForm .qs-set{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px;align-items:start}
+#qsForm .qs-set-h,body.qs-mode .qs-set-h{display:flex}
+.qs-set-h{align-items:center;gap:10px;font-weight:600;font-size:16px;grid-column:1/-1}
+.qs-n{width:26px;height:26px;border-radius:50%;background:var(--br);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+#qsForm .negcard{background:none;border:0;padding:0;display:flex;flex-direction:column;gap:8px}
+#qsForm .negcard .qs-set-h{margin-bottom:4px}
+.qs-cta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 18px}
+.qs-go{height:52px;padding:0 24px;border:0;border-radius:12px;background:var(--br);color:#fff;font-size:16px;font-weight:600;cursor:pointer}
+.qs-ex{height:52px;padding:0 20px;border-radius:12px;border:1px solid var(--ln2);background:transparent;color:var(--tx);font-size:15px;cursor:pointer}
+.qs-ex:hover{background:var(--in)}
+.qs-defaults{font-size:14px;color:var(--mu)}
+.qs-defaults summary{cursor:pointer;color:var(--tx);font-weight:500;min-height:44px;display:flex;align-items:center}
+.qs-defaults ul{margin:4px 0 0;padding-left:20px;display:grid;gap:6px}
+.qs-prev{display:flex;flex-direction:column;gap:16px;background:var(--sf2);border:1px solid var(--ln2);border-radius:20px;padding:24px;margin-top:128px;position:sticky;top:88px}
+.qs-prev-h{display:flex;flex-direction:column;gap:2px}
+.qs-prev-h h2{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.qs-prev-h span{font-size:12.5px;color:var(--dm)}
+.qs-prev-note{margin:0;font-size:12.5px;color:var(--dm)}
+.pv-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:baseline;padding:10px 0;border-top:1px solid var(--ln);font-size:14px}
+.pv-row.h{border-top:0;padding:0;font-size:12.5px;color:var(--mu)}
+.pv-row>span:first-child{color:var(--mu)}
+.pv-row>b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.pv-row.h>span+span{text-align:right}
+.pv-sum{margin:0;font-size:14.5px}
 @media (max-width:1000px){
-  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:1fr}.hero{grid-template-columns:1fr}
-  .inpgrid{grid-template-columns:1fr}.negcard{position:static}.formgrid.f3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:1fr}
+  .formgrid.f3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:720px){
-  .wrap{padding:0 16px}.tabs-in{padding:8px 12px;gap:8px}.bs{padding:8px 12px}
+  .tabs-in{padding:8px 12px;gap:8px}.bs{padding:8px 12px}
   .g2,.formgrid,.formgrid.f3{grid-template-columns:1fr}
   .inp.sm{width:100px}
   .frow .inp{flex-basis:112px}
   section{padding-top:26px}
-  .hero{padding-top:28px}
   .appbar-in{padding:0 12px}
-  .results-bar{position:static;border-radius:0;margin:0 -16px 14px;border-left:0;border-right:0}
+  .results-bar{position:static}
   .tabs-in{flex-wrap:wrap}
   .tabs{order:-1;flex:1 1 100%;min-width:0;max-width:100%;overflow-x:auto}
   .seg{margin-left:0}
@@ -408,6 +468,30 @@ body.sheet-open #toast{bottom:96px!important}
   .pill{min-height:36px;display:inline-flex;align-items:center}
   .acc>summary{min-height:48px}
   .help{width:24px;height:24px}
+}
+@media (max-width:1199px){
+  .app-shell{grid-template-columns:minmax(0,1fr)}
+  .side-panel{position:fixed;left:0;top:64px;bottom:0;height:auto;width:min(360px,90vw);z-index:55;transform:translateX(-102%);visibility:hidden;transition:transform .2s ease-out,visibility 0s .2s;box-shadow:16px 0 40px -20px rgba(0,0,0,.6)}
+  body.side-open .side-panel{transform:none;visibility:visible;transition:transform .2s ease-out}
+  .side-close{display:inline-flex}
+  .side-backdrop:not([hidden]){display:block;position:fixed;inset:64px 0 0 0;z-index:54;background:rgba(3,7,18,.5)}
+  .btn-sup{display:inline-flex}
+  .res-col{padding:24px 24px 40px}
+  .qs-grid{grid-template-columns:1fr;padding:32px 32px 48px;gap:32px}
+  .qs-prev{margin-top:0;position:static}
+}
+@media (max-width:720px){
+  .side-panel,.side-backdrop{display:none!important}
+  .res-col{padding:20px 16px 32px;gap:20px}
+  .tabs-box{background:none;border:0;border-radius:0;margin:0 -16px}
+  .results-bar{border-radius:0}
+  .tabpanel{padding:14px 12px}
+  .tabpanel>section,.lectura{padding:16px;border-radius:16px}
+  .qs-grid{padding:20px 16px 40px;gap:24px}
+  .qs h1{font-size:31px}
+  .qs-form{padding:18px}
+  #qsForm .qs-set{grid-template-columns:1fr}
+  .qs-cta>button{flex:1 1 100%}
 }
 @media (max-width:420px){.feerow{gap:6px 10px}.feerow>b{min-width:0}.g4{grid-template-columns:1fr}.kgrid{grid-template-columns:1fr}}
 </style>
@@ -436,6 +520,7 @@ body.sheet-open #toast{bottom:96px!important}
           <button type="button" role="menuitem" id="menuGlossary" class="mobile-only-item" data-i18n="Glosario">Glosario</button>
           <button type="button" role="menuitem" id="menuCopyLink" class="mobile-only-item" data-i18n="Compartir">Compartir</button>
           <button type="button" role="menuitem" id="menuTheme" class="mobile-only-item" data-i18n="Cambiar tema">Cambiar tema</button>
+          <button type="button" role="menuitem" id="menuQuickStart" data-i18n="Inicio rápido">Inicio rápido</button>
           <button type="button" role="menuitem" id="menuResetAll" data-i18n="Restablecer todo">Restablecer todo</button>
           <button type="button" role="menuitem" id="menuAbout" data-i18n="Acerca de">Acerca de</button>
         </div>
@@ -444,42 +529,64 @@ body.sheet-open #toast{bottom:96px!important}
   </div>
 </header>
 
-<div class="wrap">
-  <header class="hero">
-    <div>
-      <h1 data-i18n="Comparador hipotecario">Comparador hipotecario</h1>
-      <p class="sub" data-i18n="Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.">Análisis de inversión: entrada, hipoteca, gastos de compra, flujo de caja, renta mínima y patrimonio.</p>
+<section id="quickStart" class="qs" aria-labelledby="qsTitle">
+  <div class="qs-grid">
+    <div class="qs-main">
+      <p class="qs-eyebrow" data-i18n="Primer análisis · 5 datos · 1 minuto">Primer análisis · 5 datos · 1 minuto</p>
+      <h1 id="qsTitle" data-i18n="¿Es buena compra? ¿Y cuánto te ahorra negociar?">¿Es buena compra? ¿Y cuánto te ahorra negociar?</h1>
+      <p class="qs-intro" data-i18n="Escribe cinco datos y verás al instante cuánto flujo de caja tendrías cada mes, con el precio pedido y con el negociado. Lo demás ya tiene valores razonables.">Escribe cinco datos y verás al instante cuánto flujo de caja tendrías cada mes, con el precio pedido y con el negociado. Lo demás ya tiene valores razonables.</p>
+      <div class="qs-form" id="qsForm"></div>
+      <div class="qs-cta">
+        <button type="button" class="qs-go" id="qsGo"><span data-i18n="Ver el análisis completo">Ver el análisis completo</span><span aria-hidden="true"> →</span></button>
+        <button type="button" class="qs-ex" id="qsExample" data-i18n="Usar la propiedad de ejemplo">Usar la propiedad de ejemplo</button>
+      </div>
+      <details class="qs-defaults"><summary data-i18n="Valores por defecto que usaremos (puedes cambiarlos luego)">Valores por defecto que usaremos (puedes cambiarlos luego)</summary><ul id="qsDefaults"></ul></details>
     </div>
-    <div class="hero-note" id="heroNote"></div>
-  </header>
-</div>
-
-<main class="wrap">
-
-<section id="inputs">
-  <div class="sec-h"><div><h2 data-i18n="Supuestos">Supuestos</h2><p data-i18n="Empieza con lo esencial. El resto ya tiene valores por defecto razonables: ajústalos en «Supuestos avanzados» cuando los necesites.">Empieza con lo esencial. El resto ya tiene valores por defecto razonables: ajústalos en «Supuestos avanzados» cuando los necesites.</p></div>
-    <div id="resetAllWrap"><button type="button" class="btn ghost" id="btnReset" data-i18n="Restablecer todo">Restablecer todo</button></div>
+    <aside class="qs-prev" aria-labelledby="qsPvT">
+      <div class="qs-prev-h"><h2 id="qsPvT" data-i18n="Vista previa en vivo">Vista previa en vivo</h2><span data-i18n="se actualiza al escribir">se actualiza al escribir</span></div>
+      <div id="qsPreview" aria-live="polite"></div>
+      <p class="qs-prev-note" data-i18n="Todo se calcula en tu navegador. No enviamos nada a ningún servidor.">Todo se calcula en tu navegador. No enviamos nada a ningún servidor.</p>
+    </aside>
   </div>
+</section>
 
-  <div id="visitNotice"></div>
-
-  <div class="inpgrid">
-    <div class="card qs-card">
-      <div class="grp" style="margin-top:0;padding-top:0;border-top:0">
+<div class="app-shell" id="appShell">
+<div class="side-backdrop" id="sideBackdrop" hidden></div>
+<aside class="side-panel" id="sidePanel" aria-labelledby="sideTitle">
+  <div class="side-h">
+    <h2 id="sideTitle" data-i18n="Supuestos">Supuestos</h2>
+    <button type="button" class="abtn icon side-close" id="btnSideClose" aria-label="Cerrar Supuestos" data-i18n-aria="Cerrar Supuestos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+  </div>
+  <div class="inpgrid" id="inpgrid">
+    <div class="grp" id="blkEssential">
         <h3 data-i18n="Lo esencial">Lo esencial</h3>
         <p class="small muted" style="margin:-4px 0 14px" data-i18n="Los cinco datos que más pesan en el resultado. El resto hereda valores razonables.">Los cinco datos que más pesan en el resultado. El resto hereda valores razonables.</p>
         <div class="formgrid">
+          <div class="qs-set"><div class="qs-set-h"><span class="qs-n" aria-hidden="true">1</span><span data-i18n="La propiedad">La propiedad</span></div>
           <div class="field"><label for="price"><span data-i18n="Precio pedido">Precio pedido</span> <em id="price_v"></em></label><div class="frow"><input type="range" id="price_r" aria-label="Precio pedido" data-i18n-aria="Precio pedido"><input type="number" id="price" class="inp num" step="any" aria-describedby="price_h"></div><span class="field-msg" id="price_h"></span></div>
           <div class="field"><label for="sqft"><span data-i18n="Tamaño">Tamaño</span> <em id="sqft_v"></em></label><div class="frow"><input type="range" id="sqft_r" aria-label="Tamaño" data-i18n-aria="Tamaño"><input type="number" id="sqft" class="inp num" step="any" aria-describedby="sqft_h"></div><span class="field-msg" id="sqft_h"></span><span class="field-msg tiny muted" id="sqft_psf" aria-live="polite"></span></div>
           <div class="field"><label for="pRent"><span data-i18n="Renta anual esperada">Renta anual esperada</span> <em id="pRent_v"></em></label><div class="frow"><input type="range" id="pRent_r" aria-label="Renta anual esperada" data-i18n-aria="Renta anual esperada"><input type="number" id="pRent" class="inp num" step="any" aria-describedby="pRent_h"></div><span class="field-msg" id="pRent_h" data-i18n="La defines tú: el modelo no estima rentas ni aplica apreciación.">La defines tú: el modelo no estima rentas ni aplica apreciación.</span></div>
+          <div id="psfCalc" style="margin-top:14px"></div>
+          </div>
+          <div class="qs-set"><div class="qs-set-h"><span class="qs-n" aria-hidden="true">2</span><span data-i18n="La financiación">La financiación</span></div>
           <div class="field"><label for="down"><span data-i18n="Entrada">Entrada</span> <em id="down_v"></em></label><div class="frow"><input type="range" id="down_r" aria-label="Entrada, porcentaje del precio" data-i18n-aria="Entrada, porcentaje del precio"><input type="number" id="down" class="inp num" step="any" aria-describedby="down_h"></div><span class="field-msg" id="down_h"></span></div>
           <div class="field"><label for="rate"><span data-i18n="Tasa de interés anual">Tasa de interés anual</span> <em id="rate_v"></em></label><div class="frow"><input type="range" id="rate_r" aria-label="Tasa de interés anual" data-i18n-aria="Tasa de interés anual"><input type="number" id="rate" class="inp num" step="any" aria-describedby="rate_h"></div><span class="field-msg" id="rate_h" data-i18n="Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.">Supuesto de modelo: tras el periodo fijo el banco puede cambiarla.</span></div>
+          <div class="pmt-card" id="pmtCalc" style="margin-top:14px"></div>
+          </div>
         </div>
-        <div id="psfCalc" style="margin-top:14px"></div>
-        <div class="pmt-card" id="pmtCalc" style="margin-top:14px"></div>
       </div>
-
-      <div class="grp">
+    <div class="negcard" id="blkNeg">
+      <div class="qs-set-h"><span class="qs-n" aria-hidden="true">3</span><span data-i18n="La negociación · opcional">La negociación · opcional</span></div>
+      <h3 class="ps-only"><span data-i18n="Precio negociado">Precio negociado</span> <span class="dim small" style="font-weight:400" data-i18n="· opcional">· opcional</span></h3>
+      <div class="small muted" data-i18n="Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.">Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.</div>
+      <div class="negprice num" id="negBig"></div>
+      <div class="small" id="negDelta"></div>
+      <div class="field" style="margin-top:14px"><label for="neg"><span data-i18n="Precio negociado">Precio negociado</span> <em id="neg_v"></em></label><div class="frow"><input type="range" id="neg_r" aria-label="Precio negociado" data-i18n-aria="Precio negociado"><input type="number" id="neg" class="inp num" step="any"></div></div>
+      <div class="small muted" style="margin:14px 0 8px" data-i18n="Rebaja rápida sobre el precio pedido:">Rebaja rápida sobre el precio pedido:</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" id="cuts"></div>
+      <div id="negWarn"></div>
+    </div>
+    <div class="grp" id="blkAdv">
         <h3 data-i18n="Supuestos avanzados">Supuestos avanzados</h3>
         <div id="accordions">
           <details class="acc" id="acc-obj" data-group="obj">
@@ -513,10 +620,18 @@ body.sheet-open #toast{bottom:96px!important}
                 <div class="field"><label for="mgmt"><span data-i18n="Gestión del alquiler (% de la renta)">Gestión del alquiler (% de la renta)</span> <em id="mgmt_v"></em></label><div class="frow"><input type="range" id="mgmt_r" aria-label="Gestión del alquiler" data-i18n-aria="Gestión del alquiler"><input type="number" id="mgmt" class="inp num" step="any"></div></div>
                 <div class="field"><label for="maint" data-i18n="Mantenimiento (AED/año)">Mantenimiento (AED/año)</label><input type="number" id="maint" class="inp num" step="any"></div>
                 <div class="field"><label for="admin" data-i18n="Administración e imprevistos (AED/año)">Administración e imprevistos (AED/año)</label><input type="number" id="admin" class="inp num" step="any"></div>
+              </div>
+              <button type="button" class="acc-reset" data-reset-group="gas"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
+            </div>
+          </details>
+          <details class="acc" id="acc-seg" data-group="seg">
+            <summary><span class="acc-sum"><b><span data-i18n="Seguros">Seguros</span><span class="acc-badge" id="badge-seg" hidden></span></b><span id="sum-seg"></span></span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+            <div class="acc-body">
+              <div class="formgrid">
                 <div class="field"><label for="ins"><span data-i18n="Seguro anual del inmueble (AED/año)">Seguro anual del inmueble (AED/año)</span> <span class="opt-tag" data-i18n="Opcional">Opcional</span></label><input type="number" id="ins" class="inp num" step="any" aria-describedby="ins_h"><span class="field-msg" id="ins_h" data-i18n="Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.">Si tu banco o la comunidad lo exigen, súmalo aquí. Cuenta como gasto anual.</span></div>
                 <div class="field pmi-row"><span class="pmi-l" id="pmi_l"><span data-i18n="PMI (seguro hipotecario)">PMI (seguro hipotecario)</span> <span class="opt-tag na" data-i18n="No aplica en EAU">No aplica en EAU</span></span><output class="pmi-v num" for="pmi_l" aria-labelledby="pmi_l" aria-describedby="pmi_h">0%</output><span class="pmi-note" id="pmi_h" data-i18n="Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.">Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.</span></div>
               </div>
-              <button type="button" class="acc-reset" data-reset-group="gas"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
+              <button type="button" class="acc-reset" data-reset-group="seg"><span data-i18n="↺ Restablecer esta sección">↺ Restablecer esta sección</span></button>
             </div>
           </details>
           <details class="acc" id="acc-fee" data-group="fee">
@@ -552,24 +667,15 @@ body.sheet-open #toast{bottom:96px!important}
           </details>
         </div>
       </div>
-    </div>
-
-    <div class="card negcard">
-      <h3><span data-i18n="Precio negociado">Precio negociado</span> <span class="dim small" style="font-weight:400" data-i18n="· opcional">· opcional</span></h3>
-      <div class="small muted" data-i18n="Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.">Misma propiedad. Solo cambia el precio de compra; hereda tamaño, renta, financiación, costes, gastos y ahorros del precio pedido.</div>
-      <div class="negprice num" id="negBig"></div>
-      <div class="small" id="negDelta"></div>
-      <div class="field" style="margin-top:14px"><label for="neg"><span data-i18n="Precio negociado">Precio negociado</span> <em id="neg_v"></em></label><div class="frow"><input type="range" id="neg_r" aria-label="Precio negociado" data-i18n-aria="Precio negociado"><input type="number" id="neg" class="inp num" step="any"></div></div>
-      <div class="small muted" style="margin:14px 0 8px" data-i18n="Rebaja rápida sobre el precio pedido:">Rebaja rápida sobre el precio pedido:</div>
-      <div style="display:flex;gap:6px;flex-wrap:wrap" id="cuts"></div>
-      <div id="negWarn"></div>
-      <div class="grp" id="qsPreviewWrap">
-        <h3 data-i18n="Vista previa">Vista previa</h3>
-        <div id="qsPreview" aria-live="polite"></div>
-      </div>
+    <div class="side-foot">
+      <div id="resetAllWrap"><button type="button" class="btn ghost" id="btnReset" data-i18n="Restablecer todo a los valores por defecto">Restablecer todo a los valores por defecto</button></div>
+      <div class="hero-note" id="heroNote"></div>
     </div>
   </div>
-</section>
+</aside>
+
+<main class="res-col" id="resultsCol">
+<div id="visitNotice"></div>
 
 <section id="resumen" aria-labelledby="verdictHeadline">
   <div class="verdict">
@@ -587,13 +693,9 @@ body.sheet-open #toast{bottom:96px!important}
   <div class="kgrid" id="heroKpis"></div>
   <div class="kgrid" id="otrosIndicadores" style="margin-top:14px"></div>
 
-  <div class="card" style="margin-top:20px">
-    <div class="sec-h" style="border-bottom:0;margin-bottom:10px;padding-bottom:0"><div><h2 style="font-size:22px" data-i18n="Lectura de inversión">Lectura de inversión</h2><p data-i18n="Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.">Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.</p></div></div>
-    <ul class="insight" id="insightList"></ul>
-    <button type="button" class="acc-reset" id="insightMore" aria-expanded="false" aria-controls="insightList" hidden style="margin-top:10px"></button>
-  </div>
 </section>
 
+<div class="tabs-box" id="tabsBox">
 <div class="results-bar">
   <div class="bs" id="barSummary"></div>
   <div class="tabs-in">
@@ -706,9 +808,18 @@ body.sheet-open #toast{bottom:96px!important}
   </section>
 </div>
 
+</div>
+
+<div class="card lectura" id="lectura">
+    <div class="sec-h" style="border-bottom:0;margin-bottom:10px;padding-bottom:0"><div><h2 style="font-size:22px" data-i18n="Lectura de inversión">Lectura de inversión</h2><p data-i18n="Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.">Resumen neutral generado con los supuestos actuales. Cambia si cambias los inputs.</p></div></div>
+    <ul class="insight" id="insightList"></ul>
+    <button type="button" class="acc-reset" id="insightMore" aria-expanded="false" aria-controls="insightList" hidden style="margin-top:10px"></button>
+  </div>
+
 <div class="disc" data-i18n="Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.">Este modelo es solo para análisis de inversión. La tasa real de la hipoteca, la comunidad, la renta, los meses sin inquilino, el mantenimiento y los costes de compra pueden variar. Verifica todas las cifras con el banco, ADREC/ADGM, la administración del edificio y el broker antes de comprar.</div>
 <footer data-i18n="Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.">Todos los cálculos se hacen en tu navegador con los inputs de esta página. Ningún dato se envía a ningún sitio.</footer>
 </main>
+</div>
 
 <div class="sheet" id="supSheet" role="dialog" aria-modal="true" aria-labelledby="supTitle" hidden>
   <div class="sheet-grab" aria-hidden="true"></div>
@@ -1324,6 +1435,26 @@ const I18N_EN={
  "Cerrar y volver a los resultados":"Close and go back to results",
  "Flujo al mes · pedido / negociado":"Monthly cash flow · asking / negotiated",
  "Ver resultados":"View results",
+  "Seguros":"Insurance",
+  "PMI no aplica en EAU":"PMI does not apply in the UAE",
+  "Sin seguro del inmueble · PMI no aplica en EAU":"No property insurance · PMI does not apply in the UAE",
+  "Primer análisis · 5 datos · 1 minuto":"First analysis · 5 inputs · 1 minute",
+  "¿Es buena compra? ¿Y cuánto te ahorra negociar?":"Is it a good buy? And how much does negotiating save you?",
+  "Escribe cinco datos y verás al instante cuánto flujo de caja tendrías cada mes, con el precio pedido y con el negociado. Lo demás ya tiene valores razonables.":"Enter five inputs and you will instantly see the monthly cash flow at the asking price and at the negotiated one. Everything else already has reasonable defaults.",
+  "Ver el análisis completo":"See the full analysis",
+  "Usar la propiedad de ejemplo":"Use the sample property",
+  "Valores por defecto que usaremos (puedes cambiarlos luego)":"Defaults we will use (you can change them later)",
+  "Vista previa en vivo":"Live preview",
+  "se actualiza al escribir":"updates as you type",
+  "Todo se calcula en tu navegador. No enviamos nada a ningún servidor.":"Everything is calculated in your browser. Nothing is sent to any server.",
+  "Cerrar Supuestos":"Close Assumptions",
+  "Restablecer todo a los valores por defecto":"Reset everything to the defaults",
+  "La propiedad":"The property",
+  "La financiación":"The financing",
+  "La negociación · opcional":"The negotiation · optional",
+  "Inicio rápido":"Quick start",
+  "Negociar te ahorra {{a}} al cerrar y mejora el flujo en {{b}} al mes.":"Negotiating saves you {{a}} at closing and improves cash flow by {{b}} per month.",
+  "Con el mismo precio pedido y negociado, no hay diferencia. Prueba una rebaja para ver cuánto ahorras.":"With the same asking and negotiated price there is no difference. Try a discount to see how much you save.",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -1501,7 +1632,8 @@ function syncFields(){
 const GROUPS={
  obj:{title:'Objetivo y ahorros',keys:['tgt','tol','sav','savRate','savCap','reserve']},
  fin:{title:'Financiación',keys:['term']},
- gas:{title:'Gastos anuales',keys:['sc','vacM','mgmt','maint','admin','ins']},
+ gas:{title:'Gastos anuales',keys:['sc','vacM','mgmt','maint','admin']},
+ seg:{title:'Seguros',keys:['ins']},
  fee:{title:'Gastos de compra',keys:[]},
  ren:{title:'Renovación del alquiler',keys:['renewIn','renewPct','renewGap']},
  ven:{title:'Venta (si vendes)',keys:['exitAgencyPct','prepayPct','prepayCap']}
@@ -1511,7 +1643,8 @@ function summaryFor(g,R){
  switch(g){
   case 'obj':return t('{{tgt}}/sqft ±{{tol}}% · {{sav}} al {{r}}%',{tgt:aed(S.tgt),tol:S.tol,sav:aed(S.sav),r:S.savRate});
   case 'fin':return t('Plazo {{n}} años',{n:S.term});
-  case 'gas':return(S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM}))+(S.ins>0?' · '+t('Seguro {{v}}/año',{v:aed(S.ins)}):'');
+  case 'gas':return(S.vacM===1?t('Comunidad AED {{sc}}/sqft · {{v}} mes sin inquilino',{sc:S.sc,v:S.vacM}):t('Comunidad AED {{sc}}/sqft · {{v}} meses sin inquilino',{sc:S.sc,v:S.vacM}));
+  case 'seg':return S.ins>0?t('Seguro {{v}}/año',{v:aed(S.ins)})+' · '+t('PMI no aplica en EAU'):t('Sin seguro del inmueble · PMI no aplica en EAU');
   case 'fee':return R?t('{{a}} pedido · {{b}} negociado',{a:aed(R.M.fees.total),b:aed(R.N.fees.total)}):'';
   case 'ren':return(S.renewPct===0&&S.renewGap===0)?t('Sin cambios en el mes {{m}}',{m:S.renewIn+1}):t('{{pct}}% en el mes {{m}}',{pct:(S.renewPct>=0?'+':'')+S.renewPct,m:S.renewIn+1});
   case 'ven':return t('Comisión {{a}}% + VAT · penalización {{p}}% (tope {{cap}})',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)});
@@ -1538,16 +1671,17 @@ document.querySelectorAll('[data-reset-group]').forEach(btn=>{
 
 /* ---------- Vista previa en vivo ---------- */
 function renderQsPreview(R){
- const{M,N}=R;
+ const{M,N}=R,band=verdictBand(N.cfM),save=S.price-S.neg,upfront=M.ctc-N.ctc,cfGain=N.cfM-M.cfM;
+ const row=(l,a,b,ca,cb)=>`<div class="pv-row"><span>${t(l)}</span><b class="${ca||''}">${a}</b><b class="${cb||''}">${b}</b></div>`;
  $('qsPreview').innerHTML=
-  mrow('Cuota de la hipoteca · pedido',aed(M.pm)+t('/mes'),'',t('{{v}} al año',{v:aed(M.debt)}))+
-  mrow('Cuota de la hipoteca · negociado',aed(N.pm)+t('/mes'),'',t('{{v}} al año',{v:aed(N.debt)}))+
-  mrow('Flujo de caja al mes · pedido',saed(M.cfM),cls(M.cfM))+
-  mrow('Flujo de caja al mes · negociado',saed(N.cfM),cls(N.cfM))+
-  mrow('Renta mínima al año · pedido',aed(M.be))+
-  mrow('Renta mínima al año · negociado',aed(N.be))+
-  mrow('Dinero para cerrar · pedido',aed(M.ctc))+
-  mrow('Dinero para cerrar · negociado',aed(N.ctc));
+  `<div><span class="badge ${band.cls}" style="font-size:14px;padding:6px 12px"><span aria-hidden="true">${band.icon}</span> ${t(band.t)}</span></div>`+
+  `<div><div class="pv-row h"><span></span><span>${t('Pedido')}</span><span>${t('Negociado')}</span></div>`+
+  row('Flujo de caja al mes',saed(M.cfM),saed(N.cfM),cls(M.cfM),cls(N.cfM))+
+  row('Renta mínima al año',aed(M.be),aed(N.be))+
+  row('Dinero para cerrar',aed(M.ctc),aed(N.ctc))+`</div>`+
+  `<p class="pv-sum">${save>0&&(upfront>0||cfGain>0)?t('Negociar te ahorra {{a}} al cerrar y mejora el flujo en {{b}} al mes.',{a:aed(Math.max(upfront,0)),b:aed(Math.max(cfGain,0))}):t('Con el mismo precio pedido y negociado, no hay diferencia. Prueba una rebaja para ver cuánto ahorras.')}</p>`;
+ const dl=$('qsDefaults');
+ if(dl)dl.innerHTML=['obj','fin','gas','ren','ven'].map(g=>`<li><b>${t(GROUPS[g].title)}</b> · ${summaryFor(g,R)}</li>`).join('');
 }
 
 /* ---------- Render: cabecera y panel negociado ---------- */
@@ -2094,10 +2228,10 @@ function wireResetAll(){
   const wrap=$('resetAllWrap');
   wrap.innerHTML=`<div class="notice" role="status" style="margin-bottom:0;padding:10px 14px"><span>${t('¿Restablecer los {{n}} supuestos? Podrás deshacerlo.',{n:HISTORY_KEYS.length})}</span><div class="row"><button type="button" class="primary" id="confirmResetAll">${t('Sí, restablecer')}</button><button type="button" id="cancelResetAll">${t('Cancelar')}</button></div></div>`;
   $('confirmResetAll').addEventListener('click',()=>{
-   wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll();
+   wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo a los valores por defecto')+'</button>';wireResetAll();
    resetAllNow();
   });
-  $('cancelResetAll').addEventListener('click',()=>{wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo')+'</button>';wireResetAll()});
+  $('cancelResetAll').addEventListener('click',()=>{wrap.innerHTML='<button type="button" class="btn ghost" id="btnReset">'+t('Restablecer todo a los valores por defecto')+'</button>';wireResetAll()});
  });
 }
 wireResetAll();
@@ -2171,12 +2305,12 @@ window.addEventListener('hashchange',()=>{const tab=(location.hash||'').replace(
    ids, validation, steppers, undo and persistence keep working with no duplicated state logic. */
 const supSheet=$('supSheet'),supMQ=window.matchMedia('(max-width:720px)');
 let supOpener=null;
-const supBackground=()=>[document.querySelector('.appbar'),document.querySelector('main.wrap'),$('glossaryWrap')].filter(Boolean);
+const supBackground=()=>[document.querySelector('.appbar'),$('appShell'),$('glossaryWrap')].filter(Boolean);
 function supFocusables(){return[...supSheet.querySelectorAll('button,input,select,textarea,summary,a[href],[tabindex]:not([tabindex="-1"])')].filter(e=>!e.disabled&&e.getClientRects().length>0)}
 function openSupSheet(){
  if(!supSheet.hidden)return;
  supOpener=document.activeElement;
- $('supBody').appendChild(document.querySelector('.inpgrid'));
+ $('supBody').appendChild($('inpgrid'));
  supSheet.hidden=false;document.body.classList.add('sheet-open');
  supBackground().forEach(e=>e.setAttribute('inert',''));
  $('btnSupuestos').setAttribute('aria-expanded','true');
@@ -2185,14 +2319,13 @@ function openSupSheet(){
 }
 function closeSupSheet(restoreFocus=true){
  if(supSheet.hidden)return;
- $('visitNotice').after(document.querySelector('.inpgrid'));
+ $('sidePanel').appendChild($('inpgrid'));
  supSheet.hidden=true;document.body.classList.remove('sheet-open');
  supBackground().forEach(e=>e.removeAttribute('inert'));
  $('btnSupuestos').setAttribute('aria-expanded','false');
  const o=supOpener;supOpener=null;
- if(restoreFocus){const target=o&&document.contains(o)&&o.getClientRects().length?o:$('btnSupuestos');if(target.getClientRects().length)target.focus()}
+ if(restoreFocus){const target=o&&o!==document.body&&document.contains(o)&&o.getClientRects().length?o:$('btnSupuestos');if(target.getClientRects().length)target.focus()}
 }
-$('btnSupuestos').addEventListener('click',openSupSheet);
 $('btnSupClose').addEventListener('click',()=>closeSupSheet());
 $('btnSupDone').addEventListener('click',()=>closeSupSheet());
 $('btnUndoSheet').addEventListener('click',undo);
@@ -2244,6 +2377,58 @@ const sharedScenario=parseScenarioHash();
 if(sharedScenario&&sharedScenario.lang&&sharedScenario.lang!==LANG){LANG=sharedScenario.lang;applyStaticI18n()}
 if(sharedScenario)renderSharedScenario(sharedScenario);else renderVisitNotice(storageInfo);
 
+/* ---------- Panel lateral (tablet: cajón) + Inicio rápido (primera visita) ---------- */
+/* One instance of the inputs (#inpgrid) lives in the side panel; the mobile sheet and the quick-start
+   screen borrow its blocks and give them back, so ids, validation, undo and persistence are shared. */
+const sideMQ=window.matchMedia('(max-width:1199px)');
+let sideOpener=null;
+const sideIsOpen=()=>document.body.classList.contains('side-open');
+function syncSupBtn(){
+ const b=$('btnSupuestos');
+ if(supMQ.matches){b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-controls','supSheet');b.setAttribute('aria-expanded',String(!supSheet.hidden))}
+ else{b.removeAttribute('aria-haspopup');b.setAttribute('aria-controls','sidePanel');b.setAttribute('aria-expanded',String(sideIsOpen()))}
+}
+function openSideDrawer(){
+ if(!sideMQ.matches||supMQ.matches||sideIsOpen())return;
+ sideOpener=document.activeElement;
+ document.body.classList.add('side-open');$('sideBackdrop').hidden=false;syncSupBtn();
+ $('btnSideClose').focus();
+}
+function closeSideDrawer(restoreFocus=true){
+ if(!sideIsOpen())return;
+ document.body.classList.remove('side-open');$('sideBackdrop').hidden=true;syncSupBtn();
+ const o=sideOpener;sideOpener=null;
+ if(restoreFocus){const target=o&&o!==document.body&&document.contains(o)&&o.getClientRects().length?o:$('btnSupuestos');if(target.getClientRects().length)target.focus()}
+}
+$('btnSupuestos').addEventListener('click',()=>{
+ if(supMQ.matches)openSupSheet();else sideIsOpen()?closeSideDrawer():openSideDrawer();
+});
+$('btnSideClose').addEventListener('click',()=>closeSideDrawer());
+$('sideBackdrop').addEventListener('click',()=>closeSideDrawer());
+try{sideMQ.addEventListener('change',()=>{closeSideDrawer(false);syncSupBtn()});supMQ.addEventListener('change',syncSupBtn)}catch(e){}
+syncSupBtn();
+
+const STARTED_KEY='gt-negotiation-comparator-started';
+let qsMode=false;
+function setQuickStart(on){
+ if(on===qsMode)return;
+ qsMode=on;
+ if(on){closeSideDrawer(false);closeSupSheet(false);$('qsForm').append($('blkEssential'),$('blkNeg'))}
+ else{$('inpgrid').prepend($('blkEssential'),$('blkNeg'));try{localStorage.setItem(STARTED_KEY,'1')}catch(e){}}
+ document.body.classList.toggle('qs-mode',on);
+ window.scrollTo(0,0);
+}
+$('qsGo').addEventListener('click',()=>{
+ setQuickStart(false);
+ const h=$('verdictHeadline');h.setAttribute('tabindex','-1');h.focus({preventScroll:true});
+});
+$('qsExample').addEventListener('click',()=>{
+ pushHistory();['price','sqft','pRent','down','rate','neg'].forEach(k=>{S[k]=DEFAULTS[k]});
+ resetFieldMessages();render();
+});
+{let started=false;try{started=localStorage.getItem(STARTED_KEY)==='1'}catch(e){}
+ if(!storageInfo.hadSaved&&!started&&!sharedScenario&&!location.hash)setQuickStart(true)}
+
 /* ---------- Barra de la aplicación: tema, glosario, menú, enlace ---------- */
 const THEME_KEY='gt-negotiation-comparator-theme';
 function applyTheme(mode){
@@ -2282,6 +2467,7 @@ $('btnTheme').addEventListener('click',()=>{
 });
 function closeMoreMenu(){$('moreMenu').hidden=true;$('btnMore').setAttribute('aria-expanded','false')}
 $('btnMore').addEventListener('click',e=>{e.stopPropagation();const open=$('moreMenu').hidden;$('moreMenu').hidden=!open;$('btnMore').setAttribute('aria-expanded',String(open))});
+$('menuQuickStart').addEventListener('click',()=>{closeMoreMenu();setQuickStart(true)});
 $('menuResetAll').addEventListener('click',()=>{closeMoreMenu();$('btnReset').click()});
 $('menuAbout').addEventListener('click',()=>{closeMoreMenu();showToast(t('Comparador hipotecario · análisis local, sin servidor.'))});
 $('menuRedo').addEventListener('click',()=>{closeMoreMenu();redo()});
@@ -2294,6 +2480,7 @@ document.addEventListener('keydown',e=>{
   closeMoreMenu();closeGlossary();
   if(openFee!==null){const btn=document.querySelector(`[data-help="${openFee}"]`);openFee=null;render();if(btn)btn.focus()}
   else if(!$('supSheet').hidden)closeSupSheet();
+  else closeSideDrawer();
  }
 });
 const GLOSARIO=[

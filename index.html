@@ -224,8 +224,9 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .v-save-grid b{font-size:26px;font-weight:700;letter-spacing:-.01em}
 .v-save-grid b small{font-size:16px;font-weight:500}
 .v-save-grid span{font-size:13.5px;color:var(--mu)}
+.v-save .vs,.tabs .ts,.others .ts,.rent-cap{display:none}
 @media (max-width:900px){.v-save{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}.v-save .l{grid-column:1/-1;max-width:none;padding:0}.v-save-grid>div:first-child{border-left:0;padding-left:0}}
-@media (max-width:720px){.verdict{padding:22px;gap:16px}.verdict h1{font-size:27px}.verdict-sub{font-size:15px}.v-save{grid-template-columns:1fr}.v-save-grid>div{border-left:0;padding:0}.v-save-grid b{font-size:22px}}
+@media (max-width:720px){.verdict h1{font-size:27px}}
 
 /* Barra de resultados: pestañas + renta */
 .tabs-box{background:var(--in);border:1px solid var(--ln2);border-radius:20px;min-width:0}
@@ -284,6 +285,9 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .kpi-chip.bad{background:var(--nebg);color:var(--ne)}
 .kpi-ctx{margin:0;font-size:13.5px;color:var(--mu)}
 .others{display:flex;flex-direction:column;gap:10px}
+.others>summary{list-style:none;display:flex;align-items:center;gap:8px;pointer-events:none;cursor:default}
+.others>summary::-webkit-details-marker{display:none}
+.others>summary .others-n,.others>summary .acc-chev{display:none}
 .others h2{margin:0;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
 .others-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--ln);border-radius:16px;background:var(--sf)}
 .others-strip>div{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-left:1px solid var(--ln);min-width:0}
@@ -689,24 +693,54 @@ body.qs-mode .app-shell{display:none}
   .formgrid.f3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:720px){
-  .tabs-in{padding:8px 12px;gap:8px}.bs{padding:8px 12px}
   .g2,.formgrid,.formgrid.f3{grid-template-columns:1fr}
   .inp.sm{width:100px}
   .frow .inp{flex-basis:112px}
   section{padding-top:26px}
-  .appbar-in{padding:0 12px}
-  .results-bar{position:static}
-  .tabs-in{flex-wrap:wrap}
-  .tabs{order:-1;flex:1 1 100%;min-width:0;max-width:100%;overflow-x:auto}
-  .seg{margin-left:0}
-  .rentctl{position:fixed;left:0;right:0;bottom:0;z-index:45;flex:0 0 auto;width:100%;background:var(--sf);border-top:1px solid var(--ln2);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -12px 24px -16px rgba(0,0,0,.5)}
-  .rentctl label{display:block;width:100%;font-size:13px;margin-bottom:6px}
-  .rentctl input[type=number]{margin-left:auto}
-  body{padding-bottom:116px}
-  .v-save-grid{flex-direction:column;gap:12px}
-  .v-save-grid>div{border-left:0;padding-left:0;border-top:1px solid var(--ln);padding-top:10px}
-  .v-save-grid>div:first-child{border-top:0;padding-top:0}
-  .tabs button{height:44px;font-size:13.5px;padding:0 12px}
+  .appbar-in{padding:0 12px;height:56px}
+  .bs{display:none}
+  .results-bar,.tabs-in{display:contents}
+  .tabs{position:sticky;top:calc(56px + env(safe-area-inset-top));z-index:40;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px 12px 8px;background:var(--sf);border-bottom:1px solid var(--ln2);overflow:visible;box-shadow:0 12px 28px -22px rgba(0,0,0,.6)}
+  .tabs button{height:44px;font-size:14px;padding:0 4px;min-width:0}
+  .tabs .tl{display:none}
+  .tabs button[aria-selected="true"]{background:var(--br);color:#fff;box-shadow:none}
+  .seg{display:flex;margin:12px 12px 0}
+  .seg button{flex:1 1 0;min-height:44px}
+  .rentctl{position:fixed;left:0;right:0;bottom:0;z-index:45;width:100%;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"lab val" "rng sup" "cap cap";align-items:center;gap:6px 12px;background:var(--sf);border-top:1px solid var(--ln2);padding:12px 16px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -12px 24px -16px rgba(0,0,0,.5)}
+  .rentctl label{grid-area:lab;font-size:13px;color:var(--mu)}
+  .rentctl input[type=number]{grid-area:val;width:110px;height:36px;text-align:right;font-size:18px;font-weight:700;background:transparent;border-color:transparent;padding:0 4px}
+  .rentctl input[type=number]:focus{border-color:var(--brt);background:var(--in)}
+  .rentctl input[type=range]{grid-area:rng;min-width:0;height:6px}
+  .rentctl input[type=range]::-webkit-slider-thumb{width:24px;height:24px}
+  .rentctl input[type=range]::-moz-range-thumb{width:18px;height:18px}
+  .btn-sup{grid-area:sup}
+  .rent-cap{grid-area:cap;display:block;font-size:12px;color:var(--dm)}
+  body{padding-bottom:148px}
+  .verdict{padding:20px;gap:14px;border-radius:20px}
+  .verdict-meta{display:none}
+  .verdict .badge{font-size:13px!important;padding:5px 10px!important}
+  .verdict-sub{font-size:14.5px}
+  .v-save{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-top:14px;align-items:start}
+  .v-save .l{grid-column:1/-1;max-width:none;padding:0;font-size:12px}
+  .v-save-grid{display:contents}
+  .v-save-grid>div{border-left:1px solid var(--ln);padding:0 0 0 8px}
+  .v-save-grid>div:first-child{border-left:0;padding-left:0}
+  .v-save-grid b{font-size:16px;white-space:nowrap}
+  .v-save-grid b small{display:none}
+  .v-save-grid span{font-size:12px}
+  .v-save .vl{display:none}
+  .v-save .vs,.tabs .ts,.others .ts{display:inline}
+  .others .tl{display:none}
+  .kpi{padding:16px;gap:10px;border-radius:16px}
+  .kpi-ctx{display:none}
+  .kpi-chip{border-radius:12px;align-items:flex-start}
+  .others{gap:0;border-radius:16px;background:var(--sf);border:1px solid var(--ln);padding:0 16px}
+  .others>summary{pointer-events:auto;cursor:pointer;min-height:52px}
+  .others>summary h2{font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--tx)}
+  .others>summary .others-n{display:inline;font-weight:600;font-size:15px;margin-right:auto}
+  .others>summary .acc-chev{display:block}
+  .others[open]>summary .acc-chev{transform:rotate(180deg)}
+  .others .others-strip{border:0;border-top:1px solid var(--ln);border-radius:0;margin:0 -16px}
   .abtn,.abtn.icon{min-height:44px}
   .pill{min-height:36px;display:inline-flex;align-items:center}
   .acc>summary{min-height:48px}
@@ -945,7 +979,7 @@ body.qs-mode .app-shell{display:none}
 
   <h2 class="sr-only" data-i18n="Indicadores clave">Indicadores clave</h2>
   <div class="kgrid" id="heroKpis"></div>
-  <div class="others"><h2 data-i18n="Otros indicadores · pedido / negociado">Otros indicadores · pedido / negociado</h2><div class="others-strip" id="otrosIndicadores"></div></div>
+  <details class="others" id="othersDet" open><summary><h2><span class="tl" data-i18n="Otros indicadores · pedido / negociado">Otros indicadores · pedido / negociado</span><span class="ts" data-i18n="Otros indicadores">Otros indicadores</span></h2><span class="others-n" aria-hidden="true">(4)</span><svg class="acc-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><div class="others-strip" id="otrosIndicadores"></div></details>
 
 </section>
 
@@ -954,16 +988,17 @@ body.qs-mode .app-shell{display:none}
   <div class="bs" id="barSummary"></div>
   <div class="tabs-in">
     <nav class="tabs" role="tablist" aria-label="Áreas del análisis" data-i18n-aria="Áreas del análisis">
-      <button type="button" role="tab" id="tabbtn-flujo" aria-controls="tab-flujo" data-tab="flujo" data-i18n="Flujo de caja">Flujo de caja</button>
+      <button type="button" role="tab" id="tabbtn-flujo" aria-controls="tab-flujo" data-tab="flujo"><span class="tl" data-i18n="Flujo de caja">Flujo de caja</span><span class="ts" data-i18n="Flujo">Flujo</span></button>
       <button type="button" role="tab" id="tabbtn-riesgo" aria-controls="tab-riesgo" data-tab="riesgo" data-i18n="Riesgo">Riesgo</button>
       <button type="button" role="tab" id="tabbtn-estrategia" aria-controls="tab-estrategia" data-tab="estrategia" data-i18n="Estrategia">Estrategia</button>
-      <button type="button" role="tab" id="tabbtn-detalle" aria-controls="tab-detalle" data-tab="detalle" data-i18n="Detalle completo">Detalle completo</button>
+      <button type="button" role="tab" id="tabbtn-detalle" aria-controls="tab-detalle" data-tab="detalle"><span class="tl" data-i18n="Detalle completo">Detalle completo</span><span class="ts" data-i18n="Detalle">Detalle</span></button>
     </nav>
     <div class="rentctl">
       <label for="rent_r" data-i18n="Renta anual">Renta anual</label>
       <input type="range" id="rent_r" aria-label="Renta anual" data-i18n-aria="Renta anual">
       <input type="number" id="rent" class="inp sm num" step="any" aria-label="Renta anual AED" data-i18n-aria="Renta anual AED">
       <button type="button" class="btn-sup" id="btnSupuestos" aria-haspopup="dialog" aria-controls="supSheet" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg><span data-i18n="Supuestos">Supuestos</span></button>
+      <span class="rent-cap" id="rentCap" aria-live="polite"></span>
     </div>
     <div class="seg" role="radiogroup" aria-label="Escenario destacado" data-i18n-aria="Escenario destacado">
       <button type="button" role="radio" data-view="main" data-i18n="Pedido">Pedido</button>
@@ -1839,6 +1874,13 @@ const I18N_EN={
  "en contra":"against",
  "Expandir todas las ayudas":"Expand all help",
  "Contraer todas las ayudas":"Collapse all help",
+ "Flujo":"Cash flow",
+ "Detalle":"Detail",
+ "al cerrar":"at closing",
+ "de flujo/mes":"cash flow/mo",
+ "Flujo con esta renta: {{a}} / {{b}} al mes":"Cash flow at this rent: {{a}} / {{b}} per month",
+ "en precio":"on price",
+ "Otros indicadores":"Other indicators",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -2227,9 +2269,9 @@ function renderVerdict(R){
  $('verdictSavings').innerHTML=save>0?`
   <span class="l">${t('Negociar te ahorra')}</span>
   <div class="v-save-grid">
-   <div><b>${aed(save)}</b><span>${t('en precio ({{p}} del pedido)',{p:pct(save/S.price*100)})}</span></div>
-   <div><b>${aed(upfront)}</b><span>${t('menos para cerrar la compra')}</span></div>
-   <div><b>${saed(cfGain)} <small>${t('/mes')}</small></b><span>${t('de flujo de caja')}</span></div>
+   <div><b>${aed(save)}</b><span><span class="vl">${t('en precio ({{p}} del pedido)',{p:pct(save/S.price*100)})}</span><span class="vs">${t('en precio')}</span></span></div>
+   <div><b>${aed(upfront)}</b><span><span class="vl">${t('menos para cerrar la compra')}</span><span class="vs">${t('al cerrar')}</span></span></div>
+   <div><b>${saed(cfGain)} <small>${t('/mes')}</small></b><span><span class="vl">${t('de flujo de caja')}</span><span class="vs">${t('de flujo/mes')}</span></span></div>
   </div>`:'';
 }
 
@@ -2241,6 +2283,7 @@ function renderSupCf(R){
 }
 function renderBarSummary(R){
  const{M,N}=R,band=verdictBand(N.cfM),wa=maxPrice(S,0),el=$('barSummary');
+ const rc=$('rentCap');if(rc)rc.textContent=t('Flujo con esta renta: {{a}} / {{b}} al mes',{a:saed(M.cfM),b:saed(N.cfM)});
  if(!el)return;
  const sg=v=>{const r=Math.round(v);return(r>0?'+':r<0?'−':'')+nf0.format(Math.abs(r))},ab=v=>isFinite(v)?nf0.format(Math.round(v)):'—';
  el.innerHTML=`<span class="badge ${band.cls}"><span aria-hidden="true">${band.icon}</span>${t(band.t)}</span>`+
@@ -2838,6 +2881,11 @@ document.addEventListener('keydown',e=>{
 $('btnUndo').addEventListener('click',undo);
 $('btnRedo').addEventListener('click',redo);
 updateUndoButtons();
+/* "Otros indicadores": collapsible on mobile, always open on desktop */
+{const od=$('othersDet'),mq=window.matchMedia('(max-width:720px)');
+ const sync=()=>{od.open=!mq.matches};sync();
+ (mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));
+ od.addEventListener('toggle',()=>{if(!mq.matches&&!od.open)od.open=true});}
 function updateChartBtn(){$('btnChartTable').textContent=t($('chartTableWrap').hidden?'Ver como tabla':'Ver como gráfico')}
 $('btnChartTable').addEventListener('click',()=>{
  const on=$('chartTableWrap').hidden;

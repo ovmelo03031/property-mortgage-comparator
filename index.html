@@ -119,7 +119,8 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);lin
 .seg{display:inline-flex;border:1px solid var(--line2);border-radius:12px;padding:3px;background:var(--card);flex:0 0 auto}
 .seg button{border:0;background:transparent;padding:6px 14px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--mut)}
 .seg button.on{background:var(--blue);color:#fff}
-@media (min-width:721px){.rentctl{flex:1 1 250px;max-width:330px}.rentctl label{font-size:13px}.rentctl input.inp.sm{width:84px;height:36px;border-radius:8px;font-size:14px;font-weight:600;text-align:right;padding:0 8px}.seg{border-radius:10px;background:var(--in)}.seg button{height:34px;padding:0 12px;border-radius:8px}}
+@media (min-width:721px){.rentctl{flex:1 1 250px;max-width:330px}.rentctl label{font-size:13px}.rentctl input.inp.sm{flex:0 0 84px;width:84px;height:36px;border-radius:8px;font-size:14px;font-weight:600;text-align:right;padding:0 8px}.seg{border-radius:10px;background:var(--in)}.seg button{height:34px;padding:0 12px;border-radius:8px}}
+@media (min-width:721px) and (max-width:1199px){.rentctl{flex:1 1 100%;max-width:none}}
 
 /* Inputs */
 .inp{background:var(--inset);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;width:100%;min-width:0}
@@ -407,6 +408,36 @@ tbody tr:last-child td{border-bottom:0}
 .sv-card{background:var(--in);border:1px solid var(--ln);border-radius:14px;padding:18px}
 .sv-card h3{font-size:15px}
 @media (max-width:900px){.hz-sum{grid-template-columns:1fr}}
+
+/* Detalle: Pedido / Negociado / Diferencia */
+#metrics.tscroll{border:0}
+.dt{font-size:14px}
+.dt th,.dt td{white-space:normal;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--ln)}
+.dt thead th{position:static;background:none;font-size:12.5px;color:var(--mu);border-bottom:1px solid var(--ln2);text-align:right}
+.dt thead th:first-child{text-align:left;position:static;background:none}
+.dt thead th.on{color:var(--tx)}
+.dt tbody th{position:static;background:none;text-align:left;font-weight:400;color:var(--tx);z-index:auto}
+.dt tbody th.grp-h{padding:18px 8px 8px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--brt);border-bottom:0}
+.dt tbody tr:last-child th,.dt tbody tr:last-child td{border-bottom:1px solid var(--ln)}
+.dt td{text-align:right;white-space:nowrap;background:none}
+.dt td:first-child{background:none}
+.dt tr.tot th,.dt tr.tot td{font-weight:700;background:var(--in)}
+.dt th small{display:block;font-size:12px;font-weight:400;color:var(--dm)}
+.dt .dl-l{display:flex;align-items:center;gap:8px}
+.dt .dd{font-size:13px}
+.dt .dd.pos{color:var(--po)}.dt .dd.neg{color:var(--ne)}
+.dt td.pos{color:var(--po)}.dt td.neg{color:var(--ne)}
+.dh{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1px solid var(--ln2);background:transparent;color:var(--brt);display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+.dh:hover,.dh[aria-expanded="true"]{background:var(--brbg)}
+.dnote{display:block;margin-top:6px;padding:10px 12px;border-radius:10px;background:var(--brbg);font-size:13px;font-weight:400;color:var(--tx);max-width:56ch}
+
+/* Glossary docked as a 380px column while the Detalle tab is open (wide screens) */
+@media (min-width:1600px){
+ body.gl-docked .app-shell{margin-right:380px}
+ body.gl-docked #glossaryPanel{position:fixed!important;top:64px!important;right:0!important;bottom:0;width:380px!important;max-height:none!important;border-radius:0!important;border-width:0 0 0 1px!important;border-left:1px solid var(--ln2)!important;background:var(--sf)!important;box-shadow:none!important;padding:24px!important;gap:14px!important}
+ body.gl-docked #glossaryTitle{font-size:24px!important}
+ body.gl-docked #glossaryQ{height:42px}
+}
 
 /* Runway bar + renovación inputs */
 .rw-bar{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
@@ -1042,7 +1073,7 @@ body.qs-mode .app-shell{display:none}
 <div id="tab-detalle" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-detalle" hidden tabindex="0">
   <section id="detalle">
     <div class="sec-h"><div><h2 id="detTitle" data-i18n="Todas las cifras, lado a lado">Todas las cifras, lado a lado</h2><p id="detSub"></p></div><div id="detBadges"></div></div>
-    <div class="grid g3" id="metrics"></div>
+    <div class="tscroll" id="metrics"></div>
     <div class="det-m" id="detMobile"></div>
   </section>
 </div>
@@ -1785,6 +1816,29 @@ const I18N_EN={
  "supera tus ahorros":"exceeds your savings",
  "Si configuras un cambio de renta al renovar, aparece una columna extra: «Precio límite tras renovar».":"If you set a rent change at renewal, an extra column appears: “Limit price after renewal”.",
  "Interés que conservas":"Interest you keep",
+ "Precio y compra":"Price and purchase",
+ "{{a}} · {{b}}":"{{a}} · {{b}}",
+ "Precio ÷ tamaño ({{sqft}} sqft). Se compara con tu objetivo de {{tgt}}/sqft ±{{tol}}%. Es tu cifra, no un juicio de mercado.":"Price ÷ size ({{sqft}} sqft). Compared with your target of {{tgt}}/sqft ±{{tol}}%. It is your figure, not a market judgement.",
+ "Registro ADGM":"ADGM registration",
+ "VAT sobre la comisión":"VAT on the commission",
+ "importe fijo":"fixed amount",
+ "Meses sin inquilino":"Months without a tenant",
+ "Gastos totales (sin meses vacíos)":"Total expenses (excluding vacant months)",
+ "NOI":"NOI",
+ "Renta efectiva menos los gastos de operación, antes de pagar la hipoteca. En inglés, NOI (net operating income).":"Effective rent minus operating expenses, before paying the mortgage. Known as NOI (net operating income).",
+ "{{a}} / {{b}} al mes":"{{a}} / {{b}} per month",
+ "Renta ÷ precio":"Rent ÷ price",
+ "Cash-on-cash":"Cash-on-cash",
+ "Flujo de caja anual ÷ dinero para cerrar la compra. Te dice cuánto rinde cada dirham que sacas de tus ahorros. Negativo = ese dinero, de momento, te cuesta.":"Annual cash flow ÷ cash to close the purchase. It tells you how much each dirham taken from your savings earns. Negative = that money is, for now, costing you.",
+ "Intereses año 1: {{a}} / {{b}}":"Year 1 interest: {{a}} / {{b}}",
+ "{{sqft}} sqft · renta {{rent}}/año. La última columna dice a favor de quién va la diferencia.":"{{sqft}} sqft · rent {{rent}}/yr. The last column says who the difference favours.",
+ "Diferencia":"Difference",
+ "igual":"equal",
+ "pts":"pts",
+ "a favor":"in favour",
+ "en contra":"against",
+ "Expandir todas las ayudas":"Expand all help",
+ "Contraer todas las ayudas":"Collapse all help",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -1829,7 +1883,7 @@ const nf2=new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFraction
 const aed=v=>isFinite(v)?(v<-0.5?'−':'')+'AED '+nf0.format(Math.abs(Math.round(v))):'—';
 const saed=v=>{if(!isFinite(v))return'—';const r=Math.round(v);return(r>0?'+':r<0?'−':'')+'AED '+nf0.format(Math.abs(r))};
 const aed2=v=>'AED '+nf2.format(v);
-const pct=(v,d=2)=>isFinite(v)?v.toFixed(d)+'%':'—';
+const pct=(v,d=2)=>isFinite(v)?(parseFloat(v.toFixed(d))<0?'−':'')+Math.abs(v).toFixed(d)+'%':'—';
 const cls=v=>v>0.5?'pos':v<-0.5?'neg':'';
 const short=v=>Math.abs(v)>=1e6?'AED '+(v/1e6).toFixed(3).replace(/\.?0+$/,'')+'M':'AED '+nf0.format(v/1000)+'k';
 const LABEL={main:'Precio pedido',neg:'Precio negociado'};
@@ -2240,41 +2294,77 @@ function renderDetailMobile(R){
   `<section class="dm-gl" id="dmGlosario" aria-labelledby="dmGlT"><h3 id="dmGlT" tabindex="-1">${t('Glosario')}</h3><dl>${GLOSARIO.map(g=>`<div><dt>${t(g.t)}${LANG==='en'||!g.en?'':` <span class="dim tiny">${g.en}</span>`}</dt><dd>${t(g.d)}</dd></div>`).join('')}</dl></section>`;
  $('dmGlossLink').addEventListener('click',()=>{const h=$('dmGlT');h.scrollIntoView({behavior:'smooth',block:'start'});h.focus({preventScroll:true})});
 }
+/* Desktop detail: one table, Pedido / Negociado / Diferencia, grouped as in the design */
+const detOpen=new Set();
+function detRows(R){
+ const{M,N}=R,before=savingsInterest(S,S.sav),F=FEE_RULES;
+ const lost=x=>before-x.interest;
+ const both2=(f)=>[f(M),f(N)];
+ // r(id,label,sub,[m,n],better,kind,{tot,help})  better: 'lo' | 'hi' | ''  kind: aed | saed | pct
+ const r=(id,label,sub,v,better,kind,o={})=>Object.assign({id,label,sub,m:v[0],n:v[1],better,kind:kind||'aed'},o);
+ const vacTxt=S.vacM===1?t('{{v}} mes',{v:1}):t('{{v}} meses',{v:S.vacM});
+ return[
+ {t:t('Precio y compra'),rows:[
+  r('price',t('Precio'),'',both2(x=>x.price),'lo'),
+  r('psf',t('Precio por sqft'),t('{{a}} · {{b}}',{a:t(psfState(M.psf).t),b:t(psfState(N.psf).t)}),both2(x=>x.psf),'lo','aed',{help:t('Precio ÷ tamaño ({{sqft}} sqft). Se compara con tu objetivo de {{tgt}}/sqft ±{{tol}}%. Es tu cifra, no un juicio de mercado.',{sqft:nf0.format(S.sqft),tgt:aed(S.tgt),tol:S.tol})}),
+  r('down',t('Entrada'),t('{{p}} del precio',{p:pct(M.downPct,0)}),both2(x=>x.down),'lo'),
+  r('mort',t('Hipoteca'),'',both2(x=>x.mortgage),'lo'),
+  r('pm',t('Cuota mensual'),t('{{rate}}% · {{term}} años',{rate:S.rate.toFixed(2),term:S.term}),both2(x=>x.pm),'lo'),
+  r('debt',t('Cuota anual'),'',both2(x=>x.debt),'lo'),
+  r('adgm',t('Registro ADGM'),t('{{p}}% del precio',{p:F.adgmPct}),both2(x=>x.fees.adgm),'lo','aed',{help:feeHelp('adgm')}),
+  r('agency',t('Comisión de agencia'),t('{{p}}% del precio',{p:F.agencyPct}),both2(x=>x.fees.agNet),'lo','aed',{help:feeHelp('agency')}),
+  r('vat',t('VAT sobre la comisión'),F.agencyVat*100+'%',both2(x=>x.fees.vat),'lo'),
+  r('efee',t('Tasa electrónica ADGM'),t('importe fijo'),both2(x=>x.fees.efee),''),
+  r('noc',t('NOC'),t('importe fijo'),both2(x=>x.fees.noc),'','aed',{help:feeHelp('noc')}),
+  r('conv',t('Conveyancing'),t('importe fijo'),both2(x=>x.fees.conv),''),
+  r('feetot',t('Total gastos de compra'),'',both2(x=>x.fees.total),'lo','aed',{tot:1}),
+  r('ctc',t('Dinero para cerrar la compra'),t('Entrada + gastos de compra'),both2(x=>x.ctc),'lo','aed',{tot:1}),
+  r('final',t('Coste final'),t('Precio + gastos de compra'),both2(x=>x.finalCost),'lo')]},
+ {t:t('Operación anual'),rows:[
+  r('rent',t('Renta bruta'),'',[S.rent,S.rent],''),
+  r('vac',t('Meses sin inquilino'),t('{{n}} al año',{n:vacTxt}),both2(x=>-x.vac),'','saed'),
+  r('eff',t('Renta efectiva'),'',both2(x=>x.eff),''),
+  r('sc',t('Comunidad (service charge)'),t('{{sqft}} × AED {{sc}} · {{monthly}}/mes',{sqft:nf0.format(S.sqft),sc:S.sc,monthly:aed2(M.scM)}),both2(x=>-x.scA),'','saed'),
+  r('maint',t('Mantenimiento'),'',[-S.maint,-S.maint],'','saed'),
+  r('mg',t('Gestión del alquiler'),t('{{p}}% de la renta',{p:S.mgmt}),both2(x=>-x.mg),'','saed'),
+  r('admin',t('Administración e imprevistos'),'',[-S.admin,-S.admin],'','saed'),
+  r('ins',t('Seguro del inmueble'),t('opcional · AED 0 por defecto'),[-S.ins,-S.ins],'','saed'),
+  r('opex',t('Gastos totales (sin meses vacíos)'),'',both2(x=>x.opex),''),
+  r('noi',t('Ingreso neto antes de hipoteca'),t('NOI'),both2(x=>x.noi),'hi','aed',{tot:1,help:t('Renta efectiva menos los gastos de operación, antes de pagar la hipoteca. En inglés, NOI (net operating income).')}),
+  r('debtA',t('Hipoteca anual'),'',both2(x=>-x.debt),'hi','saed'),
+  r('pmi',t('PMI (seguro hipotecario)'),t('no aplica en EAU · 0%'),[0,0],'','saed',{help:t('Private Mortgage Insurance: seguro que en EE. UU. se paga con poca entrada. En EAU no existe, por eso se queda en 0. Si se usara, sería un % del saldo de la hipoteca al año.')}),
+  r('cfA',t('Flujo de caja anual'),t('{{a}} / {{b}} al mes',{a:saed(M.cfM),b:saed(N.cfM)}),both2(x=>x.cfA),'hi','saed',{tot:1})]},
+ {t:t('Rentabilidad y patrimonio'),rows:[
+  r('gy',t('Rentabilidad bruta'),t('Renta ÷ precio'),both2(x=>x.gy),'hi','pct'),
+  r('ny',t('Rentabilidad neta'),t('Ingreso neto / precio, antes de hipoteca'),both2(x=>x.ny),'hi','pct'),
+  r('coc',t('Rentabilidad de tu dinero'),t('Cash-on-cash'),both2(x=>x.coc),'hi','pct',{help:t('Flujo de caja anual ÷ dinero para cerrar la compra. Te dice cuánto rinde cada dirham que sacas de tus ahorros. Negativo = ese dinero, de momento, te cuesta.')}),
+  r('be',t('Renta mínima para no perder dinero'),t('{{a}} / {{b}} al mes',{a:aed(M.be/12),b:aed(N.be/12)}),both2(x=>x.be),'lo'),
+  r('prin1',t('Capital amortizado año 1'),t('Intereses año 1: {{a}} / {{b}}',{a:aed(M.int1),b:aed(N.int1)}),both2(x=>x.prin1),''),
+  r('prin2',t('Capital amortizado en 2 años'),'',both2(x=>x.prin2),''),
+  r('bal24',t('Saldo de hipoteca tras 2 años'),'',both2(x=>x.bal24),'lo'),
+  r('wealth',t('Patrimonio generado año 1'),t('Capital amortizado + flujo, sin apreciación'),both2(x=>x.wealth),'hi','saed'),
+  r('lost',t('Interés de ahorro que dejas de cobrar'),t('por año, al {{r}}%',{r:S.savRate}),both2(x=>-lost(x)),'hi','saed')]}
+ ];
+}
 function renderDetail(R){
- const s=R.sel,f=s.fees,before=savingsInterest(S,S.sav),lost=before-s.interest;
- $('detTitle').textContent=t('Todas las cifras, lado a lado · {{scenario}}',{scenario:t(LABEL[S.view])});
- $('detSub').textContent=t('{{price}} · {{sqft}} sqft · renta {{rent}}/año. Cambia de escenario con el selector de la barra de pestañas.',{price:aed(s.price),sqft:nf0.format(S.sqft),rent:aed(S.rent)});
- $('detBadges').innerHTML=s.cfM>=0?`<span class="badge b-green">▲ ${t('Flujo de caja positivo')}</span>`:`<span class="badge b-red">▼ ${t('Flujo de caja negativo')}</span>`;
- $('metrics').innerHTML=`
- <div class="card flat mgroup"><h3>${t('Financiación y entrada')}</h3>
-  ${mrow('Precio',aed(s.price))}${mrow('AED/sqft',aed(s.psf))}
-  ${mrow('Entrada',aed(s.down),'',t('{{p}} del precio',{p:pct(s.downPct,0)}))}
-  ${mrow('Hipoteca',aed(s.mortgage))}
-  ${mrow('Cuota mensual',aed(s.pm),'',t('{{rate}}% · {{term}} años',{rate:S.rate.toFixed(2),term:S.term}))}${mrow('Cuota anual',aed(s.debt))}
-  ${mrow('ADGM / registro',aed(f.adgm),'',t('{{p}}% del precio',{p:FEE_RULES.adgmPct}))}
-  ${mrow('Comisión de agencia (neta)',aed(f.agNet),'',t('{{p}}% del precio',{p:FEE_RULES.agencyPct}))}${mrow(t('VAT sobre la comisión ({{p}}%)',{p:FEE_RULES.agencyVat*100}),aed(f.vat))}
-  ${mrow('Tasa electrónica ADGM',aed(f.efee))}${mrow('NOC',aed(f.noc))}${mrow('Conveyancing',aed(f.conv))}
-  ${mrow('Total gastos de compra',aed(f.total))}
-  ${mrow('Dinero para cerrar la compra',aed(s.ctc),'',t('Entrada + gastos de compra'))}${mrow('Coste final',aed(s.finalCost),'',t('Precio + gastos de compra'))}
- </div>
- <div class="card flat mgroup"><h3>${t('Operación anual')}</h3>
-  ${mrow('Renta bruta',aed(S.rent))}${mrow('Reserva por vacancia',saed(-s.vac),'neg',t('{{n}} mes(es)',{n:S.vacM}))}
-  ${mrow('Renta efectiva',aed(s.eff))}
-  ${mrow('Comunidad (service charge)',saed(-s.scA),'neg',t('{{sqft}} × AED {{sc}} · {{monthly}}/mes',{sqft:nf0.format(S.sqft),sc:S.sc,monthly:aed2(s.scM)}))}
-  ${mrow('Mantenimiento',saed(-S.maint),'neg')}${mrow('Gestión del alquiler',saed(-s.mg),'neg',t('{{p}}% de la renta',{p:S.mgmt}))}
-  ${mrow('Administración e imprevistos',saed(-S.admin),'neg')}${mrow('Seguro del inmueble',saed(-S.ins),'neg',t('opcional · AED 0 por defecto'))}${mrow('PMI (seguro hipotecario)','0%','',t('no aplica en EAU · 0%'))}${mrow('Gastos totales (sin vacancia)',aed(s.opex))}
-  ${mrow('Ingreso neto antes de hipoteca',aed(s.noi),cls(s.noi))}${mrow('Hipoteca anual',saed(-s.debt),'neg')}
-  ${mrow('Flujo de caja anual',saed(s.cfA),cls(s.cfA),saed(s.cfM)+t('/mes'))}
- </div>
- <div class="card flat mgroup"><h3>${t('Rentabilidad y patrimonio')}</h3>
-  ${mrow('Rentabilidad bruta',pct(s.gy))}${mrow('Rentabilidad neta',pct(s.ny),'',t('Ingreso neto / precio, antes de hipoteca'))}
-  ${mrow('Rentabilidad de tu dinero',pct(s.coc),cls(s.coc),t('Flujo anual / dinero para cerrar'))}
-  ${mrow('Renta mínima para no perder dinero',aed(s.be),'',aed(s.be/12)+t('/mes'))}
-  ${mrow('Capital amortizado año 1',aed(s.prin1),'',t('Intereses año 1 {{v}}',{v:aed(s.int1)}))}
-  ${mrow('Capital amortizado en 2 años',aed(s.prin2))}${mrow('Saldo de hipoteca tras 2 años',aed(s.bal24))}
-  ${mrow('Patrimonio generado año 1',saed(s.wealth),cls(s.wealth),t('Capital amortizado + flujo, sin apreciación'))}
-  ${mrow('Interés de ahorro que dejas de cobrar',saed(-lost),lost>0.5?'neg':'',t('por año, al {{r}}%',{r:S.savRate}))}
- </div>`;
+ const groups=detRows(R);
+ $('detTitle').textContent=t('Todas las cifras, lado a lado');
+ $('detSub').textContent=t('{{sqft}} sqft · renta {{rent}}/año. La última columna dice a favor de quién va la diferencia.',{sqft:nf0.format(S.sqft),rent:aed(S.rent)});
+ const helpIds=groups.flatMap(g=>g.rows).filter(x=>x.help).map(x=>x.id),allOpen=helpIds.every(id=>detOpen.has(id));
+ $('detBadges').innerHTML=`<button type="button" class="abtn outline" id="btnDetHelp" aria-pressed="${allOpen}">${t(allOpen?'Contraer todas las ayudas':'Expandir todas las ayudas')}</button>`;
+ const f=(v,k)=>k==='pct'?pct(v):k==='saed'?saed(v):aed(v);
+ const col=(v,k)=>(k==='saed'||k==='pct')?(v<-0.005?'neg':v>0.005&&k==='saed'?'pos':''):'';
+ const on=k=>S.view===k?' class="on"':'';
+ let h=`<table class="dt"><thead><tr><th scope="col">${t('Concepto')}</th><th scope="col"${on('main')}>${t('Pedido')}</th><th scope="col"${on('neg')}>${t('Negociado')}</th><th scope="col">${t('Diferencia')}</th></tr></thead>`;
+ groups.forEach(g=>{
+  h+=`<tbody><tr><th scope="rowgroup" colspan="4" class="grp-h">${g.t}</th></tr>`;
+  g.rows.forEach(x=>{
+   const d=x.n-x.m,tol=x.kind==='pct'?0.005:0.5,same=Math.abs(d)<tol,good=x.better==='hi'?d>0:x.better==='lo'?d<0:false;
+   const dtxt=same?t('igual'):(x.kind==='pct'?(d>0?'+':'−')+Math.abs(d).toFixed(2)+' '+t('pts'):saed(d))+(x.better&&!same?' '+t(good?'a favor':'en contra'):'');
+   const dic=same?'=':x.better?(good?'▲':'▼'):'',dcol=same||!x.better?'':good?'pos':'neg',open=detOpen.has(x.id);
+   h+=`<tr${x.tot?' class="tot"':''}><th scope="row"><span class="dl-l">${x.label}${x.help?`<button type="button" class="dh" data-dh="${x.id}" aria-expanded="${open}" aria-label="${t('Qué es {{label}}',{label:x.label})}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 11v6M12 7h.01"/></svg></button>`:''}</span>${x.sub?`<small>${x.sub}</small>`:''}${x.help&&open?`<span class="dnote" role="note">${x.help}</span>`:''}</th><td class="${col(x.m,x.kind)}">${f(x.m,x.kind)}</td><td class="${col(x.n,x.kind)}">${f(x.n,x.kind)}</td><td class="dd ${dcol}">${dic?`<span aria-hidden="true">${dic} </span>`:''}${dtxt}</td></tr>`});
+  h+='</tbody>'});
+ $('metrics').innerHTML=h+'</table>';
 }
 
 /* ---------- Gráfico ---------- */
@@ -2689,6 +2779,11 @@ function setupStepper(key,step){
 }
 [['rate',.05],['vacM',.5],['mgmt',.5],['tol',1],['savRate',.25],['ins',100]].forEach(x=>setupStepper(x[0],x[1]));
 $('term').addEventListener('change',e=>{pushHistory();S.term=parseInt(e.target.value,10);render()});
+document.addEventListener('click',e=>{
+ const hb=e.target.closest('[data-dh]');
+ if(hb){const id=hb.dataset.dh;detOpen.has(id)?detOpen.delete(id):detOpen.add(id);renderDetail(lastR||both());const nb=document.querySelector(`[data-dh="${id}"]`);if(nb)nb.focus();return}
+ if(e.target.closest('#btnDetHelp')){const ids=detRows(lastR||both()).flatMap(g=>g.rows).filter(x=>x.help).map(x=>x.id);const all=ids.every(id=>detOpen.has(id));ids.forEach(id=>all?detOpen.delete(id):detOpen.add(id));renderDetail(lastR||both());const nb=$('btnDetHelp');if(nb)nb.focus()}
+});
 $('horizon').addEventListener('click',e=>{const b=e.target.closest('[data-hz]');if(b&&+b.dataset.hz!==S.horizon){S.horizon=+b.dataset.hz;render();const nb=document.querySelector(`#horizon [data-hz="${S.horizon}"]`);if(nb)nb.focus()}});
 $('horizon').addEventListener('keydown',e=>{const bs=[...document.querySelectorAll('#horizon [data-hz]')],i=bs.findIndex(b=>+b.dataset.hz===S.horizon);let j=i;
  if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%bs.length;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+bs.length)%bs.length;else return;
@@ -2771,6 +2866,7 @@ function setTab(tab,opts){
  });
  try{localStorage.setItem(TAB_KEY,activeTab)}catch(e){}
  if(opts.hash!==false&&location.hash.replace('#','')!==activeTab){try{history.replaceState(null,'',location.pathname+'#'+activeTab)}catch(e){}}
+ syncGlossaryDock();
  if(opts.focus)$('tabbtn-'+activeTab).focus();
  if(opts.scroll)$('resumen').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
@@ -2996,8 +3092,11 @@ function renderGlossary(filter){
  const items=GLOSARIO.map(g=>({t:t(g.t),en:LANG==='en'?'':g.en,d:t(g.d)})).filter(g=>!q||g.t.toLowerCase().includes(q)||g.en.toLowerCase().includes(q)||g.d.toLowerCase().includes(q));
  $('glossaryBody').innerHTML=items.length?items.map(g=>`<div style="padding:11px 0;border-top:1px solid var(--ln)"><dt style="font-weight:600;font-size:14.5px">${g.t}${g.en?` <span class="dim tiny">${g.en}</span>`:''}</dt><dd style="margin:2px 0 0;font-size:13.5px;color:var(--mu)">${g.d}</dd></div>`).join(''):`<p class="small muted">${t('Ningún término coincide con tu búsqueda.')}</p>`;
 }
-function openGlossary(){$('glossaryWrap').hidden=false;$('btnGlossary').setAttribute('aria-expanded','true');renderGlossary();$('glossaryQ').value='';$('glossaryQ').focus()}
-function closeGlossary(){if($('glossaryWrap').hidden)return;$('glossaryWrap').hidden=true;$('btnGlossary').setAttribute('aria-expanded','false');$('btnGlossary').focus()}
+const glDockMQ=window.matchMedia('(min-width:1600px)');
+function syncGlossaryDock(){document.body.classList.toggle('gl-docked',!$('glossaryWrap').hidden&&activeTab==='detalle'&&window.matchMedia('(min-width:1600px)').matches)}
+glDockMQ.addEventListener?glDockMQ.addEventListener('change',syncGlossaryDock):glDockMQ.addListener(syncGlossaryDock);
+function openGlossary(){$('glossaryWrap').hidden=false;syncGlossaryDock();$('btnGlossary').setAttribute('aria-expanded','true');renderGlossary();$('glossaryQ').value='';$('glossaryQ').focus()}
+function closeGlossary(){if($('glossaryWrap').hidden)return;$('glossaryWrap').hidden=true;syncGlossaryDock();$('btnGlossary').setAttribute('aria-expanded','false');$('btnGlossary').focus()}
 $('btnGlossary').addEventListener('click',()=>{$('glossaryWrap').hidden?openGlossary():closeGlossary()});
 $('btnGlossaryClose').addEventListener('click',closeGlossary);
 $('glossaryQ').addEventListener('input',e=>renderGlossary(e.target.value));

@@ -260,7 +260,7 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .help{flex:0 0 auto;width:18px;height:18px;border-radius:50%;border:1px solid var(--line2);background:var(--inset);color:var(--blue2);font-size:11px;font-weight:700;line-height:1;padding:0;cursor:help;display:inline-flex;align-items:center;justify-content:center}
 .help:hover,.help:focus-visible,.help[aria-expanded="true"]{border-color:var(--blue2);background:var(--brbg)}
 .htip{display:none;position:absolute;left:0;right:0;top:calc(100% - 2px);z-index:6;background:var(--sf2);border:1px solid var(--ln2);border-radius:10px;padding:9px 11px;font-size:12.5px;color:var(--tx);line-height:1.45;box-shadow:0 12px 30px -12px rgba(0,0,0,.7)}
-.feerow:has(.help:hover) .htip,.feerow:has(.help:focus-visible) .htip,.feerow.open .htip{display:block}
+.feerow:has(.help:hover) .htip,.feerow:has(.help:focus-visible) .htip,.feerow.open .htip,.hz-tile:has(.help:hover) .htip,.hz-tile:has(.help:focus-visible) .htip,.hz-tile.open .htip{display:block}
 .negprice{font-size:30px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px}
 
 /* KPIs */
@@ -383,6 +383,30 @@ tbody tr:last-child td{border-bottom:0}
 .st7 td.v{font-weight:600}
 .st7 tr.base td,.st7 tr.base th{background:var(--brbg)}
 .st7 thead th.on{color:var(--tx)}
+
+/* Estrategia: number line, horizon tiles, entrada + horizon tables, savings cards */
+#mpLine{margin:2px 0 6px}
+#mpLine:empty{display:none}
+.hz-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.hz-tile{position:relative;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border-radius:14px;background:var(--in);border:1px solid var(--ln);min-width:0}
+.hz-t{font-size:13.5px;font-weight:600}
+.hz-t .help{margin-left:6px;vertical-align:middle}
+.hz-t .hz-s{font-weight:400;color:var(--mu)}
+.hz-v{display:flex;gap:16px;flex-wrap:wrap}
+.hz-v>span{display:flex;flex-direction:column}
+.hz-v small{font-size:12px;color:var(--dm)}
+.hz-v b{font-size:18px}
+.dl{display:block;font-size:12px}
+.dl.pos{color:var(--po)}.dl.neg{color:var(--ne)}
+#enTable th,#enTable td{padding:9px 8px}
+#enTable td:last-child{white-space:normal;min-width:170px}
+#enTable tr.best td{background:var(--pobg)}
+#enTable td .tg,#enTable td .tg2{font-size:12px;font-weight:600}
+#enTable td .tg{color:var(--brt)}
+#enTable td .tg2{color:var(--po)}
+.sv-card{background:var(--in);border:1px solid var(--ln);border-radius:14px;padding:18px}
+.sv-card h3{font-size:15px}
+@media (max-width:900px){.hz-sum{grid-template-columns:1fr}}
 
 /* Runway bar + renovación inputs */
 .rw-bar{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
@@ -986,28 +1010,30 @@ body.qs-mode .app-shell{display:none}
 
   <section id="maxprecio">
     <div class="sec-h"><div><h2 data-i18n="Tu precio límite para negociar">Tu precio límite para negociar</h2><p id="mpSub"></p></div></div>
+    <div class="chartbox" id="mpLine"></div>
     <div class="tscroll"><table id="mpTable" style="min-width:820px"></table></div>
+    <p class="tiny dim" style="margin:12px 0 0;font-size:13px" data-i18n="Si configuras un cambio de renta al renovar, aparece una columna extra: «Precio límite tras renovar».">Si configuras un cambio de renta al renovar, aparece una columna extra: «Precio límite tras renovar».</p>
   </section>
 
   <section id="entrada">
     <div class="sec-h"><div><h2 data-i18n="¿Cuánta entrada te conviene?">¿Cuánta entrada te conviene?</h2><p id="enSub"></p></div></div>
     <div class="alert info" id="enMarginal" style="margin:0 0 14px"></div>
-    <div class="tscroll"><table id="enTable" style="min-width:980px"></table></div>
+    <div class="tscroll"><table id="enTable"></table></div>
   </section>
 
   <section id="horizonte">
     <div class="sec-h"><div><h2 data-i18n="Comprar o no comprar, año a año">Comprar o no comprar, año a año</h2><p id="hzSub"></p></div>
-      <div class="field"><label for="horizon" data-i18n="Horizonte">Horizonte</label><select id="horizon" class="inp sm"><option value="5" data-i18n="5 años">5 años</option><option value="10" data-i18n="10 años">10 años</option><option value="15" data-i18n="15 años">15 años</option><option value="20" data-i18n="20 años">20 años</option></select></div>
+      <div class="field"><label id="horizon_l" data-i18n="Horizonte">Horizonte</label><div class="seg" role="radiogroup" id="horizon" aria-labelledby="horizon_l"><button type="button" role="radio" data-hz="5" data-i18n="5 años">5 años</button><button type="button" role="radio" data-hz="10" data-i18n="10 años">10 años</button><button type="button" role="radio" data-hz="15" data-i18n="15 años">15 años</button><button type="button" role="radio" data-hz="20" data-i18n="20 años">20 años</button></div></div>
     </div>
-    <div class="card" id="hzSummary" style="margin-bottom:14px"></div>
+    <div class="hz-sum" id="hzSummary"></div>
     <div class="tscroll"><table id="hzTable" style="min-width:920px"></table></div>
   </section>
 
   <section id="ahorros">
     <div class="sec-h"><div><h2 data-i18n="Tus ahorros como referencia">Tus ahorros como referencia</h2><p data-i18n="Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.">Tu cuenta de ahorro es el coste de oportunidad de cada dirham que pongas como entrada.</p></div></div>
     <div class="grid g2">
-      <div class="card" id="bench"></div>
-      <div class="card" id="savAlerts"></div>
+      <div class="card sv-card" id="bench"></div>
+      <div class="card sv-card" id="savAlerts"></div>
     </div>
     <div class="tscroll" style="margin-top:14px"><table id="savTable" style="min-width:880px"></table></div>
   </section>
@@ -1749,6 +1775,16 @@ const I18N_EN={
  "Pierdes dinero":"You lose money",
  "Tu renta actual en las filas del pedido y del negociado":"Your current rent in the asking and negotiated rows",
  "Cifras en AED al mes":"Figures in AED per month",
+ "Interés que conservas/año":"Interest you keep/yr",
+ "Límite flujo 0 · {{v}}":"Cash-flow-0 limit · {{v}}",
+ "{{v}}/sqft":"{{v}}/sqft",
+ "{{v}} por encima":"{{v}} above",
+ "{{v}} de margen":"{{v}} of headroom",
+ "Regla de precios: límite para flujo 0 en {{lim}}; negociado {{neg}} y pedido {{ask}}.":"Price ruler: cash-flow-0 limit at {{lim}}; negotiated {{neg}} and asking {{ask}}.",
+ "Por sqft":"Per sqft",
+ "supera tus ahorros":"exceeds your savings",
+ "Si configuras un cambio de renta al renovar, aparece una columna extra: «Precio límite tras renovar».":"If you set a rent change at renewal, an extra column appears: “Limit price after renewal”.",
+ "Interés que conservas":"Interest you keep",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -2102,7 +2138,7 @@ function renderImpact(R){
  $('impSub').textContent=t('Precio pedido {{price}} → negociado {{neg}}. Valores positivos (▲) van a favor del precio negociado.',{price:aed(S.price),neg:aed(S.neg)});
  const g=v=>v>0.5?'pos':v<-0.5?'neg':'';
  const st=(l,v,c,sub='',hero=false)=>{const ic=c==='pos'?'▲ ':c==='neg'?'▼ ':c==='warn'?'⚠ ':'';
-  return `<div class="stat${hero?' hero-s':''}"><div class="l">${l}</div><div class="v ${c}"><span aria-hidden="true">${ic}</span>${v}</div>${sub?`<div class="tiny muted">${sub}</div>`:''}</div>`};
+  return `<div class="stat${hero?' hero-s':''}"><div class="l">${l}</div><div class="v ${c}"><span aria-hidden="true">${ic}</span>${ic==='▲ '||ic==='▼ '?v.replace(/^[+−]/,''):v}</div>${sub?`<div class="tiny muted">${sub}</div>`:''}</div>`};
  const upfront=M.ctc-N.ctc,retained=Math.max(N.rem,0)-Math.max(M.rem,0),intGain=N.interest-M.interest;
  $('impGrid').innerHTML=[
   st(t('Ahorro en precio'),saed(save),save<0?'warn':g(save),t('{{p}} del pedido',{p:pct(save/S.price*100)}),true),
@@ -2246,7 +2282,7 @@ function niceTicks(a,b,n){const span=(b-a)||1,s0=span/n,mag=Math.pow(10,Math.flo
  const st=(f<1.5?1:f<3?2:f<7?5:10)*mag,lo=Math.floor(a/st)*st,hi=Math.ceil(b/st)*st,t=[];for(let v=lo;v<=hi+st/2;v+=st)t.push(Math.round(v));return{lo,hi,t}}
 const kfmt=v=>v===0?'0':(v<0?'−':'')+nf0.format(Math.abs(v)/1000)+'k';
 function renderChart(R){
- const box=$('chart'),tip=$('tip'),W=Math.max(280,box.clientWidth),narrow=W<560,H=narrow?300:390;
+ const box=$('chart'),tip=$('tip'),W=Math.max(280,rzW.chart=box.clientWidth),narrow=W<560,H=narrow?300:390;
  const m={l:narrow?46:62,r:14,t:16,b:narrow?40:44},rent=S.rent;
  let x0=70000,x1=125000;if(rent<x0)x0=Math.floor(rent/5000)*5000;if(rent>x1)x1=Math.ceil(rent/5000)*5000;
  const C={sel:cv('--brt'),br:cv('--br'),sp:cv('--sp'),sn:cv('--sn'),dm:cv('--dm'),tx:cv('--tx'),wa:cv('--wa'),sf:cv('--sf'),po:cv('--po'),ne:cv('--ne'),pobg:cv('--pobg'),nebg:cv('--nebg'),ln:cv('--ln2')};
@@ -2383,6 +2419,7 @@ function renderMatrix(){
 }
 
 /* ---------- Ahorros ---------- */
+const G=v=>{const g=gl(v);return g?`<span aria-hidden="true">${g}</span>`:''};
 function renderSavings(R){
  const{M,N}=R,capI=S.savCap*S.savRate/100,before=savingsInterest(S,S.sav);
  $('bench').innerHTML=`<h3>${t('Referencia: cuenta al {{r}}%',{r:S.savRate})}</h3>
@@ -2396,27 +2433,51 @@ function renderSavings(R){
  const s=R.sel;
  $('savAlerts').innerHTML=`<h3>${t('Después de comprar · {{scenario}}',{scenario:t(LABEL[S.view])})}</h3>${al.join('')}
   ${mrow('Saldo actual',aed(S.sav))}${mrow('Dinero para cerrar la compra',saed(-s.ctc),'neg')}${mrow('Saldo restante',aed(s.rem),s.rem<0?'neg':'')}
-  ${mrow('Interés preservado',aed(s.interest)+t('/año'),'pos',aed(s.interest/12)+t('/mes'))}
-  ${mrow('Interés que dejas de cobrar',saed(-(before-s.interest))+t('/año'),before-s.interest>0.5?'neg':'')}
-  ${mrow('Flujo de caja de la propiedad',saed(s.cfM)+t('/mes'),cls(s.cfM),saed(s.cfA)+t('/año'))}
-  ${mrow('Ingreso combinado',saed(s.combM)+t('/mes'),cls(s.combM),t('{{a}}/año · vs {{b}}/año sin comprar',{a:saed(s.combA),b:aed(before)}))}
+  ${mrow('Interés que conservas',aed(s.interest)+t('/año'),'pos',aed(s.interest/12)+t('/mes'))}
+  ${mrow('Interés que dejas de cobrar',G(-(before-s.interest))+saed(-(before-s.interest))+t('/año'),before-s.interest>0.5?'neg':'')}
+  ${mrow('Flujo de caja de la propiedad',G(s.cfM)+saed(s.cfM)+t('/mes'),cls(s.cfM),saed(s.cfA)+t('/año'))}
+  ${mrow('Ingreso combinado',G(s.combM)+saed(s.combM)+t('/mes'),cls(s.combM),t('{{a}}/año · vs {{b}}/año sin comprar',{a:saed(s.combA),b:aed(before)}))}
   <p class="tiny dim" style="margin:10px 0 0">${t('Sin contar el capital amortizado ({{v}} en el año 1), que es patrimonio pero no ingreso líquido.',{v:aed(s.prin1)})}</p>`;
- let h='<thead><tr><th>'+t('Escenario')+'</th><th>'+t('Para cerrar')+'</th><th>'+t('Saldo restante')+'</th><th>'+t('Interés preservado/año')+'</th><th>'+t('Interés perdido/año')+'</th><th>'+t('Flujo propiedad/año')+'</th><th>'+t('Ingreso combinado/mes')+'</th><th>'+t('Ingreso combinado/año')+'</th></tr></thead><tbody>';
- [M,N].forEach(x=>{h+=`<tr class="${S.view===x.key?'on':''}"><td>${t(LABEL[x.key])} · ${short(x.price)}</td><td>${aed(x.ctc)}</td><td class="${x.rem<0?'neg':''}">${aed(x.rem)}</td><td>${aed(x.interest)}</td><td class="${before-x.interest>0.5?'neg':''}">${saed(-(before-x.interest))}</td><td class="${cls(x.cfA)}">${saed(x.cfA)}</td><td class="${cls(x.combM)}">${saed(x.combM)}</td><td class="${cls(x.combA)}">${saed(x.combA)}</td></tr>`});
- $('savTable').innerHTML=h+`<tr><td>${t('Sin comprar')}</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${saed(before/12)}</td><td class="${cls(before)}">${saed(before)}</td></tr></tbody>`;
+ let h='<thead><tr><th>'+t('Escenario')+'</th><th>'+t('Para cerrar')+'</th><th>'+t('Saldo restante')+'</th><th>'+t('Interés que conservas/año')+'</th><th>'+t('Interés perdido/año')+'</th><th>'+t('Flujo propiedad/año')+'</th><th>'+t('Ingreso combinado/mes')+'</th><th>'+t('Ingreso combinado/año')+'</th></tr></thead><tbody>';
+ [M,N].forEach(x=>{h+=`<tr class="${S.view===x.key?'on':''}"><td>${t(LABEL[x.key])} · ${short(x.price)}</td><td>${aed(x.ctc)}</td><td class="${x.rem<0?'neg':''}">${aed(x.rem)}</td><td>${aed(x.interest)}</td><td class="${before-x.interest>0.5?'neg':''}">${G(-(before-x.interest))}${saed(-(before-x.interest))}</td><td class="${cls(x.cfA)}">${G(x.cfA)}${saed(x.cfA)}</td><td class="${cls(x.combM)}">${G(x.combM)}${saed(x.combM)}</td><td class="${cls(x.combA)}">${G(x.combA)}${saed(x.combA)}</td></tr>`});
+ $('savTable').innerHTML=h+`<tr><td>${t('Sin comprar')}</td><td>—</td><td>${aed(S.sav)}</td><td>${aed(before)}</td><td>—</td><td>—</td><td class="${cls(before)}">${G(before)}${saed(before/12)}</td><td class="${cls(before)}">${G(before)}${saed(before)}</td></tr></tbody>`;
 }
 
 /* ---------- Precio límite (walk-away) ---------- */
+const priceK=v=>v>=1e6?(v/1e6).toFixed(2)+'M':nf0.format(Math.round(v/1000))+'k';
+function renderPriceLine(goals){
+ const box=$('mpLine'),lim=goals.find(g=>g.goal===0);
+ if(!lim||!(lim.p>0)){box.innerHTML='';return}
+ const W=Math.max(320,rzW.mp=box.clientWidth),H=96,C={po:cv('--pobg'),ne:cv('--nebg'),tx:cv('--tx'),mu:cv('--mu'),sn:cv('--sn'),sp:cv('--sp'),sf:cv('--sf'),neT:cv('--ne')};
+ const pts=[lim.p,S.price,S.neg].concat(goals.filter(g=>g.p>0).map(g=>g.p)),lo0=Math.min(...pts),hi0=Math.max(...pts),span=(hi0-lo0)||1,lo=lo0-span*.12,hi=hi0+span*.08;
+ const X=v=>(v-lo)/(hi-lo)*W,xl=X(lim.p),xn=X(S.neg),xp=X(S.price);
+ let g=`<rect x="0" y="40" width="${xl}" height="12" rx="6" fill="${C.po}"/><rect x="${xl}" y="40" width="${W-xl}" height="12" rx="6" fill="${C.ne}"/>`;
+ goals.filter(x=>x.goal>0&&x.p>0).forEach(x=>{const xx=X(x.p);g+=`<line x1="${xx}" x2="${xx}" y1="34" y2="58" stroke="${C.mu}"/><text x="${xx}" y="74" fill="${C.mu}" font-size="11.5" text-anchor="middle">+${nf0.format(x.goal)}${t('/mes')}</text><text x="${xx}" y="90" fill="${C.mu}" font-size="11.5" text-anchor="middle">${priceK(x.p)}</text>`});
+ g+=`<line x1="${xl}" x2="${xl}" y1="32" y2="62" stroke="${C.tx}" stroke-width="2.5"/>`;
+ // labels: greedy row placement so neighbouring labels never overlap
+ const place=(items,ys)=>{const rows=ys.map(()=>[]);
+  items.map(it=>{const w=it.txt.length*it.fs*.56+8;return Object.assign(it,{w,x0:Math.min(Math.max(it.x-w/2,0),W-w)})}).sort((a,b)=>a.x-b.x).forEach(it=>{
+   let r=rows.findIndex(row=>row.every(o=>it.x0>o.x0+o.w+6||it.x0+it.w+6<o.x0));if(r<0)r=rows.length-1;rows[r].push(it);it.y=ys[r]});
+  return items.map(it=>`<text x="${it.x0+it.w/2}" y="${it.y}" fill="${it.fill}" font-size="${it.fs}"${it.bold?' font-weight="700"':''} text-anchor="middle">${it.txt}</text>`).join('')};
+ const over=p=>p>lim.p?{fill:C.neT,txt:'▼ '+t('{{v}} por encima',{v:nf0.format(Math.round(p-lim.p))})}:{fill:C.po,txt:'▲ '+t('{{v}} de margen',{v:nf0.format(Math.round(lim.p-p))})};
+ g+=place([{x:xl,txt:t('Límite flujo 0 · {{v}}',{v:aed(lim.p)}),fill:C.tx,fs:12.5,bold:1},{x:xn,txt:t('Negociado')+' '+priceK(S.neg),fill:C.sn,fs:12,bold:1},{x:xp,txt:t('Pedido')+' '+priceK(S.price),fill:C.tx,fs:12,bold:1}],[30,14]);
+ g+=place([{x:xl,txt:t('{{v}}/sqft',{v:aed(lim.p/S.sqft)}),fill:C.tx,fs:11.5},Object.assign({x:xn,fs:11.5},over(S.neg)),Object.assign({x:xp,fs:11.5},over(S.price))],[80,94]);
+ g+=`<circle cx="${xn}" cy="46" r="8" fill="${C.sn}" stroke="${C.sf}" stroke-width="2"/><rect x="${xp-8}" y="38" width="16" height="16" rx="3" fill="${C.sp}" stroke="${C.sf}" stroke-width="2"/>`;
+ const aria=t('Regla de precios: límite para flujo 0 en {{lim}}; negociado {{neg}} y pedido {{ask}}.',{lim:aed(lim.p),neg:aed(S.neg),ask:aed(S.price)});
+ box.innerHTML=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${aria}" style="display:block;overflow:visible">${g}</svg>`;
+}
 function renderMaxPrice(){
  const rr=renewedRent(S),showRenew=Math.round(rr)!==Math.round(S.rent);
  $('mpSub').textContent=t('El precio más alto al que el flujo de caja mensual todavía llega a cada objetivo, con la renta actual ({{rent}}/año), {{down}}% de entrada, {{rate}}% a {{term}} años y los mismos costes. Por encima de ese precio no cumples el objetivo: es tu límite para negociar.',{rent:aed(S.rent),down:S.down,rate:S.rate.toFixed(2),term:S.term});
- const vs=(p,ref)=>{const d=p-ref;return `<td class="${d>=0?'pos':'neg'}">${d>=0?t('Margen de {{v}}',{v:aed(d)}):t('Bajar {{v}}',{v:aed(-d)})}</td>`};
- let h=`<thead><tr><th>${t('Objetivo de flujo de caja')}</th><th>${t('Precio límite')}</th><th>AED/sqft</th><th>${t('vs pedido')}</th><th>${t('vs negociado')}</th><th>${t('Dinero para cerrar')}</th>${showRenew?`<th>${t('Precio límite tras renovar ({{v}}/año)',{v:aed(rr)})}</th>`:''}</tr></thead><tbody>`;
- [0,500,1000,1500].forEach(goal=>{
-  const p=maxPrice(S,goal),lbl=goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)}),pr=showRenew?`<td>${aed(maxPrice(S,goal,rr))}</td>`:'';
+ const vs=(p,ref)=>{const d=p-ref;return `<td class="${d>=0?'pos':'neg'}"><span aria-hidden="true">${d>=0?'▲':'▼'} </span>${d>=0?t('Margen de {{v}}',{v:aed(d)}):t('Bajar {{v}}',{v:aed(-d)})}</td>`};
+ const goals=[0,500,1000,1500].map(goal=>({goal,p:maxPrice(S,goal)}));
+ let h=`<thead><tr><th>${t('Objetivo de flujo de caja')}</th><th>${t('Precio límite')}</th><th>${t('Por sqft')}</th><th>${t('vs pedido')}</th><th>${t('vs negociado')}</th><th>${t('Para cerrar la compra')}</th>${showRenew?`<th>${t('Precio límite tras renovar ({{v}}/año)',{v:aed(rr)})}</th>`:''}</tr></thead><tbody>`;
+ goals.forEach(({goal,p})=>{
+  const lbl=goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)}),pr=showRenew?`<td>${aed(maxPrice(S,goal,rr))}</td>`:'';
   if(!(p>0)){h+=`<tr><td>${lbl}</td><td class="neg" colspan="5">${t('Ningún precio llega a este objetivo con la renta actual')}</td>${pr}</tr>`;return}
   h+=`<tr><td>${lbl}</td><td><b>${aed(p)}</b></td><td>${aed(p/S.sqft)}</td>${vs(p,S.price)}${vs(p,S.neg)}<td>${aed(scenario(S,p).ctc)}</td>${pr}</tr>`});
  $('mpTable').innerHTML=h+'</tbody>';
+ renderPriceLine(goals);
 }
 
 /* ---------- Renovación de renta ---------- */
@@ -2474,25 +2535,27 @@ function renderDownPay(R){
  // Only down payments that fit in current savings are real options; a negative balance is not free money.
  const feasible=rows.filter(r=>r.c.rem>=0),best=feasible.length?feasible.reduce((b,r)=>r.nw>b.nw?r:b):null;
  let h=`<thead><tr><th>${t('Entrada')}</th><th>${t('Importe')}</th><th>${t('Para cerrar')}</th><th>${t('Cuota/mes')}</th><th>${t('Flujo/mes')}</th><th>${t('Interés de ahorro/año')}</th><th>${t('Flujo + interés/año')}</th><th>${t('Patrimonio neto a {{h}} años',{h:H})}</th></tr></thead><tbody>`;
- rows.forEach(r=>{const over=r.c.rem<0;
-  h+=`<tr class="${r.d===S.down?'on':''}"><td>${r.d}%${r.d===S.down?` <span class="tiny">● ${t('actual')}</span>`:''}${r===best?` <span class="badge b-green">${t('Mejor a {{h}} años',{h:H})}</span>`:''}</td><td>${aed(r.c.down)}</td><td class="${over?'neg':''}">${aed(r.c.ctc)}${over?` <span class="tiny">${t('supera ahorros')}</span>`:''}</td><td>${aed(r.c.pm)}</td><td class="${cls(r.c.cfM)}">${saed(r.c.cfM)}</td><td>${aed(r.c.interest)}</td><td class="${cls(r.c.combA)}">${saed(r.c.combA)}</td>${over?`<td class="dim">${t('No alcanza: faltan {{v}}',{v:aed(-r.c.rem)})}</td>`:`<td class="${r.nw>=r.no?'pos':'neg'}">${aed(r.nw)} <span class="dim tiny">${t('{{v}} vs no comprar',{v:saed(r.nw-r.no)})}</span></td>`}</tr>`});
+ rows.forEach(r=>{const over=r.c.rem<0,cur=r.d===S.down,isBest=r===best,dif=r.nw-r.no;
+  h+=`<tr class="${cur?'on':isBest?'best':''}"><td>${r.d}%${cur?` <span class="tg">● ${t('actual')}</span>`:''}${isBest?` <span class="tg2">★ ${t('Mejor a {{h}} años',{h:H})}</span>`:''}</td><td>${aed(r.c.down)}</td><td class="${over?'neg':''}">${aed(r.c.ctc)}${over?` · ${t('supera tus ahorros')}`:''}</td><td>${aed(r.c.pm)}</td><td class="${cls(r.c.cfM)}">${G(r.c.cfM)}${saed(r.c.cfM)}</td><td>${aed(r.c.interest)}</td><td class="${cls(r.c.combA)}">${G(r.c.combA)}${saed(r.c.combA)}</td>${over?`<td class="dim">${t('No alcanza: faltan {{v}}',{v:aed(-r.c.rem)})}</td>`:`<td class="${dif>=0?'pos':'neg'}">${aed(r.nw)} · ${t('{{v}} vs no comprar',{v:saed(dif)})}</td>`}</tr>`});
  $('enTable').innerHTML=h+'</tbody>';
 }
 
 /* ---------- Horizonte: comprar vs no comprar ---------- */
 const yearTxt=v=>v==null?t('Más de 30 años'):t('Año {{v}}',{v});
+function hzTile(k,label,sub,m,n,{fmt=aed,help}={}){
+ return `<div class="hz-tile${openFee===k?' open':''}"><span class="hz-t"><span>${label}${sub?` <span class="hz-s">${sub}</span>`:''}</span><button type="button" class="help" data-help="${k}" aria-label="${t('Qué es {{label}}',{label})}" aria-expanded="${openFee===k}" aria-describedby="htip-${k}">?</button></span><div class="hz-v"><span><small>${t('Pedido')}</small><b>${fmt(m)}</b></span><span><small>${t('Negociado')}</small><b>${fmt(n)}</b></span></div><span class="htip" id="htip-${k}" role="tooltip">${help}</span></div>`}
 function renderHorizon(R){
  const{M,N}=R,H=S.horizon;
- $('horizon').value=String(H);
+ document.querySelectorAll('#horizon [data-hz]').forEach(b=>{const on=+b.dataset.hz===H;b.classList.toggle('on',on);b.setAttribute('aria-checked',String(on));b.tabIndex=on?0:-1});
  $('hzSub').textContent=t('Patrimonio neto acumulado mes a mes, sin apreciación. Comprando: ahorros restantes (con su interés y el flujo de caja) + (precio − saldo de la hipoteca). "Si vendes" resta además la comisión de venta y la penalización de la hipoteca. Sin comprar: tu saldo actual rindiendo al {{r}}% con el tope de {{cap}}.',{r:S.savRate,cap:aed(S.savCap)});
  const hold=x=>firstYear(x.sim.years,'nwHold'),sold=x=>firstYear(x.sim.years,'nwSold'),exitH=x=>x.sim.years[H-1].exit;
- $('hzSummary').innerHTML=calcHeadHtml()+
-  calcRow('hzHold',t('Comprar supera a no comprar'),t('conservando'),hold(M),hold(N),{fmt:yearTxt,help:t('Primer año en que tu patrimonio neto comprando (sin vender) iguala o supera el de dejar todo el dinero en la cuenta.')})+
-  calcRow('hzSold',t('Recuperas los gastos de entrada y salida'),t('si vendes'),sold(M),sold(N),{fmt:yearTxt,help:t('Primer año en que comprar y luego vender deja de ser peor que no haber comprado. Antes de ese año, vender implica perder dinero frente a la cuenta.')})+
-  calcRow('hzExit',t('Coste de salida en el año {{h}}',{h:H}),'',exitH(M),exitH(N),{extra:' total',help:t('Comisión de venta {{a}}% + VAT, más la penalización por cancelar la hipoteca ({{p}}% del saldo, tope {{cap}}).',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)})});
+ $('hzSummary').innerHTML=
+  hzTile('hzHold',t('Comprar supera a no comprar'),t('conservando'),hold(M),hold(N),{fmt:yearTxt,help:t('Primer año en que tu patrimonio neto comprando (sin vender) iguala o supera el de dejar todo el dinero en la cuenta.')})+
+  hzTile('hzSold',t('Recuperas los gastos de entrada y salida'),t('si vendes'),sold(M),sold(N),{fmt:yearTxt,help:t('Primer año en que comprar y luego vender deja de ser peor que no haber comprado. Antes de ese año, vender implica perder dinero frente a la cuenta.')})+
+  hzTile('hzExit',t('Coste de salida en el año {{h}}',{h:H}),'',exitH(M),exitH(N),{help:t('Comisión de venta {{a}}% + VAT, más la penalización por cancelar la hipoteca ({{p}}% del saldo, tope {{cap}}).',{a:S.exitAgencyPct,p:S.prepayPct,cap:aed(S.prepayCap)})});
  const years=H<=10?Array.from({length:H},(_,i)=>i+1):[1,2,3,5,7,10,15,20].filter(y=>y<=H);
  const on=k=>S.view===k?' class="on"':'';
- const cell=(v,no)=>`<td class="${v>=no?'pos':'neg'}">${aed(v)} <span class="dim tiny">${saed(v-no)}</span></td>`;
+ const cell=(v,no)=>{const d=v-no;return `<td>${aed(v)}<span class="dl ${d>=0?'pos':'neg'}"><span aria-hidden="true">${d>=0?'▲':'▼'} </span>${saed(d)}</span></td>`};
  let h=`<thead><tr><th>${t('Año')}</th><th>${t('Sin comprar')}</th><th${on('main')}>${t('Pedido · conservando')}</th><th${on('main')}>${t('Pedido · si vendes')}</th><th${on('neg')}>${t('Negociado · conservando')}</th><th${on('neg')}>${t('Negociado · si vendes')}</th></tr></thead><tbody>`;
  years.forEach(y=>{const m=M.sim.years[y-1],n=N.sim.years[y-1];
   h+=`<tr><td>${t('Año {{v}}',{v:y})}</td><td>${aed(m.savNo)}</td>${cell(m.nwHold,m.savNo)}${cell(m.nwSold,m.savNo)}${cell(n.nwHold,n.savNo)}${cell(n.nwSold,n.savNo)}</tr>`});
@@ -2626,7 +2689,10 @@ function setupStepper(key,step){
 }
 [['rate',.05],['vacM',.5],['mgmt',.5],['tol',1],['savRate',.25],['ins',100]].forEach(x=>setupStepper(x[0],x[1]));
 $('term').addEventListener('change',e=>{pushHistory();S.term=parseInt(e.target.value,10);render()});
-$('horizon').addEventListener('change',e=>{S.horizon=parseInt(e.target.value,10);render()});
+$('horizon').addEventListener('click',e=>{const b=e.target.closest('[data-hz]');if(b&&+b.dataset.hz!==S.horizon){S.horizon=+b.dataset.hz;render();const nb=document.querySelector(`#horizon [data-hz="${S.horizon}"]`);if(nb)nb.focus()}});
+$('horizon').addEventListener('keydown',e=>{const bs=[...document.querySelectorAll('#horizon [data-hz]')],i=bs.findIndex(b=>+b.dataset.hz===S.horizon);let j=i;
+ if(e.key==='ArrowRight'||e.key==='ArrowDown')j=(i+1)%bs.length;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')j=(i-1+bs.length)%bs.length;else return;
+ e.preventDefault();bs[j].click()});
 document.addEventListener('click',e=>{
  const vl=e.target.closest('[data-verdict-link]');
  if(vl){const r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;$('resumen').scrollIntoView({behavior:r?'auto':'smooth',block:'start'});const h=$('verdictHeadline');h.setAttribute('tabindex','-1');h.focus({preventScroll:true});return}
@@ -2683,7 +2749,13 @@ $('btnChartTable').addEventListener('click',()=>{
  $('chartTableWrap').hidden=!on;$('btnChartTable').setAttribute('aria-pressed',String(on));
  updateChartBtn();
 });
-let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>renderChart(lastR||both()),120)});
+/* Width-dependent SVGs re-render whenever their box changes size (window resize, tab shown, panel toggled) */
+const rzW={chart:0,mp:0};let rzT;
+if(window.ResizeObserver){const ro=new ResizeObserver(()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(!lastR)return;
+ const wc=$('chart').clientWidth,wm=$('mpLine').clientWidth;
+ if(wc&&wc!==rzW.chart)renderChart(lastR);
+ if(wm&&wm!==rzW.mp)renderMaxPrice()},80)});ro.observe($('chart'));ro.observe($('mpLine'))}
+else window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(()=>{if(lastR){renderChart(lastR);renderMaxPrice()}},120)});
 
 /* ---------- Pestañas de resultados (patrón ARIA tabs) ---------- */
 const TABS=['flujo','riesgo','estrategia','detalle'];

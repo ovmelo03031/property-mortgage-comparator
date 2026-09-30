@@ -119,6 +119,7 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,52px);lin
 .seg{display:inline-flex;border:1px solid var(--line2);border-radius:12px;padding:3px;background:var(--card);flex:0 0 auto}
 .seg button{border:0;background:transparent;padding:6px 14px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--mut)}
 .seg button.on{background:var(--blue);color:#fff}
+@media (min-width:721px){.rentctl{flex:1 1 250px;max-width:330px}.rentctl label{font-size:13px}.rentctl input.inp.sm{width:84px;height:36px;border-radius:8px;font-size:14px;font-weight:600;text-align:right;padding:0 8px}.seg{border-radius:10px;background:var(--in)}.seg button{height:34px;padding:0 12px;border-radius:8px}}
 
 /* Inputs */
 .inp{background:var(--inset);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;width:100%;min-width:0}
@@ -156,6 +157,7 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .badge.b-blue{color:var(--brt);border-color:var(--brt);background:var(--brbg)}
 .alert{margin-top:12px;display:flex;gap:10px;align-items:flex-start;border:1px solid var(--wa);background:var(--wabg);color:var(--tx);border-radius:12px;padding:10px 12px;font-size:13px}
 .alert svg,.alert>span:first-child{flex:0 0 auto;color:var(--wa)}
+.alert[hidden]{display:none}
 .alert.info{border-color:var(--brt);background:var(--brbg)}
 #enMarginal{display:block;font-size:14px;padding:12px 14px;overflow-wrap:anywhere}
 .alert.info svg,.alert.info>span:first-child{color:var(--brt)}
@@ -235,16 +237,19 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .bs-link{margin-left:auto;border:0;background:transparent;color:var(--brt);font:inherit;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 0 8px 12px}
 @container (max-width:1100px){.bs-item{padding:0 12px;margin-left:12px}.bs-item:nth-of-type(5){display:none}}
 .tabs-in{display:flex;gap:14px;align-items:center;padding:8px 16px;flex-wrap:wrap}
-.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;border:1px solid var(--ln2);border-radius:12px;padding:3px;background:var(--in);flex:0 0 auto}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:0 0 auto}
 .tabs::-webkit-scrollbar{display:none}
-.tabs button{border:0;background:transparent;color:var(--mu);font-weight:500;font-size:14px;padding:0 14px;height:40px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.tabs button{border:0;background:transparent;color:var(--mu);font-weight:500;font-size:15px;padding:0 16px;height:44px;border-radius:10px;cursor:pointer;white-space:nowrap}
 .tabs button[aria-selected="true"]{background:var(--brbg);color:var(--tx);font-weight:700;box-shadow:inset 0 -3px 0 var(--br)}
 .tabpanel{padding:20px;display:flex;flex-direction:column;gap:20px;min-width:0}
 .tabpanel[hidden]{display:none}
-.tabpanel>section{background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:24px;min-width:0}
-.tabpanel>section .sec-h{border-bottom:0;padding-bottom:0}
-.tabpanel>section h2{font-size:22px}
-.tabpanel>section>.card{background:none;border:0;padding:0}
+.tabpanel section{background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:24px;min-width:0}
+.tabpanel section .sec-h{border-bottom:0;padding-bottom:0}
+.tabpanel section h2{font-size:22px}
+.tabpanel section>.card{background:none;border:0;padding:0}
+.two-col{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+.two-col.eq{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:1000px){.two-col,.two-col.eq{grid-template-columns:minmax(0,1fr)}}
 .feerow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px 16px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.8px}
 .feerow:last-child{border-bottom:0}
 .feerow.head{font-size:11.5px;color:var(--dim);padding-top:0}
@@ -301,6 +306,26 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .legend .li{display:flex;align-items:center;gap:6px;cursor:pointer}
 .legend .ln{width:22px;height:3px;border-radius:2px}
 .legend .li.on{color:var(--tx);font-weight:600}
+.legend .li svg{flex:0 0 auto}
+.legend .lg-hint{margin-left:auto;font-size:13px;color:var(--dm);cursor:default}
+.tip .tk{display:inline-flex;align-items:center;gap:6px}
+.tip .tk svg{flex:0 0 auto}
+.be3 td,.be3 th{white-space:normal;vertical-align:top}
+.be3 td{text-align:right}
+.be3 td .sub,.be3 td .gap{display:block;font-size:12.5px;white-space:nowrap}
+.be3 td .sub{color:var(--dm)}
+.be3 td .gap.pos{color:var(--po)}.be3 td .gap.neg{color:var(--ne)}
+.bridge{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.bridge li{display:grid;grid-template-columns:minmax(0,1fr) 96px 104px;gap:10px;align-items:center;padding:8px 0}
+.bridge li.tot{font-weight:700;border-top:1px solid var(--ln2)}
+.bridge .bl{font-size:14px}
+.bridge .bl small{display:block;font-size:12px;color:var(--dm);font-weight:400}
+.bridge .bb{display:block;height:10px;border-radius:3px;justify-self:end;background:var(--po)}
+.bridge li.dn .bb{background:var(--ne)}
+.bridge li.tot:not(.dn) .bb{background:var(--brt)}
+.bridge .bv{text-align:right;font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bridge li.dn .bv{color:var(--ne)}
+@media (max-width:420px){.bridge li{grid-template-columns:minmax(0,1fr) 56px 96px;gap:8px}}
 
 /* Tables */
 .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:16px;border:1px solid var(--line);max-width:100%}
@@ -604,7 +629,7 @@ body.qs-mode .app-shell{display:none}
   .tabs-box{background:none;border:0;border-radius:0;margin:0 -16px}
   .results-bar{border-radius:0}
   .tabpanel{padding:14px 12px}
-  .tabpanel>section,.lectura{padding:16px;border-radius:16px}
+  .tabpanel section,.lectura{padding:16px;border-radius:16px}
   .qs-grid{padding:20px 16px 40px;gap:24px}
   .qs h1{font-size:31px}
   .qs-form{padding:18px}
@@ -844,7 +869,7 @@ body.qs-mode .app-shell{display:none}
 
 <div id="tab-flujo" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-flujo" tabindex="0">
   <section id="grafico">
-    <div class="sec-h"><div><h2 data-i18n="Flujo de caja anual según la renta">Flujo de caja anual según la renta</h2><p data-i18n="Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.">Donde cada línea cruza el cero está su renta mínima para no perder dinero. Pasa el cursor o el dedo por el gráfico, o entra con el teclado y usa ← → para leer valores.</p></div>
+    <div class="sec-h"><div><h2 data-i18n="Flujo de caja anual según la renta">Flujo de caja anual según la renta</h2><p data-i18n="Donde cada línea cruza el cero está su renta mínima para no perder dinero.">Donde cada línea cruza el cero está su renta mínima para no perder dinero.</p></div>
       <button type="button" class="abtn outline" id="btnChartTable" aria-pressed="false">Ver como tabla</button>
     </div>
     <div class="card">
@@ -855,10 +880,17 @@ body.qs-mode .app-shell{display:none}
     </div>
   </section>
 
-  <section id="breakeven">
-    <div class="sec-h"><div><h2 data-i18n="Renta que necesitas según tu objetivo">Renta que necesitas según tu objetivo</h2><p id="beSub"></p></div></div>
-    <div class="tscroll"><table id="beTable" style="min-width:720px"></table></div>
-  </section>
+  <div class="two-col">
+    <section id="breakeven">
+      <div class="sec-h"><div><h2 data-i18n="Renta que necesitas según tu objetivo">Renta que necesitas según tu objetivo</h2><p id="beSub"></p></div></div>
+      <div class="tscroll"><table id="beTable" class="be3"></table></div>
+    </section>
+
+    <section id="puente">
+      <div class="sec-h"><div><h2 data-i18n="De la renta al flujo de caja">De la renta al flujo de caja</h2><p id="brSub"></p></div></div>
+      <ol class="bridge" id="bridge"></ol>
+    </section>
+  </div>
 </div>
 
 <div id="tab-riesgo" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-riesgo" hidden tabindex="0">
@@ -1627,6 +1659,20 @@ const I18N_EN={
   "Inicio rápido":"Quick start",
   "Negociar te ahorra {{a}} al cerrar y mejora el flujo en {{b}} al mes.":"Negotiating saves you {{a}} at closing and improves cash flow by {{b}} per month.",
   "Con el mismo precio pedido y negociado, no hay diferencia. Prueba una rebaja para ver cuánto ahorras.":"With the same asking and negotiated price there is no difference. Try a discount to see how much you save.",
+ "Tu renta: {{v}}k":"Your rent: {{v}}k",
+ "Renta mínima {{v}}":"Break-even rent {{v}}",
+ "destacado":"highlighted",
+ "Tu renta actual":"Your current rent",
+ "Con el foco en el gráfico: ← → mueven el cursor · Inicio/Fin saltan a los extremos":"With focus on the chart: ← → move the cursor · Home/End jump to the ends",
+ "cubierto +{{v}}":"covered +{{v}}",
+ "Un año con el precio {{s}} (escenario destacado).":"One year at the {{s}} price (highlighted scenario).",
+ "{{n}} al año":"{{n}} per year",
+ "{{sqft}} sqft × AED {{sc}}":"{{sqft}} sqft × AED {{sc}}",
+ "Rentabilidad neta {{v}}":"Net yield {{v}}",
+ "12 cuotas de {{v}}":"12 payments of {{v}}",
+ "{{v}} al mes":"{{v}} per month",
+ "Donde cada línea cruza el cero está su renta mínima para no perder dinero.":"Where each line crosses zero is its minimum rent to avoid losing money.",
+ "De la renta al flujo de caja":"From rent to cash flow",
 };
 /* ---------- /English dictionary ---------- */
 function applyStaticI18n(){
@@ -2114,23 +2160,25 @@ function renderDetail(R){
 /* ---------- Gráfico ---------- */
 function niceTicks(a,b,n){const span=(b-a)||1,s0=span/n,mag=Math.pow(10,Math.floor(Math.log10(s0))),f=s0/mag;
  const st=(f<1.5?1:f<3?2:f<7?5:10)*mag,lo=Math.floor(a/st)*st,hi=Math.ceil(b/st)*st,t=[];for(let v=lo;v<=hi+st/2;v+=st)t.push(Math.round(v));return{lo,hi,t}}
-const kfmt=v=>(v<0?'−':'')+nf0.format(Math.abs(v)/1000)+'k';
+const kfmt=v=>v===0?'0':(v<0?'−':'')+nf0.format(Math.abs(v)/1000)+'k';
 function renderChart(R){
  const box=$('chart'),tip=$('tip'),W=Math.max(280,box.clientWidth),narrow=W<560,H=narrow?300:390;
  const m={l:narrow?46:62,r:14,t:16,b:narrow?40:44},rent=S.rent;
  let x0=70000,x1=125000;if(rent<x0)x0=Math.floor(rent/5000)*5000;if(rent>x1)x1=Math.ceil(rent/5000)*5000;
- const C={sel:cv('--brt'),sp:cv('--sp'),sn:cv('--sn'),dm:cv('--dm'),tx:cv('--tx'),wa:cv('--wa'),sf:cv('--sf'),po:cv('--po'),ne:cv('--ne'),ln:cv('--ln2')};
+ const C={sel:cv('--brt'),br:cv('--br'),sp:cv('--sp'),sn:cv('--sn'),dm:cv('--dm'),tx:cv('--tx'),wa:cv('--wa'),sf:cv('--sf'),po:cv('--po'),ne:cv('--ne'),pobg:cv('--pobg'),nebg:cv('--nebg'),ln:cv('--ln2')};
  const N=80,series=['main','neg'].map(k=>{const price=k==='main'?S.price:S.neg,on=S.view===k;
-  return{k,price,on,color:on?C.sel:(k==='main'?C.sp:C.sn),be:R[k==='main'?'M':'N'].be,cur:R[k==='main'?'M':'N'].cfA,
+  return{k,price,on,color:k==='main'?C.sp:C.sn,dash:k==='main'?'9 6':'',be:R[k==='main'?'M':'N'].be,cur:R[k==='main'?'M':'N'].cfA,
    pts:Array.from({length:N+1},(_,i)=>{const x=x0+(x1-x0)*i/N;return[x,calc(S,price,x).cfA]})}});
  let ymin=0,ymax=0;series.forEach(se=>se.pts.forEach(p=>{ymin=Math.min(ymin,p[1]);ymax=Math.max(ymax,p[1])}));
  const yt=niceTicks(ymin,ymax,narrow?5:7);
  const X=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r),Y=v=>m.t+(yt.hi-v)/(yt.hi-yt.lo)*(H-m.t-m.b);
  let g='';
- g+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${Math.max(0,Y(0)-m.t)}" fill="${C.po}" fill-opacity=".07"/>`;
- g+=`<rect x="${m.l}" y="${Y(0)}" width="${W-m.l-m.r}" height="${Math.max(0,H-m.b-Y(0))}" fill="${C.ne}" fill-opacity=".07"/>`;
+ g+=`<rect x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${Math.max(0,Y(0)-m.t)}" fill="${C.pobg}"/>`;
+ g+=`<rect x="${m.l}" y="${Y(0)}" width="${W-m.l-m.r}" height="${Math.max(0,H-m.b-Y(0))}" fill="${C.nebg}"/>`;
+ if(Y(0)-m.t>34)g+=`<text x="${m.l+12}" y="${m.t+22}" fill="${C.po}" font-size="12" font-weight="600">${t('▲ Ganas dinero')}</text>`;
+ if(H-m.b-Y(0)>34)g+=`<text x="${m.l+12}" y="${H-m.b-12}" fill="${C.ne}" font-size="12" font-weight="600">${t('▼ Pierdes dinero')}</text>`;
  yt.t.forEach(v=>{g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="${C.ln}" stroke-opacity=".5"/><text x="${m.l-8}" y="${Y(v)+4}" fill="${C.dm}" font-size="11" text-anchor="end">${kfmt(v)}</text>`});
- const xs=narrow?(x1-x0>60000?20000:10000):(x1-x0>120000?10000:5000);
+ const xs=narrow?(x1-x0>60000?20000:10000):(x1-x0>240000?20000:10000);
  for(let v=Math.ceil(x0/xs)*xs;v<=x1;v+=xs){g+=`<line x1="${X(v)}" x2="${X(v)}" y1="${m.t}" y2="${H-m.b}" stroke="${C.ln}" stroke-opacity=".3"/><text x="${X(v)}" y="${H-m.b+17}" fill="${C.dm}" font-size="11" text-anchor="middle">${nf0.format(v/1000)}k</text>`}
  g+=`<text x="${(m.l+W-m.r)/2}" y="${H-6}" fill="${C.dm}" font-size="11" text-anchor="middle">${t('Renta anual (AED)')}</text>`;
  g+=`<text transform="translate(12 ${(m.t+H-m.b)/2}) rotate(-90)" fill="${C.dm}" font-size="11" text-anchor="middle">${t('Flujo de caja anual (AED)')}</text>`;
@@ -2138,16 +2186,20 @@ function renderChart(R){
  // renta actual
  const rx=X(rent);
  g+=`<line x1="${rx}" x2="${rx}" y1="${m.t}" y2="${H-m.b}" stroke="${C.wa}" stroke-opacity=".8" stroke-dasharray="3 4"/>`;
- g+=`<text x="${Math.min(Math.max(rx,m.l+60),W-m.r-60)}" y="${m.t+12}" fill="${C.wa}" font-size="11" text-anchor="middle">${t('Renta actual {{v}}k',{v:nf0.format(Math.round(rent/100)/10)})}</text>`;
+ const rentRight=rx>W-m.r-120;
+ g+=`<text x="${rentRight?rx-6:rx+6}" y="${m.t+42}" fill="${C.wa}" font-size="11.5" font-weight="600" text-anchor="${rentRight?'end':'start'}">${t('Tu renta: {{v}}k',{v:(rent/1000).toFixed(1)})}</text>`;
  // líneas: la no seleccionada primero
  series.slice().sort((a,b)=>a.on-b.on).forEach(se=>{const d=se.pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+' '+Y(p[1]).toFixed(1)).join('');
-  if(se.on)g+=`<path d="${d}" fill="none" stroke="${C.sel}" stroke-width="9" stroke-opacity=".18" stroke-linecap="round"/>`;
-  g+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.on?3.2:1.8}" stroke-opacity="${se.on?1:.75}" stroke-linecap="round"/>`});
- // break-even y punto actual
- series.forEach(se=>{
-  if(se.be>=x0&&se.be<=x1){g+=`<circle cx="${X(se.be)}" cy="${Y(0)}" r="5" fill="${se.color}" stroke="${C.sf}" stroke-width="1.5"/>`;
-   if(se.on)g+=`<text x="${X(se.be)}" y="${Y(0)+18}" fill="${C.sel}" font-size="11" text-anchor="middle">${t('Mínima {{v}}k',{v:nf0.format(Math.round(se.be/100)/10)})}</text>`}
-  g+=`<circle cx="${rx}" cy="${Y(se.cur)}" r="4.5" fill="${C.sf}" stroke="${se.color}" stroke-width="2.5"/>`});
+  if(se.on)g+=`<path d="${d}" fill="none" stroke="${C.br}" stroke-width="10" stroke-opacity=".18" stroke-linecap="round"/>`;
+  g+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.on?3.2:2.2}"${se.dash?` stroke-dasharray="${se.dash}"`:''} stroke-linecap="round"/>`});
+ // break-even (cuadrado = pedido, círculo = negociado) y punto en la renta actual
+ const mk=(se,cx,cy,r,fill,stroke,sw)=>se.k==='main'?`<rect x="${cx-r}" y="${cy-r}" width="${2*r}" height="${2*r}" rx="2" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`:`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+ const vis=series.filter(se=>se.be>=x0&&se.be<=x1).sort((a,b)=>a.be-b.be);
+ vis.forEach((se,i)=>{g+=mk(se,X(se.be),Y(0),se.on?6.5:6,se.color,C.sf,2);
+  const v=nf0.format(Math.round(se.be/100)/10)+'k';
+  if(vis.length>1&&i===0)g+=`<text x="${X(se.be)-11}" y="${Y(0)+21}" fill="${se.color}" font-size="11.5" font-weight="600" text-anchor="end">${v}</text>`;
+  else g+=`<text x="${X(se.be)+11}" y="${Y(0)+21}" fill="${C.tx}" font-size="11.5" font-weight="600">${t('Renta mínima {{v}}',{v})}</text>`});
+ series.forEach(se=>{g+=mk(se,rx,Y(se.cur),se.k==='main'?4.5:5,C.sf,se.color,2.5)});
  g+=`<line id="xh" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="${C.tx}" stroke-opacity=".5" visibility="hidden"/>`;
  g+=`<rect id="ov" x="${m.l}" y="${m.t}" width="${W-m.l-m.r}" height="${H-m.t-m.b}" fill="transparent"/>`;
  const beTxt=series.map(se=>`${t(SHORT[se.k])} ${se.be>x1||se.be<x0?t('fuera de este rango'):t('con {{v}}',{v:aed(se.be)})}`).join('; ');
@@ -2157,7 +2209,7 @@ function renderChart(R){
  const showAt=rr=>{const xx=X(rr);
   xh.setAttribute('x1',xx);xh.setAttribute('x2',xx);xh.setAttribute('visibility','visible');
   tip.innerHTML=`<div class="muted tiny">${t('Renta {{v}}/año',{v:aed(rr)})}</div>`+series.map(se=>{const v=calc(S,se.price,rr).cfM;
-   return `<div class="r"><span><span class="swatch" style="background:${se.color}"></span>${t(SHORT[se.k])}</span><b class="${cls(v)}">${saed(v)}${t('/mes')}</b></div>`}).join('');
+   return `<div class="r"><span class="tk"><svg width="22" height="6" aria-hidden="true"><line x1="1" x2="21" y1="3" y2="3" stroke="${se.color}" stroke-width="3"${se.dash?' stroke-dasharray="5 3"':''} stroke-linecap="round"/></svg>${t(SHORT[se.k])}</span><b class="${cls(v)}">${v>0.5?'▲ ':v<-0.5?'▼ ':''}${saed(v)}${t('/mes')}</b></div>`}).join('');
   tip.style.opacity=1;const tw=tip.offsetWidth;tip.style.left=Math.min(W-tw-4,Math.max(4,xx+12>W-tw?xx-tw-12:xx+12))+'px';tip.style.top=(m.t+18)+'px'};
  const move=e=>{const rect=box.getBoundingClientRect(),px=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
   showAt(Math.max(x0,Math.min(x1,x0+(px-m.l)/(W-m.l-m.r)*(x1-x0))))};
@@ -2182,19 +2234,40 @@ function renderChart(R){
  const anyCross=series.some(se=>se.be>=x0&&se.be<=x1);
  $('chartEmpty').hidden=anyCross;
  if(!anyCross)$('chartEmpty').innerHTML='<span aria-hidden="true">i</span><span>'+t('El gráfico no cruza el cero: con estos gastos, ninguna renta entre {{x0}} y {{x1}} llega a flujo de caja 0. Revisa «Gastos anuales» en Supuestos.',{x0:aed(x0),x1:aed(x1)})+'</span>';
- $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}"><span class="ln" style="background:${se.color}"></span>${t(SHORT[se.k])} · ${short(se.price)}${se.on?' · '+t('seleccionado'):''}</span>`).join('')+
-  `<span class="li"><span class="ln" style="background:var(--wa);height:8px;width:8px;border-radius:50%"></span>${t('Renta actual')}</span><span class="li"><span class="ln" style="background:var(--sf);box-shadow:0 0 0 2px var(--tx) inset;height:8px;width:8px;border-radius:50%"></span>${t('Renta mínima')}</span>`;
+ const lgLine=se=>`<svg width="26" height="6" aria-hidden="true"><line x1="1" x2="25" y1="3" y2="3" stroke="${se.color}" stroke-width="3"${se.dash?' stroke-dasharray="6 4"':''} stroke-linecap="round"/></svg>`;
+ $('legend').innerHTML=series.map(se=>`<span class="li${se.on?' on':''}" data-view="${se.k}">${lgLine(se)}${t(SHORT[se.k])} · ${short(se.price)}${se.on?' · '+t('destacado'):''}</span>`).join('')+
+  `<span class="li"><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--sp)"/></svg>${t('Renta mínima')}</span><span class="li"><svg width="14" height="14" aria-hidden="true"><line x1="7" x2="7" y1="0" y2="14" stroke="var(--wa)" stroke-width="2" stroke-dasharray="3 2"/></svg>${t('Tu renta actual')}</span><span class="lg-hint">${t('Con el foco en el gráfico: ← → mueven el cursor · Inicio/Fin saltan a los extremos')}</span>`;
 }
 
 /* ---------- Break-even ---------- */
-function gapCell(need){const gap=need-S.rent;return `<td class="${gap<=0?'pos':'neg'}">${gap<=0?t('Cubierto (+{{v}})',{v:aed(-gap)}):t('Faltan {{v}}',{v:aed(gap)})}</td>`}
+function beCell(need,on){const gap=need-S.rent,ok=gap<=0;
+ return `<td${on?' class="on"':''}><b>${aed(need)}</b><span class="sub">${aed(need/12)}${t('/mes')}</span><span class="gap ${ok?'pos':'neg'}"><span aria-hidden="true">${ok?'▲':'▼'} </span>${ok?t('cubierto +{{v}}',{v:aed(-gap)}):t('faltan {{v}}',{v:aed(gap)})}</span></td>`}
 function renderBE(R){
  $('beSub').textContent=t('Renta anual necesaria para cada objetivo de flujo de caja mensual, y la brecha frente a la renta actual ({{rent}}/año).',{rent:aed(S.rent)});
  const on=k=>S.view===k?' class="on"':'';
- let h=`<thead><tr><th>${t('Objetivo al mes')}</th><th${on('main')}>${t('Pedido · renta anual')}</th><th${on('main')}>${t('Pedido · vs actual')}</th><th${on('neg')}>${t('Negociado · renta anual')}</th><th${on('neg')}>${t('Negociado · vs actual')}</th></tr></thead><tbody>`;
+ let h=`<thead><tr><th>${t('Objetivo al mes')}</th><th${on('main')}>${t('Pedido')}</th><th${on('neg')}>${t('Negociado')}</th></tr></thead><tbody>`;
  [0,500,1000,1500,2000].forEach(goal=>{const a=breakEven(S,S.price,goal),b=breakEven(S,S.neg,goal);
-  h+=`<tr><td>${goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)})}</td><td><b>${aed(a)}</b> <span class="dim tiny">${aed(a/12)}${t('/mes')}</span></td>${gapCell(a)}<td><b>${aed(b)}</b> <span class="dim tiny">${aed(b/12)}${t('/mes')}</span></td>${gapCell(b)}</tr>`});
+  h+=`<tr><td>${goal===0?t('AED 0/mes (no perder dinero)'):t('+AED {{n}}/mes',{n:nf0.format(goal)})}</td>${beCell(a,S.view==='main')}${beCell(b,S.view==='neg')}</tr>`});
  $('beTable').innerHTML=h+'</tbody>';
+}
+
+/* ---------- De la renta al flujo de caja (un año, escenario destacado) ---------- */
+function renderBridge(R){
+ const s=R.sel;
+ $('brSub').textContent=t('Un año con el precio {{s}} (escenario destacado).',{s:t(S.view==='main'?'pedido':'negociado')});
+ const rows=[
+  {l:'Renta bruta',v:S.rent},
+  {l:'Meses sin inquilino',sub:t('{{n}} al año',{n:S.vacM===1?t('{{v}} mes',{v:1}):t('{{v}} meses',{v:S.vacM})}),v:-s.vac},
+  {l:'Comunidad',sub:t('{{sqft}} sqft × AED {{sc}}',{sqft:nf0.format(S.sqft),sc:S.sc}),v:-s.scA},
+  {l:'Mantenimiento',v:-S.maint},
+  {l:'Gestión del alquiler',sub:t('{{p}}% de la renta',{p:S.mgmt}),v:-s.mg},
+  {l:'Administración e imprevistos',v:-S.admin}];
+ if(S.ins>0)rows.push({l:'Seguro del inmueble',v:-S.ins});
+ rows.push({l:'Ingreso neto antes de hipoteca',sub:t('Rentabilidad neta {{v}}',{v:pct(s.ny)}),v:s.noi,tot:1},
+  {l:'Hipoteca',sub:t('12 cuotas de {{v}}',{v:aed(s.pm)}),v:-s.debt},
+  {l:'Flujo de caja anual',sub:t('{{v}} al mes',{v:saed(s.cfM)}),v:s.cfA,tot:1});
+ $('bridge').innerHTML=rows.map(r=>{const neg=r.v<-0.5,w=Math.max(2,Math.round(Math.abs(r.v)/(S.rent||1)*96));
+  return `<li class="${r.tot?'tot':''}${neg?' dn':''}"><span class="bl">${t(r.l)}${r.sub?`<small>${r.sub}</small>`:''}</span><span class="bb" aria-hidden="true" style="width:${Math.min(96,w)}px"></span><span class="bv">${r.tot?aed(r.v):saed(r.v)}</span></li>`}).join('');
 }
 
 /* ---------- Stress de tasa ---------- */
@@ -2420,7 +2493,7 @@ $('essReset').addEventListener('click',()=>{
 function render(){
  syncFields();
  const R=lastR=both();
- renderHeader(R);renderFees(R);renderEss(R);renderVerdict(R);renderKpis(R);renderImpact(R);renderDetail(R);renderDetailMobile(R);renderChart(R);renderBE(R);renderStress();renderMatrix();renderSavings(R);
+ renderHeader(R);renderFees(R);renderEss(R);renderVerdict(R);renderKpis(R);renderImpact(R);renderDetail(R);renderDetailMobile(R);renderChart(R);renderBE(R);renderBridge(R);renderStress();renderMatrix();renderSavings(R);
  renderMaxPrice();renderRenewal(R);renderRunway(R);renderDownPay(R);renderHorizon(R);renderInsights(R);
  updateGroupSummaries(R);renderQsPreview(R);renderBarSummary(R);renderSupCf(R);updateChartBtn();
  saveState();
